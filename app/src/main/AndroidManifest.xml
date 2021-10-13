@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperandomeAppFinal">
         <activity
+            android:name=".configurarHorario"
+            android:exported="true" />
+        <activity
             android:name=".CargarEmocionDiaria"
             android:exported="true" />
         <activity
