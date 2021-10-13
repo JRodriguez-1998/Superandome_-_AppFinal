@@ -7,5 +7,9 @@
     <string name="miedo">Miedo</string>
     <string name="asco">Asco</string>
     <string name="registrar">Registrar</string>
+    <string name="cancelarConfigHora">Cancelar</string>
+    <string name="aceptarConfigHora">Aceptar</string>
+    <string name="tituloConfHora">Configurar Horario:</string>
+    <string name="configActual">Configuración actual: 22:00</string>
 
 </resources>
