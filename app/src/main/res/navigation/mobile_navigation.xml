@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_cargarEmocionDiaria">
+
+    <fragment
+        android:id="@+id/nav_cargarEmocionDiaria"
+        android:name="com.example.superandome_appfinal.cargarEmocionDiaria"
+        android:label="fragment_cargar_emocion_diaria"
+        tools:layout="@layout/fragment_cargar_emocion_diaria" />
+
+    <fragment
+        android:id="@+id/nav_configurarHorario"
+        android:name="com.example.superandome_appfinal.configurarHorario"
+        android:label="fragment_configurar_horario"
+        tools:layout="@layout/fragment_configurar_horario" />
+
+</navigation>
