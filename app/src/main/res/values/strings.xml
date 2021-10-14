@@ -12,4 +12,12 @@
     <string name="tituloConfHora">Configurar Horario:</string>
     <string name="configActual">Configuración actual: 22:00</string>
 
+    <string name="nickname">nickname</string>
+    <string name="password">password</string>
+    <string name="btnIngresar">Ingresar</string>
+    <string name="o">ó</string>
+    <string name="crearCuenta">Crear cuenta</string>
+    <string name="psicologa">PSIC. JULIET VÉLEZ</string>
+    <string name="redessociales">/soyuzsaludmental</string>
+
 </resources>

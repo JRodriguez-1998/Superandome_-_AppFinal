@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profesional"
+
+    tools:context=".activity_login">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/ivLogoSoyuz"
+                android:layout_width="match_parent"
+                android:layout_height="139dp"
+                app:srcCompat="@drawable/logo_soyuz" />
+
+            <ImageView
+                android:id="@+id/ivLogoApp"
+                android:layout_width="match_parent"
+                android:layout_height="186dp"
+                app:srcCompat="@drawable/logo_app" />
+
+            <EditText
+                android:id="@+id/etNickname"
+                android:layout_width="378dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/border_transparent"
+                android:ems="10"
+                android:fontFamily="@font/questrial_regular"
+                android:hint="@string/nickname"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textAlignment="center"
+                android:textSize="29sp" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="378dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:background="@drawable/border_transparent"
+                android:ems="10"
+                android:fontFamily="@font/questrial_regular"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textAlignment="center"
+                android:textSize="29sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btnIngresar"
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#4167B2"
+                android:fontFamily="@font/questrial_regular"
+                android:text="@string/btnIngresar"
+                android:textColor="#FFFFFF"
+                app:iconTint="#4167B2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/o"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/linkCrearcuenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/crearCuenta"
+                android:textAlignment="center"
+                android:textColor="#4167B2"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/questrial_regular"
+                android:text="@string/psicologa"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/questrial_regular"
+                    android:text="@string/redessociales"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/btnFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    app:srcCompat="@drawable/facebook" />
+
+                <ImageView
+                    android:id="@+id/btnWhatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    app:srcCompat="@drawable/whatsapp" />
+
+                <ImageView
+                    android:id="@+id/btnInstagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    app:srcCompat="@drawable/instagram" />
+
+            </TableRow>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
