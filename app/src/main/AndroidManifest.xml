@@ -10,11 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperandomeAppFinal">
         <activity
-            android:name=".configurarHorario"
-            android:exported="true" />
-        <activity
-            android:name=".CargarEmocionDiaria"
-            android:exported="true" />
+            android:name=".navigationDrawer_consultante"
+            android:exported="true"
+            android:label="@string/title_activity_navigation_drawer_consultante"
+            android:theme="@style/Theme.SuperandomeAppFinal.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
