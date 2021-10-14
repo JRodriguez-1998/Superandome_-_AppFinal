@@ -17,4 +17,10 @@
         android:label="fragment_configurar_horario"
         tools:layout="@layout/fragment_configurar_horario" />
 
+    <fragment
+        android:id="@+id/nav_sugerirContenido"
+        android:name="com.example.superandome_appfinal.sugerirContenido"
+        android:label="fragment_sugerir_contenido"
+        tools:layout="@layout/fragment_sugerir_contenido" />
+
 </navigation>

@@ -13,5 +13,11 @@
             android:id="@+id/nav_configurarHorario"
             android:icon="@drawable/asustado"
             android:title="Configurar horario" />
+
+        <item
+            android:id="@+id/nav_sugerirContenido"
+            android:icon="@drawable/asustado"
+            android:title="Sugerir contenido multimedia" />
+
     </group>
 </menu>
