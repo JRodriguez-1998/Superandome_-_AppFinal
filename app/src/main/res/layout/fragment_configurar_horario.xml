@@ -8,87 +8,66 @@
     android:background="@drawable/consultante"
     tools:context=".configurarHorario">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvConfiActual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:fontFamily="@font/redhat_medium"
+            android:text="@string/configActual"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTituloHora" />
 
-            <TextView
-                android:id="@+id/tvTituloHora"
+        <TextView
+            android:id="@+id/tvTituloHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/redhat_medium"
+            android:layout_marginTop="25dp"
+            android:text="@string/tituloConfHora"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="104dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvConfiActual"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/redhat_medium"
-                android:text="@string/tituloConfHora"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="28sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvConfiActual"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/redhat_medium"
-                android:text="@string/configActual"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TimePicker
-                android:id="@+id/timePicker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:headerBackground="#03A9F4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"></TimePicker>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
-
-
-                <TextView
-                    android:id="@+id/tvCancelarHora"
-                    android:layout_width="wrap_content"
+                <TimePicker
+                    android:id="@+id/timePicker"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/cancelarConfigHora"
-                    android:textColor="@color/purple_500"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/white"
+                    android:headerBackground="#03A9F4"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvAceptarHora"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"></TimePicker>
 
-                <TextView
-                    android:id="@+id/tvAceptarHora"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/aceptarConfigHora"
-                    android:textColor="@color/purple_500"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-        </LinearLayout>
+        </ScrollView>
 
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
