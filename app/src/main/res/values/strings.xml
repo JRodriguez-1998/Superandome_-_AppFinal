@@ -43,4 +43,16 @@
     <string name="psicologa">PSIC. JULIET VÉLEZ</string>
     <string name="redessociales">/soyuzsaludmental</string>
 
+    <string name="formulario_de">Formulario de</string>
+    <string name="registro">Registro</string>
+    <string name="ingresenombre">Ingrese Nickname</string>
+    <string name="ingresenacimiento">Ingrese Fecha de Nacimiento</string>
+            <string name="fechanac">fecha nacimiento</string>
+    <string name="seleccionegenero">Seleccione su Género</string>
+            <string name="genero">género</string>
+    <string name="ingresepass">Ingrese Password</string>
+    <string name="confipass">Confirme Password</string>
+            <string name="confipass2">confirme password</string>
+    <string name="registrarse">Registrarse</string>
+
 </resources>

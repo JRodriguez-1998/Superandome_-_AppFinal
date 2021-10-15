@@ -84,6 +84,7 @@
                 android:id="@+id/linkCrearcuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="ir_crearCuenta"
                 android:text="@string/crearCuenta"
                 android:textAlignment="center"
                 android:textColor="#4167B2"
