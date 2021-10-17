@@ -24,5 +24,10 @@
             android:icon="@drawable/logo_soyuz"
             android:title="Encuesta" />
 
+        <item
+            android:id="@+id/nav_rutinaDiaria"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Rutina" />
+
     </group>
 </menu>

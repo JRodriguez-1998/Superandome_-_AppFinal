@@ -27,5 +27,12 @@
         android:name="com.example.superandome_appfinal.ingresarEncuesta"
         android:label="fragment_ingresar_encuesta"
         tools:layout="@layout/fragment_ingresar_encuesta" />
+    <fragment
+        android:id="@+id/nav_rutinaDiaria"
+        android:name="com.example.superandome_appfinal.rutinaDiaria"
+        android:label="fragment_encuesta_diaria"
+        tools:layout="@layout/fragment_rutina_diaria" />
+
+
 
 </navigation>
