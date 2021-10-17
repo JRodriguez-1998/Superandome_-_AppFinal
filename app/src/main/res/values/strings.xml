@@ -20,6 +20,12 @@
     <string name="tipoContenido">Video</string>
     <string name="enviar">Enviar</string>
 
+    <string name= "tituloEncuesta"> Encuesta diaria </string>
+    <string name= "subEncuesta"> Responda esta encuesta para analizar tu estado emocional diario. </string>
+    <string name= "fechaEncuesta"> Fecha:  </string>
+    <string name= "btnEncuesta"> Enviar  </string>
+
+
     <string name="title_activity_navigation_drawer_consultante">navigationDrawer_consultante
     </string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

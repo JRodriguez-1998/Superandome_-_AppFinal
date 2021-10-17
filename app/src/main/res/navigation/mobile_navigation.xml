@@ -22,5 +22,10 @@
         android:name="com.example.superandome_appfinal.sugerirContenido"
         android:label="fragment_sugerir_contenido"
         tools:layout="@layout/fragment_sugerir_contenido" />
+    <fragment
+        android:id="@+id/nav_ingresarEncuesta"
+        android:name="com.example.superandome_appfinal.ingresarEncuesta"
+        android:label="fragment_ingresar_encuesta"
+        tools:layout="@layout/fragment_ingresar_encuesta" />
 
 </navigation>
