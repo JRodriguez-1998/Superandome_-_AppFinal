@@ -10,16 +10,23 @@
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/drawable/border.xml" value="0.2203125" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/drawable/borderspinner.xml" value="0.2203125" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_alta_consultante.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_cargar_emocion_diaria.xml" value="0.22" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_configurar_horario.xml" value="0.25" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_login.xml" value="0.15806159420289856" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_main.xml" value="0.15489130434782608" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_navigation_drawer_consultante.xml" value="0.1381340579710145" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/content_navigation_drawer_consultante.xml" value="0.1381340579710145" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/fragment_cargar_emocion_diaria.xml" value="0.25" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/fragment_cargar_item.xml" value="0.15625" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/fragment_configurar_horario.xml" value="0.22" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/fragment_ingresar_encuesta.xml" value="0.1" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/fragment_sugerir_consejo.xml" value="0.24375" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/fragment_sugerir_contenido.xml" value="0.33" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/nav_header_navigation_drawer_consultante.xml" value="0.16259057971014493" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/spinner_generos.xml" value="0.1" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/spinner_item_tipoconsejo.xml" value="0.12273550724637682" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/menu/navigation_drawer_consultante.xml" value="0.20416666666666666" />
       </map>

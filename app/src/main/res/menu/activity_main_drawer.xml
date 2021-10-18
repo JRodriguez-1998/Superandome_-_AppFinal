@@ -20,6 +20,11 @@
             android:title="Sugerir contenido multimedia" />
 
         <item
+            android:id="@+id/nav_sugerirConsejo"
+            android:icon="@drawable/asustado"
+            android:title="Sugerir consejo diario" />
+
+        <item
             android:id="@+id/nav_ingresarEncuesta"
             android:icon="@drawable/logo_soyuz"
             android:title="Encuesta" />

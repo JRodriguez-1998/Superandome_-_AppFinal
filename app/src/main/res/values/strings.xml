@@ -19,6 +19,10 @@
     <string name="tituloTipoCont">Tipo contenido:</string>
     <string name="tipoContenido">Video</string>
     <string name="enviar">Enviar</string>
+    <string name="tituloSugConsejo">Sugerir consejo:</string>
+    <string name="sugConsejo">Escriba aquí...</string>
+    <string name="enviarSugerencia">Enviar sugerencia</string>
+
 
     <string name="tituloEncuesta"> Encuesta diaria </string>
     <string name="subEncuesta"> Responda esta encuesta para analizar tu estado emocional diario. </string>
