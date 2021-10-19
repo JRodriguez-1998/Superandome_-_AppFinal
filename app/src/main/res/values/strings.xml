@@ -45,8 +45,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <string name="nickname">nickname</string>
     <string name="password">password</string>
@@ -67,5 +66,15 @@
     <string name="confipass">Confirme Password</string>
     <string name="confipass2">confirme password</string>
     <string name="registrarse">Registrarse</string>
+
+    <string name="altaProfesional">Alta Profesional</string>
+    <string name="fechahoy">Fecha: </string>
+    <string name="FECHA_DE_EJEMPLO">01/10/2021</string>
+    <string name="id">ID:</string>
+    <string name="ingresenombre2">Nickname</string>
+    <string name="ingresenacimiento2">Fecha de Nacimiento</string>
+    <string name="seleccionegenero2">Género</string>
+    <string name="ingresepass2">Password</string>
+    <string name="btnAceptar">Aceptar</string>
 
 </resources>
