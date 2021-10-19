@@ -44,5 +44,10 @@
             android:icon="@drawable/asustado"
             android:title="Profesional Sugerir contenido" />
 
+        <item
+            android:id="@+id/nav_sugerirConsejo_profesional"
+            android:icon="@drawable/asustado"
+            android:title="Profesional Sugerir consejo" />
+
     </group>
 </menu>
