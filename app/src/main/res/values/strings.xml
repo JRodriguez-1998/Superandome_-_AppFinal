@@ -77,4 +77,12 @@
     <string name="ingresepass2">Password</string>
     <string name="btnAceptar">Aceptar</string>
 
+
+    <string name="aprobar_rechazar">Aprobar/Rechazar Contenido</string>
+    <string name="tvContenido">Contenido: </string>
+    <string name="tvSugeridoPor">Sugerido por:</string>
+    <string name="tvTipoContenido">Tipo Contenido: </string>
+    <string name="btnAprobar">Aprobar</string>
+    <string name="btnRechazar">Rechazar</string>
+
 </resources>
