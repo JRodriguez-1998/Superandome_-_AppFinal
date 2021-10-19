@@ -40,12 +40,24 @@
         android:label="fragment_encuesta_diaria"
         tools:layout="@layout/fragment_rutina_diaria" />
     <fragment
+        android:id="@+id/nav_multimedia"
+        android:name="com.example.superandome_appfinal.multimedia"
+        android:label="fragment_multimedia"
+        tools:layout="@layout/fragment_multimedia" />
+    <fragment
+        android:id="@+id/nav_multimedia_video"
+        android:name="com.example.superandome_appfinal.multimedia_video"
+        android:label="fragment_multimedia_video"
+        tools:layout="@layout/fragment_multimedia_video" />
+
+    <fragment
         android:id="@+id/nav_sugerirConsejo"
         android:name="com.example.superandome_appfinal.sugerirConsejo"
         android:label="fragment_sugerir_consejo"
         tools:layout="@layout/fragment_sugerir_consejo" />
 
     <!--FRAGMENTS PROFESIONAL-->
+
 
     <fragment
         android:id="@+id/nav_sugerirContenido_profesional"
