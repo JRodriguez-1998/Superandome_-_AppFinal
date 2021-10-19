@@ -39,7 +39,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
-                R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria)
+                R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_altaProfesional)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);

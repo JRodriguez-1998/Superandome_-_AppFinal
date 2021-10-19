@@ -34,5 +34,9 @@
             android:icon="@drawable/logo_soyuz"
             android:title="Rutina" />
 
+        <item
+            android:id="@+id/nav_altaProfesional"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Alta Profesional" />
     </group>
 </menu>
