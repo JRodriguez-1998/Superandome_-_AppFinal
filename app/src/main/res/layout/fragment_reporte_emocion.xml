@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textAlignment="center"
-            android:background="@color/white"/>
+            android:layout_gravity="center"
+            android:background="@drawable/border"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -63,13 +64,20 @@
             android:textColor="@color/white"
             android:textSize="26sp" />
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/chart"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/consultante"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-102dp" />
+            android:layout_height="400dp">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chart"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
