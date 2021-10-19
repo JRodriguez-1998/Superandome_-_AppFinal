@@ -23,5 +23,26 @@
             android:id="@+id/nav_reporteEmocion"
             android:icon="@drawable/asustado"
             android:title="Reporte mensual emoción" />
+
+        <item
+            android:id="@+id/nav_sugerirConsejo"
+            android:icon="@drawable/asustado"
+            android:title="Sugerir consejo diario" />
+
+        <item
+            android:id="@+id/nav_ingresarEncuesta"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Encuesta" />
+
+        <item
+            android:id="@+id/nav_rutinaDiaria"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Rutina" />
+
+        <item
+            android:id="@+id/nav_sugerirContenido_profesional"
+            android:icon="@drawable/asustado"
+            android:title="Profesional Sugerir contenido" />
+
     </group>
 </menu>
