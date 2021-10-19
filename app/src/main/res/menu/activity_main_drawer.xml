@@ -58,7 +58,11 @@
             android:id="@+id/nav_sugerirConsejo_profesional"
             android:icon="@drawable/asustado"
             android:title="Profesional Sugerir consejo" />
-
+        
+        <item
+            android:id="@+id/nav_altaProfesional"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Alta Profesional" />
 
     </group>
 </menu>
