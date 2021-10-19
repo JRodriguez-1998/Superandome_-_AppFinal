@@ -29,5 +29,15 @@
             android:icon="@drawable/logo_soyuz"
             android:title="Rutina" />
 
+        <item
+            android:id="@+id/nav_multimedia"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Multimedia" />
+
+        <item
+            android:id="@+id/nav_multimedia_video"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Multimedia video" />
+
     </group>
 </menu>
