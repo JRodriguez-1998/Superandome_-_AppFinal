@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class sugerirContenido extends Fragment {
+public class sugerirContenido_profesional extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sugerir_contenido, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_sugerir_contenido_profesional, container, false);
     }
 }

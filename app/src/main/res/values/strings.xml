@@ -19,6 +19,10 @@
     <string name="tituloTipoCont">Tipo contenido:</string>
     <string name="tipoContenido">Video</string>
     <string name="enviar">Enviar</string>
+
+    <string name="tituloInformeEmocion">Informe Mensual</string>
+    <string name="subtituloInformeEmocion">Estados de ánimo</string>
+
     <string name="tituloSugConsejo">Sugerir consejo:</string>
     <string name="sugConsejo">Escriba aquí...</string>
     <string name="enviarSugerencia">Enviar sugerencia</string>
@@ -31,7 +35,9 @@
 
     <string name="tituloRutina"> Rutina diaria  </string>
     <string name="btnRutina"> Guardar  </string>
-
+    <string name="tituloMultimedia"> Multimedia  </string>
+    <string name="btnAbrirMultimedia"> Abrir  </string>
+    <string name="txtDescripcionMultimedia"> <u>Descripcion</u>  </string>
 
     <string name="title_activity_navigation_drawer_consultante">navigationDrawer_consultante
     </string>
@@ -76,6 +82,8 @@
     <string name="seleccionegenero2">Género</string>
     <string name="ingresepass2">Password</string>
     <string name="btnAceptar">Aceptar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <string name="aprobar_rechazar">Aprobar/Rechazar Contenido</string>

@@ -5,6 +5,8 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_cargarEmocionDiaria">
 
+    <!--FRAGMENTS CONSULTANTE-->
+
     <fragment
         android:id="@+id/nav_cargarEmocionDiaria"
         android:name="com.example.superandome_appfinal.cargarEmocionDiaria"
@@ -23,6 +25,11 @@
         android:label="fragment_sugerir_contenido"
         tools:layout="@layout/fragment_sugerir_contenido" />
     <fragment
+        android:id="@+id/nav_reporteEmocion"
+        android:name="com.example.superandome_appfinal.reporteEmocion"
+        android:label="fragment_reporte_emocion"
+        tools:layout="@layout/fragment_reporte_emocion" />
+    <fragment
         android:id="@+id/nav_ingresarEncuesta"
         android:name="com.example.superandome_appfinal.ingresarEncuesta"
         android:label="fragment_ingresar_encuesta"
@@ -32,6 +39,17 @@
         android:name="com.example.superandome_appfinal.rutinaDiaria"
         android:label="fragment_encuesta_diaria"
         tools:layout="@layout/fragment_rutina_diaria" />
+    <fragment
+        android:id="@+id/nav_multimedia"
+        android:name="com.example.superandome_appfinal.multimedia"
+        android:label="fragment_multimedia"
+        tools:layout="@layout/fragment_multimedia" />
+    <fragment
+        android:id="@+id/nav_multimedia_video"
+        android:name="com.example.superandome_appfinal.multimedia_video"
+        android:label="fragment_multimedia_video"
+        tools:layout="@layout/fragment_multimedia_video" />
+
     <fragment
         android:id="@+id/nav_sugerirConsejo"
         android:name="com.example.superandome_appfinal.sugerirConsejo"
@@ -43,5 +61,18 @@
         android:label="fragment_alta_profesional"
         tools:layout="@layout/fragment_alta_profesional" />
 
+    <!--FRAGMENTS PROFESIONAL-->
+
+
+    <fragment
+        android:id="@+id/nav_sugerirContenido_profesional"
+        android:name="com.example.superandome_appfinal.sugerirContenido_profesional"
+        android:label="fragment_sugerir_contenido_profesional"
+        tools:layout="@layout/fragment_sugerir_contenido_profesional" />
+    <fragment
+        android:id="@+id/nav_sugerirConsejo_profesional"
+        android:name="com.example.superandome_appfinal.sugerirConsejo_profesional"
+        android:label="fragment_sugerir_consejo_profesional"
+        tools:layout="@layout/fragment_sugerir_consejo_profesional" />
 
 </navigation>
