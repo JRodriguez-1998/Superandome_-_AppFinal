@@ -20,6 +20,16 @@
             android:title="Sugerir contenido multimedia" />
 
         <item
+            android:id="@+id/nav_reporteEmocion"
+            android:icon="@drawable/asustado"
+            android:title="Reporte mensual emoción" />
+
+        <item
+            android:id="@+id/nav_sugerirConsejo"
+            android:icon="@drawable/asustado"
+            android:title="Sugerir consejo diario" />
+
+        <item
             android:id="@+id/nav_ingresarEncuesta"
             android:icon="@drawable/logo_soyuz"
             android:title="Encuesta" />
@@ -38,6 +48,17 @@
             android:id="@+id/nav_multimedia_video"
             android:icon="@drawable/logo_soyuz"
             android:title="Multimedia video" />
+
+        <item
+            android:id="@+id/nav_sugerirContenido_profesional"
+            android:icon="@drawable/asustado"
+            android:title="Profesional Sugerir contenido" />
+
+        <item
+            android:id="@+id/nav_sugerirConsejo_profesional"
+            android:icon="@drawable/asustado"
+            android:title="Profesional Sugerir consejo" />
+
 
     </group>
 </menu>
