@@ -19,5 +19,9 @@
             android:icon="@drawable/asustado"
             android:title="Sugerir contenido multimedia" />
 
+        <item
+            android:id="@+id/nav_reporteEmocion"
+            android:icon="@drawable/asustado"
+            android:title="Reporte mensual emoción" />
     </group>
 </menu>
