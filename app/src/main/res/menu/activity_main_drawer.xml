@@ -34,5 +34,10 @@
             android:icon="@drawable/logo_soyuz"
             android:title="Rutina" />
 
+        <item
+            android:id="@+id/nav_sugerirContenido_profesional"
+            android:icon="@drawable/asustado"
+            android:title="Profesional Sugerir contenido" />
+
     </group>
 </menu>
