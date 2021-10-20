@@ -45,6 +45,11 @@
             android:title="Multimedia" />
 
         <item
+            android:id="@+id/nav_multimedia_text"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Multimedia pdf" />
+
+        <item
             android:id="@+id/nav_multimedia_video"
             android:icon="@drawable/logo_soyuz"
             android:title="Multimedia video" />

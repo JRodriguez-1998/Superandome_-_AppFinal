@@ -69,5 +69,10 @@
         android:name="com.example.superandome_appfinal.sugerirConsejo_profesional"
         android:label="fragment_sugerir_consejo_profesional"
         tools:layout="@layout/fragment_sugerir_consejo_profesional" />
+    <fragment
+        android:id="@+id/nav_multimedia_text"
+        android:name="com.example.superandome_appfinal.multimedia_text"
+        android:label="fragment_multimedia_text"
+        tools:layout="@layout/fragment_multimedia_text" />
 
 </navigation>
