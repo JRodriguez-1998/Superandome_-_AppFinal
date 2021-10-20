@@ -64,5 +64,10 @@
             android:icon="@android:drawable/btn_star_big_on"
             android:title="Alta Profesional" />
 
+        <item
+            android:id="@+id/nav_aprobarContenido_director"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Aprobar Contenido Director" />
+
     </group>
 </menu>

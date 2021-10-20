@@ -2,6 +2,8 @@ package com.example.superandome_appfinal;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +25,8 @@ public class aprobarContenido_director extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private RecyclerView recyclerViewContenido;
-    private ReciclerViewAdapter adapterContenido;
+    RecyclerView recyclerViewContenido;
+    ArrayList <ClasePrueba> contenido;
 
     public aprobarContenido_director() {
         // Required empty public constructor
@@ -37,8 +41,6 @@ public class aprobarContenido_director extends Fragment {
         return fragment;
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,27 +49,32 @@ public class aprobarContenido_director extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        recyclerViewContenido=(RecyclerView) getView().findViewById(R.id.rvContenido);
-        recyclerViewContenido.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-
-        adapterContenido = new ReciclerViewAdapter(obtenerContenido());
-        recyclerViewContenido.setAdapter(adapterContenido);
     }
-
-    public List<ClasePrueba> obtenerContenido(){
-        List<ClasePrueba> contenido=new ArrayList<>();
-        contenido.add(new ClasePrueba("Guia Salud Mental","Inés","PDF"));
-        contenido.add(new ClasePrueba("Video Motivador","Marcos","Video"));
-
-        return contenido;
-    }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_aprobar_contenido_director, container, false);
+        View view = inflater.inflate(R.layout.fragment_aprobar_contenido_director, container, false);
+
+        contenido=new ArrayList<>();
+        recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
+        recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewContenido.setHasFixedSize(true);
+
+        obtenerContenido();
+
+        ReciclerViewAdapter adapterContenido = new ReciclerViewAdapter(contenido);
+        recyclerViewContenido.setAdapter(adapterContenido);
+
+        return view;
+    }
+
+    public void obtenerContenido(){
+
+        contenido.add(new ClasePrueba("Guia Salud Mental","Inés","PDF"));
+        contenido.add(new ClasePrueba("Video Motivador","Marcos","Video"));
+        contenido.add(new ClasePrueba("No estes triste xd","Juan","Consejo"));
+        contenido.add(new ClasePrueba("Canciones de la 12","Mauricio","Video"));
+        contenido.add(new ClasePrueba("Hola Juan Carlos","José","Video"));
     }
 }

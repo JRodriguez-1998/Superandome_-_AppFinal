@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbarDefaultDelayBeforeFade="0">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="401dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="1dp">
@@ -25,7 +26,7 @@
 
                     <TextView
                         android:id="@+id/textview200"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/redhat_regular"
@@ -34,7 +35,7 @@
 
                     <TextView
                         android:id="@+id/tvContent"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/cambay"
@@ -49,7 +50,7 @@
 
                     <TextView
                         android:id="@+id/textView23"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/redhat_regular"
@@ -58,7 +59,7 @@
 
                     <TextView
                         android:id="@+id/tvSugeridopor"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/cambay"
@@ -71,7 +72,7 @@
 
                     <TextView
                         android:id="@+id/textView25"
-                        android:layout_width="59dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/redhat_regular"
@@ -93,7 +94,7 @@
 
                     <Button
                         android:id="@+id/btnAprobar"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:backgroundTint="#388E3C"
@@ -103,7 +104,7 @@
 
                     <Button
                         android:id="@+id/btnRechazar"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:backgroundTint="#D32F2F"
