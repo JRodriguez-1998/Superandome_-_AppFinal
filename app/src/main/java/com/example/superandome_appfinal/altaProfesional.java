@@ -2,6 +2,8 @@ package com.example.superandome_appfinal;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,6 +24,17 @@ public class altaProfesional extends Fragment {
 
     public altaProfesional() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        spinnerGenero = (Spinner) view.findViewById(R.id.spinnerGeneroProfe);
+
+        String [] generos = {"Masculino","Femenino","Otros"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_generos, generos);
+        spinnerGenero.setAdapter(adapter);
     }
 
     public static altaProfesional newInstance(String param1, String param2) {
@@ -45,12 +58,6 @@ public class altaProfesional extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        spinnerGenero = (Spinner) getView().findViewById(R.id.spinnerGeneroProfe);
-
-        String [] generos = {"Masculino","Femenino","Otros"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_generos, generos);
-        spinnerGenero.setAdapter(adapter);
-
         return inflater.inflate(R.layout.fragment_alta_profesional, container, false);
     }
 }

@@ -19,7 +19,7 @@ public class ReciclerViewAdapter extends RecyclerView.Adapter<ReciclerViewAdapte
             super(itemView);
             contenido=(TextView) itemView.findViewById(R.id.tvContent);
             sugeridopor=(TextView) itemView.findViewById(R.id.tvSugeridopor);
-            contenido=(TextView) itemView.findViewById(R.id.tvTipoContent);
+            tipocontenido=(TextView) itemView.findViewById(R.id.tvTipoContent);
         }
     }
 
@@ -33,8 +33,8 @@ public class ReciclerViewAdapter extends RecyclerView.Adapter<ReciclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_contenido,parent,false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return null;
+        ViewHolder vH = new ViewHolder(view);
+        return vH;
     }
 
     @Override
