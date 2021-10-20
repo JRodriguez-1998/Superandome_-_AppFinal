@@ -73,15 +73,179 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/txtSubEncuesta" />
 
-                        <SeekBar
-                            android:id="@+id/seekBar"
-                            android:layout_width="333dp"
-                            android:layout_height="51dp"
-                            android:layout_marginBottom="108dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <TableLayout
+                            android:id="@+id/tableLayout2"
+                            android:layout_width="304dp"
+                            android:layout_height="394dp"
+                            android:layout_marginTop="60dp"
+                            android:background="@drawable/border"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.502"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtFechaEncuesta">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+
+                                    <RadioButton
+                                        android:id="@+id/radioSi1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioNo1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+
+                                <TextView
+                                    android:id="@+id/textView8"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="Pregunta 1"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/radioSi2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioNo2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+
+                                <TextView
+                                    android:id="@+id/textView9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="Pregunta 2"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/radioSi3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioNo3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="Pregunta 3"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/radioSi4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioNo4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+
+                                <TextView
+                                    android:id="@+id/textView11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="Pregunta 4"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/radioSi5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioNo5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="Pregunta 5"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+                            </TableRow>
+                        </TableLayout>
 
                         <Button
                             android:id="@+id/button2"
@@ -92,6 +256,7 @@
                             android:fontFamily="@font/questrial_regular"
                             android:text="@string/btnEncuesta"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.51"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -102,7 +267,7 @@
                             android:layout_marginTop="4dp"
                             android:src="@drawable/triste"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.25"
+                            app:layout_constraintHorizontal_bias="0.26"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -113,182 +278,51 @@
                             android:layout_marginTop="4dp"
                             android:src="@drawable/alegria"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.762"
+                            app:layout_constraintHorizontal_bias="0.77"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="93dp"
-                            android:layout_height="35dp"
-                            android:layout_marginBottom="28dp"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="Pregunta 1"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView9"
+                        <SeekBar
+                            android:id="@+id/seekBar"
+                            android:layout_width="333dp"
+                            android:layout_height="51dp"
+                            android:layout_marginBottom="108dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.584"
-                            app:layout_constraintStart_toEndOf="@+id/rgroup1" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+                            app:layout_constraintVertical_bias="0.272" />
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/textView22"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="12dp"
                             android:fontFamily="@font/questrial_regular"
-                            android:text="Pregunta 3"
+                            android:text="Si"
                             android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView11"
+                            app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.553"
-                            app:layout_constraintStart_toEndOf="@+id/rgroup3" />
+                            app:layout_constraintHorizontal_bias="0.135"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtFechaEncuesta"
+                            app:layout_constraintVertical_bias="0.928" />
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/textView30"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginBottom="12dp"
                             android:fontFamily="@font/questrial_regular"
-                            android:text="Pregunta 4"
+                            android:text="No"
                             android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView12"
+                            app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.549"
-                            app:layout_constraintStart_toEndOf="@+id/rgroup4" />
+                            app:layout_constraintHorizontal_bias="0.274"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txtFechaEncuesta"
+                            app:layout_constraintVertical_bias="0.964" />
 
-                        <TextView
-                            android:id="@+id/textView12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="256dp"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="Pregunta 5"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toTopOf="@+id/seekBar"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.546"
-                            app:layout_constraintStart_toEndOf="@+id/rgroup5" />
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="28dp"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="Pregunta 2"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toTopOf="@+id/textView10"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.549"
-                            app:layout_constraintStart_toEndOf="@+id/rgroup2" />
-
-                        <RadioGroup
-                            android:id="@+id/rgroup5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:layout_marginBottom="244dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toTopOf="@+id/seekBar"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/radioSi5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                            <RadioButton
-                                android:id="@+id/radioNo5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/rgroup4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toTopOf="@+id/rgroup5"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/radioSi4"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                            <RadioButton
-                                android:id="@+id/radioNo4"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/rgroup3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toTopOf="@+id/rgroup4"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/radioSi3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                            <RadioButton
-                                android:id="@+id/radioNo3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/rgroup2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toTopOf="@+id/rgroup3"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <RadioButton
-                                android:id="@+id/radioSi2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <RadioButton
-                                android:id="@+id/radioNo2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent" />
-                        </RadioGroup>
-
-                        <RadioGroup
-                            android:id="@+id/rgroup1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toTopOf="@+id/rgroup2"
-                            app:layout_constraintStart_toStartOf="parent">
-
-
-                            <RadioButton
-                                android:id="@+id/radioSi1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <RadioButton
-                                android:id="@+id/radioNo1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent" />
-
-                        </RadioGroup>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

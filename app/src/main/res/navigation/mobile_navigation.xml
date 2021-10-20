@@ -74,10 +74,18 @@
         android:name="com.example.superandome_appfinal.sugerirConsejo_profesional"
         android:label="fragment_sugerir_consejo_profesional"
         tools:layout="@layout/fragment_sugerir_consejo_profesional" />
+  
     <fragment
+        android:id="@+id/nav_multimedia_text"
+        android:name="com.example.superandome_appfinal.multimedia_text"
+        android:label="fragment_multimedia_text"
+        tools:layout="@layout/fragment_multimedia_text" />
+
+        <fragment
         android:id="@+id/nav_aprobarContenido_director"
         android:name="com.example.superandome_appfinal.aprobarContenido_director"
         android:label="fragment_aprobar_contenido_director"
         tools:layout="@layout/fragment_aprobar_contenido_director" />
+
 
 </navigation>

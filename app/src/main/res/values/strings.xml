@@ -39,6 +39,7 @@
     <string name="btnAbrirMultimedia"> Abrir  </string>
     <string name="txtDescripcionMultimedia"> <u>Descripcion</u>  </string>
 
+
     <string name="title_activity_navigation_drawer_consultante">navigationDrawer_consultante
     </string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
