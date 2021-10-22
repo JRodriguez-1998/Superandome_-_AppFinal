@@ -21,4 +21,10 @@ public class activity_login extends AppCompatActivity {
         Intent i= new Intent(this,activity_altaConsultante.class);
         startActivity(i);
     }
+
+    //Clic en Olvidé Contraseña
+    public void ir_RestablecerContrasenia(View view){
+        //Intent i= new Intent(this,.class);
+        //startActivity(i);
+    }
 }
