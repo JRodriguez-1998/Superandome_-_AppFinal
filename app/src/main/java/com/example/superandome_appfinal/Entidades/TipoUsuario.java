@@ -1,4 +1,4 @@
-package Entidades;
+package com.example.superandome_appfinal.Entidades;
 
 public class TipoUsuario {
     private int idTipoUsuario;
