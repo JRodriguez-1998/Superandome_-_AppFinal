@@ -27,6 +27,9 @@
     <string name="sugConsejo">Escriba aquí...</string>
     <string name="enviarSugerencia">Enviar sugerencia</string>
 
+    <string name="tituloPregunta">Pregunta seguridad</string>
+    <string name="respuestaPregunta">Ingrese respuesta</string>
+
 
     <string name="tituloEncuesta"> Encuesta diaria </string>
     <string name="subEncuesta"> Responda esta encuesta para analizar tu estado emocional diario. </string>

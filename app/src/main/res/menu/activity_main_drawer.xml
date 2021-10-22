@@ -74,5 +74,10 @@
             android:icon="@android:drawable/btn_star_big_on"
             android:title="Aprobar Contenido Director" />
 
+        <item
+            android:id="@+id/nav_pregunta_seguridad"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pregunta seguridad" />
+
     </group>
 </menu>
