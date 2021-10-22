@@ -94,4 +94,10 @@
     <string name="btnAprobar">Aprobar</string>
     <string name="btnRechazar">Rechazar</string>
 
+    <string name="preguntaSeguridad">Pregunta de Seguridad</string>
+    <string name="respuestaSeguridad">Respuesta</string>
+        <string name="respuestaSeguridad2">respuesta</string>
+
+    <string name="olvidoContraseña">Olvidé mi Contraseña</string>
+
 </resources>
