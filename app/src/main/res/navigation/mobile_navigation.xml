@@ -86,6 +86,11 @@
         android:name="com.example.superandome_appfinal.aprobarContenido_director"
         android:label="fragment_aprobar_contenido_director"
         tools:layout="@layout/fragment_aprobar_contenido_director" />
+    <fragment
+        android:id="@+id/nav_pregunta_seguridad"
+        android:name="com.example.superandome_appfinal.pregunta_seguridad"
+        android:label="fragment_pregunta_seguridad"
+        tools:layout="@layout/fragment_pregunta_seguridad" />
 
 
 </navigation>
