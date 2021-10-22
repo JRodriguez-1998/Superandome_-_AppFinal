@@ -1,4 +1,4 @@
-package Entidades;
+package com.example.superandome_appfinal.Entidades;
 
 public class Genero {
     private int idGenero;
