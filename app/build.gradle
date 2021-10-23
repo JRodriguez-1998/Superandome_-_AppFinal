@@ -15,6 +15,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/vistas/consultante',
+                    'src/main/res/vistas/profesional',
+                    'src/main/res/vistas/director',
+                    'src/main/res/vistas/spinners',
+                    'src/main/res/vistas',
+                    'src/main/res',
+            ]
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
