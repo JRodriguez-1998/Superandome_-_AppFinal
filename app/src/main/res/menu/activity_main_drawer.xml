@@ -25,6 +25,11 @@
             android:title="Reporte mensual emoción" />
 
         <item
+            android:id="@+id/nav_reporteRutina"
+            android:icon="@drawable/asustado"
+            android:title="Reporte mensual rutina" />
+
+        <item
             android:id="@+id/nav_sugerirConsejo"
             android:icon="@drawable/asustado"
             android:title="Sugerir consejo diario" />

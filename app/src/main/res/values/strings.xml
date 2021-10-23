@@ -23,6 +23,8 @@
     <string name="tituloInformeEmocion">Informe Mensual</string>
     <string name="subtituloInformeEmocion">Estados de ánimo</string>
 
+    <string name="tituloInformeRutina">Informe Mensual</string>
+
     <string name="tituloSugConsejo">Sugerir consejo:</string>
     <string name="sugConsejo">Escriba aquí...</string>
     <string name="enviarSugerencia">Enviar sugerencia</string>
@@ -99,7 +101,7 @@
 
     <string name="preguntaSeguridad">Pregunta de Seguridad</string>
     <string name="respuestaSeguridad">Respuesta</string>
-        <string name="respuestaSeguridad2">respuesta</string>
+    <string name="respuestaSeguridad2">respuesta</string>
 
     <string name="olvidoContraseña">Olvidé mi Contraseña</string>
 
