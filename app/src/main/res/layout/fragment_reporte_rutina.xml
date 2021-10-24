@@ -37,67 +37,91 @@
             android:layout_gravity="center"
             android:background="@drawable/border" />
 
-        <ProgressBar
-            android:id="@+id/barRut1"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progressTint="@color/black" />
+            android:layout_height="match_parent" >
 
-        <ProgressBar
-            android:id="@+id/barRut2"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progressTint="@color/white" />
+            <TableRow>
 
-        <ProgressBar
-            android:id="@+id/barRut3"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <text
 
-        <ProgressBar
-            android:id="@+id/barRut4"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            </TableRow>
 
-        <ProgressBar
-            android:id="@+id/barRut5"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
-        <ProgressBar
-            android:id="@+id/barRut6"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="Rutina 1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-        <ProgressBar
-            android:id="@+id/barRut7"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut1"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progressTint="@color/black" />
+            </TableRow>
+            <ProgressBar
+                android:id="@+id/barRut2"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/white" />
 
-        <ProgressBar
-            android:id="@+id/barRut8"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <ProgressBar
+                android:id="@+id/barRut3"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <ProgressBar
-            android:id="@+id/barRut9"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <ProgressBar
+                android:id="@+id/barRut4"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <ProgressBar
-            android:id="@+id/barRut10"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <ProgressBar
+                android:id="@+id/barRut5"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:id="@+id/barRut6"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:id="@+id/barRut7"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:id="@+id/barRut8"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:id="@+id/barRut9"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:id="@+id/barRut10"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </TableLayout>
 
     </LinearLayout>
 
