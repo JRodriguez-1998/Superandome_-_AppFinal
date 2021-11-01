@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="consultante">#4167b2</color>
+    <color name="profesional">#6fc2b4</color>
+    <color name="director">#d61449</color>
 </resources>

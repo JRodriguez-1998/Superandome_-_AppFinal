@@ -23,6 +23,8 @@
     <string name="tituloInformeEmocion">Informe Mensual</string>
     <string name="subtituloInformeEmocion">Estados de ánimo</string>
 
+    <string name="tituloInformeRutina">Informe Mensual</string>
+
     <string name="tituloSugConsejo">Sugerir consejo:</string>
     <string name="sugConsejo">Escriba aquí...</string>
     <string name="enviarSugerencia">Enviar sugerencia</string>
@@ -99,8 +101,20 @@
 
     <string name="preguntaSeguridad">Pregunta de Seguridad</string>
     <string name="respuestaSeguridad">Respuesta</string>
-        <string name="respuestaSeguridad2">respuesta</string>
+    <string name="respuestaSeguridad2">respuesta</string>
 
     <string name="olvidoContraseña">Olvidé mi Contraseña</string>
+
+    <!-- Rutinas -->
+    <string name="rutinaDieta">Dieta equilibrada</string>
+    <string name="rutinaConsumo">Consumo de tóxicos moderado</string>
+    <string name="rutinaEjercicio">Ejercicio físico moderado</string>
+    <string name="rutinaDescanso">Descanso reparador</string>
+    <string name="rutinaAmbiente">Cuidado del medio ambiente</string>
+    <string name="rutinaHigiene">Higiene personal adecuada</string>
+    <string name="rutinaEquilibrio">Equilibrio mental y emocional</string>
+    <string name="rutinaSocial">Relaciones sociales positivas</string>
+    <string name="rutinaOcio">Practicar actividades de ocio</string>
+    <string name="rutinaNaturaleza">Contacto con la naturaleza</string>
 
 </resources>
