@@ -10,18 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperandomeAppFinal">
         <activity
-            android:name=".activity_altaConsultante"
+            android:name=".Vistas.Consultante.activity_altaConsultante"
             android:exported="true" />
         <activity
-            android:name=".activity_login"
+            android:name=".Vistas.activity_login"
             android:exported="true" />
         <activity
-            android:name=".navigationDrawer_consultante"
+            android:name=".Vistas.Consultante.navigationDrawer_consultante"
             android:exported="true"
             android:label="@string/title_activity_navigation_drawer_consultante"
             android:theme="@style/Theme.SuperandomeAppFinal.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Vistas.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
