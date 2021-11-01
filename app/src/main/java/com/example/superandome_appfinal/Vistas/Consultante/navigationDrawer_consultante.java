@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.superandome_appfinal.Constantes.TipoUsuario;
 import com.example.superandome_appfinal.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +22,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavigationDrawerConsultanteBinding binding;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
                 R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion, R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,R.id.nav_pregunta_seguridad)
                 .setOpenableLayout(drawer)
@@ -46,6 +48,24 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        int idTipoUsuario = 1;
+        hideAllItems();
+        switch (TipoUsuario.getTipoUsuario(idTipoUsuario)) {
+            case CONSULTANTE:
+                showItemsConsultante();
+                navController.navigate(R.id.nav_cargarEmocionDiaria);
+                break;
+            case PROFESIONAL:
+                showItemsProfesional();
+                navController.navigate(R.id.nav_sugerirContenido);
+                break;
+            case DIRECTOR:
+                showItemsDirector();
+                navController.navigate(R.id.nav_altaProfesional);
+                break;
+        }
+
     }
 
     @Override
@@ -59,5 +79,55 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void hideAllItems() {
+        Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(false);
+        navMenu.findItem(R.id.nav_configurarHorario).setVisible(false);
+        navMenu.findItem(R.id.nav_sugerirContenido).setVisible(false);
+        navMenu.findItem(R.id.nav_reporteEmocion).setVisible(false);
+        navMenu.findItem(R.id.nav_reporteRutina).setVisible(false);
+        navMenu.findItem(R.id.nav_sugerirConsejo).setVisible(false);
+        navMenu.findItem(R.id.nav_ingresarEncuesta).setVisible(false);
+        navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(false);
+        navMenu.findItem(R.id.nav_multimedia).setVisible(false);
+        navMenu.findItem(R.id.nav_multimedia_text).setVisible(false);
+        navMenu.findItem(R.id.nav_multimedia_video).setVisible(false);
+        navMenu.findItem(R.id.nav_sugerirContenido_profesional).setVisible(false);
+        navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(false);
+        navMenu.findItem(R.id.nav_altaProfesional).setVisible(false);
+        navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(false);
+        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(false);
+    }
+
+    private void showItemsConsultante() {
+        Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(true);
+        navMenu.findItem(R.id.nav_configurarHorario).setVisible(true);
+        navMenu.findItem(R.id.nav_sugerirContenido).setVisible(true);
+        navMenu.findItem(R.id.nav_reporteEmocion).setVisible(true);
+        navMenu.findItem(R.id.nav_reporteRutina).setVisible(true);
+        navMenu.findItem(R.id.nav_sugerirConsejo).setVisible(true);
+        navMenu.findItem(R.id.nav_ingresarEncuesta).setVisible(true);
+        navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(true);
+        navMenu.findItem(R.id.nav_multimedia).setVisible(true);
+        navMenu.findItem(R.id.nav_multimedia_text).setVisible(true);
+        navMenu.findItem(R.id.nav_multimedia_video).setVisible(true);
+        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+    }
+
+    private void showItemsProfesional() {
+        Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_sugerirContenido_profesional).setVisible(true);
+        navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(true);
+        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+    }
+
+    private void showItemsDirector() {
+        Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_altaProfesional).setVisible(true);
+        navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(true);
+        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
     }
 }
