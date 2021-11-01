@@ -105,4 +105,16 @@
 
     <string name="olvidoContraseña">Olvidé mi Contraseña</string>
 
+    <!-- Rutinas -->
+    <string name="rutinaDieta">Dieta equilibrada</string>
+    <string name="rutinaConsumo">Consumo de tóxicos moderado</string>
+    <string name="rutinaEjercicio">Ejercicio físico moderado</string>
+    <string name="rutinaDescanso">Descanso reparador</string>
+    <string name="rutinaAmbiente">Cuidado del medio ambiente</string>
+    <string name="rutinaHigiene">Higiene personal adecuada</string>
+    <string name="rutinaEquilibrio">Equilibrio mental y emocional</string>
+    <string name="rutinaSocial">Relaciones sociales positivas</string>
+    <string name="rutinaOcio">Practicar actividades de ocio</string>
+    <string name="rutinaNaturaleza">Contacto con la naturaleza</string>
+
 </resources>

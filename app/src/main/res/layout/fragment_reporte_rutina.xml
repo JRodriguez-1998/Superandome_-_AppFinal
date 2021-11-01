@@ -38,90 +38,260 @@
             android:background="@drawable/border" />
 
         <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff" >
 
             <TableRow>
 
-                <text
+                <TextView
+                    android:background="#4167b2"
+                    android:textColor="@color/white"
+                    android:text="Rutina" />
+
+                <TextView
+                    android:background="#4167b2"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:text="Porcentaje de realización" />
 
             </TableRow>
 
 
             <TableRow>
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/redhat_regular"
-                    android:text="Rutina 1"
+                    android:text="@string/rutinaDieta"
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
                 <ProgressBar
                     android:id="@+id/barRut1"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:progressTint="@color/black" />
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
             </TableRow>
-            <ProgressBar
-                android:id="@+id/barRut2"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progressTint="@color/white" />
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaConsumo"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut3"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut2"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaEjercicio"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut4"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut3"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaDescanso"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut5"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut4"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaAmbiente"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut6"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut5"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaHigiene"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut7"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut6"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaEquilibrio"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut8"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut7"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaSocial"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut9"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut8"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaOcio"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
 
-            <ProgressBar
-                android:id="@+id/barRut10"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/barRut9"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/redhat_regular"
+                    android:text="@string/rutinaNaturaleza"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10sp" />
+
+                <ProgressBar
+                    android:id="@+id/barRut10"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/progress_bar_rutina"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginVertical="5sp"/>
+            </TableRow>
 
         </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:text="*Mensaje del progreso*"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
