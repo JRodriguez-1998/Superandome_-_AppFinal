@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,7 @@ import java.util.Date;
 public class sugerirConsejo extends Fragment {
 
     Button btnEnviar;
-    TextView txtConsejo;
+    EditText txtConsejo;
 
     public sugerirConsejo() {}
 
@@ -31,8 +32,8 @@ public class sugerirConsejo extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerenciaProf);
-        txtConsejo = (TextView) view.findViewById(R.id.txtConsejoSugeridoProf);
+        btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerencia);
+        txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugerido);
 
         Spinner spinnerTipoConsejo = (Spinner) view.findViewById(R.id.spinnerTipoConsejo);
         String [] tipoConsejos = {"Seleccione Tipo de consejo", "Bronca","Alegria","Tristeza"};

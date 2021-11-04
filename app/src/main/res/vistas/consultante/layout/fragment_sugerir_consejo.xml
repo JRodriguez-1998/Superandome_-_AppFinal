@@ -38,16 +38,16 @@
                     android:textSize="28sp" />
 
                 <EditText
-                    android:id="@+id/txtConsejoSugeridoProf"
+                    android:id="@+id/txtConsejoSugerido"
                     android:layout_width="300dp"
                     android:layout_height="315dp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/border"
                     android:hint="@string/sugConsejo"
                     android:inputType="textPersonName"
                     android:textColor="#C9CACA"
                     android:textSize="24sp"
-                    android:layout_gravity="center"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <Spinner
@@ -59,7 +59,7 @@
                     android:layout_marginTop="20dp" />
 
                 <Button
-                    android:id="@+id/btnEnviarSugerenciaProf"
+                    android:id="@+id/btnEnviarSugerencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
