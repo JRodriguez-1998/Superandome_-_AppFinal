@@ -27,6 +27,15 @@ public class Consejo {
         this.fechaAlta = fechaAlta;
     }
 
+    public Consejo(String texto, TipoConsejo idTipoConsejo, Estado idEstado, Usuario idUsuarioAutor, Date fechaAlta) {
+        this.idConsejo = idConsejo;
+        this.texto = texto;
+        this.idTipoConsejo = idTipoConsejo;
+        this.idEstado = idEstado;
+        this.idUsuarioAutor = idUsuarioAutor;
+        this.fechaAlta = fechaAlta;
+    }
+
     public Integer getIdConsejo() {
         return idConsejo;
     }

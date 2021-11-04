@@ -38,7 +38,7 @@ tools:context=".Vistas.Profesional.sugerirConsejo_profesional">
                 android:textSize="28sp" />
 
             <EditText
-                android:id="@+id/txtConsejoSugerido"
+                android:id="@+id/txtConsejoSugeridoProf"
                 android:layout_width="300dp"
                 android:layout_height="315dp"
                 android:layout_marginTop="15dp"
@@ -59,7 +59,7 @@ tools:context=".Vistas.Profesional.sugerirConsejo_profesional">
                 android:layout_marginTop="20dp" />
 
             <Button
-                android:id="@+id/btnEnviarSugerencia"
+                android:id="@+id/btnEnviarSugerenciaProf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
