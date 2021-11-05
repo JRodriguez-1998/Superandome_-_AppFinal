@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_pregunta_seguridad.xml" value="0.2740036231884058" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_reporte_emocion.xml" value="0.2740036231884058" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_reporte_rutina.xml" value="0.33" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_mes.xml" value="0.2740036231884058" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_preguntas.xml" value="0.19739583333333333" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_tipoconsejo.xml" value="0.2740036231884058" />
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/drawable/border.xml" value="0.2101851851851852" />
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/drawable/border_transparent.xml" value="0.2101851851851852" />
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_cargar_emocion_diaria.xml" value="0.1" />
