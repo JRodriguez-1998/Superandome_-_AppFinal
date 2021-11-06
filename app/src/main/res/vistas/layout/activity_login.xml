@@ -65,6 +65,7 @@
                 android:id="@+id/tvOlvideContraseña"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="ir_RestablecerContrasenia"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="25dp"
                 android:text="@string/olvidoContraseña"
@@ -76,6 +77,7 @@
                 android:id="@+id/btnIngresar"
                 android:layout_width="153dp"
                 android:layout_height="wrap_content"
+                android:onClick="Entrar"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#4167B2"
@@ -131,21 +133,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    app:srcCompat="@drawable/facebook" />
+                    app:srcCompat="@drawable/facebook"
+                    android:onClick="irFacebook"/>
 
                 <ImageView
                     android:id="@+id/btnWhatsapp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    app:srcCompat="@drawable/whatsapp" />
+                    app:srcCompat="@drawable/whatsapp"
+                    android:onClick="irWhatsapp"/>
 
                 <ImageView
                     android:id="@+id/btnInstagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    app:srcCompat="@drawable/instagram" />
+                    app:srcCompat="@drawable/instagram"
+                    android:onClick="irInstagram"/>
 
             </TableRow>
 
