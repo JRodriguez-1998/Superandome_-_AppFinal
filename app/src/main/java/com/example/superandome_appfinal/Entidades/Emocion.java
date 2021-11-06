@@ -1,14 +1,14 @@
 package com.example.superandome_appfinal.Entidades;
 
-public class Emoción {
+public class Emocion {
     private Integer idEmocion;
     private String descripcion;
     private Boolean habilitado;
 
-    public Emoción() {
+    public Emocion() {
     }
 
-    public Emoción(Integer idEmocion, String descripcion, Boolean habilitado) {
+    public Emocion(Integer idEmocion, String descripcion, Boolean habilitado) {
         this.idEmocion = idEmocion;
         this.descripcion = descripcion;
         this.habilitado = habilitado;

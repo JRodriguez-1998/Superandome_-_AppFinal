@@ -5,7 +5,7 @@ import java.util.Date;
 public class EmocionUsuario {
     private Usuario user;
     private Date fecha;
-    private Emoción emocion;
+    private Emocion emocion;
 
     //Propiedades por si hay ORM
     private Integer idUsuario;
@@ -14,7 +14,7 @@ public class EmocionUsuario {
     public EmocionUsuario() {
     }
 
-    public EmocionUsuario(Usuario user, Date fecha, Emoción emocion) {
+    public EmocionUsuario(Usuario user, Date fecha, Emocion emocion) {
         this.user = user;
         this.fecha = fecha;
         this.emocion = emocion;
@@ -36,11 +36,11 @@ public class EmocionUsuario {
         this.fecha = fecha;
     }
 
-    public Emoción getEmocion() {
+    public Emocion getEmocion() {
         return emocion;
     }
 
-    public void setEmocion(Emoción emocion) {
+    public void setEmocion(Emocion emocion) {
         this.emocion = emocion;
     }
 

@@ -1,14 +1,24 @@
 package com.example.superandome_appfinal.Entidades;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Genero {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGenero;
+
+    @Column(nullable = false)
     private String descripcion;
 
     public Genero() {
     }
 
-    public Genero(int idGenero, String descripcion) {
-        this.idGenero = idGenero;
+    public Genero(String descripcion) {
         this.descripcion = descripcion;
     }
 

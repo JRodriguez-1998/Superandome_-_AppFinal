@@ -1,5 +1,10 @@
 package com.example.superandome_appfinal.Daos;
 
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.support.ConnectionSource;
+
+import java.sql.SQLException;
+
 public class DataDB {
     //Información de la BD
     public static String host="sql10.freesqldatabase.com";
@@ -11,4 +16,13 @@ public class DataDB {
     //Información para la conexion
     public static String urlMySQL = "jdbc:mysql://" + host + ":" + port + "/"+nameBD;
     public static String driver = "com.mysql.jdbc.Driver";
+
+    public static ConnectionSource getConnectionSource() {
+        try {
+            return new JdbcConnectionSource(urlMySQL, user, pass);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 }

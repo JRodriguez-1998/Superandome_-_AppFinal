@@ -16,16 +16,18 @@ public class Consejo {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer idConsejo;
-    @Column
+
+    @Column(nullable = false)
     private String texto;
-    @Column
+
+    @Column(nullable = false)
     private Date fechaAlta;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoConsejo")
+    @JoinColumn(name = "idTipoConsejo", nullable = false)
     private TipoConsejo tipoConsejo;
     @ManyToOne
-    @JoinColumn(name = "idEstado")
+    @JoinColumn(name = "idEstado", nullable = false)
     private Estado estado;
 //    @ManyToOne
 //    private Usuario usuarioAutor;
