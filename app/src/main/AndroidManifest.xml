@@ -13,7 +13,7 @@
             android:name=".Vistas.Consultante.activity_altaConsultante"
             android:exported="true" />
         <activity
-            android:name=".Vistas.activity_login"
+            android:name=".Vistas.MainActivity"
             android:exported="true" />
         <activity
             android:name=".Vistas.Consultante.navigationDrawer_consultante"
@@ -21,7 +21,7 @@
             android:label="@string/title_activity_navigation_drawer_consultante"
             android:theme="@style/Theme.SuperandomeAppFinal.NoActionBar" />
         <activity
-            android:name=".Vistas.MainActivity"
+            android:name=".Vistas.activity_login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

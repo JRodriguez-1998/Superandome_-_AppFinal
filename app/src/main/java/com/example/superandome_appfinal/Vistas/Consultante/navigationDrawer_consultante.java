@@ -55,7 +55,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
         hideAllItems();
         //Reemplazar parametro con tipoUser que viene del Login
-        switch (TipoUsuario.getTipoUsuario(idTipoUsuario)) {
+        switch (TipoUsuario.getTipoUsuario(tipoUser)) {
             case CONSULTANTE:
                 showItemsConsultante();
                 navController.navigate(R.id.nav_cargarEmocionDiaria);
