@@ -2,42 +2,28 @@ package com.example.superandome_appfinal.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.superandome_appfinal.Daos.ConsejoDaoImpl;
 import com.example.superandome_appfinal.Daos.DataDB;
-import com.example.superandome_appfinal.Daos.EstadoDaoImpl;
-import com.example.superandome_appfinal.Daos.GeneroDaoImpl;
-import com.example.superandome_appfinal.Daos.TipoConsejoDaoImpl;
 import com.example.superandome_appfinal.Entidades.Consejo;
-import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.EmocionUsuario;
 import com.example.superandome_appfinal.Entidades.Emocion;
-import com.example.superandome_appfinal.Entidades.Encuesta;
-import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.Genero;
-import com.example.superandome_appfinal.Entidades.Item;
-import com.example.superandome_appfinal.Entidades.ItemUsuarioDiario;
 import com.example.superandome_appfinal.Entidades.PreguntaSeguridad;
-import com.example.superandome_appfinal.Entidades.TipoArchivo;
 import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
-import com.example.superandome_appfinal.IDaos.ConsejoDao;
-import com.example.superandome_appfinal.IDaos.EstadoDao;
-import com.example.superandome_appfinal.IDaos.GeneroDao;
-import com.example.superandome_appfinal.IDaos.TipoConsejoDao;
 import com.example.superandome_appfinal.R;
-import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.table.TableUtils;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -105,19 +91,23 @@ public class MainActivity extends AppCompatActivity {
             Future<String> f = executor.submit(() -> {
                 String result;
                 try {
-                    GeneroDao dao = new GeneroDaoImpl();
+                    Dao<EmocionUsuario, Integer> dao = DaoManager.createDao(DataDB.getConnectionSource(), EmocionUsuario.class);
+                    TableUtils.createTable(dao);
 
-                    Genero genero;
-                    genero = new Genero("Masculino");
-                    dao.create(genero);
-                    genero = new Genero("Femenino");
-                    dao.create(genero);
-                    genero = new Genero("Otro");
-                    dao.create(genero);
+                    Usuario usuario = new Usuario();
+                    usuario.setIdUsuario(1);
+                    Emocion emocion = new Emocion();
+                    emocion.setIdEmocion(1);
+
+                    EmocionUsuario emocionUsuario;
+                    emocionUsuario = new EmocionUsuario(usuario, new Date(), emocion);
+                    dao.create(emocionUsuario);
+                    emocionUsuario = new EmocionUsuario(usuario, new Date(), emocion);
+                    dao.create(emocionUsuario);
 
                     result = "Consejo guardado con éxito";
                 } catch (Exception e) {
-                    result ="Ha ocurrido un error al guardar el consejo";
+                    result = "Ha ocurrido un error al guardar el consejo";
                 }
                 return result;
             });

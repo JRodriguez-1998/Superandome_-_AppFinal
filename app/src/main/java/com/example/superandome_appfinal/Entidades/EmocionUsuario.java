@@ -1,31 +1,48 @@
 package com.example.superandome_appfinal.Entidades;
 
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.Date;
 
+@DatabaseTable
 public class EmocionUsuario {
-    private Usuario user;
-    private Date fecha;
-    private Emocion emocion;
+    @DatabaseField(generatedId = true)
+    private Integer idEmocionUsuario;
 
-    //Propiedades por si hay ORM
-    private Integer idUsuario;
-    private Integer idEmocion;
+    @DatabaseField(foreign = true, columnName = "idUsuario", uniqueCombo = true, canBeNull = false)
+    private Usuario usuario;
+
+    @DatabaseField(dataType =  DataType.DATE_STRING, format = "yyyy-MM-dd", uniqueCombo = true, canBeNull = false)
+    private Date fecha;
+
+    @DatabaseField(foreign = true, columnName = "idEmocion", canBeNull = false)
+    private Emocion emocion;
 
     public EmocionUsuario() {
     }
 
-    public EmocionUsuario(Usuario user, Date fecha, Emocion emocion) {
-        this.user = user;
+    public EmocionUsuario(Usuario usuario, Date fecha, Emocion emocion) {
+        this.usuario = usuario;
         this.fecha = fecha;
         this.emocion = emocion;
     }
 
-    public Usuario getUser() {
-        return user;
+    public Integer getIdEmocionUsuario() {
+        return idEmocionUsuario;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setIdEmocionUsuario(Integer idEmocionUsuario) {
+        this.idEmocionUsuario = idEmocionUsuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Date getFecha() {
@@ -44,4 +61,13 @@ public class EmocionUsuario {
         this.emocion = emocion;
     }
 
+    @Override
+    public String toString() {
+        return "EmocionUsuario{" +
+                "idEmocionUsuario=" + idEmocionUsuario +
+                ", usuario=" + usuario +
+                ", fecha=" + fecha +
+                ", emocion=" + emocion +
+                '}';
+    }
 }
