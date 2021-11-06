@@ -21,10 +21,9 @@ public class Emocion {
     public Emocion() {
     }
 
-    public Emocion(Integer idEmocion, String descripcion, Boolean habilitado) {
-        this.idEmocion = idEmocion;
+    public Emocion(String descripcion) {
         this.descripcion = descripcion;
-        this.habilitado = habilitado;
+        habilitado = true;
     }
 
     public Integer getIdEmocion() {

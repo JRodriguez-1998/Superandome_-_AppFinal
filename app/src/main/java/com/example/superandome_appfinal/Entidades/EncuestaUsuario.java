@@ -2,26 +2,43 @@ package com.example.superandome_appfinal.Entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class EncuestaUsuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEncuestaUsuario;
-    private Integer idEncuesta;
-    private Encuesta encuesta;
-    private Integer idUsuario;
-    private Usuario usuario;
+
+    @Column(nullable = false)
     private Date fecha;
+
+    @Column(nullable = false)
     private String resultado;
+
+    @ManyToOne
+    @JoinColumn(name = "idEncuesta", nullable = false)
+    private Encuesta encuesta;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Usuario usuario;
 
     public EncuestaUsuario() {}
 
-    public EncuestaUsuario(Integer idEncuestaUsuario, Integer idEncuesta, Encuesta encuesta, Integer idUsuario, Usuario usuario, Date fecha, String resultado) {
+    public EncuestaUsuario(Integer idEncuestaUsuario, Date fecha, String resultado, Encuesta encuesta, Usuario usuario) {
         this.idEncuestaUsuario = idEncuestaUsuario;
-        this.idEncuesta = idEncuesta;
-        this.encuesta = encuesta;
-        this.idUsuario = idUsuario;
-        this.usuario = usuario;
         this.fecha = fecha;
         this.resultado = resultado;
+        this.encuesta = encuesta;
+        this.usuario = usuario;
     }
 
     public Integer getIdEncuestaUsuario() {
@@ -32,28 +49,12 @@ public class EncuestaUsuario {
         this.idEncuestaUsuario = idEncuestaUsuario;
     }
 
-    public Integer getIdEncuesta() {
-        return idEncuesta;
-    }
-
-    public void setIdEncuesta(Integer idEncuesta) {
-        this.idEncuesta = idEncuesta;
-    }
-
     public Encuesta getEncuesta() {
         return encuesta;
     }
 
     public void setEncuesta(Encuesta encuesta) {
         this.encuesta = encuesta;
-    }
-
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public Usuario getUsuario() {
@@ -84,9 +85,7 @@ public class EncuestaUsuario {
     public String toString() {
         return "EncuestaUsuario{" +
                 "idEncuestaUsuario=" + idEncuestaUsuario +
-                ", idEncuesta=" + idEncuesta +
                 ", encuesta=" + encuesta +
-                ", idUsuario=" + idUsuario +
                 ", usuario=" + usuario +
                 ", fecha=" + fecha +
                 ", resultado='" + resultado + '\'' +

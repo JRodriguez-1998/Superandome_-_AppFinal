@@ -1,4 +1,4 @@
-package com.example.superandome_appfinal.Daos;
+package com.example.superandome_appfinal.Helpers;
 
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;

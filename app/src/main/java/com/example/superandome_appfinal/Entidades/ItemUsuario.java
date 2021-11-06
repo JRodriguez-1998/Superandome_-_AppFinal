@@ -7,10 +7,10 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 @DatabaseTable
-public class ItemUsuarioDiario {
+public class ItemUsuario {
 
     @DatabaseField(generatedId = true)
-    private Integer idItemUsuarioDiario;
+    private Integer idItemUsuario;
 
     @DatabaseField(foreign = true, columnName = "idUsuario", uniqueCombo = true, canBeNull = false)
     private Usuario usuario;
@@ -18,24 +18,20 @@ public class ItemUsuarioDiario {
     @DatabaseField(foreign = true, columnName = "idItem", uniqueCombo = true, canBeNull = false)
     private Item item;
 
-    @DatabaseField(dataType =  DataType.DATE_STRING, format = "yyyy-MM-dd", uniqueCombo = true, canBeNull = false)
-    private Date fecha;
-
-    public ItemUsuarioDiario() {
+    public ItemUsuario() {
     }
 
-    public ItemUsuarioDiario(Usuario usuario, Item item, Date fecha) {
+    public ItemUsuario(Usuario usuario, Item item) {
         this.usuario = usuario;
         this.item = item;
-        this.fecha = fecha;
     }
 
-    public Integer getIdItemUsuarioDiario() {
-        return idItemUsuarioDiario;
+    public Integer getIdItemUsuario() {
+        return idItemUsuario;
     }
 
-    public void setIdItemUsuarioDiario(Integer idItemUsuarioDiario) {
-        this.idItemUsuarioDiario = idItemUsuarioDiario;
+    public void setIdItemUsuario(Integer idItemUsuario) {
+        this.idItemUsuario = idItemUsuario;
     }
 
     public Usuario getUsuario() {
@@ -54,21 +50,12 @@ public class ItemUsuarioDiario {
         this.item = item;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     @Override
     public String toString() {
         return "ItemUsuarioDiario{" +
-                "idItemUsuarioDiario=" + idItemUsuarioDiario +
+                "idItemUsuarioDiario=" + idItemUsuario +
                 ", usuario=" + usuario +
                 ", item=" + item +
-                ", fecha=" + fecha +
                 '}';
     }
 }
