@@ -92,9 +92,10 @@
                 android:layout_gravity="center"
                 android:background="@drawable/border"
                 android:ems="10"
+                android:focusable="false"
                 android:fontFamily="@font/questrial_regular"
                 android:hint="@string/fechanac"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 android:minHeight="48dp" />
 
             <TextView
@@ -215,6 +216,7 @@
                 android:backgroundTint="#4167B2"
                 android:fontFamily="@font/questrial_regular"
                 android:text="@string/registrarse"
+                android:onClick="Registrar"
                 android:textAllCaps="false"
                 android:textSize="20sp" />
 
