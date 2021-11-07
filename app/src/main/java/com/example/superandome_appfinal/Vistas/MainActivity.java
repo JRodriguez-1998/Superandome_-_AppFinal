@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 
@@ -22,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
         btnAvanzar = (Button) findViewById(R.id.btnAvanzar);
     }
 
-    public  void avanzar(View v){
+    public void avanzar(View v){
         Intent intent =  new Intent(this, navigationDrawer_consultante.class);
         startActivity(intent);
     }
+
 }

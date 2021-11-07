@@ -2,85 +2,107 @@ package com.example.superandome_appfinal.Entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Consejo {
 
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer idConsejo;
+
+    @Column(nullable = false)
     private String texto;
-    private TipoConsejo idTipoConsejo;
-    private Estado idEstado;
-    private Usuario idUsuarioAutor;
+
+    @Column(nullable = false)
     private Date fechaAlta;
 
-    //propiedades por si sale orm
-    private Integer id_TipoConsejo;
-    private Boolean id_Estado;
-    private Integer id_UsuarioAutor;
+    @ManyToOne
+    @JoinColumn(name = "idTipoConsejo", nullable = false)
+    private TipoConsejo tipoConsejo;
+
+    @ManyToOne
+    @JoinColumn(name = "idEstado", nullable = false)
+    private Estado estado;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuarioAutor", nullable = false)
+    private Usuario usuarioAutor;
 
     public Consejo() { }
 
-    public Consejo(Integer idConsejo, String texto, TipoConsejo idTipoConsejo, Estado idEstado, Usuario idUsuarioAutor, Date fechaAlta) {
-        this.idConsejo = idConsejo;
+    public Consejo(String texto, TipoConsejo tipoConsejo) {
         this.texto = texto;
-        this.idTipoConsejo = idTipoConsejo;
-        this.idEstado = idEstado;
-        this.idUsuarioAutor = idUsuarioAutor;
-        this.fechaAlta = fechaAlta;
+        this.tipoConsejo = tipoConsejo;
     }
 
-    public Consejo(String texto, TipoConsejo idTipoConsejo, Estado idEstado, Usuario idUsuarioAutor, Date fechaAlta) {
-        this.idConsejo = idConsejo;
-        this.texto = texto;
-        this.idTipoConsejo = idTipoConsejo;
-        this.idEstado = idEstado;
-        this.idUsuarioAutor = idUsuarioAutor;
-        this.fechaAlta = fechaAlta;
+    public Consejo(String toString, Object o, Object o1, Object o2, Date date) {
+
     }
 
     public Integer getIdConsejo() {
         return idConsejo;
     }
 
-    public String getTexto() {
-        return texto;
-    }
-
-    public TipoConsejo getIdTipoConsejo() {
-        return idTipoConsejo;
-    }
-
-    public Estado getIdEstado() {
-        return idEstado;
-    }
-
-    public Usuario getIdUsuarioAutor() {
-        return idUsuarioAutor;
-    }
-
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-
     public void setIdConsejo(Integer idConsejo) {
         this.idConsejo = idConsejo;
+    }
+
+    public String getTexto() {
+        return texto;
     }
 
     public void setTexto(String texto) {
         this.texto = texto;
     }
 
-    public void setIdTipoConsejo(TipoConsejo idTipoConsejo) {
-        this.idTipoConsejo = idTipoConsejo;
+    public TipoConsejo getTipoConsejo() {
+        return tipoConsejo;
     }
 
-    public void setIdEstado(Estado idEstado) {
-        this.idEstado = idEstado;
+    public void setTipoConsejo(TipoConsejo tipoConsejo) {
+        this.tipoConsejo = tipoConsejo;
     }
 
-    public void setIdUsuarioAutor(Usuario idUsuarioAutor) {
-        this.idUsuarioAutor = idUsuarioAutor;
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Usuario getUsuarioAutor() {
+        return usuarioAutor;
+    }
+
+    public void setUsuarioAutor(Usuario usuarioAutor) {
+        this.usuarioAutor = usuarioAutor;
+    }
+
+    public Date getFechaAlta() {
+        return fechaAlta;
     }
 
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
+    }
+
+    @Override
+    public String toString() {
+        return "Consejo{" +
+                "idConsejo=" + idConsejo +
+                ", texto='" + texto + '\'' +
+                ", tipoConsejo=" + tipoConsejo +
+                ", eEstado=" + estado +
+                ", usuarioAutor=" + usuarioAutor +
+                ", fechaAlta=" + fechaAlta +
+                '}';
     }
 }

@@ -1,13 +1,13 @@
 package com.example.superandome_appfinal.Constantes;
 
-public enum TipoUsuario {
+public enum TipoUsuarioEnum {
     CONSULTANTE(1),
     PROFESIONAL(2),
     DIRECTOR(3);
 
     private final int tipo;
 
-    TipoUsuario(int tipo) {
+    TipoUsuarioEnum(int tipo) {
         this.tipo = tipo;
     }
 
@@ -15,8 +15,8 @@ public enum TipoUsuario {
         return tipo;
     }
 
-    public static TipoUsuario getTipoUsuario(int tipo) {
-        for (TipoUsuario t : TipoUsuario.values()) {
+    public static TipoUsuarioEnum getTipoUsuario(int tipo) {
+        for (TipoUsuarioEnum t : TipoUsuarioEnum.values()) {
             if (t.getTipo() == tipo) {
                 return t;
             }

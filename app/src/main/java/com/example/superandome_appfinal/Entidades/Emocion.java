@@ -1,17 +1,29 @@
 package com.example.superandome_appfinal.Entidades;
 
-public class Emoción {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Emocion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEmocion;
+
+    @Column(nullable = false)
     private String descripcion;
+
+    @Column(nullable = false)
     private Boolean habilitado;
 
-    public Emoción() {
+    public Emocion() {
     }
 
-    public Emoción(Integer idEmocion, String descripcion, Boolean habilitado) {
-        this.idEmocion = idEmocion;
+    public Emocion(String descripcion) {
         this.descripcion = descripcion;
-        this.habilitado = habilitado;
+        habilitado = true;
     }
 
     public Integer getIdEmocion() {

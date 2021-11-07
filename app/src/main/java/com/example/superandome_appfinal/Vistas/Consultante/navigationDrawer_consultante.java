@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
-import com.example.superandome_appfinal.Constantes.TipoUsuario;
+import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -55,7 +55,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
         hideAllItems();
         //Reemplazar parametro con tipoUser que viene del Login
-        switch (TipoUsuario.getTipoUsuario(tipoUser)) {
+        switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
             case CONSULTANTE:
                 showItemsConsultante();
                 navController.navigate(R.id.nav_cargarEmocionDiaria);

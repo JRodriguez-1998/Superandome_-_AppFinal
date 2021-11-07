@@ -43,7 +43,7 @@ public class configurarHorario extends Fragment {
 
                 if(!horaElegida.isEmpty()){
                     Usuario usuario = new Usuario();
-                    usuario.setHorarioEmocion(horaElegida);
+                    usuario.setHorarioEmocion(null);
 
                     Toast.makeText(getActivity(), "Exito", Toast.LENGTH_LONG).show();
                 }else{

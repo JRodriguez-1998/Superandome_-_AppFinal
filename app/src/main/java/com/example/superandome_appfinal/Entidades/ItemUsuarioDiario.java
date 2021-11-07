@@ -1,31 +1,41 @@
 package com.example.superandome_appfinal.Entidades;
 
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.Date;
 
+@DatabaseTable
 public class ItemUsuarioDiario {
 
-    private Integer idUsuario;
+    @DatabaseField(generatedId = true)
+    private Integer idItemUsuarioDiario;
+
+    @DatabaseField(foreign = true, columnName = "idUsuario", uniqueCombo = true, canBeNull = false)
     private Usuario usuario;
-    private Integer idItem;
+
+    @DatabaseField(foreign = true, columnName = "idItem", uniqueCombo = true, canBeNull = false)
     private Item item;
+
+    @DatabaseField(dataType =  DataType.DATE_STRING, format = "yyyy-MM-dd", uniqueCombo = true, canBeNull = false)
     private Date fecha;
 
-    public ItemUsuarioDiario() {}
+    public ItemUsuarioDiario() {
+    }
 
-    public ItemUsuarioDiario(Integer idUsuario, Usuario usuario, Integer idItem, Item item, Date fecha) {
-        this.idUsuario = idUsuario;
+    public ItemUsuarioDiario(Usuario usuario, Item item, Date fecha) {
         this.usuario = usuario;
-        this.idItem = idItem;
         this.item = item;
         this.fecha = fecha;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getIdItemUsuarioDiario() {
+        return idItemUsuarioDiario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdItemUsuarioDiario(Integer idItemUsuarioDiario) {
+        this.idItemUsuarioDiario = idItemUsuarioDiario;
     }
 
     public Usuario getUsuario() {
@@ -34,14 +44,6 @@ public class ItemUsuarioDiario {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public Integer getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(Integer idItem) {
-        this.idItem = idItem;
     }
 
     public Item getItem() {
@@ -63,9 +65,8 @@ public class ItemUsuarioDiario {
     @Override
     public String toString() {
         return "ItemUsuarioDiario{" +
-                "idUsuario=" + idUsuario +
+                "idItemUsuarioDiario=" + idItemUsuarioDiario +
                 ", usuario=" + usuario +
-                ", idItem=" + idItem +
                 ", item=" + item +
                 ", fecha=" + fecha +
                 '}';

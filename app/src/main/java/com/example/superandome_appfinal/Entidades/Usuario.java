@@ -2,184 +2,170 @@ package com.example.superandome_appfinal.Entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Usuario {
 
-    private String idUsuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idUsuario;
+
+    @Column(unique = true, nullable = false)
     private String nickname;
-    private TipoUsuario tipoUsuario;
-    private int idTipoUsuario;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private Boolean habilitado;
+
+    @Column(nullable = false)
     private Date fechaAlta;
+
+    @Column(nullable = false)
     private Date fechaNac;
-    private Genero genero;
-    private int idTipoGenero;
-    private String horarioEmocion; //En duda
-    private String ultimoIngreso; //En duda
-    private PreguntaSeguridad preguntaSeguridad;
-    private int idPreguntaSeguridad;
+
+    @Column
+    private Date horarioEmocion;
+    @Column
+    private Date ultimoIngreso;
+    @Column
     private String respuesta;
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoUsuario", nullable = false)
+    private TipoUsuario tipoUsuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idGenero", nullable = false)
+    private Genero genero;
+
+    @ManyToOne
+    @JoinColumn(name = "idPreguntaSeguridad")
+    private PreguntaSeguridad preguntaSeguridad;
 
 
     public Usuario() {
     }
 
-    public Usuario(String idUsuario, String nickname, TipoUsuario tipoUsuario, int idTipoUsuario, String password, Boolean habilitado, Date fechaAlta, Date fechaNac, Genero genero, int idTipoGenero, String horarioEmocion, String ultimoIngreso, PreguntaSeguridad preguntaSeguridad, int idPreguntaSeguridad, String respuesta) {
-        this.idUsuario = idUsuario;
-        this.nickname = nickname;
-        this.tipoUsuario = tipoUsuario;
-        this.idTipoUsuario = idTipoUsuario;
-        this.password = password;
-        this.habilitado = habilitado;
-        this.fechaAlta = fechaAlta;
-        this.fechaNac = fechaNac;
-        this.genero = genero;
-        this.idTipoGenero = idTipoGenero;
-        this.horarioEmocion = horarioEmocion;
-        this.ultimoIngreso = ultimoIngreso;
-        this.preguntaSeguridad = preguntaSeguridad;
-        this.idPreguntaSeguridad = idPreguntaSeguridad;
-        this.respuesta = respuesta;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNickname() {
         return nickname;
     }
 
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public int getIdTipoUsuario() {
-        return idTipoUsuario;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public Boolean getHabilitado() {
-        return habilitado;
-    }
-
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public Date getFechaNac() {
-        return fechaNac;
-    }
-
-    public Genero getGenero() {
-        return genero;
-    }
-
-    public int getIdTipoGenero() {
-        return idTipoGenero;
-    }
-
-    public String getHorarioEmocion() {
-        return horarioEmocion;
-    }
-
-    public String getUltimoIngreso() {
-        return ultimoIngreso;
-    }
-
-    public PreguntaSeguridad getPreguntaSeguridad() {
-        return preguntaSeguridad;
-    }
-
-    public int getIdPreguntaSeguridad() {
-        return idPreguntaSeguridad;
-    }
-
-    public String getRespuesta() {
-        return respuesta;
-    }
-
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public void setIdTipoUsuario(int idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
-    }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getHabilitado() {
+        return habilitado;
     }
 
     public void setHabilitado(Boolean habilitado) {
         this.habilitado = habilitado;
     }
 
+    public Date getFechaAlta() {
+        return fechaAlta;
+    }
+
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
     }
 
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
 
-    public void setGenero(Genero genero) {
-        this.genero = genero;
+    public Date getHorarioEmocion() {
+        return horarioEmocion;
     }
 
-    public void setIdTipoGenero(int idTipoGenero) {
-        this.idTipoGenero = idTipoGenero;
-    }
-
-    public void setHorarioEmocion(String horarioEmocion) {
+    public void setHorarioEmocion(Date horarioEmocion) {
         this.horarioEmocion = horarioEmocion;
     }
 
-    public void setUltimoIngreso(String ultimoIngreso) {
+    public Date getUltimoIngreso() {
+        return ultimoIngreso;
+    }
+
+    public void setUltimoIngreso(Date ultimoIngreso) {
         this.ultimoIngreso = ultimoIngreso;
     }
 
-    public void setPreguntaSeguridad(PreguntaSeguridad preguntaSeguridad) {
-        this.preguntaSeguridad = preguntaSeguridad;
-    }
-
-    public void setIdPreguntaSeguridad(int idPreguntaSeguridad) {
-        this.idPreguntaSeguridad = idPreguntaSeguridad;
+    public String getRespuesta() {
+        return respuesta;
     }
 
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public PreguntaSeguridad getPreguntaSeguridad() {
+        return preguntaSeguridad;
+    }
+
+    public void setPreguntaSeguridad(PreguntaSeguridad preguntaSeguridad) {
+        this.preguntaSeguridad = preguntaSeguridad;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
-                "idUsuario='" + idUsuario + '\'' +
+                "idUsuario=" + idUsuario +
                 ", nickname='" + nickname + '\'' +
-                ", tipoUsuario=" + tipoUsuario +
-                ", idTipoUsuario=" + idTipoUsuario +
                 ", password='" + password + '\'' +
                 ", habilitado=" + habilitado +
                 ", fechaAlta=" + fechaAlta +
                 ", fechaNac=" + fechaNac +
-                ", genero=" + genero +
-                ", idTipoGenero=" + idTipoGenero +
-                ", horarioEmocion='" + horarioEmocion + '\'' +
-                ", ultimoIngreso='" + ultimoIngreso + '\'' +
-                ", preguntaSeguridad=" + preguntaSeguridad +
-                ", idPreguntaSeguridad=" + idPreguntaSeguridad +
+                ", horarioEmocion=" + horarioEmocion +
+                ", ultimoIngreso=" + ultimoIngreso +
                 ", respuesta='" + respuesta + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                ", genero=" + genero +
+                ", preguntaSeguridad=" + preguntaSeguridad +
                 '}';
     }
 }

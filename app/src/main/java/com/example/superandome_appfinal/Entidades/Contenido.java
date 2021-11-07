@@ -2,30 +2,55 @@ package com.example.superandome_appfinal.Entidades;
 
 import java.util.Date;
 
-public class Contenido {
-    private Integer idContenido;
-    private String nombreArchivo;
-    private TipoArchivo tipoArchivo;
-    private Date fechaAprobacion;
-    private Date fechaCarga;
-    private Estado estado;
-    private Usuario user;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-    //Propiedades por si hay ORM
-    private Integer idTipoArchivo;
-    private Integer idEstado;
-    private Integer idUsuario;
+@Entity
+public class Contenido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idContenido;
+
+    @Column(nullable = false)
+    private String nombreArchivo;
+
+    @Column
+    private Date fechaAprobacion;
+
+    @Column(nullable = false)
+    private Date fechaCarga;
+
+    @Column(columnDefinition = "TEXT")
+    private String archivo;
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoArchivo")
+    private TipoArchivo tipoArchivo;
+
+    @ManyToOne
+    @JoinColumn(name = "idEstado")
+    private Estado estado;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public Contenido(){}
 
-    public Contenido(Integer idContenido, String nombreArchivo, TipoArchivo tipoArchivo, Date fechaAprobacion, Date fechaCarga, Estado estado, Usuario user) {
+    public Contenido(Integer idContenido, String nombreArchivo, TipoArchivo tipoArchivo, Date fechaAprobacion, Date fechaCarga, Estado estado, Usuario usuario, String archivo) {
         this.idContenido = idContenido;
         this.nombreArchivo = nombreArchivo;
         this.tipoArchivo = tipoArchivo;
         this.fechaAprobacion = fechaAprobacion;
         this.fechaCarga = fechaCarga;
         this.estado = estado;
-        this.user = user;
+        this.usuario = usuario;
+        this.archivo = archivo;
     }
 
     public Integer getIdContenido() {
@@ -76,11 +101,19 @@ public class Contenido {
         this.estado = estado;
     }
 
-    public Usuario getUser() {
-        return user;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUser(Usuario user) {
-        this.user = user;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(String archivo) {
+        this.archivo = archivo;
     }
 }
