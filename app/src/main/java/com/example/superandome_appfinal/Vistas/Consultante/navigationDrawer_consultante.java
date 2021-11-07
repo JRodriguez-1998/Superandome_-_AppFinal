@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
-import com.example.superandome_appfinal.Constantes.TipoUsuario;
+import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -51,7 +51,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
         int idTipoUsuario = 1;
         hideAllItems();
-        switch (TipoUsuario.getTipoUsuario(idTipoUsuario)) {
+        switch (TipoUsuarioEnum.getTipoUsuario(idTipoUsuario)) {
             case CONSULTANTE:
                 showItemsConsultante();
                 navController.navigate(R.id.nav_cargarEmocionDiaria);

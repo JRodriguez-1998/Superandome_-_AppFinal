@@ -26,11 +26,14 @@ public class Consejo {
     @ManyToOne
     @JoinColumn(name = "idTipoConsejo", nullable = false)
     private TipoConsejo tipoConsejo;
+
     @ManyToOne
     @JoinColumn(name = "idEstado", nullable = false)
     private Estado estado;
-//    @ManyToOne
-//    private Usuario usuarioAutor;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuarioAutor", nullable = false)
+    private Usuario usuarioAutor;
 
     public Consejo() { }
 
@@ -75,13 +78,13 @@ public class Consejo {
         this.estado = estado;
     }
 
-    //    public Usuario getUsuarioAutor() {
-//        return usuarioAutor;
-//    }
-//
-//    public void setUsuarioAutor(Usuario usuarioAutor) {
-//        this.usuarioAutor = usuarioAutor;
-//    }
+    public Usuario getUsuarioAutor() {
+        return usuarioAutor;
+    }
+
+    public void setUsuarioAutor(Usuario usuarioAutor) {
+        this.usuarioAutor = usuarioAutor;
+    }
 
     public Date getFechaAlta() {
         return fechaAlta;
@@ -98,7 +101,7 @@ public class Consejo {
                 ", texto='" + texto + '\'' +
                 ", tipoConsejo=" + tipoConsejo +
                 ", eEstado=" + estado +
-//                ", usuarioAutor=" + usuarioAutor +
+                ", usuarioAutor=" + usuarioAutor +
                 ", fechaAlta=" + fechaAlta +
                 '}';
     }

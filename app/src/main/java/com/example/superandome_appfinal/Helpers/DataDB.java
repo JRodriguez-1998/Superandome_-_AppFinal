@@ -17,11 +17,15 @@ public class DataDB {
     public static String urlMySQL = "jdbc:mysql://" + host + ":" + port + "/"+nameBD;
     public static String driver = "com.mysql.jdbc.Driver";
 
+    public static ConnectionSource connectionSource;
+
     public static ConnectionSource getConnectionSource() {
         try {
-            return new JdbcConnectionSource(urlMySQL, user, pass);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            if (connectionSource == null)
+                connectionSource = new JdbcConnectionSource(urlMySQL, user, pass);
+            return connectionSource;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
