@@ -24,6 +24,8 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     private ActivityNavigationDrawerConsultanteBinding binding;
     NavigationView navigationView;
 
+    private int tipoUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +52,10 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         int idTipoUsuario = 1;
+        tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
         hideAllItems();
-        switch (TipoUsuarioEnum.getTipoUsuario(idTipoUsuario)) {
+        //Reemplazar parametro con tipoUser que viene del Login
+        switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
             case CONSULTANTE:
                 showItemsConsultante();
                 navController.navigate(R.id.nav_cargarEmocionDiaria);
