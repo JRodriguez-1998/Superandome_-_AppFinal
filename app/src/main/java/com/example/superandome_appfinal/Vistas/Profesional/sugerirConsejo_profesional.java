@@ -16,15 +16,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoSugerirConsejo;
 import com.example.superandome_appfinal.Entidades.Consejo;
+import com.example.superandome_appfinal.Entidades.Estado;
+import com.example.superandome_appfinal.Entidades.TipoConsejo;
+import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.IServices.ConsejoService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
+import com.example.superandome_appfinal.Services.TipoConsejoServiceImpl;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class sugerirConsejo_profesional extends Fragment {
 
     Button btnEnviar;
     EditText txtConsejo;
+    TipoConsejoServiceImpl tipoConsejoService;
+    ConsejoService consejoService;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -33,24 +46,50 @@ public class sugerirConsejo_profesional extends Fragment {
         btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerenciaProf);
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugeridoProf);
 
-        Spinner spinnerTipoConsejo = (Spinner) view.findViewById(R.id.spinnerTipoConsejoProf);
-        String [] tipoConsejos = {"Seleccione Tipo de consejo", "Bronca","Alegria","Tristeza"};
+        try {
+            tipoConsejoService = new TipoConsejoServiceImpl();
+            consejoService = new ConsejoServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_tipoconsejo, tipoConsejos);
+        TipoConsejo consejo = new TipoConsejo(0, "Seleccionar tipo consejo");
+
+        List<TipoConsejo> listTipoConsejo = new ArrayList<TipoConsejo>();
+        listTipoConsejo.add(consejo);
+
+        for(int i = 0; i< tipoConsejoService.getTipoConsejos().size(); i ++){
+            listTipoConsejo.add(tipoConsejoService.getTipoConsejos().get(i));
+        }
+
+        Spinner spinnerTipoConsejo = (Spinner) view.findViewById(R.id.spinnerTipoConsejoProf);
+        ArrayAdapter<TipoConsejo> adapter = new ArrayAdapter<TipoConsejo>(getContext(), R.layout.spinner_item_tipoconsejo, listTipoConsejo);
         spinnerTipoConsejo.setAdapter(adapter);
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!txtConsejo.getText().toString().isEmpty()){
-                    if(spinnerTipoConsejo.getSelectedItemPosition() != 0){
-                        Toast.makeText(getActivity(),"Listo para enviar", Toast.LENGTH_LONG).show();
-                        Consejo consejo = new Consejo(txtConsejo.getText().toString(),null,null,null, new Date());
-                    }else{
-                        Toast.makeText(getActivity(),"Seleccionar tipo de consejo", Toast.LENGTH_LONG).show();
-                    }
-                }else{
+                if(txtConsejo.getText().toString().isEmpty()){
                     Toast.makeText(getActivity(),"Completar campos para continuar", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(spinnerTipoConsejo.getSelectedItemPosition() == 0){
+                    Toast.makeText(getActivity(),"Seleccionar tipo de consejo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(99);
+                Estado estado = new Estado(EstadoEnum.PENDIENTE.getId());
+                TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
+                Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, usuario);
+
+                if(consejoService.guardar(consejo)){
+                    dialogoSugerirConsejo d = new dialogoSugerirConsejo();
+                    d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                    txtConsejo.setText("");
+                }else{
+                    Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_LONG).show();
                 }
             }
         });

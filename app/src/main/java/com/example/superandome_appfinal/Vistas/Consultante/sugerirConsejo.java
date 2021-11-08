@@ -88,6 +88,7 @@ public class sugerirConsejo extends Fragment {
                 if(consejoService.guardar(consejo)){
                     dialogoSugerirConsejo d = new dialogoSugerirConsejo();
                     d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                    txtConsejo.setText("");
                 }else{
                     Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_LONG).show();
                 }
