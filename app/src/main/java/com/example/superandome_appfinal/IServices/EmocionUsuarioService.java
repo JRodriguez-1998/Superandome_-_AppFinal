@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface EmocionUsuarioService {
     Boolean guardar(EmocionUsuario emocionUsuario);
-    Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int mes);
+    Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int anio, int mes);
 }

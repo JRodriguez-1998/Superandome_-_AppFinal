@@ -28,11 +28,11 @@ public class EmocionUsuarioServiceImpl implements EmocionUsuarioService {
     }
 
     @Override
-    public Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int mes) {
+    public Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int anio, int mes) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<Map<Integer, Float>> f = executor.submit(() -> {
             try {
-                return dao.getReporteMensualEmocion(idUsuario, mes);
+                return dao.getReporteMensualEmocion(idUsuario, anio, mes);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

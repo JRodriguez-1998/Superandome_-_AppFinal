@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public void Test2() {
         try {
             EmocionUsuarioService service = new EmocionUsuarioServiceImpl();
-            Map<Integer, Float> map = service.getReporteMensualEmocion(1, 1);
+            Map<Integer, Float> map = service.getReporteMensualEmocion(1, 2021, 10);
             int x = 1;
         } catch (Exception throwables) {
             throwables.printStackTrace();

@@ -8,5 +8,5 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public interface EmocionUsuarioDao extends Dao<EmocionUsuario, Integer> {
-    Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int mes) throws SQLException, IOException;
+    Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int anio, int mes) throws SQLException, IOException;
 }

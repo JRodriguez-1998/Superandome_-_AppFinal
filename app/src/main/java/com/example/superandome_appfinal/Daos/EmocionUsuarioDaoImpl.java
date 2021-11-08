@@ -19,20 +19,23 @@ public class EmocionUsuarioDaoImpl extends BaseDaoImpl<EmocionUsuario, Integer> 
     }
 
     @Override
-    public Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int mes) throws SQLException, IOException {
+    public Map<Integer, Float> getReporteMensualEmocion(int idUsuario, int anio, int mes) throws SQLException, IOException {
         GenericRawResults<Map.Entry<Integer, Float>> rawResults = this.queryRaw(
-                "" +
-                " SELECT " +
-                "   idEmocion, " +
-                "   COUNT(1) / aux.count * 100 'porcentaje' " +
-                " FROM " +
-                "   sql10447793.emocionusuario " +
-                "   CROSS JOIN ( " +
-                "       SELECT COUNT(1) count " +
-                "       FROM sql10447793.emocionusuario " +
-                "    ) aux " +
-                " WHERE idUsuario = " + idUsuario +
-                " GROUP BY idEmocion",
+                        "" +
+                        " SELECT " +
+                        "   idEmocion, " +
+                        "   COUNT(1) / aux.count * 100 'porcentaje' " +
+                        " FROM " +
+                        "   sql10447793.emocionusuario " +
+                        "   CROSS JOIN ( " +
+                        "       SELECT COUNT(1) count " +
+                        "       FROM sql10447793.emocionusuario " +
+                        "   ) aux " +
+                        " WHERE " +
+                        "   idUsuario = " + idUsuario +
+                        "   AND YEAR(fecha) = " + anio +
+                        "   AND MONTH(fecha) = " + mes +
+                        " GROUP BY idEmocion",
                 (columnNames, resultColumns) -> {
                     Integer key = Integer.parseInt(resultColumns[0]);
                     Float value = Float.parseFloat(resultColumns[1]);
