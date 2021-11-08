@@ -21,6 +21,11 @@ public class TipoUsuario {
         this.descripcion = descripcion;
     }
 
+    public TipoUsuario(int idTipoUsuario, String descripcion) {
+        this.idTipoUsuario = idTipoUsuario;
+        this.descripcion = descripcion;
+    }
+
     public int getIdTipoUsuario() {
         return idTipoUsuario;
     }

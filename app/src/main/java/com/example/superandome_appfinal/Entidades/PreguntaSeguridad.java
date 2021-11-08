@@ -17,6 +17,11 @@ public class PreguntaSeguridad {
 
     public PreguntaSeguridad() { }
 
+    public PreguntaSeguridad(int idPreguntaSeguridad, String descripcion) {
+        this.idPreguntaSeguridad = idPreguntaSeguridad;
+        this.descripcion = descripcion;
+    }
+
     public PreguntaSeguridad(String descripcion) {
         this.descripcion = descripcion;
     }

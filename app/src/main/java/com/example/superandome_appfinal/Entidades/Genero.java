@@ -22,6 +22,11 @@ public class Genero {
         this.descripcion = descripcion;
     }
 
+    public Genero(int idGenero, String descripcion) {
+        this.idGenero = idGenero;
+        this.descripcion = descripcion;
+    }
+
     public int getIdGenero() {
         return idGenero;
     }
