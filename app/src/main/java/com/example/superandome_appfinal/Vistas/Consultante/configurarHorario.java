@@ -16,13 +16,18 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
+
+import java.sql.SQLException;
 
 public class configurarHorario extends Fragment {
 
      TimePicker reloj;
-     TextView txtHora;
+     TextView txtHora, txtConfigActual;
      Button btnConfirmar;
      String horaElegida;
+
+     UsuarioServiceImpl usuarioService;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -30,7 +35,17 @@ public class configurarHorario extends Fragment {
 
         reloj = (TimePicker) view.findViewById(R.id.reloj);
         txtHora = (TextView) view.findViewById(R.id.txtHoraSeleccionada);
+        txtConfigActual = (TextView) view.findViewById(R.id.tvConfiActual);
         btnConfirmar = (Button) view.findViewById(R.id.btnConfirmarHora);
+
+        try {
+            usuarioService = new UsuarioServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Usuario u = usuarioService.getUsuarioById(1);
+        txtConfigActual.setText(u.getHorarioEmocion().toString());
 
         reloj.setOnTimeChangedListener((timePicker, i, i1) ->
                 txtHora.setText("Horario elegido: " + i + ":" + i1)
@@ -39,8 +54,6 @@ public class configurarHorario extends Fragment {
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                horaElegida = txtHora.getText().toString();
-
                 if(!horaElegida.isEmpty()){
                     Usuario usuario = new Usuario();
                     usuario.setHorarioEmocion(null);
