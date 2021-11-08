@@ -1,6 +1,7 @@
 package com.example.superandome_appfinal.Services;
 
 import com.example.superandome_appfinal.Daos.TipoConsejoDaoImpl;
+import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.IDaos.TipoConsejoDao;
 import com.example.superandome_appfinal.IServices.TipoConsejoService;

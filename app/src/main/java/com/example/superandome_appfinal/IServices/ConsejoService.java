@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ConsejoService {
     Boolean guardar(Consejo consejo);
-//    List<Consejo> getConsejosPendientes();
+//  List<Consejo> getConsejosPendientes();
     List<Consejo> getConsejosByEstado(int idEstado);
 }

@@ -14,7 +14,7 @@
             android:id="@+id/txtMensajeDialogo"
             android:layout_width="301dp"
             android:layout_height="87dp"
-            android:text="Tu consejo entró en la lista de sugerencias a la espera de aprobación del Director."
+            android:text="texto"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
