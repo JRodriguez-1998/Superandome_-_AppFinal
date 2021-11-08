@@ -24,7 +24,10 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
         filtros.put("password", pass);
 
         try {
-            return (Usuario) queryForFieldValues(filtros);
+            List<Usuario> list = queryForFieldValues(filtros);
+            if (list != null && list.size() > 0)
+                return list.get(0);
+            return null;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
