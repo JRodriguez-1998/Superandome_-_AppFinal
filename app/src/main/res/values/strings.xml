@@ -10,7 +10,7 @@
     <string name="cancelarConfigHora">Cancelar</string>
     <string name="aceptarConfigHora">Aceptar</string>
     <string name="tituloConfHora">Configurar Horario:</string>
-    <string name="configActual">Configuración actual: 22:00</string>
+    <string name="configActual">Configuración actual:</string>
     <string name="tituloSugContenido">Sugerir contenido:</string>
     <string name="tituloAutor">Autor:</string>
     <string name="nombreAutor">Inés</string>

@@ -7,9 +7,10 @@ import com.example.superandome_appfinal.IDaos.UsuarioDao;
 import com.j256.ormlite.dao.BaseDaoImpl;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
+
 
 public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements UsuarioDao {
     public UsuarioDaoImpl() throws SQLException {
@@ -17,8 +18,12 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
     }
 
     @Override
-    public Usuario getUsuario(String nick, String pass) throws android.database.SQLException {
+    public Usuario getUsuarioById(int idUsuario) throws SQLException {
+        return this.queryForId(idUsuario);
+    }
 
+    @Override
+    public Usuario getUsuario(String nick, String pass) throws SQLException {
         Map<String, Object> filtros = new HashMap<>();
         filtros.put("nickname", nick);
         filtros.put("password", pass);
@@ -34,5 +39,4 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
 
         return null;
     }
-
 }
