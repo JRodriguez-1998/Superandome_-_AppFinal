@@ -22,8 +22,14 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class configurarHorario extends Fragment {
 
@@ -43,39 +49,52 @@ public class configurarHorario extends Fragment {
         txtConfigActual = (TextView) view.findViewById(R.id.tvConfiActual);
         btnConfirmar = (Button) view.findViewById(R.id.btnConfirmarHora);
 
+       // reloj.setIs24HourView(true);
+
         try {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        Usuario u = usuarioService.getUsuarioById(1);
-//        txtConfigActual.setText(u.getHorarioEmocion().toString());
+        Usuario usuario = usuarioService.getUsuarioById(1);
+
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        Date hora = usuario.getHorarioEmocion();
+
+
 
         reloj.setOnTimeChangedListener((timePicker, hour, minute) ->
                 txtHora.setText("Horario elegido: " + hour + ":" + minute)
         );
 
-        btnConfirmar.setOnClickListener(view1 -> {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, reloj.getCurrentHour());
+        cal.set(Calendar.MINUTE, reloj.getCurrentMinute());
+
+        Date horario = cal.getTime();
+
+        usuario.setHorarioEmocion(horario);
+        usuarioService.actualizar(usuario);
+
+//        btnConfirmar.setOnClickListener(view1 -> {
 //            if(!horaElegida.isEmpty()){
-//                Usuario usuario = new Usuario();
-//                usuario.setHorarioEmocion(null);
+//                usuario.setHorarioEmocion(horario);
+//                if(usuarioService.actualizar(usuario)){
 //
-//                Toast.makeText(getActivity(), "Exito", Toast.LENGTH_LONG).show();
+//                }else{
+//
+//                }
 //            }else{
 //                Toast.makeText(getActivity(), "Debe elegir un horario", Toast.LENGTH_LONG).show();
 //            }
+       // });
 
-            Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.HOUR, 12);
-            cal.set(Calendar.MINUTE, 15);
 
-            Date horario = cal.getTime();
 
-            u.setHorarioEmocion(horario);
+        //txtConfigActual.append(" " + dateFormat.format(hora));
 
-            usuarioService.actualizar(u);
-        });
+
     }
 
     @Override
