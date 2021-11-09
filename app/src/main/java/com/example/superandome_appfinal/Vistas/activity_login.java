@@ -71,8 +71,8 @@ public class activity_login extends AppCompatActivity {
             Toast.makeText(this,"Complete todos los campos.", Toast.LENGTH_SHORT).show();
         }
         else{
-                String nick = txtnick.getText().toString();
-                String pass = txtpass.getText().toString();
+            String nick = txtnick.getText().toString();
+            String pass = txtpass.getText().toString();
 
             try
             {
@@ -92,6 +92,7 @@ public class activity_login extends AppCompatActivity {
 
         }
     }
+
 
     public void irFacebook(View view){
         String url = "https://www.facebook.com/Soyuz-Salud-Mental-102791508151767/";
