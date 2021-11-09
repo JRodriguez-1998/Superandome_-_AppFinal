@@ -82,29 +82,13 @@ public class activity_login extends AppCompatActivity {
                 throwables.printStackTrace();
             }
 
-            List<Usuario> userlist = new ArrayList<Usuario>();
-            userlist = userService.getUsers();
-
-            for(Usuario user:userlist){
-                if(user.getNickname().equals(nick) && user.getPassword().equals(pass)){
-                    Toast.makeText(this,"El Usuario Existe", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(this,"El nombre de usuario o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            Usuario user = userService.obtenerUsuario(nick, pass);
-            if(user!=null)
-                user.toString();
-
-            /*if(userlist==null||userlist.size()<=0)
-            {
+            Usuario user = userService.getUsuario(nick, pass);
+            if(user==null){
                 Toast.makeText(this,"El nombre de usuario o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
+                return;
             }
-            else{
-                Toast.makeText(this,"Bien Amigo", Toast.LENGTH_SHORT).show();
-            }*/
+
+            //PONER SWITCH ACÁ
 
         }
     }
