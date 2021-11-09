@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<Boolean> f = executor.submit(() -> {
             try {
-                dao.create(usuario);
+                dao.update(usuario);
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
