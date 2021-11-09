@@ -12,4 +12,5 @@ public interface UsuarioService {
     void guardar(Usuario usuario);
     Usuario getUsuario(String nick, String pass);
     List<Usuario> getUsers();
+    Usuario getUsuario(String nick);
 }
