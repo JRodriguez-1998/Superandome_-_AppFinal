@@ -3,6 +3,7 @@ package com.example.superandome_appfinal.Vistas.Consultante;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.R;
@@ -24,7 +25,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     private ActivityNavigationDrawerConsultanteBinding binding;
     NavigationView navigationView;
 
-    private int tipoUser;
+    TextView txtNombreUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,16 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        int idTipoUsuario = 1;
-        tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
+        //Recibo los 3 datos enviados desde Login
+        int tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
+        String nameUsuario = (String) getIntent().getSerializableExtra("nickname");
+        int idUser = (int) getIntent().getSerializableExtra("idUser");
+
+        //Creo una variable View para obtener del navigationView el header, y asi setear el TextView del nombre
+        View navHeader = navigationView.getHeaderView(0);
+        txtNombreUser = (TextView) navHeader.findViewById(R.id.tvNombreUserLogin);
+        txtNombreUser.setText(nameUsuario);
+
         hideAllItems();
         //Reemplazar parametro con tipoUser que viene del Login
         switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
@@ -62,7 +71,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 break;
             case PROFESIONAL:
                 showItemsProfesional();
-                navController.navigate(R.id.nav_sugerirContenido);
+                navController.navigate(R.id.nav_sugerirContenido_profesional);
                 break;
             case DIRECTOR:
                 showItemsDirector();

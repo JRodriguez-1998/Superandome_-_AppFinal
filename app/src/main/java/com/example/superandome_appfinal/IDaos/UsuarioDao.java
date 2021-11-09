@@ -9,4 +9,5 @@ public interface UsuarioDao extends Dao<Usuario, Integer> {
 
     Usuario getUsuario(String nick, String pass) throws SQLException;
     Usuario getUsuarioById(int idUsuario) throws SQLException;
+    Usuario getUsuario(String nick) throws SQLException;
 }

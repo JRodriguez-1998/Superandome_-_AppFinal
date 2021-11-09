@@ -103,4 +103,24 @@ public class UsuarioServiceImpl implements UsuarioService {
             return null;
         }
     }
+
+    @Override
+    public Usuario getUsuario(String nick) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future f = executor.submit(() -> {
+            try {
+                return dao.getUsuario(nick);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return (Usuario) f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
