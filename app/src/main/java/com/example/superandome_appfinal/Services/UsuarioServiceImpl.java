@@ -1,15 +1,13 @@
 package com.example.superandome_appfinal.Services;
 
-import com.example.superandome_appfinal.Daos.ConsejoDaoImpl;
 import com.example.superandome_appfinal.Daos.UsuarioDaoImpl;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Usuario;
-import com.example.superandome_appfinal.IDaos.ConsejoDao;
+
 import com.example.superandome_appfinal.IDaos.UsuarioDao;
 import com.example.superandome_appfinal.IServices.UsuarioService;
-
-import java.sql.SQLException;
 import java.util.Date;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -35,12 +33,36 @@ public class UsuarioServiceImpl implements UsuarioService {
                 return false;
             }
         });
-
         try {
             return f.get();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public void guardar(Usuario usuario) {
+
+    }
+
+    @Override
+    public Usuario getUsuario(String nick, String pass) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future f = executor.submit(() -> {
+            try {
+                return dao.getUsuario(nick, pass);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return (Usuario) f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -55,7 +77,25 @@ public class UsuarioServiceImpl implements UsuarioService {
                 return null;
             }
         });
+        try {
+            return f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 
+    }
+
+    public List<Usuario> getUsers() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<List<Usuario>> f = executor.submit(() -> {
+            try {
+                return dao.queryForAll();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
         try {
             return f.get();
         } catch (Exception e) {
