@@ -25,11 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario obtenerUsuario(String nick, String pass) {
+    public Usuario getUsuario(String nick, String pass) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future f = executor.submit(() -> {
             try {
-                return dao.obtenerUsuario(nick, pass);
+                return dao.getUsuario(nick, pass);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -38,26 +38,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         try {
             return (Usuario) f.get();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public List<Usuario> getUsers(String nick, String pass) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Future<List<Usuario>> f = executor.submit(() -> {
-            try {
-                return dao.getUsers(nick, pass);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        });
-
-        try {
-            return f.get();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

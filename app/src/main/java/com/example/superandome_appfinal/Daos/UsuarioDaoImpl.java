@@ -17,7 +17,7 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
     }
 
     @Override
-    public Usuario obtenerUsuario(String nick, String pass) throws android.database.SQLException {
+    public Usuario getUsuario(String nick, String pass) throws android.database.SQLException {
 
         Map<String, Object> filtros = new HashMap<>();
         filtros.put("nickname", nick);
@@ -33,28 +33,6 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
         }
 
         return null;
-    }
-
-
-    public List<Usuario> findUser(String nick, String pass) throws SQLException
-    {
-        Map<String, Object> userMap = new HashMap<>();
-        userMap.put("nickname", nick);
-        userMap.put("password", pass);
-        List<Usuario> userlistEntities= queryForFieldValues(userMap);
-        return userlistEntities==null?null:userlistEntities;
-    }
-
-    @Override
-    public List<Usuario> getUsers(String nick, String pass) throws SQLException {
-
-        Map<String, Object> filtros = new HashMap<>();
-        filtros.put("nickname", nick);
-        filtros.put("password", pass);
-
-        return queryForFieldValues(filtros);
-
-        //return this.queryForEq("nickaname", nick);
     }
 
 }
