@@ -97,5 +97,11 @@
         android:label="fragment_pregunta_seguridad"
         tools:layout="@layout/fragment_pregunta_seguridad" />
 
+    <fragment
+        android:id="@+id/nav_homeConsultante"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.homeConsultante"
+        android:label="fragment_home_consultante"
+        tools:layout="@layout/fragment_home_consultante" />
+
 
 </navigation>
