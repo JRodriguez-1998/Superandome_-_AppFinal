@@ -1,58 +1,71 @@
 package com.example.superandome_appfinal.Entidades;
 
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-@Entity
+@DatabaseTable
 public class Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @DatabaseField(generatedId = true)
     private Integer idUsuario;
 
-    @Column(unique = true, nullable = false)
+    @DatabaseField(unique = true, canBeNull = false)
     private String nickname;
 
-    @Column(nullable = false)
+    @DatabaseField(canBeNull = false)
     private String password;
 
-    @Column(nullable = false)
+    @DatabaseField(canBeNull = false)
     private Boolean habilitado;
 
-    @Column(nullable = false)
+    @DatabaseField(canBeNull = false)
     private Date fechaAlta;
 
-    @Column(nullable = false)
+    @DatabaseField(dataType =  DataType.DATE_STRING, format = "yyyy-MM-dd", canBeNull = false)
     private Date fechaNac;
 
-    @Column
+    @DatabaseField(dataType =  DataType.DATE_STRING, format = "HH:mm")
     private Date horarioEmocion;
-    @Column
+
+    @DatabaseField
     private Date ultimoIngreso;
-    @Column
+
+    @DatabaseField
     private String respuesta;
 
-    @ManyToOne
-    @JoinColumn(name = "idTipoUsuario", nullable = false)
+    @DatabaseField(foreign = true, columnName = "idTipoUsuario", canBeNull = false)
     private TipoUsuario tipoUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "idGenero", nullable = false)
+    @DatabaseField(foreign = true, columnName = "idGenero", canBeNull = false)
     private Genero genero;
 
-    @ManyToOne
-    @JoinColumn(name = "idPreguntaSeguridad")
+    @DatabaseField(foreign = true, columnName = "idPreguntaSeguridad")
     private PreguntaSeguridad preguntaSeguridad;
 
-
     public Usuario() {
+    }
+
+    public Usuario(String nickname, String password, Boolean habilitado, Date fechaNac, TipoUsuario tipoUsuario, Genero genero) {
+        this.nickname = nickname;
+        this.password = password;
+        this.habilitado = habilitado;
+        this.fechaNac = fechaNac;
+        this.tipoUsuario = tipoUsuario;
+        this.genero = genero;
+    }
+
+    public Usuario(String nickname, String password, Boolean habilitado, Date fechaNac, String respuesta, TipoUsuario tipoUsuario, Genero genero, PreguntaSeguridad preguntaSeguridad) {
+        this.nickname = nickname;
+        this.password = password;
+        this.habilitado = habilitado;
+        this.fechaNac = fechaNac;
+        this.respuesta = respuesta;
+        this.tipoUsuario = tipoUsuario;
+        this.genero = genero;
+        this.preguntaSeguridad = preguntaSeguridad;
     }
 
     public Integer getIdUsuario() {

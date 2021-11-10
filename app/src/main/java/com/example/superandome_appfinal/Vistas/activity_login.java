@@ -12,16 +12,23 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
 import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class activity_login extends AppCompatActivity {
 
     EditText txtnick, txtpass;
     Button btnEntrar;
     ImageView btnface, btninsta, btnwpp;
+    UsuarioService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,61 +55,76 @@ public class activity_login extends AppCompatActivity {
     public void ir_RestablecerContrasenia(View view){
         if(txtnick.getText().toString().equals("")){
             Toast.makeText(this,"Para reestablecer contraseña, ingrese su Nickname", Toast.LENGTH_SHORT).show();
+            return;
         }
-        else{
-            //Buscar Usuario si existe y luego enviarlo al siguiente activity para reestablecer contraseña
-            //Usuario user = verificarUsuario(nick);
-            Intent i= new Intent(this, pregunta_seguridad.class);
-            //intent.putExtra("usuario", user);
-            startActivity(i);
+
+        String nick = txtnick.getText().toString();
+
+        try
+        {
+            userService = new UsuarioServiceImpl();
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
         }
+
+        Usuario user = userService.getUsuario(nick);
+        if(user==null){
+            Toast.makeText(this,"El Usuario no existe", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Corregir el acceso a la pantalla. No redirecciona a fragment
+        Intent intent =  new Intent(this, pregunta_seguridad.class);
+        intent.putExtra("nickname",user.getNickname());
+        intent.putExtra("idUser",user.getIdUsuario());
+        startActivity(intent);
+
     }
 
     //Clic en Ingresar
-    public void Entrar(View view){
+    public void Entrar(View view) throws SQLException {
         if (txtnick.getText().toString().equals("") || txtpass.getText().toString().equals("")){
             Toast.makeText(this,"Complete todos los campos.", Toast.LENGTH_SHORT).show();
         }
         else{
-                String nick = txtnick.getText().toString();
-                String pass = txtpass.getText().toString();
+            String nick = txtnick.getText().toString();
+            String pass = txtpass.getText().toString();
 
-                    //ACÁ CREAR MÉTODO PARA VERIFICAR USUARIO
-                //Usuario user = verificarUsuario(nick, pass);
+            try
+            {
+                userService = new UsuarioServiceImpl();
+            } catch (SQLException throwables)
+            {
+                throwables.printStackTrace();
+            }
 
-                    //Si los datos son correctos, prosigo
-                if(nick.equals("joseMaster") && pass.equals("1905")){
-                    Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
+            Usuario user = userService.getUsuario(nick, pass);
+            if(user==null){
+                Toast.makeText(this,"El nombre de usuario o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                    Intent intent =  new Intent(this, navigationDrawer_consultante.class);
-                        //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO
-                    //intent.putExtra("usuario", user);
-                    intent.putExtra("tipoUsuario",1);
-                    startActivity(intent);
-                }
-                else if(nick.equals("mauriCrack") && pass.equals("La12")){
-                    Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
+            //                  VER ESTO SI LO USAMOS O NO
+            if(user.getTipoUsuario().getIdTipoUsuario() == 2){
+                Toast.makeText(this,"Usted es Usuario Profesional, consulte al Director.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                    Intent intent =  new Intent(this, navigationDrawer_consultante.class);
-                    //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO
-                    //intent.putExtra("usuario", user);
-                    intent.putExtra("tipoUsuario",2);
-                    startActivity(intent);
-                }
-                else if(nick.equals("juanHacker") && pass.equals("1234")){
-                    Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
+            if(user.getTipoUsuario().getIdTipoUsuario() == 3){
+                Toast.makeText(this,"Usted es Usuario Director.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                    Intent intent =  new Intent(this, navigationDrawer_consultante.class);
-                    //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO
-                    //intent.putExtra("usuario", user);
-                    intent.putExtra("tipoUsuario",3);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(this, "Usuario y/o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                }
+            Intent intent =  new Intent(this, navigationDrawer_consultante.class);
+            intent.putExtra("nickname",user.getNickname());
+            intent.putExtra("idUser",user.getIdUsuario());
+            intent.putExtra("tipoUser",user.getTipoUsuario().getIdTipoUsuario());
+            startActivity(intent);
+
         }
     }
+
 
     public void irFacebook(View view){
         String url = "https://www.facebook.com/Soyuz-Salud-Mental-102791508151767/";

@@ -17,6 +17,10 @@ public class Estado {
 
     public Estado() { }
 
+    public Estado(Integer idEstado) {
+        this.idEstado = idEstado;
+    }
+
     public Estado(String descripcion) {
         this.descripcion = descripcion;
     }

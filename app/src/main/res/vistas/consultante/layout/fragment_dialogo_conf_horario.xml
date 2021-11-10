@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dialogos.dialogo">
+    tools:context=".Dialogos.dialogoConfHorario">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,22 +14,22 @@
             android:id="@+id/txtMensajeDialogo"
             android:layout_width="301dp"
             android:layout_height="87dp"
-            android:text="texto"
+            android:text="Horario guardado correctamente"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.347"
+            app:layout_constraintHorizontal_bias="0.145"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEstatus"
-            app:layout_constraintVertical_bias="0.13" />
+            app:layout_constraintVertical_bias="0.122" />
 
         <TextView
             android:id="@+id/txtEstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="¡Consejo sugerido!"
+            android:text="¡Horario cargado!"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"

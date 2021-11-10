@@ -44,9 +44,6 @@ public class TipoConsejo {
 
     @Override
     public String toString() {
-        return "TipoConsejo{" +
-                "idTipoConsejo=" + idTipoConsejo +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return descripcion;
     }
 }

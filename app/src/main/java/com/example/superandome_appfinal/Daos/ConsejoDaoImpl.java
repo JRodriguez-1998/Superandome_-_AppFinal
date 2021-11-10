@@ -28,7 +28,6 @@ public class ConsejoDaoImpl extends BaseDaoImpl<Consejo, Integer> implements Con
 //        filtros.put("idTipoConsejo", 2);
 //
 //        return queryForFieldValues(filtros);
-
         return this.queryForEq("idEstado", idEstado);
     }
 }

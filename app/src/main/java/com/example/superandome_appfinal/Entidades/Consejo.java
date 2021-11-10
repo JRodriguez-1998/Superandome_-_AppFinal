@@ -46,6 +46,13 @@ public class Consejo {
 
     }
 
+    public Consejo(String texto, TipoConsejo tipoConsejo, Estado estado, Usuario usuarioAutor) {
+        this.texto = texto;
+        this.tipoConsejo = tipoConsejo;
+        this.estado = estado;
+        this.usuarioAutor = usuarioAutor;
+    }
+
     public Integer getIdConsejo() {
         return idConsejo;
     }
