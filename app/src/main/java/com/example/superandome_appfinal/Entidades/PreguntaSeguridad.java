@@ -44,9 +44,6 @@ public class PreguntaSeguridad {
 
     @Override
     public String toString() {
-        return "PreguntaSeguridad{" +
-                "idPreguntaSeguridad=" + idPreguntaSeguridad +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return descripcion;
     }
 }
