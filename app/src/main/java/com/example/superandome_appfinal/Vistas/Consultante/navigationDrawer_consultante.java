@@ -6,6 +6,9 @@ import android.view.Menu;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.EmocionServiceImpl;
+import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
+import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,6 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.superandome_appfinal.databinding.ActivityNavigationDrawerConsultanteBinding;
 
+import java.sql.SQLException;
+import java.util.Date;
+
 public class navigationDrawer_consultante extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -25,6 +31,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     NavigationView navigationView;
 
     private int tipoUser;
+    EmocionUsuarioServiceImpl emocionUserService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
         int idTipoUsuario = 1;
         tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
+        iniciarServicios();
         hideAllItems();
         //Reemplazar parametro con tipoUser que viene del Login
         switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
@@ -107,6 +115,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsConsultante() {
         Menu navMenu = navigationView.getMenu();
+
+        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
+            navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(false);
+        }
+
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(true);
@@ -133,5 +146,13 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(true);
         navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(true);
         navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+    }
+
+    public void iniciarServicios(){
+        try {
+            emocionUserService= new EmocionUsuarioServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

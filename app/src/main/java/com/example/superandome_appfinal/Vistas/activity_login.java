@@ -66,7 +66,7 @@ public class activity_login extends AppCompatActivity {
     }
 
     //Clic en Ingresar
-    public void Entrar(View view) throws SQLException {
+    public void Entrar(View view){
         if (txtnick.getText().toString().equals("") || txtpass.getText().toString().equals("")){
             Toast.makeText(this,"Complete todos los campos.", Toast.LENGTH_SHORT).show();
         }
@@ -74,22 +74,40 @@ public class activity_login extends AppCompatActivity {
             String nick = txtnick.getText().toString();
             String pass = txtpass.getText().toString();
 
-            try
-            {
-                userService = new UsuarioServiceImpl();
-            } catch (SQLException throwables)
-            {
-                throwables.printStackTrace();
+            //ACÁ CREAR MÉTODO PARA VERIFICAR USUARIO
+            //Usuario user = verificarUsuario(nick, pass);
+
+            //Si los datos son correctos, prosigo
+            if(nick.equals("joseMaster") && pass.equals("1905")){
+                Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
+
+                Intent intent =  new Intent(this, navigationDrawer_consultante.class);
+                //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO
+                //intent.putExtra("usuario", user);
+                intent.putExtra("tipoUsuario",1);
+                startActivity(intent);
             }
+            else if(nick.equals("mauriCrack") && pass.equals("La12")){
+                Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
 
-            Usuario user = userService.getUsuario(nick, pass);
-            if(user==null){
-                Toast.makeText(this,"El nombre de usuario o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
-                return;
+                Intent intent =  new Intent(this, navigationDrawer_consultante.class);
+                //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO
+                //intent.putExtra("usuario", user);
+                intent.putExtra("tipoUsuario",2);
+                startActivity(intent);
             }
+            else if(nick.equals("juanHacker") && pass.equals("1234")){
+                Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
 
-            //PONER SWITCH ACÁ
-
+                Intent intent =  new Intent(this, navigationDrawer_consultante.class);
+                //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO
+                //intent.putExtra("usuario", user);
+                intent.putExtra("tipoUsuario",3);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Usuario y/o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
