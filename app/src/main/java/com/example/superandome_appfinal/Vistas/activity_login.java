@@ -55,14 +55,31 @@ public class activity_login extends AppCompatActivity {
     public void ir_RestablecerContrasenia(View view){
         if(txtnick.getText().toString().equals("")){
             Toast.makeText(this,"Para reestablecer contraseña, ingrese su Nickname", Toast.LENGTH_SHORT).show();
+            return;
         }
-        else{
-            //Buscar Usuario si existe y luego enviarlo al siguiente activity para reestablecer contraseña
-            //Usuario user = verificarUsuario(nick);
-            Intent i= new Intent(this, pregunta_seguridad.class);
-            //intent.putExtra("usuario", user);
-            startActivity(i);
+
+        String nick = txtnick.getText().toString();
+
+        try
+        {
+            userService = new UsuarioServiceImpl();
+        } catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
         }
+
+        Usuario user = userService.getUsuario(nick);
+        if(user==null){
+            Toast.makeText(this,"El Usuario no existe", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Corregir el acceso a la pantalla. No redirecciona a fragment
+        Intent intent =  new Intent(this, pregunta_seguridad.class);
+        intent.putExtra("nickname",user.getNickname());
+        intent.putExtra("idUser",user.getIdUsuario());
+        startActivity(intent);
+
     }
 
     //Clic en Ingresar
@@ -77,9 +94,22 @@ public class activity_login extends AppCompatActivity {
             //ACÁ CREAR MÉTODO PARA VERIFICAR USUARIO
             //Usuario user = verificarUsuario(nick, pass);
 
-            //Si los datos son correctos, prosigo
-            if(nick.equals("joseMaster") && pass.equals("1905")){
-                Toast.makeText(this, "Usuario Correcto", Toast.LENGTH_SHORT).show();
+            //                  VER ESTO SI LO USAMOS O NO
+            if(user.getTipoUsuario().getIdTipoUsuario() == 2){
+                Toast.makeText(this,"Usted es Usuario Profesional, consulte al Director.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(user.getTipoUsuario().getIdTipoUsuario() == 3){
+                Toast.makeText(this,"Usted es Usuario Director.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent intent =  new Intent(this, navigationDrawer_consultante.class);
+            intent.putExtra("nickname",user.getNickname());
+            intent.putExtra("idUser",user.getIdUsuario());
+            intent.putExtra("tipoUser",user.getTipoUsuario().getIdTipoUsuario());
+            startActivity(intent);
 
                 Intent intent =  new Intent(this, navigationDrawer_consultante.class);
                 //CUANDO TENGAMOS EL OBJETO USUARIO OBTENIDO, PODEMOS PASAR EL OBJETO

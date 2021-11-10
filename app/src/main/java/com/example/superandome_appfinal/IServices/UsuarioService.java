@@ -9,7 +9,8 @@ public interface UsuarioService {
     Boolean actualizar(Usuario usuario);
     Usuario getUsuarioById(int idUsuario);
 
-    void guardar(Usuario usuario);
     Usuario getUsuario(String nick, String pass);
     List<Usuario> getUsers();
+    Usuario getUsuario(String nick);
+    Boolean guardar(Usuario usuario);
 }

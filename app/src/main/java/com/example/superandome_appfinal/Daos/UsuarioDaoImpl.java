@@ -39,4 +39,22 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
 
         return null;
     }
+
+    @Override
+    public Usuario getUsuario(String nick) throws SQLException {
+        Map<String, Object> filtros = new HashMap<>();
+        filtros.put("nickname", nick);
+
+        try {
+            List<Usuario> list = queryForFieldValues(filtros);
+            if (list != null && list.size() > 0)
+                return list.get(0);
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
