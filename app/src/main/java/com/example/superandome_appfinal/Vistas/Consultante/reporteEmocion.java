@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.superandome_appfinal.IServices.EmocionUsuarioService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -20,6 +22,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class reporteEmocion extends Fragment {
 
@@ -52,6 +55,14 @@ public class reporteEmocion extends Fragment {
     }
 
     private void LoadPieChart() {
+        try {
+            EmocionUsuarioService service = new EmocionUsuarioServiceImpl();
+            Map<Integer, Float> map = service.getReporteMensualEmocion(1, 2021, 10);
+            int x = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         List<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(20, "Asco"));
         entries.add(new PieEntry(13, "Ira"));

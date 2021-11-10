@@ -46,32 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void avanzar(View v){
-//        Intent intent =  new Intent(this, navigationDrawer_consultante.class);
-//        startActivity(intent);
-//        Test();
-        Test2();
-    }
-
-    public void Test() {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-
-        Future f = executor.submit(() -> {
-            try {
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void Test2() {
-        try {
-            EmocionUsuarioService service = new EmocionUsuarioServiceImpl();
-            Map<Integer, Float> map = service.getReporteMensualEmocion(1, 2021, 10);
-            int x = 1;
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
-        }
-
+        Intent intent =  new Intent(this, navigationDrawer_consultante.class);
+        startActivity(intent);
     }
 }
