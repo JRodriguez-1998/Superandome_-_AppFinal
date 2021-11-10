@@ -37,8 +37,13 @@
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/spinner_item_tipoconsejo.xml" value="0.12273550724637682" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/menu/navigation_drawer_consultante.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_alta_consultante.xml" value="0.2" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_configurar_horario.xml" value="0.25" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_cargar_emocion.xml" value="0.11730072463768115" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_conf_horario.xml" value="0.12182971014492754" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_home_consultante.xml" value="0.33" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_home_consultante2.xml" value="0.11503623188405797" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/layout/activity_login.xml" value="0.16" />
       </map>
     </option>
   </component>

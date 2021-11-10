@@ -77,11 +77,11 @@
                 android:id="@+id/btnIngresar"
                 android:layout_width="153dp"
                 android:layout_height="wrap_content"
-                android:onClick="Entrar"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#4167B2"
                 android:fontFamily="@font/questrial_regular"
+                android:onClick="Entrar"
                 android:text="@string/btnIngresar"
                 android:textColor="#FFFFFF"
                 app:iconTint="#4167B2" />
@@ -105,7 +105,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvTituloPsicologa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="65dp"
@@ -120,7 +120,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/tvRedesPsicologa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/questrial_regular"

@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.EmocionServiceImpl;
+import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
+import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,12 +22,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.superandome_appfinal.databinding.ActivityNavigationDrawerConsultanteBinding;
 
+import java.sql.SQLException;
+import java.util.Date;
+
 public class navigationDrawer_consultante extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavigationDrawerConsultanteBinding binding;
     NavigationView navigationView;
 
+    private int tipoUser;
+    EmocionUsuarioServiceImpl emocionUserService;
     TextView txtNombreUser;
 
     @Override
@@ -45,12 +53,18 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
-                R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion, R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,R.id.nav_pregunta_seguridad)
+                R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
+                R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,
+                R.id.nav_pregunta_seguridad, R.id.nav_homeConsultante)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        int idTipoUsuario = 1;
+        tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
+        iniciarServicios();
 
         //Recibo los 3 datos enviados desde Login
         int tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
@@ -67,7 +81,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
             case CONSULTANTE:
                 showItemsConsultante();
-                navController.navigate(R.id.nav_cargarEmocionDiaria);
+                navController.navigate(R.id.nav_homeConsultante);
                 break;
             case PROFESIONAL:
                 showItemsProfesional();
@@ -116,6 +130,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsConsultante() {
         Menu navMenu = navigationView.getMenu();
+
+        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
+            navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
+        }
+
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(true);
@@ -142,5 +161,13 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(true);
         navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(true);
         navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+    }
+
+    public void iniciarServicios(){
+        try {
+            emocionUserService= new EmocionUsuarioServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
