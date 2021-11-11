@@ -83,34 +83,6 @@
                     </TableLayout>
 
                 </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="25dp">
-
-                    <TextView
-                        android:id="@+id/tvID"
-                        android:layout_width="101dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/questrial_regular"
-                        android:text="@string/id"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/tvIdUsuario"
-                        android:layout_width="238dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="50dp"
-                        android:background="@drawable/borderspinner"
-                        android:text="120"
-                        android:textAlignment="textEnd"
-                        android:textSize="24sp" />
-                </TableRow>
-
                 <TextView
                     android:id="@+id/tvNickProfesional"
                     android:layout_width="match_parent"
@@ -156,9 +128,10 @@
                     android:layout_gravity="center"
                     android:background="@drawable/border"
                     android:ems="10"
+                    android:focusable="false"
                     android:fontFamily="@font/questrial_regular"
                     android:hint="@string/fechanac"
-                    android:inputType="textPersonName"
+                    android:inputType="date"
                     android:minHeight="48dp" />
 
                 <TextView
@@ -202,7 +175,7 @@
                     android:ems="10"
                     android:fontFamily="@font/questrial_regular"
                     android:hint="@string/password"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:minHeight="48dp" />
 
                 <TextView
@@ -226,7 +199,7 @@
                     android:ems="10"
                     android:fontFamily="@font/questrial_regular"
                     android:hint="@string/confipass2"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:minHeight="48dp" />
 
                 <Button

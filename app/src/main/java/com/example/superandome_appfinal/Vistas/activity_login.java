@@ -74,6 +74,17 @@ public class activity_login extends AppCompatActivity {
             return;
         }
 
+        //                  VER ESTO SI LO USAMOS O NO
+        if(user.getTipoUsuario().getIdTipoUsuario() == 2){
+            Toast.makeText(this,"Usted es Usuario Profesional, consulte al Director.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(user.getTipoUsuario().getIdTipoUsuario() == 3){
+            Toast.makeText(this,"Usted es Usuario Director.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Corregir el acceso a la pantalla. No redirecciona a fragment
         Intent intent =  new Intent(this, pregunta_seguridad.class);
         intent.putExtra("nickname",user.getNickname());
@@ -102,17 +113,6 @@ public class activity_login extends AppCompatActivity {
             Usuario user = userService.getUsuario(nick, pass);
             if(user==null){
                 Toast.makeText(this,"El nombre de usuario o la contraseña son incorrectos", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            //                  VER ESTO SI LO USAMOS O NO
-            if(user.getTipoUsuario().getIdTipoUsuario() == 2){
-                Toast.makeText(this,"Usted es Usuario Profesional, consulte al Director.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if(user.getTipoUsuario().getIdTipoUsuario() == 3){
-                Toast.makeText(this,"Usted es Usuario Director.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
