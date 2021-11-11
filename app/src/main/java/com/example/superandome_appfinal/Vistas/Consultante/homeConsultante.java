@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,7 +17,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Constantes.TipoConsejoEnum;
+import com.example.superandome_appfinal.Daos.EstadoDaoImpl;
 import com.example.superandome_appfinal.Entidades.Consejo;
+import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionServiceImpl;
@@ -34,6 +40,7 @@ public class homeConsultante extends Fragment {
     TextView txtConsejoDiario;
     List<Consejo> listaConsejos;
     ConsejoServiceImpl consejoService;
+    UsuarioServiceImpl usuarioService;
 
     public homeConsultante() {}
 
@@ -41,17 +48,19 @@ public class homeConsultante extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         iniciarServicios();
+
         txtConsejoDiario = (TextView) view.findViewById(R.id.txtConsejoDia);
 
-        listaConsejos = consejoService.getConsejosByEstado(1);
+        listaConsejos = consejoService.getConsejosByEstadoAndTipo(EstadoEnum.APROBADO_DIRECTOR.getId(), TipoConsejoEnum.GENERAL.getTipo());
+        Usuario usuario = usuarioService.getUsuarioById(1);
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
-
         Integer fechaAct = cal.get(Calendar.DATE);
 
-        Random numAleatorio = new Random(fechaAct);
+        Random numAleatorio = new Random(fechaAct + usuario.getIdUsuario());
         int n = numAleatorio.nextInt(listaConsejos.size() -1 +1);
 
         txtConsejoDiario.setText(listaConsejos.get(n).getTexto());
@@ -66,6 +75,7 @@ public class homeConsultante extends Fragment {
     public void iniciarServicios(){
         try {
             consejoService = new ConsejoServiceImpl();
+            usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
