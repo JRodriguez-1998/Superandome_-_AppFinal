@@ -14,6 +14,10 @@ public class homeConsultante extends Fragment {
 
     public homeConsultante() {}
 
+    public static homeConsultante newInstance(){
+        return new homeConsultante();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

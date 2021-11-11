@@ -13,6 +13,7 @@ import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -91,7 +92,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 navController.navigate(R.id.nav_altaProfesional);
                 break;
         }
-
     }
 
     @Override
@@ -109,11 +109,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void hideAllItems() {
         Menu navMenu = navigationView.getMenu();
-
-        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
-            navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
-        }
-
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(false);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(false);
@@ -134,6 +129,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsConsultante() {
         Menu navMenu = navigationView.getMenu();
+
+        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
+            navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
+        }
+        navMenu.findItem(R.id.nav_cargarEmocionDiaria).setChecked(false);
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(true);
