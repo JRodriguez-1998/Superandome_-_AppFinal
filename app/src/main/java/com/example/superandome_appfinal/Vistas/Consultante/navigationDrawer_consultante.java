@@ -1,11 +1,16 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
+import com.example.superandome_appfinal.Dialogos.cerrarSesion;
+import com.example.superandome_appfinal.Dialogos.dialogoUserConsultanteRegistrado;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -34,8 +39,14 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     TextView txtNombreUser;
     int idUser;
+    int tipoUser;
+    String nameUsuario;
 
     EmocionUsuarioServiceImpl emocionUserService;
+
+    //Creo Objeto SharedPreferences para utilizar para las Sesiones
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +68,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
                 R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
                 R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,
-                R.id.nav_pregunta_seguridad, R.id.nav_homeConsultante)
+                R.id.nav_pregunta_seguridad, R.id.nav_homeConsultante, R.id.nav_cerrarSesion)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
@@ -66,10 +77,15 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
         iniciarServicios();
 
+        preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
         //Recibo los 3 datos enviados desde Login
-        int tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
-        String nameUsuario = (String) getIntent().getSerializableExtra("nickname");
-        idUser = (int) getIntent().getSerializableExtra("idUser");
+        //tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
+        //nameUsuario = (String) getIntent().getSerializableExtra("nickname");
+        //idUser = (int) getIntent().getSerializableExtra("idUser");
+
+        obtenerPreferences();
 
         //Creo una variable View para obtener del navigationView el header, y asi setear el TextView del nombre
         View navHeader = navigationView.getHeaderView(0);
@@ -125,6 +141,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(false);
         navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(false);
         navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(false);
+        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(false);
     }
 
     private void showItemsConsultante() {
@@ -145,21 +162,51 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_text).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_video).setVisible(true);
-        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                cerrarSesion cerrar = new cerrarSesion();
+                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
+                return true;
+            }
+        });
     }
 
     private void showItemsProfesional() {
         Menu navMenu = navigationView.getMenu();
         navMenu.findItem(R.id.nav_sugerirContenido_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(true);
-        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                cerrarSesion cerrar = new cerrarSesion();
+                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
+                return true;
+            }
+        });
     }
 
     private void showItemsDirector() {
         Menu navMenu = navigationView.getMenu();
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(true);
         navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(true);
-        navMenu.findItem(R.id.nav_pregunta_seguridad).setVisible(true);
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                cerrarSesion cerrar = new cerrarSesion();
+                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
+                return true;
+            }
+        });
     }
 
     public void iniciarServicios(){
@@ -168,5 +215,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void obtenerPreferences(){
+        idUser = preferences.getInt("idUser",0);
+        tipoUser = preferences.getInt("tipoUser",0);
+        nameUsuario = preferences.getString("nickname",null);
     }
 }

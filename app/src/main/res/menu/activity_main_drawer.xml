@@ -90,5 +90,10 @@
             android:icon="@android:drawable/btn_star_big_on"
             android:title="Pregunta seguridad" />
 
+        <item
+            android:id="@+id/nav_cerrarSesion"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Cerrar Sesion" />
+
     </group>
 </menu>

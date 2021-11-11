@@ -2,7 +2,9 @@ package com.example.superandome_appfinal.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +32,10 @@ public class activity_login extends AppCompatActivity {
     ImageView btnface, btninsta, btnwpp;
     UsuarioService userService;
 
+    //Creo Objeto SharedPreferences para utilizar para las Sesiones
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +43,19 @@ public class activity_login extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
         txtnick = findViewById(R.id.etNickname);
         txtpass = findViewById(R.id.etPassword);
         btnEntrar = findViewById(R.id.btnIngresar);
         btnface = findViewById(R.id.btnFacebook);
         btninsta = findViewById(R.id.btnInstagram);
         btnwpp = findViewById(R.id.btnWhatsapp);
+
+        //Verifico si hay una Sesion iniciada
+        if(revisarSesion())
+            startActivity(new Intent(this, navigationDrawer_consultante.class));
     }
 
     //Clic en Crear Cuenta
@@ -116,15 +129,27 @@ public class activity_login extends AppCompatActivity {
                 return;
             }
 
+            guardarSesion(true, user.getNickname(), user.getIdUsuario(), user.getTipoUsuario().getIdTipoUsuario());
             Intent intent =  new Intent(this, navigationDrawer_consultante.class);
-            intent.putExtra("nickname",user.getNickname());
-            intent.putExtra("idUser",user.getIdUsuario());
-            intent.putExtra("tipoUser",user.getTipoUsuario().getIdTipoUsuario());
+            //intent.putExtra("nickname",user.getNickname());
+            //intent.putExtra("idUser",user.getIdUsuario());
+            //intent.putExtra("tipoUser",user.getTipoUsuario().getIdTipoUsuario());
             startActivity(intent);
 
         }
     }
 
+    public boolean revisarSesion(){
+        return this.preferences.getBoolean("sesion",false);
+    }
+
+    public void guardarSesion(boolean iniciar, String nick, int idUsuario, int idTipoUsuario){
+        editor.putBoolean("sesion",iniciar);
+        editor.putString("nickname", nick);
+        editor.putInt("idUser", idUsuario);
+        editor.putInt("tipoUser", idTipoUsuario);
+        editor.apply();
+    }
 
     public void irFacebook(View view){
         String url = "https://www.facebook.com/Soyuz-Salud-Mental-102791508151767/";
