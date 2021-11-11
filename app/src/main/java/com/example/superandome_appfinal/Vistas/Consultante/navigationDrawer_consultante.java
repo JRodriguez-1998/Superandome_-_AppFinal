@@ -31,9 +31,10 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     private ActivityNavigationDrawerConsultanteBinding binding;
     NavigationView navigationView;
 
-    private int tipoUser;
-    EmocionUsuarioServiceImpl emocionUserService;
     TextView txtNombreUser;
+    int idUser;
+
+    EmocionUsuarioServiceImpl emocionUserService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +63,12 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        int idTipoUsuario = 1;
-        tipoUser = (int) getIntent().getSerializableExtra("tipoUsuario");
         iniciarServicios();
 
         //Recibo los 3 datos enviados desde Login
         int tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
         String nameUsuario = (String) getIntent().getSerializableExtra("nickname");
-        int idUser = (int) getIntent().getSerializableExtra("idUser");
+        idUser = (int) getIntent().getSerializableExtra("idUser");
 
         //Creo una variable View para obtener del navigationView el header, y asi setear el TextView del nombre
         View navHeader = navigationView.getHeaderView(0);
@@ -110,6 +109,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void hideAllItems() {
         Menu navMenu = navigationView.getMenu();
+
+        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
+            navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
+        }
+
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(false);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(false);
@@ -130,11 +134,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsConsultante() {
         Menu navMenu = navigationView.getMenu();
-
-        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
-            navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
-        }
-
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(true);
