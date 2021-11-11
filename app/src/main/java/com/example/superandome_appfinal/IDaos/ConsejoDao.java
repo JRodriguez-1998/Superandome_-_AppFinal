@@ -9,5 +9,6 @@ import java.util.List;
 public interface ConsejoDao extends Dao<Consejo, Integer> {
 //    List<Consejo> getConsejosPendientes() throws SQLException;
     List<Consejo> getConsejosByEstado(int idEstado) throws SQLException;
+    List<Consejo> getConsejosByEstadoAndTipo(int idEstado, int idTipoConsejo) throws SQLException;
     Consejo getConsejoById(int idConsejo) throws SQLException;;
 }
