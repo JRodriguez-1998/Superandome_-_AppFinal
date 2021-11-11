@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.cargarEmocionDiaria;
 import com.example.superandome_appfinal.Vistas.Consultante.homeConsultante;
 
@@ -65,27 +66,8 @@ public class dialogoCargarEmocion extends DialogFragment {
             @Override
             public void onClick(View view) {
                 dismiss();
-// Crear fragmento de tu clase
-//                Fragment home = new homeConsultante();
-//                Activity navigation = new navigationDrawer_consultante();
-//
-//// Obtener el administrador de fragmentos a través de la actividad
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//// Definir una transacción
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//// Remplazar el contenido principal por el fragmento
-////                fragmentTransaction.replace(R.id.drawer_layout, home);
-//                fragmentTransaction.replace(R.id.nav_host_fragment_content_navigation_drawer_consultante, home);
-//
-//                fragmentTransaction.addToBackStack(null);
-//// Cambiar
-//                fragmentTransaction.commit();
-
-//                fragmentHome = new homeConsultante();
-//                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentHome).commit();
-
-                Intent intent = new Intent(getActivity(), navigationDrawer_consultante.class);
-                getActivity().startActivity(intent);
+                fragmentHome = new homeConsultante();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment_content_navigation_drawer_consultante, fragmentHome).commit();
             }
         });
     }
