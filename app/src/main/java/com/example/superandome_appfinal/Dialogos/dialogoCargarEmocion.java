@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +21,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Vistas.Consultante.cargarEmocionDiaria;
+import com.example.superandome_appfinal.Vistas.Consultante.homeConsultante;
+
 import com.example.superandome_appfinal.Vistas.Consultante.homeConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
+import com.google.android.material.internal.NavigationMenu;
+import com.google.android.material.internal.NavigationMenuItemView;
 
 public class dialogoCargarEmocion extends DialogFragment {
 
     Activity actividad;
     TextView txtEstatus, txtMensaje, btnAceptar;
+    FragmentTransaction transaction;
+    Fragment fragmentHome;
 
     public dialogoCargarEmocion() {
     }
@@ -57,18 +65,27 @@ public class dialogoCargarEmocion extends DialogFragment {
             @Override
             public void onClick(View view) {
                 dismiss();
-//// Crear fragmento de tu clase
+// Crear fragmento de tu clase
 //                Fragment home = new homeConsultante();
+//                Activity navigation = new navigationDrawer_consultante();
+//
 //// Obtener el administrador de fragmentos a través de la actividad
 //                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 //// Definir una transacción
 //                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //// Remplazar el contenido principal por el fragmento
-//                fragmentTransaction.replace(R.id.content, home);
+////                fragmentTransaction.replace(R.id.drawer_layout, home);
+//                fragmentTransaction.replace(R.id.nav_host_fragment_content_navigation_drawer_consultante, home);
+//
 //                fragmentTransaction.addToBackStack(null);
 //// Cambiar
 //                fragmentTransaction.commit();
-//
+
+//                fragmentHome = new homeConsultante();
+//                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentHome).commit();
+
+                Intent intent = new Intent(getActivity(), navigationDrawer_consultante.class);
+                getActivity().startActivity(intent);
             }
         });
     }

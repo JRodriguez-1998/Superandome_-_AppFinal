@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +9,9 @@
     android:background="@drawable/consultante"
     tools:context=".Vistas.Consultante.homeConsultante">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -112,3 +116,5 @@
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
