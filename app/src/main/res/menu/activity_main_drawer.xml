@@ -4,6 +4,12 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_homeConsultante"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pantalla principal" />
+
         <item
             android:id="@+id/nav_cargarEmocionDiaria"
             android:icon="@drawable/asustado"
