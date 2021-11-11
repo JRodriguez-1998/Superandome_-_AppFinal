@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
 import com.example.superandome_appfinal.IServices.EmocionUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -109,20 +110,21 @@ public class reporteEmocion extends Fragment {
             Calendar fecha = GetSelectedDate();
 
             Map<Integer, Float> map = service.getReporteMensualEmocion(1, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH));
-            if (map == null || map.size() == 0) {
+            if (map == null) {
+                Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (map.size() == 0) {
                 Toast.makeText(getActivity(), "No hay datos registrados para el período seleccionado", Toast.LENGTH_LONG).show();
                 return;
             }
 
+            List<Integer> colors = new ArrayList<>();
             List<PieEntry> entries = new ArrayList<>();
-            entries.add(new PieEntry(map.get(1), "Asco"));
-            entries.add(new PieEntry(map.get(2), "Ira"));
-            entries.add(new PieEntry(map.get(3), "Felicidad"));
-            entries.add(new PieEntry(map.get(4), "Miedo"));
-            entries.add(new PieEntry(map.get(5), "Tristeza"));
+            LoadEntriesColors(map, entries, colors);
 
             PieDataSet dataSet = new PieDataSet(entries, "Torta");
-            dataSet.setColors(COLOR_ASCO, COLOR_IRA, COLOR_FELICIDAD, COLOR_MIEDO, COLOR_TRISTEZA);
+            dataSet.setColors(colors);
 
             PieData data = new PieData(dataSet);
             data.setValueTextColor(R.color.white); // TODO: No funca
@@ -145,6 +147,29 @@ public class reporteEmocion extends Fragment {
         } catch (Exception e) {
             Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
+        }
+    }
+
+    private void LoadEntriesColors(Map<Integer, Float> map, List<PieEntry> entries, List<Integer> colors) {
+        if (map.get(TipoEmocionEnum.ASCO.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.ASCO.getTipo()), "Asco"));
+            colors.add(COLOR_ASCO);
+        }
+        if (map.get(TipoEmocionEnum.IRA.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.IRA.getTipo()), "Ira"));
+            colors.add(COLOR_IRA);
+        }
+        if (map.get(TipoEmocionEnum.FELICIDAD.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.FELICIDAD.getTipo()), "Felicidad"));
+            colors.add(COLOR_FELICIDAD);
+        }
+        if (map.get(TipoEmocionEnum.MIEDO.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.MIEDO.getTipo()), "Miedo"));
+            colors.add(COLOR_MIEDO);
+        }
+        if (map.get(TipoEmocionEnum.TRISTERZA.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.TRISTERZA.getTipo()), "Tristeza"));
+            colors.add(COLOR_TRISTEZA);
         }
     }
 }
