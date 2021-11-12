@@ -79,6 +79,11 @@ public class dialogoCambiarPass extends DialogFragment {
                     return;
                 }
 
+                if(txtPassword.getText().toString().equals(usuario.getPassword().toString())){
+                    Toast.makeText(getActivity(), "La contraseña debe ser distinta.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 if(txtPassword.getText().toString().equals(txtRepetirPass.getText().toString())){
                     usuario.setPassword(txtPassword.getText().toString());
 

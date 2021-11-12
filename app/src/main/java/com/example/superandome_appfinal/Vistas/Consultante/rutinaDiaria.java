@@ -79,7 +79,7 @@ public class rutinaDiaria extends Fragment {
 
         prueba = (TextView) view.findViewById(R.id.textView3);
 
-        int idUsuario = (int) getActivity().getIntent().getSerializableExtra("idUser");
+        //int idUsuario = (int) getActivity().getIntent().getSerializableExtra("idUser");
 
        // String id = String.valueOf(idUsuario);
 
