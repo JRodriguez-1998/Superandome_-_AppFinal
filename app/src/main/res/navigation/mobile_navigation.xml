@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_cargarEmocionDiaria">
+    app:startDestination="@+id/nav_homeConsultante">
 
     <!--FRAGMENTS CONSULTANTE-->
 
@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_reporte_emocion" />
     <fragment
         android:id="@+id/nav_reporteRutina"
-        android:name="com.example.superandome_appfinal.reporteRutina"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.reporteRutina"
         android:label="fragemnt_reporte_rutina"
         tools:layout="@layout/fragment_reporte_rutina" />
     <fragment
@@ -97,5 +97,11 @@
         android:label="fragment_pregunta_seguridad"
         tools:layout="@layout/fragment_pregunta_seguridad" />
 
+    <fragment
+        android:id="@+id/nav_homeConsultante"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.homeConsultante"
+        android:label="fragment_home_consultante"
+        tools:layout="@layout/fragment_home_consultante" >
+    </fragment>
 
 </navigation>

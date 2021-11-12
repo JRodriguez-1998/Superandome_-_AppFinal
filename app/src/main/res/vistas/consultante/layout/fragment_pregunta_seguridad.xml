@@ -29,7 +29,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView32"
+                        android:id="@+id/tvTituloPreguntaSeguridad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/redhat_medium"
@@ -38,7 +38,7 @@
                         android:textSize="24sp" />
 
                     <Spinner
-                        android:id="@+id/spPreguntas"
+                        android:id="@+id/spPregunta"
                         android:layout_width="259dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -57,7 +57,7 @@
                         android:inputType="textPersonName" />
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/btnAceptarRespuesta"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"

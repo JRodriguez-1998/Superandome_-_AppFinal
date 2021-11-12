@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_width="258dp"
-                    android:layout_height="496dp"
+                    android:layout_width="340dp"
+                    android:layout_height="549dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
@@ -34,7 +34,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_marginLeft="95dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/redhat_medium"
                         android:text="@string/tituloRutina"
@@ -254,9 +254,10 @@
                     </ScrollView>
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/btnSaveRutina"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="95dp"
                         android:layout_marginTop="14dp"
                         android:backgroundTint="@color/teal_700"
                         android:text="@string/btnRutina" />

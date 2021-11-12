@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ConsejoDaoImpl extends BaseDaoImpl<Consejo, Integer> implements ConsejoDao {
+
     public ConsejoDaoImpl() throws SQLException {
         super(DataDB.getConnectionSource(), Consejo.class);
     }
@@ -29,5 +30,20 @@ public class ConsejoDaoImpl extends BaseDaoImpl<Consejo, Integer> implements Con
 //
 //        return queryForFieldValues(filtros);
         return this.queryForEq("idEstado", idEstado);
+    }
+
+    @Override
+    public List<Consejo> getConsejosByEstadoAndTipo(int idEstado, int idTipoConsejo) throws SQLException {
+        Map<String, Object> filtros = new HashMap<>();
+
+        filtros.put("idEstado", idEstado);
+        filtros.put("idTipoConsejo", idTipoConsejo);
+
+        return queryForFieldValues(filtros);
+    }
+
+    @Override
+    public Consejo getConsejoById(int idConsejo) throws SQLException{
+        return this.queryForId(idConsejo);
     }
 }

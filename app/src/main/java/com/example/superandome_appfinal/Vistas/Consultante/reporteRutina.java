@@ -1,4 +1,4 @@
-package com.example.superandome_appfinal;
+package com.example.superandome_appfinal.Vistas.Consultante;
 
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.example.superandome_appfinal.R;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;

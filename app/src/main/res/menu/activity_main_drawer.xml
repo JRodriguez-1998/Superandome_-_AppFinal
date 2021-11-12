@@ -4,6 +4,12 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_homeConsultante"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pantalla principal" />
+
         <item
             android:id="@+id/nav_cargarEmocionDiaria"
             android:icon="@drawable/asustado"
@@ -83,6 +89,11 @@
             android:id="@+id/nav_pregunta_seguridad"
             android:icon="@android:drawable/btn_star_big_on"
             android:title="Pregunta seguridad" />
+
+        <item
+            android:id="@+id/nav_cerrarSesion"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Cerrar Sesion" />
 
     </group>
 </menu>
