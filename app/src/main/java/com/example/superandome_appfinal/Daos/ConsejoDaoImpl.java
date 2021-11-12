@@ -22,6 +22,11 @@ public class ConsejoDaoImpl extends BaseDaoImpl<Consejo, Integer> implements Con
     }
 
     @Override
+    public List<Consejo> getConsejosPendientesDIRECTOR() throws SQLException {
+        return this.queryForEq("idEstado", 3);
+    }
+
+    @Override
     public List<Consejo> getConsejosByEstado(int idEstado) throws SQLException {
 
 //        Map<String, Object> filtros = new HashMap<>();
