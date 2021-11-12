@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,7 +41,7 @@ public class configurarHorario extends Fragment {
      TimePicker reloj;
      TextView txtHora, txtConfigActual;
      Button btnConfirmar;
-
+     Integer idUsuario;
      UsuarioServiceImpl usuarioService;
 
     @Override
@@ -51,19 +53,18 @@ public class configurarHorario extends Fragment {
         txtConfigActual = (TextView) view.findViewById(R.id.tvConfiActual);
         btnConfirmar = (Button) view.findViewById(R.id.btnConfirmarHora);
 
+        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        idUsuario = preferences.getInt("idUser", 0);
+
+        iniciarServicios();
+
         reloj.setIs24HourView(true);
 
         reloj.setOnTimeChangedListener((timePicker, hour, minute) ->
                 txtHora.setText("Horario elegido: " + hour + ":" + minute)
         );
 
-        try {
-            usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        Usuario usuario = usuarioService.getUsuarioById(1);
+        Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Date hora = usuario.getHorarioEmocion();
@@ -90,6 +91,14 @@ public class configurarHorario extends Fragment {
                 Toast.makeText(getActivity(), "Debe elegir un horario", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void iniciarServicios(){
+        try {
+            usuarioService = new UsuarioServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

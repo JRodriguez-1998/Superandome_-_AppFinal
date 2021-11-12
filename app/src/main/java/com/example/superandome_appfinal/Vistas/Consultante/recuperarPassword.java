@@ -71,8 +71,6 @@ public class recuperarPassword extends AppCompatActivity {
                 Usuario usuario = usuarioService.getUsuario(nickName);
                 PreguntaSeguridad pregunta = (PreguntaSeguridad) spinnerPreguntas.getSelectedItem();
 
-
-
                 if(spinnerPreguntas.getSelectedItemPosition() == 0){
                     Toast.makeText(recuperarPassword.this, "Seleccione una pregunta de seguridad", Toast.LENGTH_LONG).show();
                     return;

@@ -42,6 +42,8 @@ public class homeConsultante extends Fragment {
     ConsejoServiceImpl consejoService;
     UsuarioServiceImpl usuarioService;
 
+    Integer idUsuario;
+
     public homeConsultante() {}
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -51,10 +53,13 @@ public class homeConsultante extends Fragment {
 
         iniciarServicios();
 
+        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        idUsuario = preferences.getInt("idUser", 0);
+
         txtConsejoDiario = (TextView) view.findViewById(R.id.txtConsejoDia);
 
         listaConsejos = consejoService.getConsejosByEstadoAndTipo(EstadoEnum.APROBADO_DIRECTOR.getId(), TipoConsejoEnum.GENERAL.getTipo());
-        Usuario usuario = usuarioService.getUsuarioById(1);
+        Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
