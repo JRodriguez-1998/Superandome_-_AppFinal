@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_reporte_emocion" />
     <fragment
         android:id="@+id/nav_reporteRutina"
-        android:name="com.example.superandome_appfinal.reporteRutina"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.reporteRutina"
         android:label="fragemnt_reporte_rutina"
         tools:layout="@layout/fragment_reporte_rutina" />
     <fragment
@@ -109,6 +109,16 @@
         android:label="fragment_home_consultante"
         tools:layout="@layout/fragment_home_consultante" >
     </fragment>
+    <fragment
+        android:id="@+id/nav_cambiar_password"
+        android:name="com.example.superandome_appfinal.Vistas.Director.cambiar_password"
+        android:label="fragment_cambiar_password"
+        tools:layout="@layout/fragment_cambiar_password" />
+    <fragment
+        android:id="@+id/nav_cambiar_password_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.cambiar_password_profesional"
+        android:label="fragment_cambiar_password_profesional"
+        tools:layout="@layout/fragment_cambiar_password_profesional" />
 
 
 </navigation>
