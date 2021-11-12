@@ -43,7 +43,6 @@ public class sugerirConsejo extends Fragment {
     EditText txtConsejo;
     TipoConsejoServiceImpl tipoConsejoService;
     ConsejoService consejoService;
-    UsuarioServiceImpl usuarioService;
     Integer idUsuario;
 
     //Creo Objeto SharedPreferences para utilizar para las Sesiones
