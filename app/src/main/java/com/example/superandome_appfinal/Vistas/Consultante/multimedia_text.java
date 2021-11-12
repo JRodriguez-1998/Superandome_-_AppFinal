@@ -40,14 +40,16 @@ public class multimedia_text extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        //String path = Environment.getExternalStorageDirectory()+"/DCIM/HOLA.pdf";
+        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
         // String filename = "HOLA.pdf";
 
-        //File file = new File(path);
+        File file = new File(path);
 
-        //Path ruta = file.toPath();
+//        Path ruta = file.toPath();
+
+
         //FUNCA
-        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
+//        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
         byte[] bytesDato= new byte[0];
         try {
 
