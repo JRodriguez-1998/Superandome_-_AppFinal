@@ -66,7 +66,7 @@ public class pregunta_seguridad extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pregunta_seguridad,container,false);
-        spinnerPreguntas = v.findViewById(R.id.spPreguntas);
+        spinnerPreguntas = v.findViewById(R.id.spPregunta);
 
         LoadSpinnerPreguntas();
         return v;

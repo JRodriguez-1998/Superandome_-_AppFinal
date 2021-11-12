@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperandomeAppFinal">
         <activity
+            android:name=".Vistas.Consultante.recuperarPassword"
+            android:exported="true" />
+        <activity
             android:name=".Vistas.Consultante.activity_altaConsultante"
             android:exported="true" />
         <activity

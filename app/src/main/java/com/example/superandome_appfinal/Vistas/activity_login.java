@@ -20,6 +20,8 @@ import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
 import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
+import com.example.superandome_appfinal.Vistas.Consultante.recuperarPassword;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -99,9 +101,13 @@ public class activity_login extends AppCompatActivity {
         }
 
         //Corregir el acceso a la pantalla. No redirecciona a fragment
-        Intent intent =  new Intent(this, pregunta_seguridad.class);
+//        Intent intent =  new Intent(this, pregunta_seguridad.class);
+//        intent.putExtra("nickname",user.getNickname());
+//        intent.putExtra("idUser",user.getIdUsuario());
+//        startActivity(intent);
+
+        Intent intent =  new Intent(this, recuperarPassword.class);
         intent.putExtra("nickname",user.getNickname());
-        intent.putExtra("idUser",user.getIdUsuario());
         startActivity(intent);
 
     }
@@ -131,11 +137,7 @@ public class activity_login extends AppCompatActivity {
 
             guardarSesion(true, user.getNickname(), user.getIdUsuario(), user.getTipoUsuario().getIdTipoUsuario());
             Intent intent =  new Intent(this, navigationDrawer_consultante.class);
-            //intent.putExtra("nickname",user.getNickname());
-            //intent.putExtra("idUser",user.getIdUsuario());
-            //intent.putExtra("tipoUser",user.getTipoUsuario().getIdTipoUsuario());
             startActivity(intent);
-
         }
     }
 
