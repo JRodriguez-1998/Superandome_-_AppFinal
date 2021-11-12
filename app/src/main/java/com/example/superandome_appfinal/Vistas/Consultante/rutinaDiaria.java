@@ -45,7 +45,6 @@ public class rutinaDiaria extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toast.makeText(getActivity(),"No funca",Toast.LENGTH_LONG).show();
 
 
 

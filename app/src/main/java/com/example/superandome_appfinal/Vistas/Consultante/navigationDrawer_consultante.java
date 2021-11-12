@@ -68,7 +68,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
                 R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
                 R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,
-                R.id.nav_pregunta_seguridad, R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional)
+                R.id.nav_pregunta_seguridad, R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
@@ -144,6 +144,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_cambiar_password).setVisible(false);
         navMenu.findItem(R.id.nav_cambiar_password_profesional).setVisible(false);
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(false);
+        navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(false);
     }
 
     private void showItemsConsultante() {
@@ -164,6 +165,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_text).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_video).setVisible(true);
+        navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(true);
 
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
 

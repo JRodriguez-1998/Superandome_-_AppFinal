@@ -51,6 +51,11 @@
             android:title="Rutina" />
 
         <item
+            android:id="@+id/nav_rutinaDiariaSeguimiento"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Rutina seguimiento" />
+
+        <item
             android:id="@+id/nav_multimedia"
             android:icon="@drawable/logo_soyuz"
             android:title="Multimedia" />
