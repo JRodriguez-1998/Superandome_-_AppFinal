@@ -78,6 +78,31 @@ public class ConsejoServiceImpl implements ConsejoService {
     }
 
     @Override
+    public List<Consejo> getConsejosPendientesDIRECTOR() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<List<Consejo>> f = executor.submit(() -> {
+            try {
+                List<Consejo> lista = dao.getConsejosPendientesDIRECTOR();
+                for (Consejo consejo:lista){
+                    usuarioDao.refresh(consejo.getUsuarioAutor());
+                    tipoConsejoDao.refresh(consejo.getTipoConsejo());
+                }
+                return lista;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<Consejo> getConsejosByEstado(int idEstado) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<List<Consejo>> f = executor.submit(() -> {
