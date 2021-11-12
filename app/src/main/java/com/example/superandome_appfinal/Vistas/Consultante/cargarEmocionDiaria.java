@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -51,6 +53,7 @@ public class cargarEmocionDiaria extends Fragment {
     UsuarioServiceImpl usuarioService;
     EmocionUsuarioServiceImpl emocionUserService;
     EmocionServiceImpl emocionService;
+    Integer idUsuario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +74,10 @@ public class cargarEmocionDiaria extends Fragment {
         estadoInicial();
         iniciarServicios();
 
-        Usuario usuario = usuarioService.getUsuarioById(1);
+        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        idUsuario = preferences.getInt("idUser", 0);
+
+        Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
         Date horaUsuario = usuario.getHorarioEmocion();
         Date horaActual = new Date(System.currentTimeMillis());
@@ -151,7 +157,7 @@ public class cargarEmocionDiaria extends Fragment {
 
                 if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
 
-                    if (emocionUserService.getEmocionByFechaAndId(1, new Date()) == null) {
+                    if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
 
                         if (buscarSeleccion(estadoAlegria, estadoTristeza, estadoIra, estadoMiedo, estadoAsco)) {
 

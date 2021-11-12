@@ -66,6 +66,12 @@
         android:label="fragment_alta_profesional"
         tools:layout="@layout/fragment_alta_profesional" />
 
+    <fragment
+        android:id="@+id/nav_rutinaDiariaSeguimiento"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.rutina_diaria_seguimiento"
+        android:label="fragment_rutina_diaria_seguimiento"
+        tools:layout="@layout/fragment_rutina_diaria_seguimiento" />
+
     <!--FRAGMENTS PROFESIONAL-->
 
 
@@ -118,5 +124,6 @@
         android:name="com.example.superandome_appfinal.Vistas.Profesional.derivarConsejo_profesional"
         android:label="fragment_derivar_consejo"
         tools:layout="@layout/fragment_derivar_consejo" />
+
 
 </navigation>

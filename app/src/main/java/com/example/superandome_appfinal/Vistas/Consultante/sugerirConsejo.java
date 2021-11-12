@@ -43,6 +43,8 @@ public class sugerirConsejo extends Fragment {
     EditText txtConsejo;
     TipoConsejoServiceImpl tipoConsejoService;
     ConsejoService consejoService;
+    UsuarioServiceImpl usuarioService;
+    Integer idUsuario;
 
     //Creo Objeto SharedPreferences para utilizar para las Sesiones
     SharedPreferences preferences;
@@ -61,18 +63,13 @@ public class sugerirConsejo extends Fragment {
         btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerencia);
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugerido);
 
+
         preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
         nameUsuario = preferences.getString("nickname",null);
 
-        try {
-            tipoConsejoService = new TipoConsejoServiceImpl();
-            consejoService = new ConsejoServiceImpl();
-            usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        iniciarServicios();
 
         TipoConsejo consejo = new TipoConsejo(0, "Seleccionar tipo consejo");
 
@@ -99,11 +96,12 @@ public class sugerirConsejo extends Fragment {
                     return;
                 }
 
-                //Usuario usuario = new Usuario();
-                //usuario.setIdUsuario(99);
+
+                 //OBTENER USUARIO
                 user = usuarioService.getUsuario(nameUsuario);
 
                 Estado estado = new Estado(EstadoEnum.PENDIENTE.getId());
+
                 TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
                 Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, user);
 
@@ -116,6 +114,16 @@ public class sugerirConsejo extends Fragment {
                 }
             }
         });
+    }
+
+    public void iniciarServicios(){
+        try {
+            tipoConsejoService = new TipoConsejoServiceImpl();
+            consejoService = new ConsejoServiceImpl();
+            usuarioService = new UsuarioServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

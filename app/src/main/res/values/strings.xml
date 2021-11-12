@@ -45,6 +45,8 @@
     <string name="txtDescripcionMultimedia"> <u>Descripcion</u>  </string>
     <string name="btnConfirmar">Confirmar</string>
 
+    <string name="tituloRutinaSeguimiento"> Seguimiento rutina  </string>
+
 
     <string name="title_activity_navigation_drawer_consultante">navigationDrawer_consultante
     </string>
