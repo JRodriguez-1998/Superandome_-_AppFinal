@@ -91,6 +91,16 @@
             android:title="Pregunta seguridad" />
 
         <item
+            android:id="@+id/nav_cambiar_password"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Cambiar Contraseña" />
+
+        <item
+            android:id="@+id/nav_cambiar_password_profesional"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Cambiar Contraseña" />
+
+        <item
             android:id="@+id/nav_cerrarSesion"
             android:icon="@android:drawable/ic_lock_power_off"
             android:title="Cerrar Sesion" />
