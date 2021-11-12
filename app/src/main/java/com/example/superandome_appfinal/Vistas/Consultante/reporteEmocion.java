@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,19 +9,29 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
+import com.example.superandome_appfinal.IServices.EmocionUsuarioService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class reporteEmocion extends Fragment {
 
@@ -31,6 +43,9 @@ public class reporteEmocion extends Fragment {
 
     private PieChart chart;
     private Spinner spMeses;
+
+    Integer idUsuario;
+    EmocionUsuarioService service;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,47 +60,123 @@ public class reporteEmocion extends Fragment {
         chart = v.findViewById(R.id.chart);
         spMeses = v.findViewById(R.id.spMeses);
 
-        LoadPieChart();
+        spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                LoadPieChart();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                LoadPieChart();
+            }
+        });
+
+        try {
+            service = new EmocionUsuarioServiceImpl();
+
+            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences.getInt("idUser", 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         LoadSpinner();
 
         return v;
     }
 
-    private void LoadPieChart() {
-        List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(20, "Asco"));
-        entries.add(new PieEntry(13, "Ira"));
-        entries.add(new PieEntry(17, "Felicidad"));
-        entries.add(new PieEntry(33, "Miedo"));
-        entries.add(new PieEntry(17, "Tristeza"));
-
-        PieDataSet dataSet = new PieDataSet(entries, "Torta");
-        dataSet.setColors(COLOR_ASCO, COLOR_IRA, COLOR_FELICIDAD, COLOR_MIEDO, COLOR_TRISTEZA);
-
-        PieData data = new PieData(dataSet);
-        data.setValueTextColor(R.color.white); // TODO: No funca
-        data.setValueTextSize(18);
-
-        chart.setUsePercentValues(true);
-        chart.setEntryLabelColor(R.color.white); // TODO: No funca
-        chart.setEntryLabelTextSize(18);
-
-        chart.getDescription().setEnabled(false);
-        chart.getLegend().setEnabled(false);
-//        chart.setHoleRadius(5f);
-        chart.setDrawHoleEnabled(false);
-//        chart.setHoleColor(R.color.consultante);
-//        chart.setAlpha(0.50f);
-//        chart.setTransparentCircleAlpha(90);
-
-        chart.setData(data);
-        chart.invalidate();
-    }
-
     private void LoadSpinner() {
-        List<String> listMeses = Arrays.asList("Septiembre 2021", "Agosto 2021", "Julio 2021");
+        List<String> listMeses = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.MONTH, -i);
+
+            Integer anio = c.get(Calendar.YEAR);
+            String mes = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+
+            String anio_mes = anio + " - " + mes;
+            listMeses.add(anio_mes);
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item_mes, listMeses);
         spMeses.setAdapter(adapter);
+    }
+
+    private Calendar GetSelectedDate() {
+        int pos = spMeses.getSelectedItemPosition();
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, -(pos + 1));
+
+        return c;
+    }
+
+    private void LoadPieChart() {
+        try {
+            Calendar fecha = GetSelectedDate();
+
+            Map<Integer, Float> map = service.getReporteMensualEmocion(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
+            if (map == null) {
+                Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (map.size() == 0) {
+                Toast.makeText(getActivity(), "No hay datos registrados para el período seleccionado", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            List<Integer> colors = new ArrayList<>();
+            List<PieEntry> entries = new ArrayList<>();
+            LoadEntriesColors(map, entries, colors);
+
+            PieDataSet dataSet = new PieDataSet(entries, "Torta");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setValueTextColor(R.color.white); // TODO: No funca
+            data.setValueTextSize(18);
+
+            chart.setUsePercentValues(true);
+            chart.setEntryLabelColor(R.color.white); // TODO: No funca
+            chart.setEntryLabelTextSize(18);
+
+            chart.getDescription().setEnabled(false);
+            chart.getLegend().setEnabled(false);
+    //        chart.setHoleRadius(5f);
+            chart.setDrawHoleEnabled(false);
+    //        chart.setHoleColor(R.color.consultante);
+    //        chart.setAlpha(0.50f);
+    //        chart.setTransparentCircleAlpha(90);
+
+            chart.setData(data);
+            chart.invalidate();
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void LoadEntriesColors(Map<Integer, Float> map, List<PieEntry> entries, List<Integer> colors) {
+        if (map.get(TipoEmocionEnum.ASCO.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.ASCO.getTipo()), "Asco"));
+            colors.add(COLOR_ASCO);
+        }
+        if (map.get(TipoEmocionEnum.IRA.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.IRA.getTipo()), "Ira"));
+            colors.add(COLOR_IRA);
+        }
+        if (map.get(TipoEmocionEnum.FELICIDAD.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.FELICIDAD.getTipo()), "Felicidad"));
+            colors.add(COLOR_FELICIDAD);
+        }
+        if (map.get(TipoEmocionEnum.MIEDO.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.MIEDO.getTipo()), "Miedo"));
+            colors.add(COLOR_MIEDO);
+        }
+        if (map.get(TipoEmocionEnum.TRISTERZA.getTipo()) != null) {
+            entries.add(new PieEntry(map.get(TipoEmocionEnum.TRISTERZA.getTipo()), "Tristeza"));
+            colors.add(COLOR_TRISTEZA);
+        }
     }
 }
