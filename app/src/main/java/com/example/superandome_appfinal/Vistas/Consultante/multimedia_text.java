@@ -47,7 +47,7 @@ public class multimedia_text extends Fragment {
 
         //Path ruta = file.toPath();
         //FUNCA
-        File file = new File(getContext().getExternalFilesDir(null),"HOLA.pdf");
+        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
         byte[] bytesDato= new byte[0];
         try {
 
