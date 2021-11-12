@@ -17,8 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.homeConsultante;
+
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class dialogoCargarEmocion extends DialogFragment {
 
@@ -26,8 +35,14 @@ public class dialogoCargarEmocion extends DialogFragment {
     TextView txtEstatus, txtMensaje, btnAceptar;
     FragmentTransaction transaction;
     Fragment fragmentHome;
+    Integer tipoEmocion;
+    ConsejoServiceImpl consejoService;
+    List<Consejo> listaConsejos;
 
-    public dialogoCargarEmocion() {
+    public dialogoCargarEmocion() { }
+
+    public dialogoCargarEmocion(Integer tipoEmocion) {
+        this.tipoEmocion = tipoEmocion;
     }
 
     @NonNull
@@ -47,6 +62,14 @@ public class dialogoCargarEmocion extends DialogFragment {
         btnAceptar = (TextView) v.findViewById(R.id.btnAceptarDialogCambioPass);
 
         eventoBotones();
+        iniciarServicios();
+
+        listaConsejos = consejoService.getConsejosByEstadoAndTipo(EstadoEnum.APROBADO_DIRECTOR.getId(), tipoEmocion);
+
+        Random numAleatorio = new Random(new Date().getTime());
+        int n = numAleatorio.nextInt(listaConsejos.size() -1 +1);
+
+        txtMensaje.setText(listaConsejos.get(n).getTexto().toString());
 
         return builder.create();
     }
@@ -69,6 +92,14 @@ public class dialogoCargarEmocion extends DialogFragment {
             this.actividad  = (Activity) context;
         }else{
             throw new RuntimeException(context.toString());
+        }
+    }
+
+    public void iniciarServicios(){
+        try {
+            consejoService = new ConsejoServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
