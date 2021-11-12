@@ -8,28 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="245dp">
-
-        <TextView
-            android:id="@+id/txtMensajeDialogo"
-            android:layout_width="301dp"
-            android:layout_height="87dp"
-            android:text="texto"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.347"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEstatus"
-            app:layout_constraintVertical_bias="0.13" />
+        android:layout_height="143dp">
 
         <TextView
             android:id="@+id/txtEstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="¡Consejo sugerido!"
+            android:text="¿Desea Cerrar Sesión?"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -38,17 +24,31 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/btnAceptarDialogCambioPass"
+            android:id="@+id/btnSiDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Aceptar"
+            android:layout_marginTop="24dp"
+            android:text="Si"
             android:textColor="#F83778"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnNoDialog"
+            app:layout_constraintHorizontal_bias="0.669"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEstatus" />
+
+        <TextView
+            android:id="@+id/btnNoDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="No"
+            android:textColor="#F83778"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.811"
+            app:layout_constraintHorizontal_bias="0.623"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtMensajeDialogo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtEstatus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

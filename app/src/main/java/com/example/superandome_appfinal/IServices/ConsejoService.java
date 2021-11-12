@@ -10,5 +10,6 @@ public interface ConsejoService {
 
     //  List<Consejo> getConsejosPendientes();
     List<Consejo> getConsejosByEstado(int idEstado);
+    List<Consejo> getConsejosByEstadoAndTipo(int idEstado, int idTipo);
     Consejo getConsejoById(int idConsejo);
 }

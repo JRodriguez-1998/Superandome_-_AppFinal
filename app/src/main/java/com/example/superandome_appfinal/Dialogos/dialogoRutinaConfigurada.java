@@ -4,39 +4,40 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
-
 import com.example.superandome_appfinal.R;
 
-public class dialogoSugerirConsejo extends DialogFragment {
+public class dialogoRutinaConfigurada extends DialogFragment {
 
     Activity actividad;
-    TextView txtEstatus, txtMensaje, btnAceptar;
+    TextView txtEstatus,txtMensaje,btnAceptar;
 
-    public dialogoSugerirConsejo() {}
+    public dialogoRutinaConfigurada(){}
 
     @NonNull
     @Override
-    public AlertDialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
+    public AlertDialog onCreateDialog(@Nullable Bundle savedInstanceSate){
         return crearDialogo();
     }
 
     private AlertDialog crearDialogo(){
-        AlertDialog.Builder builder  = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_dialogo_sugerir_consejo,null);
+        View v = inflater.inflate(R.layout.fragment_dialogo_rutina,null);
         builder.setView(v);
 
         txtEstatus = (TextView) v.findViewById(R.id.txtEstatus);
         txtMensaje = (TextView) v.findViewById(R.id.txtMensajeDialogo);
-        btnAceptar = (TextView) v.findViewById(R.id.btnAceptarDialogCambioPass);
+        btnAceptar = (TextView) v.findViewById(R.id.btnAceptarDialog);
 
         eventoBotones();
 
@@ -61,4 +62,11 @@ public class dialogoSugerirConsejo extends DialogFragment {
             throw new RuntimeException(context.toString());
         }
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_dialogo_rutina, container, false);
+    }
+
 }

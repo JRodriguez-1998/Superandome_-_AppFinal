@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,33 +9,36 @@
     android:background="@drawable/consultante"
     tools:context=".Vistas.Consultante.homeConsultante">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="329dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/logo_blanco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="329dp"
+            android:layout_height="155dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/logo_blanco"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTituloConsejoDia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/redhat_medium"
-        android:text="Consejo del día"
-        android:textAlignment="viewStart"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+        <TextView
+            android:id="@+id/tvTituloConsejoDia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/redhat_medium"
+            android:text="Consejo del día"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
-    <TextView
+        <TextView
         android:id="@+id/txtConsejoDia"
         android:layout_width="254dp"
         android:layout_height="182dp"
@@ -54,6 +58,7 @@
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -112,3 +117,5 @@
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

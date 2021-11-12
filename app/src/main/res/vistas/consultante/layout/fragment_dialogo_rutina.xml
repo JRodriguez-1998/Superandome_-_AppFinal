@@ -8,28 +8,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="245dp">
+        android:layout_height="180dp">
 
         <TextView
             android:id="@+id/txtMensajeDialogo"
-            android:layout_width="301dp"
-            android:layout_height="87dp"
-            android:text="texto"
+            android:layout_width="294dp"
+            android:layout_height="38dp"
+            android:text="Rutina actualizada con exito"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.347"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEstatus"
-            app:layout_constraintVertical_bias="0.13" />
+            app:layout_constraintVertical_bias="0.122" />
 
         <TextView
             android:id="@+id/txtEstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="¡Consejo sugerido!"
+            android:text="¡Operación Completada!"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -38,16 +38,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/btnAceptarDialogCambioPass"
+            android:id="@+id/btnAceptarDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="Aceptar"
             android:textColor="#F83778"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.811"
+            app:layout_constraintHorizontal_bias="0.876"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtMensajeDialogo" />
     </androidx.constraintlayout.widget.ConstraintLayout>

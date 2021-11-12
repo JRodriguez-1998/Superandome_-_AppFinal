@@ -33,6 +33,16 @@ public class ConsejoDaoImpl extends BaseDaoImpl<Consejo, Integer> implements Con
     }
 
     @Override
+    public List<Consejo> getConsejosByEstadoAndTipo(int idEstado, int idTipoConsejo) throws SQLException {
+        Map<String, Object> filtros = new HashMap<>();
+
+        filtros.put("idEstado", idEstado);
+        filtros.put("idTipoConsejo", idTipoConsejo);
+
+        return queryForFieldValues(filtros);
+    }
+
+    @Override
     public Consejo getConsejoById(int idConsejo) throws SQLException{
         return this.queryForId(idConsejo);
     }
