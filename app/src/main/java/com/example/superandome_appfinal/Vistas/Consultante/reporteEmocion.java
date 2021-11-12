@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +31,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class reporteEmocion extends Fragment {
 
@@ -41,6 +44,7 @@ public class reporteEmocion extends Fragment {
     private PieChart chart;
     private Spinner spMeses;
 
+    Integer idUsuario;
     EmocionUsuarioService service;
 
     @Override
@@ -70,6 +74,9 @@ public class reporteEmocion extends Fragment {
 
         try {
             service = new EmocionUsuarioServiceImpl();
+
+            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences.getInt("idUser", 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,13 +116,13 @@ public class reporteEmocion extends Fragment {
         try {
             Calendar fecha = GetSelectedDate();
 
-            Map<Integer, Float> map = service.getReporteMensualEmocion(1, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH));
+            Map<Integer, Float> map = service.getReporteMensualEmocion(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
             if (map == null) {
                 Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (map.size() == 0) {
-                Toast.makeText(getActivity(), "No hay datos registrados para el período seleccionado", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "No hay datos registrados para el período seleccionado", Toast.LENGTH_SHORT).show();
                 return;
             }
 
