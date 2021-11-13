@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Dialogos.dialogoSugerirConsejo;
+import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoArchivo;
@@ -45,7 +47,6 @@ public class sugerirContenido extends Fragment {
     final int FILE_PICKER_REQUEST_CODE = 100;
 
     byte[] bytesDato;
-    public sugerirContenido(){};
     Contenido  content;
     ContenidoService contenidoService;
     Usuario usuario;
@@ -55,6 +56,7 @@ public class sugerirContenido extends Fragment {
     TipoArchivo tipoArchivo;
     String tipo = new String();
 
+    public sugerirContenido(){};
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
@@ -69,11 +71,6 @@ public class sugerirContenido extends Fragment {
         txtTipoContenido.setText("");
 
         btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
-
-
-
-
-
     }
 
 
@@ -166,14 +163,12 @@ public class sugerirContenido extends Fragment {
                         txtTipoContenido.setText("Video");
                     }
 
-
-
                     btnGuardar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if(contenidoService.guardar(content)){
-                                Toast.makeText(getActivity(),"Archivo derivado",Toast.LENGTH_SHORT).show();
-                                txtTipoContenido.setText("");
+                                dialogoSugerirContenido d = new dialogoSugerirContenido();
+                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
                             }
                             else{
                                 Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
@@ -202,17 +197,10 @@ public class sugerirContenido extends Fragment {
         }
     }
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-
         return inflater.inflate(R.layout.fragment_sugerir_contenido,container,false);
-
     }
 
 
@@ -229,18 +217,9 @@ public class sugerirContenido extends Fragment {
             estado.setIdEstado(1);
 
             tipoArchivo = new TipoArchivo();
-           // tipoArchivo.setIdTipoArchivo(1);
-
-
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
-
 }

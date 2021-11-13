@@ -55,31 +55,6 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/tvTituloAutor"
-                            android:layout_width="223dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/redhat_regular"
-                            android:text="@string/tituloAutor"
-                            android:layout_marginLeft="10dp"
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/black"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:id="@+id/tvAutor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/nombreAutor"
-                            android:textColor="@color/black"
-                            android:textSize="24sp"
-                            android:textStyle="bold" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
                             android:id="@+id/tvTituloArchivo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -90,7 +65,7 @@
                             android:textSize="24sp" />
 
                         <Button
-                            android:id="@+id/btnElegirArchivo"
+                            android:id="@+id/btnElegirArchivoProf"
                             android:layout_width="match_parent"
                             android:layout_marginRight="10dp"
                             android:layout_height="wrap_content"
@@ -113,7 +88,7 @@
                             android:textSize="24sp" />
 
                         <TextView
-                            android:id="@+id/tvTipoContenido"
+                            android:id="@+id/tvTipoContenidoProf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/tipoContenido"
@@ -131,7 +106,7 @@
                             android:layout_height="match_parent">
 
                             <Button
-                                android:id="@+id/button"
+                                android:id="@+id/btnGuardarArchivoProf"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/enviar"
