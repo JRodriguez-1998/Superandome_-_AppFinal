@@ -129,6 +129,16 @@
         android:name="com.example.superandome_appfinal.Vistas.Director.aprobarConsejo_director"
         android:label="fragment_aprobar_consejo"
         tools:layout="@layout/fragment_aprobar_consejo" />
+    <fragment
+        android:id="@+id/nav_homeProfesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.homeProfesional"
+        android:label="fragment_home_profesional"
+        tools:layout="@layout/fragment_home_profesional" />
+    <fragment
+        android:id="@+id/nav_homeDirector"
+        android:name="com.example.superandome_appfinal.Vistas.Director.homeDirector"
+        android:label="fragment_home_director"
+        tools:layout="@layout/fragment_home_director" />
 
 
 </navigation>

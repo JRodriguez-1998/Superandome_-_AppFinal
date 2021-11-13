@@ -11,6 +11,16 @@
             android:title="Pantalla principal" />
 
         <item
+            android:id="@+id/nav_homeProfesional"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pantalla principal" />
+
+        <item
+            android:id="@+id/nav_homeDirector"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pantalla principal" />
+
+        <item
             android:id="@+id/nav_cargarEmocionDiaria"
             android:icon="@drawable/asustado"
             android:title="Cargar emoción diaria" />
