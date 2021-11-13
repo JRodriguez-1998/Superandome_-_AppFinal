@@ -59,7 +59,7 @@ public class reporteEmocion extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_reporte_emocion, container, false);
         chart = v.findViewById(R.id.chart);
         spMeses = v.findViewById(R.id.spMeses);
-
+        try {
         spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -72,17 +72,18 @@ public class reporteEmocion extends Fragment {
             }
         });
 
-        try {
+
             service = new EmocionUsuarioServiceImpl();
 
             SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
             idUsuario = preferences.getInt("idUser", 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         LoadSpinner();
-
+} catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
         return v;
     }
 

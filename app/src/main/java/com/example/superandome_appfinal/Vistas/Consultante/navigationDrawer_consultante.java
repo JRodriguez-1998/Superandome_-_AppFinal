@@ -54,6 +54,8 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+
 
         binding = ActivityNavigationDrawerConsultanteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -123,7 +125,10 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 navController.navigate(R.id.nav_homeDirector);
                 break;
         }
-    }
+    }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

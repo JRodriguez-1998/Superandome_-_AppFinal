@@ -52,6 +52,8 @@ public class configurarHorario extends Fragment {
         txtHora = (TextView) view.findViewById(R.id.txtHoraSeleccionada);
         txtConfigActual = (TextView) view.findViewById(R.id.tvConfiActual);
         btnConfirmar = (Button) view.findViewById(R.id.btnConfirmarHora);
+        try {
+
 
         SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         idUsuario = preferences.getInt("idUser", 0);
@@ -91,8 +93,11 @@ public class configurarHorario extends Fragment {
                 Toast.makeText(getActivity(), "Debe elegir un horario", Toast.LENGTH_LONG).show();
             }
         });
+    } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
     }
-
     public void iniciarServicios(){
         try {
             usuarioService = new UsuarioServiceImpl();

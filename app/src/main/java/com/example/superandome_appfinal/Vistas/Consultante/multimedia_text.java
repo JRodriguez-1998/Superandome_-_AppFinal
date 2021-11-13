@@ -46,6 +46,8 @@ public class multimedia_text extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+try {
+
 
         SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
         idContenido = preferences.getInt("idContenido", 0);
@@ -78,14 +80,12 @@ public class multimedia_text extends Fragment {
 //        txt = (TextView) view.findViewById(R.id.txtPrueba);
 //        txt.setText(resultado);
             ContenidoService contenidoService = null;
-        try {
+
             contenidoService = new ContenidoServiceImpl();
 
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
@@ -96,7 +96,10 @@ public class multimedia_text extends Fragment {
 
         pdf = (PDFView) view.findViewById(R.id.pdfView);
         pdf.fromBytes(decoder).load();
-
+}catch (Exception e) {
+        e.printStackTrace();
+        Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+    }
 
     }
     @Override

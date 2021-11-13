@@ -33,9 +33,7 @@ public class aprobarConsejo_director extends Fragment {
 
         try {
             consejoService = new ConsejoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         consejos = new ArrayList<Consejo>();
         recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
@@ -57,7 +55,10 @@ public class aprobarConsejo_director extends Fragment {
         });
 
         recyclerViewContenido.setAdapter(adapterContenido);
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
         return view;
     }
 

@@ -70,159 +70,164 @@ public class cargarEmocionDiaria extends Fragment {
         btnMiedo = (ImageButton) view.findViewById(R.id.btnMiedo);
         btnAsco = (ImageButton) view.findViewById(R.id.btnAsco);
         btnRegistrar = (Button) view.findViewById(R.id.btnRegistrar);
+        try {
+            estadoInicial();
+            iniciarServicios();
 
-        estadoInicial();
-        iniciarServicios();
+            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences.getInt("idUser", 0);
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        idUsuario = preferences.getInt("idUser", 0);
+            Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
-        Usuario usuario = usuarioService.getUsuarioById(idUsuario);
+            Date horaUsuario = usuario.getHorarioEmocion();
+            Date horaActual = new Date(System.currentTimeMillis());
 
-        Date horaUsuario = usuario.getHorarioEmocion();
-        Date horaActual = new Date(System.currentTimeMillis());
+            DateFormat formatHora = new SimpleDateFormat("HH");
+            DateFormat formatMinutos = new SimpleDateFormat("mm");
 
-        DateFormat formatHora = new SimpleDateFormat("HH");
-        DateFormat formatMinutos = new SimpleDateFormat("mm");
+            LocalTime horaActualConver = LocalTime.of(Integer.parseInt(formatHora.format(horaActual).toString()),
+                    Integer.parseInt(formatMinutos.format(horaActual).toString()));
 
-        LocalTime horaActualConver = LocalTime.of(Integer.parseInt(formatHora.format(horaActual).toString()),
-                Integer.parseInt(formatMinutos.format(horaActual).toString()));
+            LocalTime horaUserConver = LocalTime.of(Integer.parseInt(formatHora.format(horaUsuario).toString()),
+                    Integer.parseInt(formatMinutos.format(horaUsuario).toString()));
 
-        LocalTime horaUserConver = LocalTime.of(Integer.parseInt(formatHora.format(horaUsuario).toString()),
-                Integer.parseInt(formatMinutos.format(horaUsuario).toString()));
-
-        btnAlegia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(estadoAlegria){
-                    btnAlegia.setBackgroundResource(R.color.transparente);
-                    estadoAlegria = false;
-                }else{
-                    habilitarAlegria();
+            btnAlegia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (estadoAlegria) {
+                        btnAlegia.setBackgroundResource(R.color.transparente);
+                        estadoAlegria = false;
+                    } else {
+                        habilitarAlegria();
+                    }
                 }
-            }
-        });
+            });
 
-        btnTristeza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(estadoTristeza){
-                    btnTristeza.setBackgroundResource(R.color.transparente);
-                    estadoTristeza = false;
-                }else{
-                    habilitarTristeza();
+            btnTristeza.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (estadoTristeza) {
+                        btnTristeza.setBackgroundResource(R.color.transparente);
+                        estadoTristeza = false;
+                    } else {
+                        habilitarTristeza();
+                    }
                 }
-            }
-        });
+            });
 
-        btnIra.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(estadoIra){
-                    btnIra.setBackgroundResource(R.color.transparente);
-                    estadoIra = false;
-                }else{
-                    habilitarIra();
+            btnIra.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (estadoIra) {
+                        btnIra.setBackgroundResource(R.color.transparente);
+                        estadoIra = false;
+                    } else {
+                        habilitarIra();
+                    }
                 }
-            }
-        });
+            });
 
-        btnMiedo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(estadoMiedo){
-                    btnMiedo.setBackgroundResource(R.color.transparente);
-                    estadoMiedo = false;
-                }else{
-                    habilitarMiedo();
+            btnMiedo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (estadoMiedo) {
+                        btnMiedo.setBackgroundResource(R.color.transparente);
+                        estadoMiedo = false;
+                    } else {
+                        habilitarMiedo();
+                    }
                 }
-            }
-        });
+            });
 
-        btnAsco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(estadoAsco){
-                    btnAsco.setBackgroundResource(R.color.transparente);
-                    estadoAsco = false;
-                }else{
-                    habilitarAsco();
+            btnAsco.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (estadoAsco) {
+                        btnAsco.setBackgroundResource(R.color.transparente);
+                        estadoAsco = false;
+                    } else {
+                        habilitarAsco();
+                    }
                 }
-            }
-        });
+            });
 
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            btnRegistrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
-                    if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
+                    if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
+                        if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
 
-                        if (buscarSeleccion(estadoAlegria, estadoTristeza, estadoIra, estadoMiedo, estadoAsco)) {
+                            if (buscarSeleccion(estadoAlegria, estadoTristeza, estadoIra, estadoMiedo, estadoAsco)) {
 
-                            EmocionUsuario emocionUsuario = new EmocionUsuario();
-                            emocionUsuario.setUsuario(usuario);
+                                EmocionUsuario emocionUsuario = new EmocionUsuario();
+                                emocionUsuario.setUsuario(usuario);
 
-                            if (estadoAlegria) {
-                                Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.FELICIDAD.getTipo());
-                                emocionUsuario.setEmocion(emocion);
+                                if (estadoAlegria) {
+                                    Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.FELICIDAD.getTipo());
+                                    emocionUsuario.setEmocion(emocion);
 
-                                if (emocionUserService.guardar(emocionUsuario)) {
-                                    mostrarDialogo(TipoConsejoEnum.FELICIDAD.getTipo());
-                                } else {
-                                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                    if (emocionUserService.guardar(emocionUsuario)) {
+                                        mostrarDialogo(TipoConsejoEnum.FELICIDAD.getTipo());
+                                    } else {
+                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } else if (estadoTristeza) {
+                                    Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.TRISTERZA.getTipo());
+                                    emocionUsuario.setEmocion(emocion);
+
+                                    if (emocionUserService.guardar(emocionUsuario)) {
+                                        mostrarDialogo(TipoConsejoEnum.TRISTEZA.getTipo());
+                                    } else {
+                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } else if (estadoIra) {
+                                    Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.IRA.getTipo());
+                                    emocionUsuario.setEmocion(emocion);
+
+                                    if (emocionUserService.guardar(emocionUsuario)) {
+                                        mostrarDialogo(TipoConsejoEnum.IRA.getTipo());
+                                    } else {
+                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } else if (estadoMiedo) {
+                                    Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.MIEDO.getTipo());
+                                    emocionUsuario.setEmocion(emocion);
+
+                                    if (emocionUserService.guardar(emocionUsuario)) {
+                                        mostrarDialogo(TipoConsejoEnum.MIEDO.getTipo());
+                                    } else {
+                                        Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else if (estadoAsco) {
+                                    Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.ASCO.getTipo());
+                                    emocionUsuario.setEmocion(emocion);
+
+                                    if (emocionUserService.guardar(emocionUsuario)) {
+                                        mostrarDialogo(TipoConsejoEnum.ASCO.getTipo());
+                                    } else {
+                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-
-                            } else if (estadoTristeza) {
-                                Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.TRISTERZA.getTipo());
-                                emocionUsuario.setEmocion(emocion);
-
-                                if (emocionUserService.guardar(emocionUsuario)) {
-                                    mostrarDialogo(TipoConsejoEnum.TRISTEZA.getTipo());
-                                } else {
-                                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
-                                }
-
-                            } else if (estadoIra) {
-                                Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.IRA.getTipo());
-                                emocionUsuario.setEmocion(emocion);
-
-                                if (emocionUserService.guardar(emocionUsuario)) {
-                                    mostrarDialogo(TipoConsejoEnum.IRA.getTipo());
-                                } else {
-                                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
-                                }
-
-                            } else if (estadoMiedo) {
-                                Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.MIEDO.getTipo());
-                                emocionUsuario.setEmocion(emocion);
-
-                                if (emocionUserService.guardar(emocionUsuario)) {
-                                    mostrarDialogo(TipoConsejoEnum.MIEDO.getTipo());
-                                } else {
-                                    Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
-                                }
-                            } else if (estadoAsco) {
-                                Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.ASCO.getTipo());
-                                emocionUsuario.setEmocion(emocion);
-
-                                if (emocionUserService.guardar(emocionUsuario)) {
-                                    mostrarDialogo(TipoConsejoEnum.ASCO.getTipo());
-                                } else {
-                                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
-                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Debe seleccionar al menos una emoción", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Debe seleccionar al menos una emoción", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
+            });
+        } catch (Exception e){
+
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void mostrarDialogo(Integer idTipoEmocion){

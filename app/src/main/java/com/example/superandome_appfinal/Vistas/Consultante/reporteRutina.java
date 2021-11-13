@@ -58,6 +58,10 @@ public class reporteRutina extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_reporte_rutina, container, false);
 
+        try {
+
+
+
         FindViews(v);
 
         spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -82,7 +86,10 @@ public class reporteRutina extends Fragment {
         }
 
         LoadSpinner();
-
+        }catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            }
         return v;
     }
 
