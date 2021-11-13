@@ -7,8 +7,10 @@ import java.util.List;
 
 public interface ConsejoService {
     Boolean guardar(Consejo consejo);
+    Boolean actualizar(Consejo consejo);
 
-    //  List<Consejo> getConsejosPendientes();
+    List<Consejo> getConsejosPendientes();
+    List<Consejo> getConsejosPendientesDIRECTOR();
     List<Consejo> getConsejosByEstado(int idEstado);
     List<Consejo> getConsejosByEstadoAndTipo(int idEstado, int idTipo);
     Consejo getConsejoById(int idConsejo);

@@ -24,6 +24,7 @@ import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.IServices.ConsejoService;
+import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Services.TipoConsejoServiceImpl;
@@ -42,8 +43,17 @@ public class sugerirConsejo extends Fragment {
     EditText txtConsejo;
     TipoConsejoServiceImpl tipoConsejoService;
     ConsejoService consejoService;
-    UsuarioServiceImpl usuarioService;
     Integer idUsuario;
+
+    //Creo Objeto SharedPreferences para utilizar para las Sesiones
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    String nameUsuario;
+
+    UsuarioService usuarioService;
+
+    Usuario user;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -52,10 +62,13 @@ public class sugerirConsejo extends Fragment {
         btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerencia);
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugerido);
 
-        iniciarServicios();
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        idUsuario = preferences.getInt("idUser", 0);
+        preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        nameUsuario = preferences.getString("nickname",null);
+
+        iniciarServicios();
 
         TipoConsejo consejo = new TipoConsejo(0, "Seleccionar tipo consejo");
 
@@ -82,12 +95,14 @@ public class sugerirConsejo extends Fragment {
                     return;
                 }
 
-                //OBTENER USUARIO
-                Usuario usuario = usuarioService.getUsuarioById(idUsuario);
+
+                 //OBTENER USUARIO
+                user = usuarioService.getUsuario(nameUsuario);
+
                 Estado estado = new Estado(EstadoEnum.PENDIENTE.getId());
 
                 TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
-                Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, usuario);
+                Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, user);
 
                 if(consejoService.guardar(consejo)){
                     dialogoSugerirConsejo d = new dialogoSugerirConsejo();

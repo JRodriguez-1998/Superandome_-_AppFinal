@@ -119,6 +119,16 @@
         android:name="com.example.superandome_appfinal.Vistas.Profesional.cambiar_password_profesional"
         android:label="fragment_cambiar_password_profesional"
         tools:layout="@layout/fragment_cambiar_password_profesional" />
+    <fragment
+        android:id="@+id/nav_derivarConsejo_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.derivarConsejo_profesional"
+        android:label="fragment_derivar_consejo"
+        tools:layout="@layout/fragment_derivar_consejo" />
+    <fragment
+        android:id="@+id/nav_aprobarConsejo_director"
+        android:name="com.example.superandome_appfinal.Vistas.Director.aprobarConsejo_director"
+        android:label="fragment_aprobar_consejo"
+        tools:layout="@layout/fragment_aprobar_consejo" />
 
 
 </navigation>

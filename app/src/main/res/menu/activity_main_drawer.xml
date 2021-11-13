@@ -79,6 +79,11 @@
             android:id="@+id/nav_sugerirConsejo_profesional"
             android:icon="@drawable/asustado"
             android:title="Profesional Sugerir consejo" />
+
+        <item
+            android:id="@+id/nav_derivarConsejo_profesional"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Derivar Consejos" />
         
         <item
             android:id="@+id/nav_altaProfesional"
@@ -88,7 +93,12 @@
         <item
             android:id="@+id/nav_aprobarContenido_director"
             android:icon="@android:drawable/btn_star_big_on"
-            android:title="Aprobar Contenido Director" />
+            android:title="Aprobar Contenido Multimedia" />
+
+        <item
+            android:id="@+id/nav_aprobarConsejo_director"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Aprobar Consejos" />
 
         <item
             android:id="@+id/nav_pregunta_seguridad"
