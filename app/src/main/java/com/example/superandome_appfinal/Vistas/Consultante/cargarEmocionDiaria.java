@@ -42,6 +42,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 public class cargarEmocionDiaria extends Fragment {
@@ -61,7 +62,6 @@ public class cargarEmocionDiaria extends Fragment {
         return inflater.inflate(R.layout.fragment_cargar_emocion_diaria, container, false);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         btnAlegia = (ImageButton) view.findViewById(R.id.btnAlegria);
@@ -79,17 +79,30 @@ public class cargarEmocionDiaria extends Fragment {
 
             Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
+
+
             Date horaUsuario = usuario.getHorarioEmocion();
-            Date horaActual = new Date(System.currentTimeMillis());
+
+            Calendar calHoraActual = Calendar.getInstance();
+            Calendar calHoraUsuario = Calendar.getInstance();
+            calHoraUsuario.setTime(horaUsuario);
+            calHoraUsuario.set(Calendar.YEAR, calHoraUsuario.get(Calendar.YEAR));
+            calHoraUsuario.set(Calendar.MONTH, calHoraUsuario.get(Calendar.MONTH));
+            calHoraUsuario.set(Calendar.DAY_OF_MONTH, calHoraUsuario.get(Calendar.DAY_OF_MONTH));
+
+            horaUsuario = calHoraUsuario.getTime();
+            Date horaActual = new Date();
 
             DateFormat formatHora = new SimpleDateFormat("HH");
             DateFormat formatMinutos = new SimpleDateFormat("mm");
 
-            LocalTime horaActualConver = LocalTime.of(Integer.parseInt(formatHora.format(horaActual).toString()),
-                    Integer.parseInt(formatMinutos.format(horaActual).toString()));
 
-            LocalTime horaUserConver = LocalTime.of(Integer.parseInt(formatHora.format(horaUsuario).toString()),
-                    Integer.parseInt(formatMinutos.format(horaUsuario).toString()));
+
+//            LocalTime horaActualConver = LocalTime.of(Integer.parseInt(formatHora.format(horaActual).toString()),
+//                    Integer.parseInt(formatMinutos.format(horaActual).toString()));
+//
+//            LocalTime horaUserConver = LocalTime.of(Integer.parseInt(formatHora.format(horaUsuario).toString()),
+//                    Integer.parseInt(formatMinutos.format(horaUsuario).toString()));
 
             btnAlegia.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,12 +164,14 @@ public class cargarEmocionDiaria extends Fragment {
                 }
             });
 
+            Date finalHoraUsuario = horaUsuario;
+
             btnRegistrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
-                        if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
+                        if (horaActual.after(finalHoraUsuario) || horaActual.equals(finalHoraUsuario)) {
 
                             if (buscarSeleccion(estadoAlegria, estadoTristeza, estadoIra, estadoMiedo, estadoAsco)) {
 
