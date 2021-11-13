@@ -21,7 +21,7 @@ public class EncuestaUsuario {
     private Date fecha;
 
     @Column(nullable = false)
-    private String resultado;
+    private Integer resultado;
 
     @ManyToOne
     @JoinColumn(name = "idEncuesta", nullable = false)
@@ -33,13 +33,22 @@ public class EncuestaUsuario {
 
     public EncuestaUsuario() {}
 
-    public EncuestaUsuario(Integer idEncuestaUsuario, Date fecha, String resultado, Encuesta encuesta, Usuario usuario) {
+    public EncuestaUsuario(Integer idEncuestaUsuario, Date fecha, Integer resultado, Encuesta encuesta, Usuario usuario) {
         this.idEncuestaUsuario = idEncuestaUsuario;
         this.fecha = fecha;
         this.resultado = resultado;
         this.encuesta = encuesta;
         this.usuario = usuario;
     }
+
+    public EncuestaUsuario(Integer resultado, Encuesta encuesta, Usuario usuario) {
+        this.idEncuestaUsuario = idEncuestaUsuario;
+        this.fecha = fecha;
+        this.resultado = resultado;
+        this.encuesta = encuesta;
+        this.usuario = usuario;
+    }
+
 
     public Integer getIdEncuestaUsuario() {
         return idEncuestaUsuario;
@@ -73,11 +82,11 @@ public class EncuestaUsuario {
         this.fecha = fecha;
     }
 
-    public String getResultado() {
+    public Integer getResultado() {
         return resultado;
     }
 
-    public void setResultado(String resultado) {
+    public void setResultado(Integer resultado) {
         this.resultado = resultado;
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,85 +7,177 @@
     android:background="@drawable/consultante"
     tools:context=".Vistas.Consultante.ingresarEncuesta">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ScrollView
+        <TextView
+            android:id="@+id/tvTituloCuestionario"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/redhat_medium"
+            android:text="Test de Ansiedad de Beck"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/tvDescripcionEncuesta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/encuestaBeck"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvReferencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Referencia: 0 En absoluto. 1 Levemente. 2 Moderadamente. 3 Severamente."
+            android:textColor="@color/white" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-
-                <LinearLayout
+                <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="884dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.533"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/txtTituloEncuesta"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/redhat_medium"
-                            android:text="@string/tituloEncuesta"
+                            android:id="@+id/tvPregunta"
+                            android:layout_width="178dp"
+                            android:layout_height="wrap_content"
+                            android:text="Pregunta"
+                            android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="28sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.497"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txtSubEncuesta"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tvPreg0"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="@string/subEncuesta"
+                            android:text="0"
+                            android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtTituloEncuesta" />
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txtFechaEncuesta"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tvPreg1"
+                            android:layout_width="45dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="88dp"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="@string/fechaEncuesta"
+                            android:text="1"
+                            android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="24sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtSubEncuesta" />
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvPreg2"
+                            android:layout_width="48dp"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvPreg3"
+                            android:layout_width="46dp"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TableLayout
-                            android:id="@+id/tableLayout2"
-                            android:layout_width="304dp"
-                            android:layout_height="394dp"
-                            android:layout_marginTop="60dp"
-                            android:background="@drawable/border"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtFechaEncuesta">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/border">
 
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise20"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/ruborFacial"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup20"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto20"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente20"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado20"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/torpeEntumecido"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
 
                                 <RadioGroup
                                     android:id="@+id/rgroup1"
@@ -93,34 +185,41 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
 
-
                                     <RadioButton
-                                        android:id="@+id/radioSi1"
+                                        android:id="@+id/rbtnEnAbsoluto1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent" />
 
                                     <RadioButton
-                                        android:id="@+id/radioNo1"
-                                        android:layout_width="match_parent"
+                                        android:id="@+id/rbtnLevemente1"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" />
 
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
                                 </RadioGroup>
-
-                                <TextView
-                                    android:id="@+id/textView8"
-                                    android:layout_width="93dp"
-                                    android:layout_height="35dp"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Pregunta 1"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp" />
-
                             </TableRow>
 
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise2"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/acalorado"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
 
                                 <RadioGroup
                                     android:id="@+id/rgroup2"
@@ -129,30 +228,40 @@
                                     android:orientation="horizontal">
 
                                     <RadioButton
-                                        android:id="@+id/radioSi2"
+                                        android:id="@+id/rbtnEnAbsoluto2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent" />
 
                                     <RadioButton
-                                        android:id="@+id/radioNo2"
+                                        android:id="@+id/rbtnLevemente2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente2"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content" />
                                 </RadioGroup>
-
-                                <TextView
-                                    android:id="@+id/textView9"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Pregunta 2"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp" />
                             </TableRow>
 
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise3"
+                                    android:layout_width="163dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/temblor"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
 
                                 <RadioGroup
                                     android:id="@+id/rgroup3"
@@ -161,30 +270,40 @@
                                     android:orientation="horizontal">
 
                                     <RadioButton
-                                        android:id="@+id/radioSi3"
+                                        android:id="@+id/rbtnEnAbsoluto3"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent" />
 
                                     <RadioButton
-                                        android:id="@+id/radioNo3"
+                                        android:id="@+id/rbtnLevemente3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente3"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content" />
                                 </RadioGroup>
-
-                                <TextView
-                                    android:id="@+id/textView10"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Pregunta 3"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp" />
                             </TableRow>
 
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise4"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/incapaz"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
 
                                 <RadioGroup
                                     android:id="@+id/rgroup4"
@@ -193,30 +312,41 @@
                                     android:orientation="horizontal">
 
                                     <RadioButton
-                                        android:id="@+id/radioSi4"
+                                        android:id="@+id/rbtnEnAbsoluto4"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent" />
 
                                     <RadioButton
-                                        android:id="@+id/radioNo4"
+                                        android:id="@+id/rbtnLevemente4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado4"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente4"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content" />
-                                </RadioGroup>
 
-                                <TextView
-                                    android:id="@+id/textView11"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Pregunta 4"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp" />
+                                </RadioGroup>
                             </TableRow>
 
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise5"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/temor"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
 
                                 <RadioGroup
                                     android:id="@+id/rgroup5"
@@ -225,109 +355,677 @@
                                     android:orientation="horizontal">
 
                                     <RadioButton
-                                        android:id="@+id/radioSi5"
+                                        android:id="@+id/rbtnEnAbsoluto5"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent" />
 
                                     <RadioButton
-                                        android:id="@+id/radioNo5"
+                                        android:id="@+id/rbtnLevemente5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado5"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise6"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/mareado"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado6"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente6"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content" />
                                 </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
                                 <TextView
-                                    android:id="@+id/textView12"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:id="@+id/txtChoise7"
+                                    android:layout_width="183dp"
+                                    android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="Pregunta 5"
+                                    android:text="@string/latidosCora"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto7"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente7"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado7"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente7"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
                             </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise8"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/inestable"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto8"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente8"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado8"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente8"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise9"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/atemorizado"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto9"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente9"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado9"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente9"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise10"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/nervioso"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto10"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente10"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado10"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise11"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/bloqueo"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto11"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente11"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado11"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise12"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/temblores"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup12"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto12"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente12"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado12"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente12"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise13"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/inquieroInseguro"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto13"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente13"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado13"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente13"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise14"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/conMiedo"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup14"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto14"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente14"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado14"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente14"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise15"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/sensacion"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup15"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto15"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente15"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado15"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente15"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise16"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/temorMorir"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup16"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto16"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente16"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado16"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente16"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise17"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/conMiedo"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup17"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto17"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente17"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado17"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente17"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise18"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/digestivos"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup18"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto18"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente18"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado18"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente18"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise19"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/desvanecimiento"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup19"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto19"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente19"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado19"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente19"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+
+                                </RadioGroup>
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/txtChoise21"
+                                    android:layout_width="93dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/questrial_regular"
+                                    android:text="@string/sudoresFriosCal"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgroup21"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnEnAbsoluto21"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnLevemente21"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnModerado21"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnSeveremente21"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </RadioGroup>
+                            </TableRow>
+
                         </TableLayout>
 
                         <Button
-                            android:id="@+id/button2"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/btnAceptarEncuesta"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:backgroundTint="@color/teal_700"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="@string/btnEncuesta"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.51"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+                            android:backgroundTint="#496BB2"
+                            android:text="Aceptar" />
+                    </LinearLayout>
+                </ScrollView>
 
-                        <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="54dp"
-                            android:layout_height="59dp"
-                            android:layout_marginTop="4dp"
-                            android:src="@drawable/triste"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.26"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/imageView3"
-                            android:layout_width="54dp"
-                            android:layout_height="59dp"
-                            android:layout_marginTop="4dp"
-                            android:src="@drawable/alegria"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.77"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
-
-                        <SeekBar
-                            android:id="@+id/seekBar"
-                            android:layout_width="333dp"
-                            android:layout_height="51dp"
-                            android:layout_marginBottom="108dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
-                            app:layout_constraintVertical_bias="0.272" />
-
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="Si"
-                            android:textColor="@color/white"
-                            app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.135"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtFechaEncuesta"
-                            app:layout_constraintVertical_bias="0.928" />
-
-                        <TextView
-                            android:id="@+id/textView30"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:fontFamily="@font/questrial_regular"
-                            android:text="No"
-                            android:textColor="@color/white"
-                            app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.274"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txtFechaEncuesta"
-                            app:layout_constraintVertical_bias="0.964" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</RelativeLayout>
