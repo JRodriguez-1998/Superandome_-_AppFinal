@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -8,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +23,7 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 import com.example.superandome_appfinal.Vistas.Director.adapterDirector;
+import com.github.barteksc.pdfviewer.PDFView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,6 +32,8 @@ public class multimedia extends Fragment {
 
     RecyclerView recyclerViewContenido;
     ArrayList<Contenido> contenidos;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     ContenidoService contenidoService;
 
@@ -41,6 +48,9 @@ public class multimedia extends Fragment {
             throwables.printStackTrace();
         }
 
+        preferences = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
         contenidos = new ArrayList<Contenido>();
         recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
         recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -53,9 +63,12 @@ public class multimedia extends Fragment {
         adapterContenido.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //Capturar IdContenido y enviarlo a su fragment
                 int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
-                Toast.makeText(getActivity(),"IdConsejo: " + idContenido, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
+                guardarSesionContenido(true, idContenido);
+
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                navController.navigate(R.id.nav_multimedia_text);
             }
         });
 
@@ -64,8 +77,13 @@ public class multimedia extends Fragment {
         return view;
     }
 
-    public void obtenerContenido(){
+    public void guardarSesionContenido(boolean iniciar, int idContenido){
+        editor.putBoolean("contenido",iniciar);
+        editor.putInt("idContenido", idContenido);
+        editor.apply();
+    }
 
+    public void obtenerContenido(){
         for(int i = 0; i< contenidoService.getContenidosAprobados().size(); i ++){
             contenidos.add(contenidoService.getContenidosAprobados().get(i));
         }

@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.IServices.ContenidoService;
@@ -35,6 +38,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 public class multimedia_text extends Fragment {
     PDFView pdf;
     TextView txt;
+    Integer idContenido;
 
     public multimedia_text(){};
 
@@ -43,9 +47,10 @@ public class multimedia_text extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+        idContenido = preferences.getInt("idContenido", 0);
 
 
-//
 //        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
 //        // String filename = "HOLA.pdf";
 //
@@ -82,7 +87,7 @@ public class multimedia_text extends Fragment {
             throwables.printStackTrace();
         }
 
-        Contenido contenido = contenidoService.getContenidoByID(11);
+        Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
         byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
         //byte[] decodedString
