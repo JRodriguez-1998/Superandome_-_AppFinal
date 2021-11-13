@@ -7,14 +7,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
+import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoUserConsultanteRegistrado;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
+import com.example.superandome_appfinal.Vistas.about;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -56,13 +59,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarNavigationDrawerConsultante.toolbar);
-        binding.appBarNavigationDrawerConsultante.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = binding.drawerLayout;
         navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
@@ -93,6 +90,23 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         txtNombreUser = (TextView) navHeader.findViewById(R.id.tvNombreUserLogin);
         txtNombreUser.setText(nameUsuario);
 
+        binding.appBarNavigationDrawerConsultante.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
+                    case CONSULTANTE:
+                        navController.navigate(R.id.nav_homeConsultante);
+                        break;
+                    case PROFESIONAL:
+                        navController.navigate(R.id.nav_homeProfesional);
+                        break;
+                    case DIRECTOR:
+                        navController.navigate(R.id.nav_homeDirector);
+                        break;
+                }
+            }
+        });
+
         hideAllItems();
         //Reemplazar parametro con tipoUser que viene del Login
         switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
@@ -114,7 +128,19 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.navigation_drawer_consultante, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                about d = new about();
+                d.show(this.getSupportFragmentManager(), "fragment_about");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
