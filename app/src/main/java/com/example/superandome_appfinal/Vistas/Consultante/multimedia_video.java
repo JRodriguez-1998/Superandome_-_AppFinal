@@ -64,7 +64,7 @@ public class multimedia_video extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        videoView.set
+        //videoView.set
 
 
 
