@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/consultante"
-    tools:context=".Vistas.Consultante.rutinaDiaria">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Vistas.Consultante.rutina_diaria_seguimiento"
+    android:background="@drawable/consultante">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,13 +32,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/txtTituloRutinaSeguimiento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="95dp"
+                        android:layout_marginLeft="70dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/redhat_medium"
-                        android:text="@string/tituloRutina"
+                        android:text="@string/tituloRutinaSeguimiento"
                         android:textColor="@color/white"
                         android:textSize="24sp" />
 
@@ -62,16 +62,17 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
                             <TableRow
+                                android:id="@+id/tb1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox"
+                                    android:id="@+id/chk1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView5"
+                                    android:id="@+id/txtRutina1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -81,16 +82,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox2"
+                                    android:id="@+id/chk2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView7"
+                                    android:id="@+id/txtRutina2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -100,16 +102,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox3"
+                                    android:id="@+id/chk3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView13"
+                                    android:id="@+id/txtRutina3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -119,16 +122,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb4"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox4"
+                                    android:id="@+id/chk4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView14"
+                                    android:id="@+id/txtRutina4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -138,16 +142,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb5"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox5"
+                                    android:id="@+id/chk5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView15"
+                                    android:id="@+id/txtRutina5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -157,16 +162,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb6"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox6"
+                                    android:id="@+id/chk6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView16"
+                                    android:id="@+id/txtRutina6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -176,16 +182,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb7"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox7"
+                                    android:id="@+id/chk7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView17"
+                                    android:id="@+id/txtRutina7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -195,16 +202,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb8"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox8"
+                                    android:id="@+id/chk8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView18"
+                                    android:id="@+id/txtRutina8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -214,16 +222,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb9"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox9"
+                                    android:id="@+id/chk9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView19"
+                                    android:id="@+id/txtRutina9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -233,16 +242,17 @@
                             </TableRow>
 
                             <TableRow
+                                android:id="@+id/tb10"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <CheckBox
-                                    android:id="@+id/checkBox10"
+                                    android:id="@+id/chk10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
                                 <TextView
-                                    android:id="@+id/textView20"
+                                    android:id="@+id/txtRutina10"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/questrial_regular"
@@ -255,7 +265,7 @@
                     </ScrollView>
 
                     <Button
-                        android:id="@+id/btnSaveRutina"
+                        android:id="@+id/btnSaveRutinaSeguimiento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="95dp"
@@ -267,4 +277,7 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+
+
+
+    </RelativeLayout>

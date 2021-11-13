@@ -10,61 +10,67 @@
     <fragment
         android:id="@+id/nav_cargarEmocionDiaria"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.cargarEmocionDiaria"
-        android:label="fragment_cargar_emocion_diaria"
+        android:label="CARGAR EMOCIÓN DIARIA"
         tools:layout="@layout/fragment_cargar_emocion_diaria" />
 
     <fragment
         android:id="@+id/nav_configurarHorario"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.configurarHorario"
-        android:label="fragment_configurar_horario"
+        android:label="CONFIGURAR HORARIO"
         tools:layout="@layout/fragment_configurar_horario" />
 
     <fragment
         android:id="@+id/nav_sugerirContenido"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.sugerirContenido"
-        android:label="fragment_sugerir_contenido"
+        android:label="SUGERIR CONTENIDO"
         tools:layout="@layout/fragment_sugerir_contenido" />
     <fragment
         android:id="@+id/nav_reporteEmocion"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.reporteEmocion"
-        android:label="fragment_reporte_emocion"
+        android:label="REPORTE EMOCIÓN"
         tools:layout="@layout/fragment_reporte_emocion" />
     <fragment
         android:id="@+id/nav_reporteRutina"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.reporteRutina"
-        android:label="fragemnt_reporte_rutina"
+        android:label="REPORTE RUTINA"
         tools:layout="@layout/fragment_reporte_rutina" />
     <fragment
         android:id="@+id/nav_ingresarEncuesta"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.ingresarEncuesta"
-        android:label="fragment_ingresar_encuesta"
+        android:label="INGRESAR ENCUESTA"
         tools:layout="@layout/fragment_ingresar_encuesta" />
     <fragment
         android:id="@+id/nav_rutinaDiaria"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.rutinaDiaria"
-        android:label="fragment_encuesta_diaria"
+        android:label="RUTINA DIARIA"
         tools:layout="@layout/fragment_rutina_diaria" />
     <fragment
         android:id="@+id/nav_multimedia"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.multimedia"
-        android:label="fragment_multimedia"
+        android:label="MULTIMEDIA"
         tools:layout="@layout/fragment_multimedia" />
     <fragment
         android:id="@+id/nav_multimedia_video"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.multimedia_video"
-        android:label="fragment_multimedia_video"
+        android:label="MULTIMEDIA: VIDEO"
         tools:layout="@layout/fragment_multimedia_video" />
 
     <fragment
         android:id="@+id/nav_sugerirConsejo"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.sugerirConsejo"
-        android:label="fragment_sugerir_consejo"
+        android:label="SUGERIR CONSEJO"
         tools:layout="@layout/fragment_sugerir_consejo" />
     <fragment
         android:id="@+id/nav_altaProfesional"
         android:name="com.example.superandome_appfinal.Vistas.Director.altaProfesional"
-        android:label="fragment_alta_profesional"
+        android:label="ALTA PROFESIONAL"
         tools:layout="@layout/fragment_alta_profesional" />
+
+    <fragment
+        android:id="@+id/nav_rutinaDiariaSeguimiento"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.rutina_diaria_seguimiento"
+        android:label="RUTINA DIARIA: SEGUIMIENTO"
+        tools:layout="@layout/fragment_rutina_diaria_seguimiento" />
 
     <!--FRAGMENTS PROFESIONAL-->
 
@@ -72,24 +78,24 @@
     <fragment
         android:id="@+id/nav_sugerirContenido_profesional"
         android:name="com.example.superandome_appfinal.Vistas.Profesional.sugerirContenido_profesional"
-        android:label="fragment_sugerir_contenido_profesional"
+        android:label="SUGERIR CONTENIDO"
         tools:layout="@layout/fragment_sugerir_contenido_profesional" />
     <fragment
         android:id="@+id/nav_sugerirConsejo_profesional"
         android:name="com.example.superandome_appfinal.Vistas.Profesional.sugerirConsejo_profesional"
-        android:label="fragment_sugerir_consejo_profesional"
+        android:label="SUGERIR CONSEJO"
         tools:layout="@layout/fragment_sugerir_consejo_profesional" />
   
     <fragment
         android:id="@+id/nav_multimedia_text"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.multimedia_text"
-        android:label="fragment_multimedia_text"
+        android:label="MULTIMEDIA: TEXTO"
         tools:layout="@layout/fragment_multimedia_text" />
 
         <fragment
         android:id="@+id/nav_aprobarContenido_director"
         android:name="com.example.superandome_appfinal.Vistas.Director.aprobarContenido_director"
-        android:label="fragment_aprobar_contenido_director"
+        android:label="APROBAR CONTENIDO: MULTIMEDIA"
         tools:layout="@layout/fragment_aprobar_contenido_director" />
     <fragment
         android:id="@+id/nav_pregunta_seguridad"
@@ -100,8 +106,39 @@
     <fragment
         android:id="@+id/nav_homeConsultante"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.homeConsultante"
-        android:label="fragment_home_consultante"
+        android:label="SUPERANDOME"
         tools:layout="@layout/fragment_home_consultante" >
     </fragment>
+    <fragment
+        android:id="@+id/nav_cambiar_password"
+        android:name="com.example.superandome_appfinal.Vistas.Director.cambiar_password"
+        android:label="CAMBIAR CONTRASEÑA"
+        tools:layout="@layout/fragment_cambiar_password" />
+    <fragment
+        android:id="@+id/nav_cambiar_password_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.cambiar_password_profesional"
+        android:label="CAMBIAR CONTRASEÑA"
+        tools:layout="@layout/fragment_cambiar_password_profesional" />
+    <fragment
+        android:id="@+id/nav_derivarConsejo_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.derivarConsejo_profesional"
+        android:label="DERIVAR CONSEJOS"
+        tools:layout="@layout/fragment_derivar_consejo" />
+    <fragment
+        android:id="@+id/nav_aprobarConsejo_director"
+        android:name="com.example.superandome_appfinal.Vistas.Director.aprobarConsejo_director"
+        android:label="APROBAR CONTENIDO: CONSEJOS"
+        tools:layout="@layout/fragment_aprobar_consejo" />
+    <fragment
+        android:id="@+id/nav_homeProfesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.homeProfesional"
+        android:label="SUPERANDOME"
+        tools:layout="@layout/fragment_home_profesional" />
+    <fragment
+        android:id="@+id/nav_homeDirector"
+        android:name="com.example.superandome_appfinal.Vistas.Director.homeDirector"
+        android:label="SUPERANDOME"
+        tools:layout="@layout/fragment_home_director" />
+
 
 </navigation>

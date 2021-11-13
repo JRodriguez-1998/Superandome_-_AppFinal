@@ -45,6 +45,8 @@
     <string name="txtDescripcionMultimedia"> <u>Descripcion</u>  </string>
     <string name="btnConfirmar">Confirmar</string>
 
+    <string name="tituloRutinaSeguimiento"> Seguimiento rutina  </string>
+
 
     <string name="title_activity_navigation_drawer_consultante">navigationDrawer_consultante
     </string>
@@ -117,5 +119,30 @@
     <string name="rutinaSocial">Relaciones sociales positivas</string>
     <string name="rutinaOcio">Practicar actividades de ocio</string>
     <string name="rutinaNaturaleza">Contacto con la naturaleza</string>
+
+    <!--ENCUESTA-->
+    <string name="torpeEntumecido">Torpe o entumecido.</string>
+    <string name="acalorado">Acalorado.</string>
+    <string name="temblor">Con temblor en las piernas</string>
+    <string name="incapaz">Incapaz de relajarse</string>
+    <string name="temor">Con temor a que ocurra lo peor.</string>
+    <string name="mareado">Mareado, o que se le va la cabeza.</string>
+    <string name="latidosCora">Con latidos del corazón fuertes y acelerados.</string>
+    <string name="inestable">Inestable.</string>
+    <string name="atemorizado">Atemorizado o asustado.</string>
+    <string name="nervioso">Nervioso.</string>
+
+    <string name="bloqueo">Con sensación de bloqueo.</string>
+    <string name="temblores">Con temblores en las manos</string>
+    <string name="inquieroInseguro">Inquieto, inseguro.</string>
+    <string name="miedoPerder.">Con miedo a perder el control.</string>
+    <string name="sensacion">Con sensación de ahogo.</string>
+    <string name="temorMorir">Con temor a morir.</string>
+    <string name="conMiedo">Con miedo.</string>
+    <string name="digestivos">Con problemas digestivos.</string>
+    <string name="desvanecimiento">Con desvanecimientos</string>
+    <string name="ruborFacial">Con rubor facial</string>
+    <string name="sudoresFriosCal">Con sudores, frios o calientes.</string>
+    <string name="encuestaBeck">En el cuestionario hay una lista de síntomas comunes de la ansiedad. Lea cada uno de los ítems atentamente, e indique cuanto le ha afectado en la última semana incluyendo hoy:</string>
 
 </resources>

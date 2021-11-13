@@ -16,10 +16,15 @@ public class ConsejoDaoImpl extends BaseDaoImpl<Consejo, Integer> implements Con
         super(DataDB.getConnectionSource(), Consejo.class);
     }
 
-//    @Override
-//    public List<Consejo> getConsejosPendientes() throws SQLException {
-//        return this.queryForEq("idEstado", 1);
-//    }
+    @Override
+    public List<Consejo> getConsejosPendientes() throws SQLException {
+        return this.queryForEq("idEstado", 1);
+    }
+
+    @Override
+    public List<Consejo> getConsejosPendientesDIRECTOR() throws SQLException {
+        return this.queryForEq("idEstado", 3);
+    }
 
     @Override
     public List<Consejo> getConsejosByEstado(int idEstado) throws SQLException {

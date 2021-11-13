@@ -176,8 +176,6 @@ public class activity_altaConsultante extends AppCompatActivity {
 
         usuarioNuevo.setNickname(txtNickname.getText().toString());
         usuarioNuevo.setPassword(txtPass.getText().toString());
-        usuarioNuevo.setHabilitado(true);
-        usuarioNuevo.setFechaAlta(new Date());
         usuarioNuevo.setFechaNac(formatter.parse(txtFechaNac.getText().toString()));
 
 

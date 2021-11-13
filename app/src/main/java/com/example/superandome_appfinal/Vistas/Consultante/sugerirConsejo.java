@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,10 +24,12 @@ import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.IServices.ConsejoService;
+import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Services.TipoConsejoServiceImpl;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirConsejo;
+import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 
 import java.sql.SQLException;
@@ -39,6 +43,17 @@ public class sugerirConsejo extends Fragment {
     EditText txtConsejo;
     TipoConsejoServiceImpl tipoConsejoService;
     ConsejoService consejoService;
+    Integer idUsuario;
+
+    //Creo Objeto SharedPreferences para utilizar para las Sesiones
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    String nameUsuario;
+
+    UsuarioService usuarioService;
+
+    Usuario user;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -47,12 +62,13 @@ public class sugerirConsejo extends Fragment {
         btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerencia);
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugerido);
 
-        try {
-            tipoConsejoService = new TipoConsejoServiceImpl();
-            consejoService = new ConsejoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
+        preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        nameUsuario = preferences.getString("nickname",null);
+
+        iniciarServicios();
 
         TipoConsejo consejo = new TipoConsejo(0, "Seleccionar tipo consejo");
 
@@ -79,11 +95,14 @@ public class sugerirConsejo extends Fragment {
                     return;
                 }
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(99);
+
+                 //OBTENER USUARIO
+                user = usuarioService.getUsuario(nameUsuario);
+
                 Estado estado = new Estado(EstadoEnum.PENDIENTE.getId());
+
                 TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
-                Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, usuario);
+                Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, user);
 
                 if(consejoService.guardar(consejo)){
                     dialogoSugerirConsejo d = new dialogoSugerirConsejo();
@@ -94,6 +113,16 @@ public class sugerirConsejo extends Fragment {
                 }
             }
         });
+    }
+
+    public void iniciarServicios(){
+        try {
+            tipoConsejoService = new TipoConsejoServiceImpl();
+            consejoService = new ConsejoServiceImpl();
+            usuarioService = new UsuarioServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

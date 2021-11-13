@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -51,6 +53,7 @@ public class cargarEmocionDiaria extends Fragment {
     UsuarioServiceImpl usuarioService;
     EmocionUsuarioServiceImpl emocionUserService;
     EmocionServiceImpl emocionService;
+    Integer idUsuario;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +74,10 @@ public class cargarEmocionDiaria extends Fragment {
         estadoInicial();
         iniciarServicios();
 
-        Usuario usuario = usuarioService.getUsuarioById(1);
+        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        idUsuario = preferences.getInt("idUser", 0);
+
+        Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
         Date horaUsuario = usuario.getHorarioEmocion();
         Date horaActual = new Date(System.currentTimeMillis());
@@ -149,9 +155,8 @@ public class cargarEmocionDiaria extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
-
-                    if (emocionUserService.getEmocionByFechaAndId(1, new Date()) == null) {
+                if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
+                    if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
 
                         if (buscarSeleccion(estadoAlegria, estadoTristeza, estadoIra, estadoMiedo, estadoAsco)) {
 
@@ -211,10 +216,10 @@ public class cargarEmocionDiaria extends Fragment {
                             Toast.makeText(getActivity(), "Debe seleccionar al menos una emoción", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

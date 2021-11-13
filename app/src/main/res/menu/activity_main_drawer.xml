@@ -11,6 +11,16 @@
             android:title="Pantalla principal" />
 
         <item
+            android:id="@+id/nav_homeProfesional"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pantalla principal" />
+
+        <item
+            android:id="@+id/nav_homeDirector"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Pantalla principal" />
+
+        <item
             android:id="@+id/nav_cargarEmocionDiaria"
             android:icon="@drawable/asustado"
             android:title="Cargar emoción diaria" />
@@ -51,6 +61,11 @@
             android:title="Rutina" />
 
         <item
+            android:id="@+id/nav_rutinaDiariaSeguimiento"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Rutina seguimiento" />
+
+        <item
             android:id="@+id/nav_multimedia"
             android:icon="@drawable/logo_soyuz"
             android:title="Multimedia" />
@@ -74,6 +89,11 @@
             android:id="@+id/nav_sugerirConsejo_profesional"
             android:icon="@drawable/asustado"
             android:title="Profesional Sugerir consejo" />
+
+        <item
+            android:id="@+id/nav_derivarConsejo_profesional"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Derivar Consejos" />
         
         <item
             android:id="@+id/nav_altaProfesional"
@@ -83,12 +103,27 @@
         <item
             android:id="@+id/nav_aprobarContenido_director"
             android:icon="@android:drawable/btn_star_big_on"
-            android:title="Aprobar Contenido Director" />
+            android:title="Aprobar Contenido Multimedia" />
+
+        <item
+            android:id="@+id/nav_aprobarConsejo_director"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="Aprobar Consejos" />
 
         <item
             android:id="@+id/nav_pregunta_seguridad"
             android:icon="@android:drawable/btn_star_big_on"
             android:title="Pregunta seguridad" />
+
+        <item
+            android:id="@+id/nav_cambiar_password"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Cambiar Contraseña" />
+
+        <item
+            android:id="@+id/nav_cambiar_password_profesional"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Cambiar Contraseña" />
 
         <item
             android:id="@+id/nav_cerrarSesion"

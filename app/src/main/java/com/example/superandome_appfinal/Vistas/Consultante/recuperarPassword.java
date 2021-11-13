@@ -45,6 +45,8 @@ public class recuperarPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_password);
 
+        getSupportActionBar().hide();
+
         btnAceptar = (Button) findViewById(R.id.btnAceptarRespuesta);
         txtRespuesta = (EditText) findViewById(R.id.txtRespuesta);
         spinnerPreguntas = (Spinner) findViewById(R.id.spPregunta);
@@ -70,8 +72,6 @@ public class recuperarPassword extends AppCompatActivity {
                 String nickName = (String) getIntent().getSerializableExtra("nickname");
                 Usuario usuario = usuarioService.getUsuario(nickName);
                 PreguntaSeguridad pregunta = (PreguntaSeguridad) spinnerPreguntas.getSelectedItem();
-
-
 
                 if(spinnerPreguntas.getSelectedItemPosition() == 0){
                     Toast.makeText(recuperarPassword.this, "Seleccione una pregunta de seguridad", Toast.LENGTH_LONG).show();
