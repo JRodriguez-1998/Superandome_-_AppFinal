@@ -40,7 +40,7 @@ import java.util.Base64;
 
 public class sugerirContenido extends Fragment {
     Button btnElegirArchivo,btnGuardar;
-    TextView txtAutor,txtTipoContenido;
+    TextView txtTipoContenido;
    // ActivityResultLauncher<String> contenido;
     final int FILE_PICKER_REQUEST_CODE = 100;
 
@@ -62,12 +62,10 @@ public class sugerirContenido extends Fragment {
 
         btnElegirArchivo = (Button) view.findViewById(R.id.btnElegirArchivo);
         btnGuardar = (Button) view.findViewById(R.id.button);
-        txtAutor = (TextView) view.findViewById(R.id.tvAutor);
         txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenido);
 
         btnGuardar.setEnabled(false);
 
-        txtAutor.setText("");
         txtTipoContenido.setText("");
 
         btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
@@ -89,6 +87,7 @@ public class sugerirContenido extends Fragment {
             startActivityForResult(Intent.createChooser(intent, "Select a file"), 100);
 
         } catch (Exception e) {
+            e.printStackTrace();
             Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
         }
     }
@@ -137,8 +136,6 @@ public class sugerirContenido extends Fragment {
                     int nombrePost = partesName.length;
                    // partesName[0].get;
 
-                    txtAutor.setText(usuario.getNickname());
-
                     content = new Contenido();
                     content.setUsuario(usuario);
                     content.setArchivo(resultado);
@@ -176,8 +173,6 @@ public class sugerirContenido extends Fragment {
                         public void onClick(View view) {
                             if(contenidoService.guardar(content)){
                                 Toast.makeText(getActivity(),"Archivo derivado",Toast.LENGTH_SHORT).show();
-
-                                txtAutor.setText("");
                                 txtTipoContenido.setText("");
                             }
                             else{
@@ -185,14 +180,6 @@ public class sugerirContenido extends Fragment {
                             }
                         }
                     });
-
-
-
-
-
-
-
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -210,6 +197,7 @@ public class sugerirContenido extends Fragment {
             }
             super.onActivityResult(requestCode, resultCode, data);
         } catch (Exception e) {
+            e.printStackTrace();
             Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
         }
     }
