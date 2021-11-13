@@ -50,10 +50,16 @@
             android:icon="@drawable/asustado"
             android:title="Sugerir consejo diario" />
 
+
+        <item
+            android:id="@+id/nav_indexEncuestas"
+            android:icon="@drawable/logo_soyuz"
+            android:title="Encuestas" />
+
         <item
             android:id="@+id/nav_ingresarEncuesta"
             android:icon="@drawable/logo_soyuz"
-            android:title="Encuesta" />
+            android:title="Ingresar encuesta" />
 
         <item
             android:id="@+id/nav_rutinaDiaria"
