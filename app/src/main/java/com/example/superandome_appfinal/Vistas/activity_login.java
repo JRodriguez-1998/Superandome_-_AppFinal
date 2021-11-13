@@ -79,7 +79,6 @@ public class activity_login extends AppCompatActivity {
 
         preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
         editor = preferences.edit();
-        editor.clear().commit();
 
         txtnick = findViewById(R.id.etNickname);
         txtpass = findViewById(R.id.etPassword);
