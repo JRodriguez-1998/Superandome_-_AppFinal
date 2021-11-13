@@ -8,4 +8,5 @@ public interface ContenidoService {
     Boolean guardar(Contenido contenido);
     Contenido getContenidoByID(int id);
     List<Contenido> getContenidosAprobados();
+    List<Contenido> getContenidosDERIVAR();
 }
