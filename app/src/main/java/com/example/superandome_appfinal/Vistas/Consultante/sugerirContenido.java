@@ -142,22 +142,22 @@ public class sugerirContenido extends Fragment {
 
                     //txtAutor.setText(partesName[nombrePost-1]);
 
-                    for(int i = 0; i<5;i++){
+                    for(int i = 0; i<4;i++){
 
                         tipo += resultado.charAt(i);
 
                     }
-                    if(tipo.equals("JVBER")){
+                    if(tipo.equals("JVBE")){
                         tipoArchivo.setIdTipoArchivo(1);
                         content.setTipoArchivo(tipoArchivo);
                         txtTipoContenido.setText("PDF");
                     }
-                    if (tipo.equals("/+MYx")) {
+                    if (tipo.equals("/+MY")) {
                         tipoArchivo.setIdTipoArchivo(3);
                         content.setTipoArchivo(tipoArchivo);
                         txtTipoContenido.setText("Audio");
                     }
-                    if (tipo.equals("AAAAI")) {
+                    if (tipo.equals("AAAA")) {
                         tipoArchivo.setIdTipoArchivo(2);
                         content.setTipoArchivo(tipoArchivo);
                         txtTipoContenido.setText("Video");
