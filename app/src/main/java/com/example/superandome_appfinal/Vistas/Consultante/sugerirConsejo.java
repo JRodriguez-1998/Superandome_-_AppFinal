@@ -61,6 +61,9 @@ public class sugerirConsejo extends Fragment {
 
         btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerencia);
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugerido);
+        try {
+
+
 
 
         preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
@@ -113,7 +116,10 @@ public class sugerirConsejo extends Fragment {
                 }
             }
         });
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     public void iniciarServicios(){
         try {

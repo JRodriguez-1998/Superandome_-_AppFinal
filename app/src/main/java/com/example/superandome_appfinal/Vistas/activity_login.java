@@ -66,6 +66,9 @@ public class activity_login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         getSupportActionBar().hide();
+        try {
+
+
         preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -83,7 +86,10 @@ public class activity_login extends AppCompatActivity {
         //Verifico si hay una Sesion iniciada
         if(revisarSesion())
             startActivity(new Intent(this, navigationDrawer_consultante.class));
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     //Clic en Crear Cuenta
     public void ir_crearCuenta(View view){
@@ -210,21 +216,21 @@ public class activity_login extends AppCompatActivity {
 
 
         if(PermisoLectura == PackageManager.PERMISSION_GRANTED && PermisoEscritura == PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(this,"Permiso lectura concedido.",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Permiso lectura concedido.",Toast.LENGTH_SHORT).show();
         }else{
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CODE);
 
         }
 
         if (PermisoManageMedia == PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(this,"ManageMedia ok",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this,"ManageMedia ok",Toast.LENGTH_SHORT).show();
         }
         else{
             requestPermissions(new String[]{Manifest.permission.MANAGE_MEDIA},REQUEST_CODE);
         }
 
         if (PermisoManageStorage == PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(this,"ManageStorage ok",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this,"ManageStorage ok",Toast.LENGTH_SHORT).show();
         }
         else{
             requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE},REQUEST_CODE);

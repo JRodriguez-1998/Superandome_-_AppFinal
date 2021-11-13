@@ -55,7 +55,7 @@ public class homeConsultante extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        try {
         iniciarServicios();
 
         SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
@@ -108,7 +108,10 @@ public class homeConsultante extends Fragment {
                 startActivity(intent);
             }
         });
-    }
+    }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

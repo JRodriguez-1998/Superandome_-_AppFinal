@@ -96,9 +96,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
         try {
             itemService = new ItemServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
 
         listaItems = itemService.getItemsRutina();
@@ -1592,13 +1590,16 @@ public class rutina_diaria_seguimiento extends Fragment {
                     d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_rutina");
                 }
                 else{
-                    Toast.makeText(getActivity(),"No funca",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Error al actualizar",Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
-    }}
+    } } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
 
 

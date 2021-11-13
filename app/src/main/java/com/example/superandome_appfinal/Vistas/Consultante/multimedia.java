@@ -37,9 +37,7 @@ public class multimedia extends Fragment {
 
         try {
             contenidoService = new ContenidoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         contenidos = new ArrayList<Contenido>();
         recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
@@ -60,7 +58,9 @@ public class multimedia extends Fragment {
         });
 
         recyclerViewContenido.setAdapter(adapterContenido);
-
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return view;
     }
 

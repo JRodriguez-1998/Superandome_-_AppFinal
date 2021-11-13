@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,10 @@ public class homeDirector extends Fragment {
         btnface = view.findViewById(R.id.btnFacebook);
         btninsta = view.findViewById(R.id.btnInstagram);
         btnwpp = view.findViewById(R.id.btnWhatsapp);
+
+        try {
+
+
 
         btnface.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +65,10 @@ public class homeDirector extends Fragment {
                 startActivity(intent);
             }
         });
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

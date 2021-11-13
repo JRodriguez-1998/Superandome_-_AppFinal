@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.IServices.ContenidoService;
@@ -42,6 +43,8 @@ public class multimedia_text extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+try {
+
 
 
 
@@ -73,14 +76,12 @@ public class multimedia_text extends Fragment {
 //        txt = (TextView) view.findViewById(R.id.txtPrueba);
 //        txt.setText(resultado);
             ContenidoService contenidoService = null;
-        try {
+
             contenidoService = new ContenidoServiceImpl();
 
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         Contenido contenido = contenidoService.getContenidoByID(11);
 
@@ -91,7 +92,10 @@ public class multimedia_text extends Fragment {
 
         pdf = (PDFView) view.findViewById(R.id.pdfView);
         pdf.fromBytes(decoder).load();
-
+}catch (Exception e) {
+        e.printStackTrace();
+        Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+    }
 
     }
     @Override
