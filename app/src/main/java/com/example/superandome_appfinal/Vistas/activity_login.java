@@ -66,17 +66,17 @@ public class activity_login extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        creacionTablas();
+//        creacionTablas();
 
         getSupportActionBar().hide();
         preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
         editor = preferences.edit();
+        editor.clear().commit();
 
         txtnick = findViewById(R.id.etNickname);
         txtpass = findViewById(R.id.etPassword);

@@ -7,67 +7,67 @@
 
         <item
             android:id="@+id/nav_homeConsultante"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/homenavi"
             android:title="Pantalla principal" />
 
         <item
             android:id="@+id/nav_homeProfesional"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/homenavi"
             android:title="Pantalla principal" />
 
         <item
             android:id="@+id/nav_homeDirector"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/homenavi"
             android:title="Pantalla principal" />
 
         <item
             android:id="@+id/nav_cargarEmocionDiaria"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/emotion"
             android:title="Cargar emoción diaria" />
 
         <item
             android:id="@+id/nav_configurarHorario"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/clock"
             android:title="Configurar horario" />
 
         <item
             android:id="@+id/nav_sugerirContenido"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/multimedia"
             android:title="Sugerir contenido multimedia" />
 
         <item
             android:id="@+id/nav_reporteEmocion"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/report"
             android:title="Reporte mensual emoción" />
 
         <item
             android:id="@+id/nav_reporteRutina"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/report2"
             android:title="Reporte mensual rutina" />
 
         <item
             android:id="@+id/nav_sugerirConsejo"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/sugerirconsejo"
             android:title="Sugerir consejo diario" />
 
         <item
             android:id="@+id/nav_ingresarEncuesta"
-            android:icon="@drawable/logo_soyuz"
+            android:icon="@drawable/encuesta"
             android:title="Encuesta" />
 
         <item
             android:id="@+id/nav_rutinaDiaria"
-            android:icon="@drawable/logo_soyuz"
+            android:icon="@drawable/rutinaconf"
             android:title="Rutina" />
 
         <item
             android:id="@+id/nav_rutinaDiariaSeguimiento"
-            android:icon="@drawable/logo_soyuz"
+            android:icon="@drawable/rutinaseguimiento"
             android:title="Rutina seguimiento" />
 
         <item
             android:id="@+id/nav_multimedia"
-            android:icon="@drawable/logo_soyuz"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Multimedia" />
 
         <item
@@ -77,7 +77,7 @@
 
         <item
             android:id="@+id/nav_multimedia_video"
-            android:icon="@drawable/logo_soyuz"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Multimedia video" />
 
         <item
