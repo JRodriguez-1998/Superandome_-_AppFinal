@@ -158,7 +158,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
         navMenu.findItem(R.id.nav_homeConsultante).setVisible(true);
 
-        if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
+        if (emocionUserService.getEmocionByFechaAndId(idUser, new Date()) != null) {
             navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
         }
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setChecked(false);

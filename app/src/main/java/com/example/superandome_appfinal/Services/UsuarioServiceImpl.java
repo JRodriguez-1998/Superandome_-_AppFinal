@@ -7,6 +7,8 @@ import com.example.superandome_appfinal.IDaos.UsuarioDao;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -123,6 +125,14 @@ public class UsuarioServiceImpl implements UsuarioService {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<Boolean> f = executor.submit(() -> {
             try {
+                Calendar c = Calendar.getInstance();
+                c.set(Calendar.HOUR_OF_DAY, 0);
+                c.set(Calendar.MINUTE, 0);
+
+                usuario.setHorarioEmocion(c.getTime());
+                usuario.setHabilitado(true);
+                usuario.setFechaAlta(new Date());
+
                 dao.create(usuario);
                 return true;
             } catch (Exception e) {
