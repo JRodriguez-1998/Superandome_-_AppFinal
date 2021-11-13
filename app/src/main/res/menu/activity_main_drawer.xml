@@ -82,27 +82,27 @@
 
         <item
             android:id="@+id/nav_sugerirContenido_profesional"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/idea"
             android:title="Profesional Sugerir contenido" />
 
         <item
             android:id="@+id/nav_sugerirConsejo_profesional"
-            android:icon="@drawable/asustado"
+            android:icon="@drawable/idea"
             android:title="Profesional Sugerir consejo" />
 
         <item
             android:id="@+id/nav_derivarConsejo_profesional"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/transfer"
             android:title="Derivar Consejos" />
         
         <item
             android:id="@+id/nav_altaProfesional"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/user"
             android:title="Alta Profesional" />
 
         <item
             android:id="@+id/nav_aprobarContenido_director"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/transfer"
             android:title="Aprobar Contenido Multimedia" />
 
         <item
@@ -117,17 +117,17 @@
 
         <item
             android:id="@+id/nav_cambiar_password"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/password"
             android:title="Cambiar Contraseña" />
 
         <item
             android:id="@+id/nav_cambiar_password_profesional"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/question"
             android:title="Cambiar Contraseña" />
 
         <item
             android:id="@+id/nav_cerrarSesion"
-            android:icon="@android:drawable/ic_lock_power_off"
+            android:icon="@drawable/logout"
             android:title="Cerrar Sesion" />
 
     </group>
