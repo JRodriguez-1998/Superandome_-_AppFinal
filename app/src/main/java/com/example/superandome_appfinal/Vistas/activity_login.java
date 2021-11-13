@@ -28,6 +28,13 @@ import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.Genero;
+import com.example.superandome_appfinal.Entidades.Item;
+import com.example.superandome_appfinal.Entidades.ItemUsuario;
+import com.example.superandome_appfinal.Entidades.ItemUsuarioDiario;
+import com.example.superandome_appfinal.Entidades.PreguntaSeguridad;
+import com.example.superandome_appfinal.Entidades.TipoArchivo;
+import com.example.superandome_appfinal.Entidades.TipoConsejo;
+import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.DataDB;
 import com.example.superandome_appfinal.IServices.UsuarioService;
@@ -65,6 +72,8 @@ public class activity_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        creacionTablas();
+
         getSupportActionBar().hide();
         preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -83,6 +92,38 @@ public class activity_login extends AppCompatActivity {
         //Verifico si hay una Sesion iniciada
         if(revisarSesion())
             startActivity(new Intent(this, navigationDrawer_consultante.class));
+    }
+
+    private void creacionTablas() {
+        try {
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            Future f = executor.submit(() -> {
+                try {
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Consejo.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Contenido.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Emocion.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), EmocionUsuario.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Encuesta.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), EncuestaUsuario.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Estado.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Genero.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Item.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), ItemUsuario.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), ItemUsuarioDiario.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), PreguntaSeguridad.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), TipoArchivo.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), TipoConsejo.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), TipoUsuario.class);
+                    TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Usuario.class);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            f.get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Clic en Crear Cuenta
