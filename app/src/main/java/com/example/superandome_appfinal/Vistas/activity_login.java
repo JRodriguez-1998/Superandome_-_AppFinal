@@ -1,11 +1,17 @@
 package com.example.superandome_appfinal.Vistas;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,11 +53,13 @@ public class activity_login extends AppCompatActivity {
     Button btnEntrar;
     ImageView btnface, btninsta, btnwpp;
     UsuarioService userService;
+    int REQUEST_CODE=200;
 
     //Creo Objeto SharedPreferences para utilizar para las Sesiones
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +75,8 @@ public class activity_login extends AppCompatActivity {
         btnface = findViewById(R.id.btnFacebook);
         btninsta = findViewById(R.id.btnInstagram);
         btnwpp = findViewById(R.id.btnWhatsapp);
+
+        verificarPermisos();
 
         //Verifico si hay una Sesion iniciada
         if(revisarSesion())
@@ -186,4 +196,40 @@ public class activity_login extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
         startActivity(intent);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void verificarPermisos() {
+
+        int PermisoLectura = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int PermisoEscritura = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int PermisoManageMedia = ContextCompat.checkSelfPermission(this,Manifest.permission.MANAGE_MEDIA);
+        int PermisoManageStorage = ContextCompat.checkSelfPermission(this,Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+
+
+
+        if(PermisoLectura == PackageManager.PERMISSION_GRANTED && PermisoEscritura == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(this,"Permiso lectura concedido.",Toast.LENGTH_SHORT).show();
+        }else{
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_CODE);
+
+        }
+
+        if (PermisoManageMedia == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(this,"ManageMedia ok",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            requestPermissions(new String[]{Manifest.permission.MANAGE_MEDIA},REQUEST_CODE);
+        }
+
+        if (PermisoManageStorage == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(this,"ManageStorage ok",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE},REQUEST_CODE);
+        }
+
+
+    }
+
+
 }

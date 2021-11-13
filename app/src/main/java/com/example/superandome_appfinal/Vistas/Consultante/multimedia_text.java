@@ -1,66 +1,105 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.util.Base64;
+import java.util.Base64.*;
+
+
+import android.os.Environment;
+import android.os.FileUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
+import com.github.barteksc.pdfviewer.PDFView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link multimedia_text#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class multimedia_text extends Fragment {
+    PDFView pdf;
+    TextView txt;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public multimedia_text(){};
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public multimedia_text() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment multimedia_text.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static multimedia_text newInstance(String param1, String param2) {
-        multimedia_text fragment = new multimedia_text();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+//
+//        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
+//        // String filename = "HOLA.pdf";
+//
+//        File file = new File(path);
+//
+////        Path ruta = file.toPath();
+//
+//
+//        //FUNCA
+////        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
+//        byte[] bytesDato= new byte[0];
+//        try {
+//
+//
+//            bytesDato = Files.readAllBytes(file.toPath());
+//
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        String resultado = Base64.getEncoder().encodeToString(bytesDato);
+//
+//
+//        txt = (TextView) view.findViewById(R.id.txtPrueba);
+//        txt.setText(resultado);
+            ContenidoService contenidoService = null;
+        try {
+            contenidoService = new ContenidoServiceImpl();
+
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Contenido contenido = contenidoService.getContenidoByID(1);
+
+        byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
+        //byte[] decodedString
+
+
+
+        pdf = (PDFView) view.findViewById(R.id.pdfView);
+        pdf.fromBytes(decoder).load();
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_multimedia_text, container, false);
     }
+
 }
+
+
+
