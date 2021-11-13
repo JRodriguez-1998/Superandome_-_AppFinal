@@ -49,24 +49,6 @@
                         android:layout_height="277dp"
                         android:layout_marginTop="15dp" />
 
-                    <TextView
-                        android:id="@+id/textView28"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/questrial_regular"
-                        android:text="@string/txtDescripcionMultimedia"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:layout_gravity="left|center_vertical" />
-
-                    <TextView
-                        android:id="@+id/textView29"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/questrial_regular"
-                        android:gravity="left|center_vertical"
-                        android:text="Descripcion de ejemplo"
-                        android:textColor="@color/white" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

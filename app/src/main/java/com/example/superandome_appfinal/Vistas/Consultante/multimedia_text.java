@@ -43,6 +43,8 @@ public class multimedia_text extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
 //
 //        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
 //        // String filename = "HOLA.pdf";
