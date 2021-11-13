@@ -65,10 +65,6 @@ public class activity_altaConsultante extends AppCompatActivity {
         try{
             generoService = new GeneroServiceImpl();
             preguntaSeguridadService = new PreguntaSeguridadServiceImpl();
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
 
         //CARGA DE SPINNER DE GENEROS
         Genero gen = new Genero(0,"Seleccione Género");
@@ -120,6 +116,12 @@ public class activity_altaConsultante extends AppCompatActivity {
                 txtFechaNac.setText(fecha);
             }
         };
+
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //Clic en Registrar
