@@ -1,10 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.os.Build;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,20 +9,23 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.ItemRutinaEnum;
+import com.example.superandome_appfinal.IServices.ItemUsuarioDiarioService;
 import com.example.superandome_appfinal.R;
-import com.github.mikephil.charting.charts.HorizontalBarChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
+import com.example.superandome_appfinal.Services.ItemUsuarioDiarioServiceImpl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class reporteRutina extends Fragment {
 
@@ -42,10 +42,14 @@ public class reporteRutina extends Fragment {
     private ProgressBar barRut9;
     private ProgressBar barRut10;
 
+    private TextView txtResultado;
+
+    Integer idUsuario;
+    private ItemUsuarioDiarioService service;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -56,7 +60,27 @@ public class reporteRutina extends Fragment {
 
         FindViews(v);
 
-        LoadProgressBars();
+        spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                LoadProgressBars();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                LoadProgressBars();
+            }
+        });
+
+        try {
+            service = new ItemUsuarioDiarioServiceImpl();
+
+            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences.getInt("idUser", 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         LoadSpinner();
 
         return v;
@@ -75,25 +99,86 @@ public class reporteRutina extends Fragment {
         barRut8 = v.findViewById(R.id.barRut8);
         barRut9 = v.findViewById(R.id.barRut9);
         barRut10 = v.findViewById(R.id.barRut10);
-    }
 
-    private void LoadProgressBars() {
-        barRut1.setProgress(10);
-        barRut2.setProgress(20);
-        barRut3.setProgress(30);
-        barRut4.setProgress(40);
-        barRut5.setProgress(50);
-        barRut6.setProgress(60);
-        barRut7.setProgress(70);
-        barRut8.setProgress(80);
-        barRut9.setProgress(90);
-        barRut10.setProgress(100);
+        txtResultado = v.findViewById(R.id.txtResultadoRutina);
     }
 
     private void LoadSpinner() {
-        List<String> listMeses = Arrays.asList("Septiembre 2021", "Agosto 2021", "Julio 2021");
+        List<String> listMeses = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.MONTH, -i);
+
+            Integer anio = c.get(Calendar.YEAR);
+            String mes = c.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+
+            String anio_mes = anio + " - " + mes;
+            listMeses.add(anio_mes);
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item_mes, listMeses);
         spMeses.setAdapter(adapter);
     }
+
+    private Calendar GetSelectedDate() {
+        int pos = spMeses.getSelectedItemPosition();
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, -(pos + 1));
+
+        return c;
+    }
+
+    private void LoadProgressBars() {
+        try {
+            Calendar fecha = GetSelectedDate();
+
+            Map<Integer, Float> map = service.getReporteMensualRutina(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
+            if (map == null) {
+                Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (map.size() == 0) {
+                Toast.makeText(getActivity(), "No hay datos registrados para el período seleccionado", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            barRut1.setProgress(Math.round(map.get(ItemRutinaEnum.DIETA.getId())));
+            barRut2.setProgress(Math.round(map.get(ItemRutinaEnum.CONSUMO.getId())));
+            barRut3.setProgress(Math.round(map.get(ItemRutinaEnum.EJERCICIO.getId())));
+            barRut4.setProgress(Math.round(map.get(ItemRutinaEnum.DESCANSO.getId())));
+            barRut5.setProgress(Math.round(map.get(ItemRutinaEnum.AMBIENTE.getId())));
+            barRut6.setProgress(Math.round(map.get(ItemRutinaEnum.HIGIENE.getId())));
+            barRut7.setProgress(Math.round(map.get(ItemRutinaEnum.EQUILIBRIO.getId())));
+            barRut8.setProgress(Math.round(map.get(ItemRutinaEnum.SOCIAL.getId())));
+            barRut9.setProgress(Math.round(map.get(ItemRutinaEnum.OCIO.getId())));
+            barRut10.setProgress(Math.round(map.get(ItemRutinaEnum.NATURALEZA.getId())));
+
+            LoadResultado(map);
+
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    private void LoadResultado(Map<Integer, Float> map) {
+        Float acu = 0f;
+        for (Map.Entry<Integer, Float> entry : map.entrySet()) {
+            acu += entry.getValue();
+        }
+        int promedio = Math.round(acu / map.size());
+
+        String resultado;
+
+        if (promedio >= 90)
+            resultado = "¡Excelente autocuidado!";
+        else if (promedio >= 60)
+            resultado = "Buen autocuidado, seguí así";
+        else
+            resultado = "Se puede reforzar, ¡a seguir trabajando!";
+
+        txtResultado.setText(resultado);
+    }
+
 }
