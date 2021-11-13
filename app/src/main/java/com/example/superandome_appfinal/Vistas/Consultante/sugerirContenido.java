@@ -221,7 +221,7 @@ public class sugerirContenido extends Fragment {
             usuario = usuarioService.getUsuarioById(idUsuario);
 
             estado = new Estado();
-            estado.setIdEstado(1);
+            estado.setIdEstado(5);
 
             tipoArchivo = new TipoArchivo();
 
