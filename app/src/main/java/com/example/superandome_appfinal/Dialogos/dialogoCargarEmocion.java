@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,9 +80,9 @@ public class dialogoCargarEmocion extends DialogFragment {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                navController.navigate(R.id.nav_homeConsultante);
                 dismiss();
-                fragmentHome = new homeConsultante();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment_content_navigation_drawer_consultante, fragmentHome).commit();
             }
         });
     }

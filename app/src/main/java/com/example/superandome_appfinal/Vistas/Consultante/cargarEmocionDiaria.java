@@ -155,9 +155,8 @@ public class cargarEmocionDiaria extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
-
-                    if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
+                if (emocionUserService.getEmocionByFechaAndId(idUsuario, new Date()) == null) {
+                    if (horaActualConver.isAfter(horaUserConver) || horaActualConver.equals(horaUserConver)) {
 
                         if (buscarSeleccion(estadoAlegria, estadoTristeza, estadoIra, estadoMiedo, estadoAsco)) {
 
@@ -217,10 +216,10 @@ public class cargarEmocionDiaria extends Fragment {
                             Toast.makeText(getActivity(), "Debe seleccionar al menos una emoción", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
