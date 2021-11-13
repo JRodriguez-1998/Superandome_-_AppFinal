@@ -69,7 +69,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 R.id.nav_ingresarEncuesta,R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
                 R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,
                 R.id.nav_pregunta_seguridad, R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento,
-                R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director)
+                R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director, R.id.nav_homeProfesional, R.id.nav_homeDirector)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
@@ -102,11 +102,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 break;
             case PROFESIONAL:
                 showItemsProfesional();
-                navController.navigate(R.id.nav_sugerirContenido_profesional);
+                navController.navigate(R.id.nav_homeProfesional);
                 break;
             case DIRECTOR:
                 showItemsDirector();
-                navController.navigate(R.id.nav_altaProfesional);
+                navController.navigate(R.id.nav_homeDirector);
                 break;
         }
     }
@@ -126,6 +126,9 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void hideAllItems() {
         Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_homeConsultante).setVisible(false);
+        navMenu.findItem(R.id.nav_homeProfesional).setVisible(false);
+        navMenu.findItem(R.id.nav_homeDirector).setVisible(false);
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(false);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirContenido).setVisible(false);
@@ -152,6 +155,8 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsConsultante() {
         Menu navMenu = navigationView.getMenu();
+
+        navMenu.findItem(R.id.nav_homeConsultante).setVisible(true);
 
         if(emocionUserService.getEmocionByFechaAndId(1, new Date()) != null){
             navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
@@ -184,6 +189,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsProfesional() {
         Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_homeProfesional).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirContenido_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_derivarConsejo_profesional).setVisible(true);
@@ -202,6 +208,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     private void showItemsDirector() {
         Menu navMenu = navigationView.getMenu();
+        navMenu.findItem(R.id.nav_homeDirector).setVisible(true);
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(true);
         navMenu.findItem(R.id.nav_aprobarContenido_director).setVisible(true);
         navMenu.findItem(R.id.nav_aprobarConsejo_director).setVisible(true);

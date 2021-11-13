@@ -1,7 +1,9 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -14,6 +16,7 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +47,8 @@ public class homeConsultante extends Fragment {
 
     Integer idUsuario;
 
+    ImageView btnface, btninsta, btnwpp;
+
     public homeConsultante() {}
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -69,6 +74,40 @@ public class homeConsultante extends Fragment {
         int n = numAleatorio.nextInt(listaConsejos.size() -1 +1);
 
         txtConsejoDiario.setText(listaConsejos.get(n).getTexto());
+
+        btnface = view.findViewById(R.id.btnFacebook);
+        btninsta = view.findViewById(R.id.btnInstagram);
+        btnwpp = view.findViewById(R.id.btnWhatsapp);
+
+        btnface.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.facebook.com/Soyuz-Salud-Mental-102791508151767/";
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
+
+        btninsta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.instagram.com/soyuzsaludmental/";
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
+
+        btnwpp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://api.whatsapp.com/send/?phone=573202487093&text=Hola%2C+quiero+ponerme+en+contacto+con+Soyuz&app_absent=0";
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
