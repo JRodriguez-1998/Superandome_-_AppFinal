@@ -1,8 +1,12 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +24,8 @@ import java.util.List;
 
 public class indexEncuestas extends Fragment {
     RecyclerView recyclerViewContenido;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     EncuestaService encuestaService;
 
@@ -39,6 +45,9 @@ public class indexEncuestas extends Fragment {
 
             List<Encuesta> encuestas = encuestaService.getEncuestas();
 
+            preferences = getActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
+            editor = preferences.edit();
+
             recyclerViewContenido = v.findViewById(R.id.rvEncuestas);
             recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerViewContenido.setHasFixedSize(true);
@@ -46,7 +55,10 @@ public class indexEncuestas extends Fragment {
             AdapterEncuesta adapter = new AdapterEncuesta(encuestas);
             adapter.setOnClickListener(view -> {
                 int idEncuesta = encuestas.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdEncuesta();
-                Toast.makeText(getActivity(),"IdEncuesta: " + idEncuesta, Toast.LENGTH_SHORT).show();
+
+                guardarSesionContenido(true, idEncuesta);
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                navController.navigate(R.id.nav_ingresarEncuesta);
             });
 
             recyclerViewContenido.setAdapter(adapter);
@@ -57,5 +69,11 @@ public class indexEncuestas extends Fragment {
         }
 
         return v;
+    }
+
+    public void guardarSesionContenido(boolean iniciar, int idEncuesta){
+        editor.putBoolean("encuesta",iniciar);
+        editor.putInt("idEncuesta", idEncuesta);
+        editor.apply();
     }
 }

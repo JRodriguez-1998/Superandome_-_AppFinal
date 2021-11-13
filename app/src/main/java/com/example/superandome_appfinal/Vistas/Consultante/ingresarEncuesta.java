@@ -42,6 +42,7 @@ public class ingresarEncuesta extends Fragment {
     EncuestaUsuarioService encuestaUsuarioService;
     UsuarioService usuarioService;
     Integer idUsuario;
+    Integer idEncuesta;
 
     public ingresarEncuesta() {}
 
@@ -55,6 +56,9 @@ public class ingresarEncuesta extends Fragment {
         SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         idUsuario = preferences.getInt("idUser", 0);
 
+        preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
+        idEncuesta = preferences.getInt("idEncuesta", 0);
+
         btnAceptar = (Button) view.findViewById(R.id.btnAceptarEncuesta);
 
         btnAceptar.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +71,7 @@ public class ingresarEncuesta extends Fragment {
                     return;
                 }
 
-                Encuesta encuesta = encuestaService.getEncuestaById(EncuestaEnum.TEST_ANSIEDAD_BECK.getId());
+                Encuesta encuesta = encuestaService.getEncuestaById(idEncuesta);
                 Usuario usuario = usuarioService.getUsuarioById(idUsuario);
                 EncuestaUsuario encuestaUsuario = new EncuestaUsuario(total, encuesta, usuario);
 
