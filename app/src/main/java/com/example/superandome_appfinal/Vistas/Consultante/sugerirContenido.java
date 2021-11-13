@@ -53,6 +53,8 @@ public class sugerirContenido extends Fragment {
     EstadoService estadoService;
     Estado estado;
     TipoArchivo tipoArchivo;
+    String tipo = new String();
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
@@ -65,10 +67,12 @@ public class sugerirContenido extends Fragment {
 
         btnGuardar.setEnabled(false);
 
+        txtAutor.setText("");
+        txtTipoContenido.setText("");
 
-
-        ////////////////////DUDAAAA//////////////////
         btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
+
+
 
 
 
@@ -128,18 +132,62 @@ public class sugerirContenido extends Fragment {
 
                     InicializarServicio();
 
+                    String[] partesName = cadenaPath.split("/");
+
+                    int nombrePost = partesName.length;
+                   // partesName[0].get;
+
+                    txtAutor.setText(usuario.getNickname());
+
                     content = new Contenido();
                     content.setUsuario(usuario);
                     content.setArchivo(resultado);
                     content.setEstado(estado);
-                    content.setNombreArchivo("PDF PRUEBA");
+                    content.setNombreArchivo(partesName[nombrePost-1]);
 
-                    if(contenidoService.guardar(content)){
-                        Toast.makeText(getActivity(),"Cargo",Toast.LENGTH_SHORT).show();
+
+                    //txtAutor.setText(partesName[nombrePost-1]);
+
+                    for(int i = 0; i<5;i++){
+
+                        tipo += resultado.charAt(i);
+
                     }
-                    else{
-                        Toast.makeText(getActivity(),"Pincho",Toast.LENGTH_SHORT).show();
+                    if(tipo.equals("JVBER")){
+                        tipoArchivo.setIdTipoArchivo(1);
+                        content.setTipoArchivo(tipoArchivo);
+                        txtTipoContenido.setText("PDF");
                     }
+                    if (tipo.equals("/+MYx")) {
+                        tipoArchivo.setIdTipoArchivo(3);
+                        content.setTipoArchivo(tipoArchivo);
+                        txtTipoContenido.setText("Audio");
+                    }
+                    if (tipo.equals("AAAAI")) {
+                        tipoArchivo.setIdTipoArchivo(2);
+                        content.setTipoArchivo(tipoArchivo);
+                        txtTipoContenido.setText("Video");
+                    }
+
+
+
+                    btnGuardar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(contenidoService.guardar(content)){
+                                Toast.makeText(getActivity(),"Archivo derivado",Toast.LENGTH_SHORT).show();
+
+                                txtAutor.setText("");
+                                txtTipoContenido.setText("");
+                            }
+                            else{
+                                Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+
 
 
 
@@ -152,7 +200,7 @@ public class sugerirContenido extends Fragment {
 //                    txt.setText(resultado);
 
 
-                    byte[] decoder = Base64.getDecoder().decode(resultado);
+  //                  byte[] decoder = Base64.getDecoder().decode(resultado);
                     //byte[] decodedString
 
 
@@ -193,7 +241,7 @@ public class sugerirContenido extends Fragment {
             estado.setIdEstado(1);
 
             tipoArchivo = new TipoArchivo();
-            tipoArchivo.setIdTipoArchivo(1);
+           // tipoArchivo.setIdTipoArchivo(1);
 
 
 
