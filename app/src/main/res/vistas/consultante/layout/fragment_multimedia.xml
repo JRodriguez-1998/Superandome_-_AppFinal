@@ -13,145 +13,31 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="347dp"
-                    android:layout_height="432dp"
-                    android:layout_marginTop="24dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/tvAprobarRechazar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/redhat_medium"
+                    android:text="Multimedia"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="28sp" />
 
-                    <TextView
-                        android:id="@+id/txtTituloMultimedia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:fontFamily="@font/redhat_medium"
-                        android:text="@string/tituloMultimedia"
-                        android:textColor="@color/white"
-                        android:textSize="24sp" />
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="386dp"
-                        android:layout_marginTop="20dp">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/border">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="20dp">
-
-                                <TextView
-                                    android:id="@+id/textView23"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Guia video N°1"
-                                    android:textColor="@color/black"
-                                    android:textSize="20sp" />
-
-                                <Button
-                                    android:id="@+id/button5"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="80dp"
-                                    android:backgroundTint="#ff0000"
-                                    android:text="@string/btnAbrirMultimedia" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="20dp">
-
-                                <TextView
-                                    android:id="@+id/textView24"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Guia Video N°2"
-                                    android:textColor="@color/black"
-                                    android:textSize="20sp" />
-
-                                <Button
-                                    android:id="@+id/button6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="80dp"
-                                    android:backgroundTint="#ff0000"
-                                    android:text="@string/btnAbrirMultimedia" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="20dp">
-
-                                <TextView
-                                    android:id="@+id/textView25"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Guia de texto N°1"
-                                    android:textColor="@color/black"
-                                    android:textSize="20sp" />
-
-                                <Button
-                                    android:id="@+id/button7"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="80dp"
-                                    android:backgroundTint="#ff0000"
-                                    android:text="@string/btnAbrirMultimedia" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginBottom="20dp">
-
-                                <TextView
-                                    android:id="@+id/textView26"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:fontFamily="@font/questrial_regular"
-                                    android:text="Guia de texto N°2"
-                                    android:textColor="@color/black"
-                                    android:textSize="20sp" />
-
-                                <Button
-                                    android:id="@+id/button8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="80dp"
-                                    android:backgroundTint="#ff0000"
-                                    android:text="@string/btnAbrirMultimedia" />
-                            </TableRow>
-                        </TableLayout>
-                    </ScrollView>
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvContenido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+            </LinearLayout>
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
