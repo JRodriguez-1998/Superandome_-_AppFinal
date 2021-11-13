@@ -621,8 +621,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -659,8 +658,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -695,8 +693,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -732,8 +729,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -768,8 +764,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -803,8 +798,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -838,8 +832,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -873,8 +866,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -908,8 +900,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -943,8 +934,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -979,8 +969,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1014,8 +1003,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1050,8 +1038,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1085,8 +1072,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1121,8 +1107,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1156,8 +1141,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1192,8 +1176,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
@@ -1227,8 +1210,7 @@ public class rutina_diaria_seguimiento extends Fragment {
 
                     
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     //ItemUsuario itemUsu = new ItemUsuario();
                     //itemUsu.setUsuario(usuario);
                     //itemUsu.setItem(lista.get(0));
