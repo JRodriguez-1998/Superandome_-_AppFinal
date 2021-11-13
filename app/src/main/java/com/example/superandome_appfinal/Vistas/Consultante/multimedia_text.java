@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Base64.*;
 
@@ -24,7 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 import com.github.barteksc.pdfviewer.PDFView;
 
 
@@ -39,36 +43,46 @@ public class multimedia_text extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
-        // String filename = "HOLA.pdf";
-
-        File file = new File(path);
-
-//        Path ruta = file.toPath();
-
-
-        //FUNCA
-//        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
-        byte[] bytesDato= new byte[0];
+//
+//        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
+//        // String filename = "HOLA.pdf";
+//
+//        File file = new File(path);
+//
+////        Path ruta = file.toPath();
+//
+//
+//        //FUNCA
+////        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
+//        byte[] bytesDato= new byte[0];
+//        try {
+//
+//
+//            bytesDato = Files.readAllBytes(file.toPath());
+//
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        String resultado = Base64.getEncoder().encodeToString(bytesDato);
+//
+//
+//        txt = (TextView) view.findViewById(R.id.txtPrueba);
+//        txt.setText(resultado);
+            ContenidoService contenidoService = null;
         try {
+            contenidoService = new ContenidoServiceImpl();
 
 
-            bytesDato = Files.readAllBytes(file.toPath());
 
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
-        String resultado = Base64.getEncoder().encodeToString(bytesDato);
+        Contenido contenido = contenidoService.getContenidoByID(1);
 
-
-        txt = (TextView) view.findViewById(R.id.txtPrueba);
-        txt.setText(resultado);
-
-
-        byte[] decoder = Base64.getDecoder().decode(resultado);
+        byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
         //byte[] decodedString
 
 
@@ -84,6 +98,7 @@ public class multimedia_text extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_multimedia_text, container, false);
     }
+
 }
 
 
