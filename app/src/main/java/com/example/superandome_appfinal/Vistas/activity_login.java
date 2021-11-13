@@ -7,13 +7,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Entidades.Consejo;
+import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Entidades.Emocion;
+import com.example.superandome_appfinal.Entidades.EmocionUsuario;
+import com.example.superandome_appfinal.Entidades.Encuesta;
+import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
+import com.example.superandome_appfinal.Entidades.Estado;
+import com.example.superandome_appfinal.Entidades.Genero;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.DataDB;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
@@ -21,11 +31,15 @@ import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsulta
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
 import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
 import com.example.superandome_appfinal.Vistas.Consultante.recuperarPassword;
+import com.j256.ormlite.table.TableUtils;
 
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class activity_login extends AppCompatActivity {
 
@@ -44,7 +58,6 @@ public class activity_login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         getSupportActionBar().hide();
-
         preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
         editor = preferences.edit();
 
