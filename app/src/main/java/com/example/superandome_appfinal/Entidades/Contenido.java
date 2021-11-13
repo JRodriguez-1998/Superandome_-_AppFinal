@@ -25,7 +25,7 @@ public class Contenido {
     @Column(nullable = false)
     private Date fechaCarga;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String archivo;
 
     @ManyToOne
