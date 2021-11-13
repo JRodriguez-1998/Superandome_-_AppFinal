@@ -59,7 +59,7 @@ public class activity_login extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +76,9 @@ public class activity_login extends AppCompatActivity {
         btninsta = findViewById(R.id.btnInstagram);
         btnwpp = findViewById(R.id.btnWhatsapp);
 
-        verificarPermisos();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            verificarPermisos();
+        }
 
         //Verifico si hay una Sesion iniciada
         if(revisarSesion())
