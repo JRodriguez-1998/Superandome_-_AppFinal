@@ -69,12 +69,12 @@ public class ItemUsuarioDiarioDaoImpl extends BaseDaoImpl<ItemUsuarioDiario, Int
                         "   iud.idItem, " +
                         "   aux.count / DAY(LAST_DAY(iud.fecha)) * 100 'porcentaje' " +
                         " FROM " +
-                        "   sql10447793.itemusuariodiario iud " +
+                        "   sql10450855.itemusuariodiario iud " +
                         "   INNER JOIN ( " +
                         "       SELECT " +
                         "           idItem, " +
                         "           COUNT(1) count " +
-                        "       FROM sql10447793.itemusuariodiario " +
+                        "       FROM sql10450855.itemusuariodiario " +
                         "       WHERE " +
                         "           idUsuario = " + idUsuario +
                         "           AND YEAR(fecha) = " + anio +
