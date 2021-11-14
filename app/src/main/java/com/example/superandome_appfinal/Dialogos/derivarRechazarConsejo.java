@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Entidades.Consejo;
@@ -80,9 +82,10 @@ public class derivarRechazarConsejo extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
                 consejo.setEstado(estado);
                 if(consejoService.actualizar(consejo)){
-                    Toast.makeText(getActivity(), "Consejo Derivado al Director", Toast.LENGTH_LONG).show();
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_derivarConsejo_profesional);
+                    dismiss();
                 }
-                dismiss();
             }
         });
         btnRechazar.setOnClickListener(new View.OnClickListener() {

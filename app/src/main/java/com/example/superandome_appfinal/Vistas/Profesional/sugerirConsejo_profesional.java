@@ -102,7 +102,7 @@ public class sugerirConsejo_profesional extends Fragment {
                 //usuario.setIdUsuario(99);
                 user = usuarioService.getUsuario(nameUsuario);
 
-                Estado estado = new Estado(EstadoEnum.PENDIENTE.getId());
+                Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
                 TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
                 Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, user);
 
