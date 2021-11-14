@@ -44,9 +44,7 @@ public class multimedia extends Fragment {
 
         try {
             contenidoService = new ContenidoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         preferences = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -73,7 +71,9 @@ public class multimedia extends Fragment {
         });
 
         recyclerViewContenido.setAdapter(adapterContenido);
-
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return view;
     }
 

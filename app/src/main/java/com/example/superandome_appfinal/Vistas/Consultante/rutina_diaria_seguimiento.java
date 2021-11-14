@@ -102,14 +102,12 @@ public class rutina_diaria_seguimiento extends Fragment {
             itemUsuarioService= new ItemUsuarioServiceImpl();
             itemUsuarioDiarioService= new ItemUsuarioDiarioServiceImpl();
             ususerv = new UsuarioServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         
         SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         int idUsuario = preferences.getInt("idUser", 0);
 
         usuario = ususerv.getUsuarioById(idUsuario);
+
 
 
         listaItems = itemService.getItemsRutina();
@@ -1252,13 +1250,16 @@ public class rutina_diaria_seguimiento extends Fragment {
                     d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_rutina");
                 }
                 else{
-                    Toast.makeText(getActivity(),"No funca",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Error al actualizar",Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
-    }}
+    } } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
 
 

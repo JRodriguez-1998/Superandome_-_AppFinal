@@ -65,12 +65,19 @@ public class sugerirContenido extends Fragment {
         btnElegirArchivo = (Button) view.findViewById(R.id.btnElegirArchivo);
         btnGuardar = (Button) view.findViewById(R.id.button);
         txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenido);
+        try {
+
+
 
         btnGuardar.setEnabled(false);
 
         txtTipoContenido.setText("");
 
         btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -193,7 +200,7 @@ public class sugerirContenido extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -214,7 +221,7 @@ public class sugerirContenido extends Fragment {
             usuario = usuarioService.getUsuarioById(idUsuario);
 
             estado = new Estado();
-            estado.setIdEstado(1);
+            estado.setIdEstado(5);
 
             tipoArchivo = new TipoArchivo();
 

@@ -65,6 +65,8 @@ public class altaProfesional extends Fragment {
         confirPass = (EditText) view.findViewById(R.id.editTextConfPassProf);
 
         btnRegistrar = (Button) view.findViewById(R.id.btnAceptarAlta);
+        try {
+
 
         mostrarFechaHoy();
         cargarCalendario();
@@ -80,7 +82,10 @@ public class altaProfesional extends Fragment {
                 }
             }
         });
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     public void mostrarFechaHoy(){
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

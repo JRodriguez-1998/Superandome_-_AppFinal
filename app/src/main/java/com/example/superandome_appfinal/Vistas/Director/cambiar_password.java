@@ -54,17 +54,13 @@ public class cambiar_password extends Fragment {
         txtPassNueva = (EditText) view.findViewById(R.id.editTextPassNueva);
         txtConfirPassNueva = (EditText) view.findViewById(R.id.editTextConfPassNueva);
         btnConfirmar = (Button) view.findViewById(R.id.btnConfirmar);
-        
+        try{
         obtenerPreferences();
 
         //Instancio el Servicio del Usuario
-        try
-        {
+
             usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables)
-        {
-            throwables.printStackTrace();
-        }
+
 
         user = usuarioService.getUsuario(nameUsuario);
 
@@ -78,8 +74,11 @@ public class cambiar_password extends Fragment {
                 cambiarContraseña();
             }
         });
-        
-    }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

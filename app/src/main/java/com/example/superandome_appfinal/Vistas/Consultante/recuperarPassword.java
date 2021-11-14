@@ -45,11 +45,15 @@ public class recuperarPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_password);
 
+
+
         getSupportActionBar().hide();
 
         btnAceptar = (Button) findViewById(R.id.btnAceptarRespuesta);
         txtRespuesta = (EditText) findViewById(R.id.txtRespuesta);
         spinnerPreguntas = (Spinner) findViewById(R.id.spPregunta);
+        try {
+
 
         iniciarServicios();
 
@@ -95,7 +99,10 @@ public class recuperarPassword extends AppCompatActivity {
                 }
             }
         });
-    }
+    }catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }}
 
     public void iniciarServicios(){
         try {

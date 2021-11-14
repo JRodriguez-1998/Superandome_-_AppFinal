@@ -49,6 +49,8 @@ public class ingresarEncuesta extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        try {
+
 
         iniciarRadio(view);
         iniciarServicios();
@@ -82,7 +84,11 @@ public class ingresarEncuesta extends Fragment {
                     Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_LONG).show();
                 }
             }
-        });
+        });}catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void iniciarRadio(View view){

@@ -777,7 +777,7 @@ public class rutinaDiaria extends Fragment {
                     d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_rutina");
                 }
                 else{
-                    Toast.makeText(getActivity(),"No funca",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Error al actualizar",Toast.LENGTH_LONG).show();
                 }
             }
         });
