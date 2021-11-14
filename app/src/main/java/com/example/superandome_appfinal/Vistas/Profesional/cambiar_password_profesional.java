@@ -24,6 +24,7 @@ import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
+import java.security.MessageDigest;
 import java.sql.SQLException;
 
 public class cambiar_password_profesional extends Fragment {
@@ -102,7 +103,7 @@ public class cambiar_password_profesional extends Fragment {
 
         String passActual = txtPass.getText().toString();
 
-        if(!user.getPassword().equals(passActual)){
+        if(!user.getPassword().equals(doHash(passActual))){
             Toast.makeText(getActivity(),"La Contaseña Actual ingresado no coincide con el Registrado.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -120,7 +121,7 @@ public class cambiar_password_profesional extends Fragment {
             return;
         }
 
-        user.setPassword(passNueva);
+        user.setPassword(doHash(passNueva));
 
         if(usuarioService.actualizar(user)){
             Toast.makeText(getActivity(),"Contraseña Modificada.", Toast.LENGTH_LONG).show();
@@ -132,4 +133,23 @@ public class cambiar_password_profesional extends Fragment {
         }
 
     }
+
+    public String doHash(String password){
+        try {
+            MessageDigest msgDiggest = MessageDigest.getInstance("MD5");
+            msgDiggest.update(password.getBytes());
+            byte[] resultado = msgDiggest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultado){
+                sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(),"Error al hashear", Toast.LENGTH_SHORT).show();
+        }
+        return "";
+    }
+
+
 }
