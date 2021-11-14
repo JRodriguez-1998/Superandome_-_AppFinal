@@ -63,9 +63,6 @@ public class sugerirConsejo extends Fragment {
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugerido);
         try {
 
-
-
-
         preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -97,8 +94,6 @@ public class sugerirConsejo extends Fragment {
                     Toast.makeText(getActivity(),"Seleccionar tipo de consejo", Toast.LENGTH_LONG).show();
                     return;
                 }
-
-
                  //OBTENER USUARIO
                 user = usuarioService.getUsuario(nameUsuario);
 
