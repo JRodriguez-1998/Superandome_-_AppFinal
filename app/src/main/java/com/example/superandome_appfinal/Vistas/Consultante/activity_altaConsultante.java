@@ -140,6 +140,7 @@ public class activity_altaConsultante extends AppCompatActivity {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(this, "Error al inicializar usuarioService", Toast.LENGTH_SHORT).show();
         }
 
         //Consulto si el Usuario ya existe

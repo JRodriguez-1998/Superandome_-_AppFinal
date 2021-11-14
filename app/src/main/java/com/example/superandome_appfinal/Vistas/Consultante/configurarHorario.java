@@ -103,6 +103,7 @@ public class configurarHorario extends Fragment {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
     }
 

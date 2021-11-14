@@ -79,6 +79,7 @@ public class altaProfesional extends Fragment {
                     RegistrarProfesional();
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Error al registrar profesional", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -130,6 +131,7 @@ public class altaProfesional extends Fragment {
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios genero", Toast.LENGTH_SHORT).show();
         }
 
         //CARGA DE SPINNER DE GENEROS
@@ -159,6 +161,7 @@ public class altaProfesional extends Fragment {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicio", Toast.LENGTH_SHORT).show();
         }
 
         //Consulto si el Usuario ya existe
