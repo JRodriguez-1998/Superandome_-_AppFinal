@@ -60,7 +60,6 @@ public class indexEncuestas extends Fragment {
                 switch(EncuestaEnum.getEncuestaEnum(idEncuesta))
                 {
                     case TEST_ANSIEDAD_BECK:
-                        guardarSesionContenido(true, idEncuesta);
                         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                         navController.navigate(R.id.nav_ingresarEncuesta);
                         break;
@@ -78,11 +77,5 @@ public class indexEncuestas extends Fragment {
         }
 
         return v;
-    }
-
-    public void guardarSesionContenido(boolean iniciar, int idEncuesta){
-        editor.putBoolean("encuesta",iniciar);
-        editor.putInt("idEncuesta", idEncuesta);
-        editor.apply();
     }
 }
