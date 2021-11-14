@@ -13,6 +13,13 @@ public class DataDB {
     public static String user="sql10450855";
     public static String pass="GSlRt8BJ2m";
 
+    //                  BD BACKUP
+//    public static String host="sql10.freesqldatabase.com";
+//    public static String port="3306";
+//    public static String nameBD="sql10451067";
+//    public static String user="sql10451067";
+//    public static String pass="jG2KJPjPIf";
+
     //Información para la conexion
     public static String urlMySQL = "jdbc:mysql://" + host + ":" + port + "/"+nameBD;
     public static String driver = "com.mysql.jdbc.Driver";
