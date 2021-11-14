@@ -26,6 +26,7 @@ import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.PreguntaSeguridadServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,4 +114,22 @@ public class recuperarPassword extends AppCompatActivity {
             Toast.makeText(this, "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public String doHash(String password){
+        try {
+            MessageDigest msgDiggest = MessageDigest.getInstance("MD5");
+            msgDiggest.update(password.getBytes());
+            byte[] resultado = msgDiggest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultado){
+                sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"Error al hashear", Toast.LENGTH_SHORT).show();
+        }
+        return "";
+    }
+
 }
