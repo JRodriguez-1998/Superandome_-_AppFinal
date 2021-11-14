@@ -56,62 +56,63 @@ public class homeConsultante extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         try {
-        iniciarServicios();
+            iniciarServicios();
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        idUsuario = preferences.getInt("idUser", 0);
+            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences.getInt("idUser", 0);
 
-        txtConsejoDiario = (TextView) view.findViewById(R.id.txtConsejoDia);
+            txtConsejoDiario = (TextView) view.findViewById(R.id.txtConsejoDia);
 
-        listaConsejos = consejoService.getConsejosByEstadoAndTipo(EstadoEnum.APROBADO_DIRECTOR.getId(), TipoConsejoEnum.GENERAL.getTipo());
-        Usuario usuario = usuarioService.getUsuarioById(idUsuario);
+            listaConsejos = consejoService.getConsejosByEstadoAndTipo(EstadoEnum.APROBADO_DIRECTOR.getId(), TipoConsejoEnum.GENERAL.getTipo());
+            Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        Integer fechaAct = cal.get(Calendar.DATE);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            Integer fechaAct = cal.get(Calendar.DATE);
 
-        Random numAleatorio = new Random(fechaAct + usuario.getIdUsuario());
-        int n = numAleatorio.nextInt(listaConsejos.size() -1 +1);
+            Random numAleatorio = new Random(fechaAct + usuario.getIdUsuario());
+            int n = numAleatorio.nextInt(listaConsejos.size() -1 +1);
 
-        txtConsejoDiario.setText(listaConsejos.get(n).getTexto());
+            txtConsejoDiario.setText(listaConsejos.get(n).getTexto());
 
-        btnface = view.findViewById(R.id.btnFacebook);
-        btninsta = view.findViewById(R.id.btnInstagram);
-        btnwpp = view.findViewById(R.id.btnWhatsapp);
+            btnface = view.findViewById(R.id.btnFacebook);
+            btninsta = view.findViewById(R.id.btnInstagram);
+            btnwpp = view.findViewById(R.id.btnWhatsapp);
 
-        btnface.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://www.facebook.com/Soyuz-Salud-Mental-102791508151767/";
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-                startActivity(intent);
-            }
-        });
+            btnface.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = "https://www.facebook.com/Soyuz-Salud-Mental-102791508151767/";
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    startActivity(intent);
+                }
+            });
 
-        btninsta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://www.instagram.com/soyuzsaludmental/";
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-                startActivity(intent);
-            }
-        });
+            btninsta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = "https://www.instagram.com/soyuzsaludmental/";
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    startActivity(intent);
+                }
+            });
 
-        btnwpp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "https://api.whatsapp.com/send/?phone=573202487093&text=Hola%2C+quiero+ponerme+en+contacto+con+Soyuz&app_absent=0";
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-                startActivity(intent);
-            }
-        });
-    }catch (Exception e) {
+            btnwpp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = "https://api.whatsapp.com/send/?phone=573202487093&text=Hola%2C+quiero+ponerme+en+contacto+con+Soyuz&app_absent=0";
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    startActivity(intent);
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
