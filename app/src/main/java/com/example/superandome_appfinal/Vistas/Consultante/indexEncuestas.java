@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.EncuestaEnum;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.IServices.EncuestaService;
 import com.example.superandome_appfinal.R;
@@ -45,7 +46,7 @@ public class indexEncuestas extends Fragment {
 
             List<Encuesta> encuestas = encuestaService.getEncuestas();
 
-            preferences = getActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
+            preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
             editor = preferences.edit();
 
             recyclerViewContenido = v.findViewById(R.id.rvEncuestas);
@@ -56,9 +57,17 @@ public class indexEncuestas extends Fragment {
             adapter.setOnClickListener(view -> {
                 int idEncuesta = encuestas.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdEncuesta();
 
-                guardarSesionContenido(true, idEncuesta);
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                navController.navigate(R.id.nav_ingresarEncuesta);
+                switch(EncuestaEnum.getEncuestaEnum(idEncuesta))
+                {
+                    case TEST_ANSIEDAD_BECK:
+                        guardarSesionContenido(true, idEncuesta);
+                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                        navController.navigate(R.id.nav_ingresarEncuesta);
+                        break;
+                    case NO_IMPLEMENTADO:
+                        Toast.makeText(getContext(), "¡Proximamente!", Toast.LENGTH_SHORT).show();
+                        break;
+                }
             });
 
             recyclerViewContenido.setAdapter(adapter);
