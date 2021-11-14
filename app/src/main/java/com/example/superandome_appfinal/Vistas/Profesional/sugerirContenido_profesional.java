@@ -61,11 +61,19 @@ public class sugerirContenido_profesional extends Fragment {
         btnGuardar = (Button) view.findViewById(R.id.btnGuardarArchivoProf);
         txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenidoProf);
 
+        try {
+
+
+
         btnGuardar.setEnabled(false);
 
         txtTipoContenido.setText("");
 
         btnElegirArchivo.setOnClickListener(view1 -> showFileChooser());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar pantalla", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -80,11 +88,11 @@ public class sugerirContenido_profesional extends Fragment {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         try {
-            startActivityForResult(Intent.createChooser(intent, "Select a file"), 100);
+            startActivityForResult(Intent.createChooser(intent, "Seleccionar fila"), 100);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error al seleccionar fila", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -166,7 +174,7 @@ public class sugerirContenido_profesional extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -186,6 +194,8 @@ public class sugerirContenido_profesional extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
+
         }
     }
 }

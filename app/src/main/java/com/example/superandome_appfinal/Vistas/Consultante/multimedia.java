@@ -73,6 +73,7 @@ public class multimedia extends Fragment {
         recyclerViewContenido.setAdapter(adapterContenido);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error añ inicializar pantalla", Toast.LENGTH_SHORT).show();
         }
         return view;
     }

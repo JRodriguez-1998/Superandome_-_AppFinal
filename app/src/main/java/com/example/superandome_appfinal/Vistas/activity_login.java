@@ -42,7 +42,7 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
-import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
+//import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
 import com.example.superandome_appfinal.Vistas.Consultante.recuperarPassword;
 import com.j256.ormlite.table.TableUtils;
 
@@ -122,12 +122,14 @@ public class activity_login extends AppCompatActivity {
                     TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Usuario.class);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Toast.makeText(this, "Error al crear tabla", Toast.LENGTH_SHORT).show();
                 }
             });
             f.get();
 
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "Error en creacion de tablas", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,6 +154,7 @@ public class activity_login extends AppCompatActivity {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(this, "Error al inicializar usuarioService", Toast.LENGTH_SHORT).show();
         }
 
         Usuario user = userService.getUsuario(nick);
@@ -198,6 +201,7 @@ public class activity_login extends AppCompatActivity {
             } catch (SQLException throwables)
             {
                 throwables.printStackTrace();
+                Toast.makeText(this, "Error al inicializar usuarioService", Toast.LENGTH_SHORT).show();
             }
 
             Usuario user = userService.getUsuario(nick, pass);

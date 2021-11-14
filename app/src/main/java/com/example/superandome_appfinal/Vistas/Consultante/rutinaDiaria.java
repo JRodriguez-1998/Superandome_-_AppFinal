@@ -97,6 +97,7 @@ public class rutinaDiaria extends Fragment {
             ususerv = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
         
         SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);

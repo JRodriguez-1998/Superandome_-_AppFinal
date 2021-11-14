@@ -63,6 +63,7 @@ public class cambiar_password_profesional extends Fragment {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicio", Toast.LENGTH_SHORT).show();
         }
 
         user = usuarioService.getUsuario(nameUsuario);

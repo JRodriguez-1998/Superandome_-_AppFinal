@@ -110,6 +110,7 @@ public class recuperarPassword extends AppCompatActivity {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(this, "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
     }
 }
