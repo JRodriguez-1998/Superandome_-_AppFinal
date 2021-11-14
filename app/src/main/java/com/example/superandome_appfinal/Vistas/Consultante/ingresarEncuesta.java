@@ -16,12 +16,17 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.EncuestaEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoEncuesta;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.IServices.EncuestaService;
+import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
+import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
+import com.example.superandome_appfinal.Services.EncuestaServiceImpl;
 import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
@@ -33,9 +38,11 @@ public class ingresarEncuesta extends Fragment {
     RadioGroup rgroup1, rgroup2, rgroup3, rgroup4, rgroup5, rgroup6, rgroup7, rgroup8, rgroup9, rgroup10,
             rgroup11, rgroup12, rgroup13, rgroup14, rgroup15, rgroup16, rgroup17, rgroup18, rgroup19, rgroup20, rgroup21;
 
-    EncuestaUsuarioServiceImpl encuestaUsuarioService;
-    UsuarioServiceImpl usuarioService;
+    EncuestaService encuestaService;
+    EncuestaUsuarioService encuestaUsuarioService;
+    UsuarioService usuarioService;
     Integer idUsuario;
+    Integer idEncuesta;
 
     public ingresarEncuesta() {}
 
@@ -51,6 +58,9 @@ public class ingresarEncuesta extends Fragment {
         SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         idUsuario = preferences.getInt("idUser", 0);
 
+        preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
+        idEncuesta = preferences.getInt("idEncuesta", 0);
+
         btnAceptar = (Button) view.findViewById(R.id.btnAceptarEncuesta);
 
         btnAceptar.setOnClickListener(new View.OnClickListener() {
@@ -58,14 +68,12 @@ public class ingresarEncuesta extends Fragment {
             public void onClick(View view) {
                 int total = analizarRadio();
 
-                if(total == -1){
+                if (total == -1){
                     Toast.makeText(getActivity(), "Debe completar toda la encuesta", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                Encuesta encuesta = new Encuesta();
-                encuesta.setIdEncuesta(1);
-
+                Encuesta encuesta = encuestaService.getEncuestaById(idEncuesta);
                 Usuario usuario = usuarioService.getUsuarioById(idUsuario);
                 EncuestaUsuario encuestaUsuario = new EncuestaUsuario(total, encuesta, usuario);
 
@@ -215,6 +223,7 @@ public class ingresarEncuesta extends Fragment {
 
     public void iniciarServicios(){
         try {
+            encuestaService = new EncuestaServiceImpl();
             encuestaUsuarioService = new EncuestaUsuarioServiceImpl();
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {

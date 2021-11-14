@@ -3,9 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/menu/activity_main_drawer.xml" value="0.3546875" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_alta_consultante.xml" value="0.1" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_navigation_drawer_consultante.xml" value="0.19739583333333333" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/cardview_encuesta.xml" value="0.1" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/cardview_multimedia.xml" value="0.1" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo.xml" value="0.3233695652173913" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_cambiar_pass.xml" value="0.19739583333333333" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_home_consultante.xml" value="0.1" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_index_encuestas.xml" value="0.3546875" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_ingresar_encuesta.xml" value="0.2477355072463768" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_multimedia.xml" value="0.33" />
         <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_pregunta_seguridad.xml" value="0.2740036231884058" />
         <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_reporte_emocion.xml" value="0.2740036231884058" />
-        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_reporte_rutina.xml" value="0.33" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_reporte_rutina.xml" value="0.1" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/layout/activity_login.xml" value="0.3233695652173913" />
+        <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/layout/activity_main.xml" value="0.24682971014492755" />
         <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_mes.xml" value="0.2740036231884058" />
         <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_preguntas.xml" value="0.19739583333333333" />
         <entry key="..\:/UTN/TUSI - 2020-2021/4C/Programacion Avanzada II/TPs/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_tipoconsejo.xml" value="0.2740036231884058" />
@@ -15,22 +28,9 @@
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_configurar_horario.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_multimedia_text.xml" value="0.3446557971014493" />
-        <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_rutina_diaria.xml" value="0.19635416666666666" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_cerrar_sesion.xml" value="0.3692708333333333" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_home_consultante.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/director/layout/cardview_contenido.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/director/layout/fragment_aprobar_consejo.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/director/layout/fragment_aprobar_contenido_director.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/director/layout/fragment_cambiar_password.xml" value="0.13333333333333333" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/director/layout/fragment_home_director.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/director/layout/fragment_home_profesional.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/layout/activity_main.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/profesional/layout/cardview_consejo.xml" value="0.38697916666666665" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/profesional/layout/dialogo_derivar_rechazar.xml" value="0.3692708333333333" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/profesional/layout/fragment_cambiar_password_profesional.xml" value="0.1675925925925926" />
-        <entry key="..\:/Users/Albertstone/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/profesional/layout/fragment_derivar_consejo.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_alta_consultante.xml" value="0.19635416666666666" />
+        <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_rutina.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_usuario_registrado.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_multimedia_text.xml" value="0.3446557971014493" />
         <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_reporte_rutina.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/marco/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_rutina_diaria.xml" value="0.33" />
@@ -58,19 +58,19 @@
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/menu/navigation_drawer_consultante.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_alta_consultante.xml" value="0.2" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_navigation_drawer_consultante.xml" value="0.16" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/activity_recuperar_password.xml" value="0.22" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/app_bar_navigation_drawer_consultante.xml" value="0.1" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/content_navigation_drawer_consultante.xml" value="0.1" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_configurar_horario.xml" value="0.25" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_cambiar_pass.xml" value="0.22" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_cargar_emocion.xml" value="0.11730072463768115" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_conf_horario.xml" value="0.12182971014492754" />
-        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_encuesta.xml" value="0.18" />
-        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_dialogo_rutina.xml" value="0.1" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_home_consultante.xml" value="0.33" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_home_consultante2.xml" value="0.11503623188405797" />
-        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_ingresar_encuesta.xml" value="0.25" />
-        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_rutina_diaria.xml" value="0.27203331020124916" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/fragment_pregunta_seguridad.xml" value="0.25" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/consultante/layout/nav_header_navigation_drawer_consultante.xml" value="0.1" />
         <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/layout/activity_login.xml" value="0.16" />
+        <entry key="..\:/Users/mmoli/Documents/GitHub/Superandome_-_AppFinal/app/src/main/res/vistas/spinners/layout/spinner_item_tipoconsejo.xml" value="0.13043478260869565" />
       </map>
     </option>
   </component>

@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,10 +39,11 @@ public class rutinaDiaria extends Fragment {
     TextView txt1, txt2,txt3,txt4,txt5,txt6,txt7,txt8,txt9,txt10,prueba;
     Button btnSaveRutina;
     ItemServiceImpl itemService;
-    ItemUsuarioDiario itemUsuarioDiario;
+//    ItemUsuarioDiario itemUsuarioDiario;
    // ItemUsuario itemUsu;
     ItemUsuarioService itemUsuarioService;
     UsuarioService ususerv;
+    Usuario usuario;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -90,9 +93,16 @@ public class rutinaDiaria extends Fragment {
 
         try {
             itemService = new ItemServiceImpl();
+            itemUsuarioService = new ItemUsuarioServiceImpl();
+            ususerv = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        
+        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+        int idUsuario = preferences.getInt("idUser", 0);
+
+        usuario = ususerv.getUsuarioById(idUsuario);
 
 
         listaItems = itemService.getItemsRutina();
@@ -101,23 +111,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==1){
                 txt1.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -129,23 +130,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==2){
                 txt2.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -156,23 +148,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==3){
                 txt3.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -183,23 +166,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==4){
                 txt4.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -210,23 +184,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==5){
                 txt5.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -237,23 +202,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==6){
                 txt6.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -264,23 +220,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==7){
                 txt7.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -291,23 +238,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==8){
                 txt8.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -318,23 +256,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==9){
                 txt9.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -345,23 +274,14 @@ public class rutinaDiaria extends Fragment {
             if(p.getIdItem()==10){
                 txt10.setText(p.getDescripcion());
                 int itemsCant = 100;
-                try {
-                    ususerv = new UsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
-                Usuario usuario = new Usuario();
-                usuario.setIdUsuario(1);
+                
                 ItemUsuario itemUsu = new ItemUsuario();
                 itemUsu.setUsuario(usuario);
                 itemUsu.setItem(p);
 
-                try {
-                    itemUsuarioService= new ItemUsuarioServiceImpl();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                
 
                 itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -393,23 +313,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk1.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(0));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -424,23 +335,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(0));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -457,23 +359,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk2.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(1));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -488,23 +381,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(1));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -522,23 +406,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk3.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(2));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -553,23 +428,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(2));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -586,23 +452,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk4.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(3));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -617,23 +474,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(3));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -650,23 +498,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk5.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(4));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -681,23 +520,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(4));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -714,23 +544,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk6.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(5));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -745,23 +566,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(5));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -778,23 +590,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk7.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(6));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -809,23 +612,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(6));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -842,23 +636,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk8.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(7));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -873,23 +658,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(7));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -906,23 +682,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk9.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(8));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -937,23 +704,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(8));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -970,23 +728,14 @@ public class rutinaDiaria extends Fragment {
                 if(chk10.isChecked()){
                     int itemsCant = 100;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(9));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
@@ -1001,23 +750,14 @@ public class rutinaDiaria extends Fragment {
 
                     int itemsCant = 0;
 
-                    try {
-                        ususerv = new UsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(1);
+                    
                     ItemUsuario itemUsu = new ItemUsuario();
                     itemUsu.setUsuario(usuario);
                     itemUsu.setItem(lista.get(9));
 
-                    try {
-                        itemUsuarioService= new ItemUsuarioServiceImpl();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
+                    
 
                     itemsCant =itemUsuarioService.getItemUsuario(itemUsu.getItem().getIdItem().toString() , itemUsu.getUsuario().getIdUsuario().toString());
 
