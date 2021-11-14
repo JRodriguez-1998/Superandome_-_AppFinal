@@ -67,8 +67,6 @@ public class sugerirContenido extends Fragment {
         txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenido);
         try {
 
-
-
         btnGuardar.setEnabled(false);
 
         txtTipoContenido.setText("");
@@ -79,8 +77,6 @@ public class sugerirContenido extends Fragment {
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -95,7 +91,6 @@ public class sugerirContenido extends Fragment {
             Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -209,7 +204,6 @@ public class sugerirContenido extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sugerir_contenido,container,false);
     }
-
 
     public void InicializarServicio(){
         try {

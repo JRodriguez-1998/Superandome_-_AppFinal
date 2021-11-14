@@ -21,7 +21,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvAprobarRechazar"
+                    android:id="@+id/tvAprobarRechazarDir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
@@ -35,6 +35,7 @@
                     android:id="@+id/rvContenido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15sp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp" />
             </LinearLayout>
