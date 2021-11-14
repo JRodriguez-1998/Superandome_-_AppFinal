@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class derivarConsejo_profesional extends Fragment {
 
     RecyclerView recyclerViewContenido;
     ArrayList<Consejo> consejos;
+    TextView txtAviso;
 
     ConsejoService consejoService;
 
@@ -34,18 +36,18 @@ public class derivarConsejo_profesional extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_derivar_consejo, container, false);
 
-        try {
-            consejoService = new ConsejoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
+        txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazar);
         consejos = new ArrayList<Consejo>();
         recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
         recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewContenido.setHasFixedSize(true);
 
+        iniciarServicios();
         obtenerContenido();
+
+        if(consejoService.getConsejosPendientes().size() == 0){
+            txtAviso.setText("Actualmente no hay consejos para derivar");
+        }
 
         ReciclerViewAdapter_ConsejoProf adapterContenido = new ReciclerViewAdapter_ConsejoProf(consejos);
 
@@ -53,9 +55,9 @@ public class derivarConsejo_profesional extends Fragment {
             @Override
             public void onClick(View view){
                 int idConsejo = (int) consejos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdConsejo();
+
                 derivarRechazarConsejo d = new derivarRechazarConsejo(idConsejo);
                 d.show(getActivity().getSupportFragmentManager(),"dialogo_derivar_rechazar");
-                Toast.makeText(getActivity(),"IdConsejo: " + idConsejo, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -65,9 +67,16 @@ public class derivarConsejo_profesional extends Fragment {
     }
 
     public void obtenerContenido(){
-
         for(int i = 0; i< consejoService.getConsejosPendientes().size(); i ++){
             consejos.add(consejoService.getConsejosPendientes().get(i));
+        }
+    }
+
+    public void iniciarServicios(){
+        try {
+            consejoService = new ConsejoServiceImpl();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 }
