@@ -51,6 +51,7 @@ public class derivarRechazarConsejo extends DialogFragment {
             return crearDialogo();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear dialogo",Toast.LENGTH_SHORT).show();
         }
         return null;
     }
@@ -119,6 +120,7 @@ public class derivarRechazarConsejo extends DialogFragment {
             consejoService = new ConsejoServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al iniciar servicios",Toast.LENGTH_SHORT).show();
         }
     }
 }

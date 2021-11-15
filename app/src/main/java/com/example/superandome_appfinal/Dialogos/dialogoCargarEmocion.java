@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Entidades.Consejo;
@@ -102,6 +103,7 @@ public class dialogoCargarEmocion extends DialogFragment {
             consejoService = new ConsejoServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear servicio",Toast.LENGTH_SHORT).show();
         }
     }
 
