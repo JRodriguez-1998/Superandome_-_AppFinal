@@ -180,6 +180,16 @@
         android:name="com.example.superandome_appfinal.Vistas.Profesional.multimedia_audio_profesional"
         android:label="MULTIMEDIA: AUDIO"
         tools:layout="@layout/fragment_multimedia_audio_profesional" />
+    <fragment
+        android:id="@+id/nav_multimedia_director"
+        android:name="com.example.superandome_appfinal.Vistas.Director.multimedia_director"
+        android:label="fragment_multimedia_director"
+        tools:layout="@layout/fragment_multimedia_director" />
+    <fragment
+        android:id="@+id/nav_multimedia_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.multimedia_profesional"
+        android:label="fragment_multimedia_profesional"
+        tools:layout="@layout/fragment_multimedia_profesional" />
 
 
 </navigation>
