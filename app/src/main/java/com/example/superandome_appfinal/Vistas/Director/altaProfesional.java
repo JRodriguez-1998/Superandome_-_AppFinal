@@ -30,6 +30,7 @@ import com.example.superandome_appfinal.Services.GeneroServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -79,6 +80,7 @@ public class altaProfesional extends Fragment {
                     RegistrarProfesional();
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(), "Error al registrar profesional", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -130,6 +132,7 @@ public class altaProfesional extends Fragment {
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios genero", Toast.LENGTH_SHORT).show();
         }
 
         //CARGA DE SPINNER DE GENEROS
@@ -159,6 +162,7 @@ public class altaProfesional extends Fragment {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicio", Toast.LENGTH_SHORT).show();
         }
 
         //Consulto si el Usuario ya existe
@@ -189,7 +193,7 @@ public class altaProfesional extends Fragment {
         Genero genero = (Genero) spinnerGenero.getSelectedItem();
 
         usuarioNuevo.setNickname(nickname.getText().toString());
-        usuarioNuevo.setPassword(pass.getText().toString());
+        usuarioNuevo.setPassword(doHash(pass.getText().toString()));
         usuarioNuevo.setHabilitado(true);
         usuarioNuevo.setFechaAlta(new Date());
         usuarioNuevo.setFechaNac(formatter.parse(fechaNac.getText().toString()));
@@ -204,6 +208,24 @@ public class altaProfesional extends Fragment {
         }
 
 
+    }
+
+
+    public String doHash(String password){
+        try {
+            MessageDigest msgDiggest = MessageDigest.getInstance("MD5");
+            msgDiggest.update(password.getBytes());
+            byte[] resultado = msgDiggest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultado){
+                sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(),"Error al hashear", Toast.LENGTH_SHORT).show();
+        }
+        return "";
     }
 
     @Override

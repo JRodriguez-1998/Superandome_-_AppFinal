@@ -60,18 +60,20 @@ public class sugerirConsejo_profesional extends Fragment {
         btnEnviar = (Button) view.findViewById(R.id.btnEnviarSugerenciaProf);
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugeridoProf);
 
+        try {
+
+
+
         preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
         nameUsuario = preferences.getString("nickname",null);
 
-        try {
+
             tipoConsejoService = new TipoConsejoServiceImpl();
             consejoService = new ConsejoServiceImpl();
             usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
 
         TipoConsejo consejo = new TipoConsejo(0, "Seleccionar tipo consejo");
 
@@ -115,6 +117,10 @@ public class sugerirConsejo_profesional extends Fragment {
                 }
             }
         });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

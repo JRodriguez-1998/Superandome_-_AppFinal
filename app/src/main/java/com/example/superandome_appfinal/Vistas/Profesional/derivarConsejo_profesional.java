@@ -35,6 +35,8 @@ public class derivarConsejo_profesional extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_derivar_consejo, container, false);
+        try {
+
 
         txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazar);
         consejos = new ArrayList<Consejo>();
@@ -62,7 +64,10 @@ public class derivarConsejo_profesional extends Fragment {
         });
 
         recyclerViewContenido.setAdapter(adapterContenido);
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar pantalla", Toast.LENGTH_SHORT).show();
+        }
         return view;
     }
 
@@ -77,6 +82,7 @@ public class derivarConsejo_profesional extends Fragment {
             consejoService = new ConsejoServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
     }
 }

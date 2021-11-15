@@ -342,6 +342,7 @@ public class cargarEmocionDiaria extends Fragment {
             emocionService = new EmocionServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(), "Error al iniciar servicios", Toast.LENGTH_SHORT).show();
         }
     }
 

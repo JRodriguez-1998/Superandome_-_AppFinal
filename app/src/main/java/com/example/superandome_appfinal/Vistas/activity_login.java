@@ -42,11 +42,12 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
-import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
+//import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
 import com.example.superandome_appfinal.Vistas.Consultante.recuperarPassword;
 import com.j256.ormlite.table.TableUtils;
 
 
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,12 +123,14 @@ public class activity_login extends AppCompatActivity {
                     TableUtils.createTableIfNotExists(DataDB.getConnectionSource(), Usuario.class);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Toast.makeText(this, "Error al crear tabla", Toast.LENGTH_SHORT).show();
                 }
             });
             f.get();
 
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "Error en creacion de tablas", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,6 +155,7 @@ public class activity_login extends AppCompatActivity {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(this, "Error al inicializar usuarioService", Toast.LENGTH_SHORT).show();
         }
 
         Usuario user = userService.getUsuario(nick);
@@ -190,7 +194,7 @@ public class activity_login extends AppCompatActivity {
         }
         else{
             String nick = txtnick.getText().toString();
-            String pass = txtpass.getText().toString();
+            String pass = doHash(txtpass.getText().toString());
 
             try
             {
@@ -198,6 +202,7 @@ public class activity_login extends AppCompatActivity {
             } catch (SQLException throwables)
             {
                 throwables.printStackTrace();
+                Toast.makeText(this, "Error al inicializar usuarioService", Toast.LENGTH_SHORT).show();
             }
 
             Usuario user = userService.getUsuario(nick, pass);
@@ -277,6 +282,23 @@ public class activity_login extends AppCompatActivity {
         }
 
 
+    }
+
+    public String doHash(String password){
+        try {
+            MessageDigest msgDiggest = MessageDigest.getInstance("MD5");
+            msgDiggest.update(password.getBytes());
+            byte[] resultado = msgDiggest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultado){
+                sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"Error al hashear", Toast.LENGTH_SHORT).show();
+        }
+        return "";
     }
 
 

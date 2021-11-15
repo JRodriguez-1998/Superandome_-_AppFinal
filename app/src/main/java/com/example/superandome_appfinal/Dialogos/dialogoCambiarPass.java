@@ -26,6 +26,7 @@ import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.homeConsultante;
 import com.example.superandome_appfinal.Vistas.activity_login;
 
+import java.security.MessageDigest;
 import java.sql.SQLException;
 
 public class dialogoCambiarPass extends DialogFragment {
@@ -85,7 +86,7 @@ public class dialogoCambiarPass extends DialogFragment {
                 }
 
                 if(txtPassword.getText().toString().equals(txtRepetirPass.getText().toString())){
-                    usuario.setPassword(txtPassword.getText().toString());
+                    usuario.setPassword(doHash(txtPassword.getText().toString()));
 
                     if(usuarioService.actualizar(usuario)){
                         Toast.makeText(getActivity(), "Contraseña actualizada", Toast.LENGTH_LONG).show();
@@ -122,6 +123,23 @@ public class dialogoCambiarPass extends DialogFragment {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear servicios",Toast.LENGTH_SHORT).show();
         }
+    }
+    public String doHash(String password){
+        try {
+            MessageDigest msgDiggest = MessageDigest.getInstance("MD5");
+            msgDiggest.update(password.getBytes());
+            byte[] resultado = msgDiggest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultado){
+                sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(),"Error al hashear", Toast.LENGTH_SHORT).show();
+        }
+        return "";
     }
 }

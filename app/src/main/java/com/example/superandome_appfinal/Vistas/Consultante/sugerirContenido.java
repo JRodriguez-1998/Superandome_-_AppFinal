@@ -84,11 +84,11 @@ public class sugerirContenido extends Fragment {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         try {
-            startActivityForResult(Intent.createChooser(intent, "Select a file"), 100);
+            startActivityForResult(Intent.createChooser(intent, "Seleccionar archivo"), 100);
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "F en el chat", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error al seleccionar", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -221,6 +221,7 @@ public class sugerirContenido extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -27,6 +27,8 @@ import com.example.superandome_appfinal.Services.PreguntaSeguridadServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.activity_login;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -140,6 +142,7 @@ public class activity_altaConsultante extends AppCompatActivity {
         } catch (SQLException throwables)
         {
             throwables.printStackTrace();
+            Toast.makeText(this, "Error al inicializar usuarioService", Toast.LENGTH_SHORT).show();
         }
 
         //Consulto si el Usuario ya existe
@@ -177,7 +180,7 @@ public class activity_altaConsultante extends AppCompatActivity {
         PreguntaSeguridad pregSeg = (PreguntaSeguridad)spinnerPreguntas.getSelectedItem();
 
         usuarioNuevo.setNickname(txtNickname.getText().toString());
-        usuarioNuevo.setPassword(txtPass.getText().toString());
+        usuarioNuevo.setPassword(doHash(txtPass.getText().toString()));
         usuarioNuevo.setFechaNac(formatter.parse(txtFechaNac.getText().toString()));
 
 
@@ -195,5 +198,22 @@ public class activity_altaConsultante extends AppCompatActivity {
         }
 
 
+    }
+
+    public String doHash(String password){
+        try {
+            MessageDigest msgDiggest = MessageDigest.getInstance("MD5");
+            msgDiggest.update(password.getBytes());
+            byte[] resultado = msgDiggest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultado){
+                sb.append(String.format("%02x",b));
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"Error al hashear", Toast.LENGTH_SHORT).show();
+        }
+        return "";
     }
 }

@@ -117,11 +117,6 @@
             android:title="Aprobar Consejos" />
 
         <item
-            android:id="@+id/nav_pregunta_seguridad"
-            android:icon="@android:drawable/btn_star_big_on"
-            android:title="Pregunta seguridad" />
-
-        <item
             android:id="@+id/nav_cambiar_password"
             android:icon="@drawable/password"
             android:title="Cambiar Contraseña" />
