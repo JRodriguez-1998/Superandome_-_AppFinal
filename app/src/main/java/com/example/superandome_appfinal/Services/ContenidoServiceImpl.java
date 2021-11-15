@@ -135,6 +135,31 @@ public class ContenidoServiceImpl implements ContenidoService {
     }
 
     @Override
+    public List<Contenido> getContenidosDerivados() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<List<Contenido>> f = executor.submit(() -> {
+            try {
+                List<Contenido> lista = dao.getContenidosDerivados();
+                for (Contenido contenido:lista){
+                    usuarioDao.refresh(contenido.getUsuario());
+                    tipoArchivoDao.refresh(contenido.getTipoArchivo());
+                }
+                return lista;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Boolean actualizar(Contenido contenido) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<Boolean> f = executor.submit(() -> {
