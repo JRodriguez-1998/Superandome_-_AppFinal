@@ -17,6 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
@@ -38,6 +39,8 @@ public class dialogoDerivarContenido extends DialogFragment {
     //Creo Objeto SharedPreferences para utilizar para las Sesiones
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    SharedPreferences preferences2;
+    SharedPreferences.Editor editor2;
 
     public dialogoDerivarContenido(int idContenido) {
         this.idContenido = idContenido;
@@ -63,10 +66,14 @@ public class dialogoDerivarContenido extends DialogFragment {
         preferences = actividad.getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
+        preferences2 = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+        editor2 = preferences2.edit();
+
         btnVer = (TextView) v.findViewById(R.id.btnVer);
         btnDerivar = (TextView) v.findViewById(R.id.btnDerivar);
         btnRechazar = (TextView) v.findViewById(R.id.btnRechazar);
 
+        iniciarServicios();
         eventoBotones();
 
         return builder.create();
@@ -77,13 +84,34 @@ public class dialogoDerivarContenido extends DialogFragment {
         btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Acá hay que hacer que abra el archivo", Toast.LENGTH_SHORT).show();
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_text_profesional);
+                    dismiss();
+                }
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_video_profesional);
+                    dismiss();
+                }
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
+                    Toast.makeText(getActivity(),"Es un AUDIO", Toast.LENGTH_SHORT).show();
+                    guardarSesionContenido(true, idContenido);
+                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    //navController.navigate(R.id.nav_multimedia_audio);
+                    dismiss();
+
+                }
             }
         });
         btnDerivar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarServicios();
                 Contenido contenido = contenidoService.getContenidoByID(idContenido);
                 Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
                 contenido.setEstado(estado);
@@ -97,7 +125,6 @@ public class dialogoDerivarContenido extends DialogFragment {
         btnRechazar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarServicios();
                 Contenido contenido = contenidoService.getContenidoByID(idContenido);
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_PROFESIONAL.getId());
                 contenido.setEstado(estado);
@@ -126,5 +153,11 @@ public class dialogoDerivarContenido extends DialogFragment {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void guardarSesionContenido(boolean iniciar, int idContenido){
+        editor2.putBoolean("contenido",iniciar);
+        editor2.putInt("idContenido", idContenido);
+        editor2.apply();
     }
 }

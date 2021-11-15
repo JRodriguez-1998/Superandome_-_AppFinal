@@ -17,6 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.IServices.ContenidoService;
@@ -24,6 +25,7 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 public class dialogoAprobarContenido extends DialogFragment {
     Activity actividad;
@@ -35,6 +37,8 @@ public class dialogoAprobarContenido extends DialogFragment {
     //Creo Objeto SharedPreferences para utilizar para las Sesiones
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    SharedPreferences preferences2;
+    SharedPreferences.Editor editor2;
 
     public dialogoAprobarContenido(int idContenido) {
         this.idContenido = idContenido;
@@ -59,6 +63,8 @@ public class dialogoAprobarContenido extends DialogFragment {
 
         preferences = actividad.getSharedPreferences("sesiones", Context.MODE_PRIVATE);
         editor = preferences.edit();
+        preferences2 = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+        editor2 = preferences2.edit();
 
         btnVer = (TextView) v.findViewById(R.id.btnVer);
         btnDerivar = (TextView) v.findViewById(R.id.btnDerivar);
@@ -74,7 +80,30 @@ public class dialogoAprobarContenido extends DialogFragment {
         btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Acá hay que hacer que abra el archivo", Toast.LENGTH_SHORT).show();
+                iniciarServicios();
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_text_director);
+                    dismiss();
+                }
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_video_director);
+                    dismiss();
+                }
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
+                    Toast.makeText(getActivity(),"Es un AUDIO", Toast.LENGTH_SHORT).show();
+                    guardarSesionContenido(true, idContenido);
+                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    //navController.navigate(R.id.nav_multimedia_audio);
+                    dismiss();
+
+                }
             }
         });
         btnDerivar.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +113,7 @@ public class dialogoAprobarContenido extends DialogFragment {
                 Contenido contenido = contenidoService.getContenidoByID(idContenido);
                 Estado estado = new Estado(EstadoEnum.APROBADO_DIRECTOR.getId());
                 contenido.setEstado(estado);
+                contenido.setFechaAprobacion(new Date());
                 if(contenidoService.actualizar(contenido)){
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarContenido_director);
@@ -123,5 +153,11 @@ public class dialogoAprobarContenido extends DialogFragment {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void guardarSesionContenido(boolean iniciar, int idContenido){
+        editor2.putBoolean("contenido",iniciar);
+        editor2.putInt("idContenido", idContenido);
+        editor2.apply();
     }
 }

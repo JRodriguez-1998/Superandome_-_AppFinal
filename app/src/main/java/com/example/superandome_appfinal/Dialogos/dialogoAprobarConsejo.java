@@ -24,6 +24,7 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 public class dialogoAprobarConsejo extends DialogFragment {
     Activity actividad;
@@ -78,6 +79,7 @@ public class dialogoAprobarConsejo extends DialogFragment {
                 Consejo consejo = consejoService.getConsejoById(idConsejo);
                 Estado estado = new Estado(EstadoEnum.APROBADO_DIRECTOR.getId());
                 consejo.setEstado(estado);
+                consejo.setFechaAlta(new Date());
                 if(consejoService.actualizar(consejo)){
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarConsejo_director);
