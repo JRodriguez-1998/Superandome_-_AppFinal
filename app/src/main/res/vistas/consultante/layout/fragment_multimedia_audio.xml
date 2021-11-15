@@ -4,43 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/consultante"
     tools:context=".Vistas.Consultante.multimedia_audio">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/imageButton"
+        <ImageView
+            android:id="@+id/imagenAudio"
             android:layout_width="233dp"
             android:layout_height="217dp"
             android:layout_marginTop="44dp"
             android:contentDescription="img"
-            android:src="@drawable/ic_menu_camera"
+            android:src="@drawable/musik"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button2"
+        <SeekBar
+            android:id="@+id/progresoAudio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="60"
+            android:progress="45"
+            android:secondaryProgressTint="#FFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnPause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
-            android:text="Button"
+            android:text="Play/Pause"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+            app:layout_constraintTop_toBottomOf="@+id/imagenAudio" />
 
-        <Button
-            android:id="@+id/button3"
+        <ImageButton
+            android:id="@+id/btnStop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Button"
+            android:text="Stop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/btnPause" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

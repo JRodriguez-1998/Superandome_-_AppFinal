@@ -83,10 +83,6 @@ try {
 
             contenidoService = new ContenidoServiceImpl();
 
-
-
-
-
         Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
         byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
