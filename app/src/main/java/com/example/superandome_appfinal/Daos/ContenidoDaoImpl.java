@@ -23,4 +23,9 @@ public class ContenidoDaoImpl extends BaseDaoImpl<Contenido, Integer> implements
     public List<Contenido> getContenidosPendientes() throws SQLException {
         return this.queryForEq("idEstado", 1);
     }
+
+    @Override
+    public List<Contenido> getContenidosDerivados() throws SQLException {
+        return this.queryForEq("idEstado", 3);
+    }
 }
