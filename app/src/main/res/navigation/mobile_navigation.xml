@@ -139,6 +139,11 @@
         android:name="com.example.superandome_appfinal.Vistas.Director.homeDirector"
         android:label="SUPERANDOME"
         tools:layout="@layout/fragment_home_director" />
+    <fragment
+        android:id="@+id/nav_derivarContenido_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.derivarContenido_profesional"
+        android:label="DERIVAR CONTENIDO MULTIMEDIA"
+        tools:layout="@layout/fragment_derivar_contenido" />
 
 
 </navigation>
