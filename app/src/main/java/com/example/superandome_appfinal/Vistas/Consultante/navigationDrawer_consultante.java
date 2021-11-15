@@ -13,6 +13,7 @@ import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
 import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoUserConsultanteRegistrado;
+import com.example.superandome_appfinal.Helpers.Workmanagernoti;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -28,11 +29,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.Data;
 
 import com.example.superandome_appfinal.databinding.ActivityNavigationDrawerConsultanteBinding;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class navigationDrawer_consultante extends AppCompatActivity {
 
@@ -44,6 +48,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     int idUser;
     int tipoUser;
     String nameUsuario;
+
+    Calendar actual = Calendar.getInstance();
+    Calendar calendar = Calendar.getInstance();
+
+    private int minutos, hora, dia, mes, anio;
 
     EmocionUsuarioServiceImpl emocionUserService;
 
@@ -271,4 +280,27 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         tipoUser = preferences.getInt("tipoUser",0);
         nameUsuario = preferences.getString("nickname",null);
     }
+
+    private String geneteKey(){
+        return UUID.randomUUID().toString();
+    }
+
+    private Data GuardarData(String titulo, String detalle, int idNoti){
+        return new Data.Builder()
+                .putString("titulo", titulo)
+                .putString("detalle", detalle)
+                .putInt("idNoti", idNoti).build();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        String tag = geneteKey();
+        int random = (int) (Math.random() * 50 + 1);
+
+        Data data = GuardarData("¡Nueva notificación superandome!", "Ingresar diariamente para una mejor seguimiento", random);
+        Workmanagernoti.GuardarNoti(10 * 1000,  data, tag);
+    }
+
 }
