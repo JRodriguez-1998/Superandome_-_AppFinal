@@ -3,11 +3,13 @@ package com.example.superandome_appfinal.Services;
 import com.example.superandome_appfinal.Daos.EncuestaUsuarioDaoImpl;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
+import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.IDaos.EncuestaUsuarioDao;
 import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -39,6 +41,26 @@ public class EncuestaUsuarioServiceImpl implements EncuestaUsuarioService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<List<EncuestaUsuario>> f = executor.submit(() -> {
+            try {
+                return dao.getEncuestaUsuarioById(idEncuesta, idUsuario);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

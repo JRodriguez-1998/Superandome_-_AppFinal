@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements UsuarioDao {
+
     public UsuarioDaoImpl() throws SQLException {
         super(DataDB.getConnectionSource(), Usuario.class);
     }
