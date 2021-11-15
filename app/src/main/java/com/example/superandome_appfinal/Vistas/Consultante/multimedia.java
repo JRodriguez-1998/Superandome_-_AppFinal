@@ -63,10 +63,27 @@ public class multimedia extends Fragment {
             public void onClick(View view){
                 int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
                 Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
-                guardarSesionContenido(true, idContenido);
 
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                navController.navigate(R.id.nav_multimedia_text);
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == 1){
+                    Toast.makeText(getActivity(),"Es un PDF", Toast.LENGTH_SHORT).show();
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_text);
+                }
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == 2){
+                    Toast.makeText(getActivity(),"Es un VIDEO", Toast.LENGTH_SHORT).show();
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_video);
+                }
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == 3){
+                    Toast.makeText(getActivity(),"Es un AUDIO", Toast.LENGTH_SHORT).show();
+                    guardarSesionContenido(true, idContenido);
+                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    //navController.navigate(R.id.nav_multimedia_audio);
+                }
+
+
             }
         });
 

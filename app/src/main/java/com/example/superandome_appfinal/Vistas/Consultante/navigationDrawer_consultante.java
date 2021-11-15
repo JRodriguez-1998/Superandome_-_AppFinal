@@ -66,7 +66,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
                 R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
-                R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,
+                R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,
                 R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento,
                 R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director, R.id.nav_homeProfesional, R.id.nav_homeDirector, R.id.nav_indexEncuestas, R.id.nav_derivarContenido_profesional)
                 .setOpenableLayout(drawer)
@@ -169,8 +169,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_indexEncuestas).setVisible(false);
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(false);
         navMenu.findItem(R.id.nav_multimedia).setVisible(false);
-        navMenu.findItem(R.id.nav_multimedia_text).setVisible(false);
-        navMenu.findItem(R.id.nav_multimedia_video).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirContenido_profesional).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(false);
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(false);
@@ -202,8 +200,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_indexEncuestas).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
-        navMenu.findItem(R.id.nav_multimedia_text).setVisible(true);
-        navMenu.findItem(R.id.nav_multimedia_video).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(true);
 
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
