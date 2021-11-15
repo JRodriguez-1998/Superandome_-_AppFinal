@@ -98,7 +98,7 @@
 
         <item
             android:id="@+id/nav_aprobarContenido_director"
-            android:icon="@drawable/transfer"
+            android:icon="@drawable/check"
             android:title="Aprobar Contenido Multimedia" />
 
         <item
