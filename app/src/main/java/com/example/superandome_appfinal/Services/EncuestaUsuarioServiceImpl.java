@@ -9,6 +9,7 @@ import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -44,9 +45,9 @@ public class EncuestaUsuarioServiceImpl implements EncuestaUsuarioService {
     }
 
     @Override
-    public EncuestaUsuario getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) {
+    public List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        Future f = executor.submit(() -> {
+        Future<List<EncuestaUsuario>> f = executor.submit(() -> {
             try {
                 return dao.getEncuestaUsuarioById(idEncuesta, idUsuario);
             } catch (Exception e) {
@@ -56,7 +57,7 @@ public class EncuestaUsuarioServiceImpl implements EncuestaUsuarioService {
         });
 
         try {
-            return (EncuestaUsuario) f.get();
+            return f.get();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

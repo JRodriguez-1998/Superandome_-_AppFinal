@@ -18,7 +18,8 @@ public class EncuestaUsuarioDaoImpl extends BaseDaoImpl<EncuestaUsuario, Integer
     }
 
     @Override
-    public EncuestaUsuario getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) throws SQLException {
+    public List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) throws SQLException {
+
         Map<String, Object> filtros = new HashMap<>();
         filtros.put("idEncuesta", idEncuesta);
         filtros.put("idUsuario", idUsuario);
@@ -26,7 +27,7 @@ public class EncuestaUsuarioDaoImpl extends BaseDaoImpl<EncuestaUsuario, Integer
         try {
             List<EncuestaUsuario> list = queryForFieldValues(filtros);
             if (list != null && list.size() > 0)
-                return list.get(0);
+                return list;
             return null;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

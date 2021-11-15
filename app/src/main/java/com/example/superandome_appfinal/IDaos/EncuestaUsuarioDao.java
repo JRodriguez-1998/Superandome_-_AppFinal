@@ -5,8 +5,9 @@ import com.example.superandome_appfinal.Entidades.Usuario;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface EncuestaUsuarioDao extends Dao<EncuestaUsuario, Integer> {
-    EncuestaUsuario getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) throws SQLException;
+    List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) throws SQLException;
 
 }
