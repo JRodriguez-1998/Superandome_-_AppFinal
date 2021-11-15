@@ -64,7 +64,7 @@ public class multimedia extends Fragment {
             public void onClick(View view){
 
                 int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
-                Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
 
                 if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
                     guardarSesionContenido(true, idContenido);
