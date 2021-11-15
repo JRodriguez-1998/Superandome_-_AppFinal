@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
@@ -187,8 +188,7 @@ public class sugerirContenido_profesional extends Fragment {
 
             usuario = usuarioService.getUsuarioById(idUsuario);
 
-            estado = new Estado();
-            estado.setIdEstado(1);
+            estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
 
             tipoArchivo = new TipoArchivo();
 

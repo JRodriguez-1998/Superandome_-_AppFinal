@@ -10,5 +10,6 @@ public interface ContenidoService {
     Contenido getContenidoByID(int id);
     List<Contenido> getContenidosAprobados();
     List<Contenido> getContenidosPendientes();
+    List<Contenido> getContenidosDerivados();
     Boolean actualizar(Contenido contenido);
 }

@@ -3,6 +3,7 @@ package com.example.superandome_appfinal.Vistas;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.work.Data;
 
 import android.Manifest;
 import android.content.Intent;
@@ -37,6 +38,7 @@ import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.DataDB;
+import com.example.superandome_appfinal.Helpers.Workmanagernoti;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
@@ -51,6 +53,7 @@ import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -301,5 +304,15 @@ public class activity_login extends AppCompatActivity {
         return "";
     }
 
+    private String geneteKey(){
+        return UUID.randomUUID().toString();
+    }
+
+    private Data GuardarData(String titulo, String detalle, int idNoti){
+        return new Data.Builder()
+                .putString("titulo", titulo)
+                .putString("detalle", detalle)
+                .putInt("idNoti", idNoti).build();
+    }
 
 }

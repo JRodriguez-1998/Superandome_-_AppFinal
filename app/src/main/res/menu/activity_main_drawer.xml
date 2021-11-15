@@ -31,9 +31,24 @@
             android:title="Configurar horario" />
 
         <item
-            android:id="@+id/nav_sugerirContenido"
-            android:icon="@drawable/multimedia"
-            android:title="Sugerir contenido multimedia" />
+            android:id="@+id/nav_rutinaDiariaSeguimiento"
+            android:icon="@drawable/rutinaseguimiento"
+            android:title="Rutina seguimiento" />
+
+        <item
+            android:id="@+id/nav_rutinaDiaria"
+            android:icon="@drawable/rutinaconf"
+            android:title="Configurar Rutina" />
+
+        <item
+            android:id="@+id/nav_indexEncuestas"
+            android:icon="@drawable/encuesta"
+            android:title="Encuestas" />
+
+        <item
+            android:id="@+id/nav_multimedia"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Contenido multimedia" />
 
         <item
             android:id="@+id/nav_reporteEmocion"
@@ -45,41 +60,16 @@
             android:icon="@drawable/report2"
             android:title="Reporte mensual rutina" />
 
+
         <item
             android:id="@+id/nav_sugerirConsejo"
             android:icon="@drawable/sugerirconsejo"
             android:title="Sugerir consejo diario" />
 
-
         <item
-            android:id="@+id/nav_indexEncuestas"
-            android:icon="@drawable/logo_soyuz"
-            android:title="Encuestas" />
-
-        <item
-            android:id="@+id/nav_rutinaDiaria"
-            android:icon="@drawable/rutinaconf"
-            android:title="Rutina" />
-
-        <item
-            android:id="@+id/nav_rutinaDiariaSeguimiento"
-            android:icon="@drawable/rutinaseguimiento"
-            android:title="Rutina seguimiento" />
-
-        <item
-            android:id="@+id/nav_multimedia"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Multimedia" />
-
-        <item
-            android:id="@+id/nav_multimedia_text"
-            android:icon="@drawable/logo_soyuz"
-            android:title="Multimedia pdf" />
-
-        <item
-            android:id="@+id/nav_multimedia_video"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Multimedia video" />
+            android:id="@+id/nav_sugerirContenido"
+            android:icon="@drawable/multimedia"
+            android:title="Sugerir contenido multimedia" />
 
         <item
             android:id="@+id/nav_sugerirContenido_profesional"

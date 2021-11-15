@@ -13,6 +13,7 @@ import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
 import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoUserConsultanteRegistrado;
+import com.example.superandome_appfinal.Helpers.Workmanagernoti;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -28,11 +29,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.Data;
 
 import com.example.superandome_appfinal.databinding.ActivityNavigationDrawerConsultanteBinding;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class navigationDrawer_consultante extends AppCompatActivity {
 
@@ -44,6 +48,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     int idUser;
     int tipoUser;
     String nameUsuario;
+
+    Calendar actual = Calendar.getInstance();
+    Calendar calendar = Calendar.getInstance();
+
+    private int minutos, hora, dia, mes, anio;
 
     EmocionUsuarioServiceImpl emocionUserService;
 
@@ -66,7 +75,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navigationView = binding.navView;
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
                 R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
-                R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_multimedia_video, R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,R.id.nav_multimedia_text,
+                R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,
                 R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento,
                 R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director, R.id.nav_homeProfesional, R.id.nav_homeDirector, R.id.nav_indexEncuestas, R.id.nav_derivarContenido_profesional,
                 R.id.nav_multimedia_audio)
@@ -170,8 +179,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_indexEncuestas).setVisible(false);
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(false);
         navMenu.findItem(R.id.nav_multimedia).setVisible(false);
-        navMenu.findItem(R.id.nav_multimedia_text).setVisible(false);
-        navMenu.findItem(R.id.nav_multimedia_video).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirContenido_profesional).setVisible(false);
         navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(false);
         navMenu.findItem(R.id.nav_altaProfesional).setVisible(false);
@@ -203,8 +210,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_indexEncuestas).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
-        navMenu.findItem(R.id.nav_multimedia_text).setVisible(true);
-        navMenu.findItem(R.id.nav_multimedia_video).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_audio).setVisible(true);
 
@@ -273,4 +278,27 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         tipoUser = preferences.getInt("tipoUser",0);
         nameUsuario = preferences.getString("nickname",null);
     }
+
+    private String geneteKey(){
+        return UUID.randomUUID().toString();
+    }
+
+    private Data GuardarData(String titulo, String detalle, int idNoti){
+        return new Data.Builder()
+                .putString("titulo", titulo)
+                .putString("detalle", detalle)
+                .putInt("idNoti", idNoti).build();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        String tag = geneteKey();
+        int random = (int) (Math.random() * 50 + 1);
+
+        Data data = GuardarData("¡Nueva notificación superandome!", "Ingresar diariamente para una mejor seguimiento", random);
+        Workmanagernoti.GuardarNoti(10 * 1000,  data, tag);
+    }
+
 }

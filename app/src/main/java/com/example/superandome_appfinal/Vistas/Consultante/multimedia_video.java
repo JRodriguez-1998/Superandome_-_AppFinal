@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,7 @@ public class multimedia_video extends Fragment {
     VideoView videoView;
     MediaController mediaController;
     InputStream inputStream;
+    Integer idContenido;
 
     public multimedia_video() {
     }
@@ -40,10 +43,14 @@ public class multimedia_video extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         try {
+
+            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+            idContenido = preferences.getInt("idContenido", 0);
+
             videoView = view.findViewById(R.id.videoView2);
 
             ContenidoService contenidoService = new ContenidoServiceImpl();
-            Contenido contenido = contenidoService.getContenidoByID(3);
+            Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
             byte[] decoder = Base64.decode(contenido.getArchivo(), Base64.DEFAULT);
             inputStream = new ByteArrayInputStream(decoder);
