@@ -116,6 +116,7 @@ public class dialogoDerivarContenido extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
                 contenido.setEstado(estado);
                 if(contenidoService.actualizar(contenido)){
+                    Toast.makeText(getActivity(), "Contenido Derivado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_derivarContenido_profesional);
                     dismiss();
@@ -129,6 +130,7 @@ public class dialogoDerivarContenido extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_PROFESIONAL.getId());
                 contenido.setEstado(estado);
                 if(contenidoService.actualizar(contenido)){
+                    Toast.makeText(getActivity(), "Contenido Rechazado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_derivarContenido_profesional);
                     dismiss();
