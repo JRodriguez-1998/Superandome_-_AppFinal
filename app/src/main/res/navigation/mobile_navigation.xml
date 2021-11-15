@@ -80,7 +80,7 @@
     <fragment
         android:id="@+id/nav_multimedia_audio"
         android:name="com.example.superandome_appfinal.Vistas.Consultante.multimedia_audio"
-        android:label="fragment_multimedia_audio"
+        android:label="MULTIMEDIA: AUDIO"
         tools:layout="@layout/fragment_multimedia_audio" />
 
     <!--FRAGMENTS PROFESIONAL-->
