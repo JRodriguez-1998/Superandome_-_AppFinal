@@ -15,9 +15,11 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoAprobarConsejo;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Entidades.TipoArchivo;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
@@ -45,7 +47,6 @@ public class multimedia extends Fragment {
         try {
             contenidoService = new ContenidoServiceImpl();
 
-
         preferences = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -61,12 +62,28 @@ public class multimedia extends Fragment {
         adapterContenido.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+
                 int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
                 Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
-                guardarSesionContenido(true, idContenido);
 
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                navController.navigate(R.id.nav_multimedia_text);
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_text);
+                }
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
+                    guardarSesionContenido(true, idContenido);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_video);
+                }
+
+                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
+                    Toast.makeText(getActivity(),"Es un AUDIO", Toast.LENGTH_SHORT).show();
+                    guardarSesionContenido(true, idContenido);
+                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    //navController.navigate(R.id.nav_multimedia_audio);
+                }
             }
         });
 
