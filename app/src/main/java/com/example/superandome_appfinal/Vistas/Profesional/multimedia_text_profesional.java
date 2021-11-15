@@ -35,8 +35,6 @@ public class multimedia_text_profesional extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         try {
-
-
             SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
             idContenido = preferences.getInt("idContenido", 0);
 
@@ -71,10 +69,6 @@ public class multimedia_text_profesional extends Fragment {
 
             contenidoService = new ContenidoServiceImpl();
 
-
-
-
-
             Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
             byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
@@ -94,6 +88,6 @@ public class multimedia_text_profesional extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multimedia_text, container, false);
+        return inflater.inflate(R.layout.fragment_multimedia_text_profesional, container, false);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Profesional;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -29,7 +31,7 @@ public class multimedia_video_profesional extends Fragment {
     VideoView videoView;
     MediaController mediaController;
     InputStream inputStream;
-
+    int idContenido;
     public multimedia_video_profesional() {
     }
 
@@ -40,8 +42,11 @@ public class multimedia_video_profesional extends Fragment {
         try {
             videoView = view.findViewById(R.id.videoView2);
 
+            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+            idContenido = preferences.getInt("idContenido", 0);
+
             ContenidoService contenidoService = new ContenidoServiceImpl();
-            Contenido contenido = contenidoService.getContenidoByID(3);
+            Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
             byte[] decoder = Base64.decode(contenido.getArchivo(), Base64.DEFAULT);
             inputStream = new ByteArrayInputStream(decoder);
@@ -59,7 +64,6 @@ public class multimedia_video_profesional extends Fragment {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
 
     public void run() {
         try {
@@ -111,6 +115,6 @@ public class multimedia_video_profesional extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multimedia_video, container, false);
+        return inflater.inflate(R.layout.fragment_multimedia_video_profesional, container, false);
     }
 }

@@ -73,6 +73,7 @@ public class dialogoDerivarContenido extends DialogFragment {
         btnDerivar = (TextView) v.findViewById(R.id.btnDerivar);
         btnRechazar = (TextView) v.findViewById(R.id.btnRechazar);
 
+        iniciarServicios();
         eventoBotones();
 
         return builder.create();
@@ -88,12 +89,14 @@ public class dialogoDerivarContenido extends DialogFragment {
                     guardarSesionContenido(true, idContenido);
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_multimedia_text_profesional);
+                    dismiss();
                 }
 
                 if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
                     guardarSesionContenido(true, idContenido);
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_multimedia_video_profesional);
+                    dismiss();
                 }
 
                 if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
@@ -101,13 +104,14 @@ public class dialogoDerivarContenido extends DialogFragment {
                     guardarSesionContenido(true, idContenido);
                     //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     //navController.navigate(R.id.nav_multimedia_audio);
+                    dismiss();
+
                 }
             }
         });
         btnDerivar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarServicios();
                 Contenido contenido = contenidoService.getContenidoByID(idContenido);
                 Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
                 contenido.setEstado(estado);
@@ -121,7 +125,6 @@ public class dialogoDerivarContenido extends DialogFragment {
         btnRechazar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iniciarServicios();
                 Contenido contenido = contenidoService.getContenidoByID(idContenido);
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_PROFESIONAL.getId());
                 contenido.setEstado(estado);
