@@ -81,6 +81,7 @@ public class dialogoAprobarConsejo extends DialogFragment {
                 consejo.setEstado(estado);
                 consejo.setFechaAlta(new Date());
                 if(consejoService.actualizar(consejo)){
+                    Toast.makeText(getActivity(), "Consejo Aprobado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarConsejo_director);
                     dismiss();
@@ -95,6 +96,7 @@ public class dialogoAprobarConsejo extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_DIRECTOR.getId());
                 consejo.setEstado(estado);
                 if(consejoService.actualizar(consejo)){
+                    Toast.makeText(getActivity(), "Consejo Rechazado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarConsejo_director);
                     dismiss();

@@ -99,8 +99,8 @@ public class dialogoAprobarContenido extends DialogFragment {
                 if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
                     Toast.makeText(getActivity(),"Es un AUDIO", Toast.LENGTH_SHORT).show();
                     guardarSesionContenido(true, idContenido);
-                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    //navController.navigate(R.id.nav_multimedia_audio);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_audio_director);
                     dismiss();
 
                 }
@@ -115,6 +115,7 @@ public class dialogoAprobarContenido extends DialogFragment {
                 contenido.setEstado(estado);
                 contenido.setFechaAprobacion(new Date());
                 if(contenidoService.actualizar(contenido)){
+                    Toast.makeText(getActivity(), "Contenido Aprobado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarContenido_director);
                     dismiss();
@@ -129,6 +130,7 @@ public class dialogoAprobarContenido extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_DIRECTOR.getId());
                 contenido.setEstado(estado);
                 if(contenidoService.actualizar(contenido)){
+                    Toast.makeText(getActivity(), "Contenido Rechazado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarContenido_director);
                     dismiss();
