@@ -43,7 +43,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagenAudio" />
+            app:layout_constraintTop_toBottomOf="@+id/imagenAudio"
+            android:background="#00000000"/>
 
         <ImageButton
             android:id="@+id/btnStop"
@@ -54,6 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPause" />
+            app:layout_constraintTop_toBottomOf="@+id/btnPause"
+            android:background="#00000000"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
