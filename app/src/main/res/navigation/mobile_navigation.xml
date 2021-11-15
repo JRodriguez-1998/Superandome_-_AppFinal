@@ -77,6 +77,12 @@
         android:label="RUTINA DIARIA: SEGUIMIENTO"
         tools:layout="@layout/fragment_rutina_diaria_seguimiento" />
 
+    <fragment
+        android:id="@+id/nav_multimedia_audio"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.multimedia_audio"
+        android:label="fragment_multimedia_audio"
+        tools:layout="@layout/fragment_multimedia_audio" />
+
     <!--FRAGMENTS PROFESIONAL-->
 
 
@@ -144,6 +150,7 @@
         android:name="com.example.superandome_appfinal.Vistas.Profesional.derivarContenido_profesional"
         android:label="DERIVAR CONTENIDO MULTIMEDIA"
         tools:layout="@layout/fragment_derivar_contenido" />
+
 
 
 </navigation>
