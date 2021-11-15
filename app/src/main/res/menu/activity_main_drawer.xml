@@ -127,6 +127,11 @@
             android:title="Cambiar Contraseña" />
 
         <item
+            android:id="@+id/nav_multimedia_audio"
+            android:icon="@drawable/question"
+            android:title="Multimedia audio" />
+
+        <item
             android:id="@+id/nav_cerrarSesion"
             android:icon="@drawable/logout"
             android:title="Cerrar Sesion" />
