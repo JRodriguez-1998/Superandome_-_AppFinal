@@ -154,7 +154,7 @@ public class sugerirContenido extends Fragment {
                         content.setTipoArchivo(tipoArchivo);
                         txtTipoContenido.setText("PDF");
                     }
-                    if (tipo.equals("/+MY")) {
+                    if (tipo.equals("SUQz")) {
                         tipoArchivo.setIdTipoArchivo(3);
                         content.setTipoArchivo(tipoArchivo);
                         txtTipoContenido.setText("Audio");
