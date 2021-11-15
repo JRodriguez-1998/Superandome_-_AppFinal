@@ -102,8 +102,8 @@ public class dialogoDerivarContenido extends DialogFragment {
                 if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
                     Toast.makeText(getActivity(),"Es un AUDIO", Toast.LENGTH_SHORT).show();
                     guardarSesionContenido(true, idContenido);
-                    //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    //navController.navigate(R.id.nav_multimedia_audio);
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_multimedia_audio_profesional);
                     dismiss();
 
                 }

@@ -170,7 +170,16 @@
         android:name="com.example.superandome_appfinal.Vistas.Director.multimedia_video_director"
         android:label="MULTIMEDIA: VIDEO"
         tools:layout="@layout/fragment_multimedia_video_director" />
-
+    <fragment
+        android:id="@+id/nav_multimedia_audio_director"
+        android:name="com.example.superandome_appfinal.Vistas.Director.multimedia_audio_director"
+        android:label="MULTIMEDIA: AUDIO"
+        tools:layout="@layout/fragment_multimedia_audio_director" />
+    <fragment
+        android:id="@+id/nav_multimedia_audio_profesional"
+        android:name="com.example.superandome_appfinal.Vistas.Profesional.multimedia_audio_profesional"
+        android:label="MULTIMEDIA: AUDIO"
+        tools:layout="@layout/fragment_multimedia_audio_profesional" />
 
 
 </navigation>
