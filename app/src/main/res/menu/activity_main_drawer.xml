@@ -95,6 +95,11 @@
             android:id="@+id/nav_derivarConsejo_profesional"
             android:icon="@drawable/transfer"
             android:title="Derivar Consejos" />
+
+        <item
+            android:id="@+id/nav_derivarContenido_profesional"
+            android:icon="@drawable/transfer"
+            android:title="Derivar Contenido Multimedia" />
         
         <item
             android:id="@+id/nav_altaProfesional"
