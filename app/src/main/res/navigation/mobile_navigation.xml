@@ -147,13 +147,23 @@
     <fragment
         android:id="@+id/nav_multimedia_text_profesional"
         android:name="com.example.superandome_appfinal.Vistas.Profesional.multimedia_text_profesional"
-        android:label="fragment_multimedia_text_profesional"
+        android:label="MULTIMEDIA: TEXTO"
         tools:layout="@layout/fragment_multimedia_text_profesional" />
     <fragment
         android:id="@+id/nav_multimedia_video_profesional"
         android:name="com.example.superandome_appfinal.Vistas.Profesional.multimedia_video_profesional"
-        android:label="fragment_multimedia_video_profesional"
+        android:label="MULTIMEDIA: VIDEO"
         tools:layout="@layout/fragment_multimedia_video_profesional" />
+    <fragment
+        android:id="@+id/nav_multimedia_text_director"
+        android:name="com.example.superandome_appfinal.Vistas.Director.multimedia_text_director"
+        android:label="MULTIMEDIA: TEXTO"
+        tools:layout="@layout/fragment_multimedia_text_director" />
+    <fragment
+        android:id="@+id/nav_multimedia_video_director"
+        android:name="com.example.superandome_appfinal.Vistas.Director.multimedia_video_director"
+        android:label="MULTIMEDIA: VIDEO"
+        tools:layout="@layout/fragment_multimedia_video_director" />
 
 
 </navigation>
