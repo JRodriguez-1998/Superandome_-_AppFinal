@@ -233,7 +233,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_sugerirConsejo_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_derivarConsejo_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_derivarContenido_profesional).setVisible(true);
-        navMenu.findItem(R.id.nav_multimedia_director).setVisible(true);
+        navMenu.findItem(R.id.nav_multimedia_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_cambiar_password_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
 
