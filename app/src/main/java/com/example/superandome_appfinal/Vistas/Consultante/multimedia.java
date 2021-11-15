@@ -82,8 +82,6 @@ public class multimedia extends Fragment {
                     //NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     //navController.navigate(R.id.nav_multimedia_audio);
                 }
-
-
             }
         });
 
