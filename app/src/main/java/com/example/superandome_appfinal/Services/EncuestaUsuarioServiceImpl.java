@@ -5,6 +5,7 @@ import com.example.superandome_appfinal.Daos.EncuestaUsuarioDaoImpl;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.IDaos.EncuestaDao;
+import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.IDaos.EncuestaUsuarioDao;
 import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 
@@ -57,6 +58,25 @@ public class EncuestaUsuarioServiceImpl implements EncuestaUsuarioService {
                     encuestaDao.refresh(encuestaUsuario.getEncuesta());
                 }
                 return list;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        try {
+            return f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<List<EncuestaUsuario>> f = executor.submit(() -> {
+            try {
+                return dao.getEncuestaUsuarioById(idEncuesta, idUsuario);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

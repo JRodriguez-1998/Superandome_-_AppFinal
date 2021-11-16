@@ -3,6 +3,7 @@ package com.example.superandome_appfinal.Vistas;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.work.Data;
 
 import android.Manifest;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +39,7 @@ import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.DataDB;
+import com.example.superandome_appfinal.Helpers.Workmanagernoti;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
@@ -51,6 +54,7 @@ import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -301,5 +305,35 @@ public class activity_login extends AppCompatActivity {
         return "";
     }
 
+    private String geneteKey(){
+        return UUID.randomUUID().toString();
+    }
 
+    private Data GuardarData(String titulo, String detalle, int idNoti){
+        return new Data.Builder()
+                .putString("titulo", titulo)
+                .putString("detalle", detalle)
+                .putInt("idNoti", idNoti).build();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode==event.KEYCODE_BACK) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        String tag = geneteKey();
+//        int random = (int) (Math.random() * 50 + 1);
+//
+//        Data data = GuardarData("¡Nueva notificación superandome!", "Ingresar diariamente para una mejor seguimiento", random);
+//        Workmanagernoti.GuardarNoti(10 * 1000,  data, tag);
+//    }
 }

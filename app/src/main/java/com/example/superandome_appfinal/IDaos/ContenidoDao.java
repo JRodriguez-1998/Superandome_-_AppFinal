@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ContenidoDao extends Dao<Contenido, Integer> {
     List<Contenido> getContenidosAprobados() throws SQLException;
+    List<Contenido> getContenidosPendientes() throws SQLException;
+    List<Contenido> getContenidosDerivados()throws SQLException;
 }

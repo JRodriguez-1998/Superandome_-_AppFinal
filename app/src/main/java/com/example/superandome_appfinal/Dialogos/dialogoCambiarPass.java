@@ -123,6 +123,7 @@ public class dialogoCambiarPass extends DialogFragment {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear servicios",Toast.LENGTH_SHORT).show();
         }
     }
     public String doHash(String password){

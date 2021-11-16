@@ -18,22 +18,35 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
 import com.example.superandome_appfinal.Entidades.Encuesta;
+import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.IServices.EncuestaService;
+import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EncuestaServiceImpl;
+import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class indexEncuestas extends Fragment {
     RecyclerView recyclerViewEncuestas;
     Button btnVerResultados;
 
     SharedPreferences preferences;
+    SharedPreferences preferences2;
+
     SharedPreferences.Editor editor;
 
     EncuestaService encuestaService;
     List<Encuesta> encuestas;
+    EncuestaUsuarioService encuestaUsuService;
+
+    Integer idUsuario;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +61,12 @@ public class indexEncuestas extends Fragment {
 
         try {
             encuestaService = new EncuestaServiceImpl();
+            encuestaUsuService = new EncuestaUsuarioServiceImpl();
 
             encuestas = encuestaService.getEncuestas();
+
+            preferences2 = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences2.getInt("idUser", 0);
 
             preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
             editor = preferences.edit();
@@ -75,22 +92,54 @@ public class indexEncuestas extends Fragment {
     }
 
     public void encuestaClick(View view) {
-        int idEncuesta = encuestas.get(recyclerViewEncuestas.getChildAdapterPosition(view)).getIdEncuesta();
 
-        switch(EncuestaEnum.getEncuestaEnum(idEncuesta))
-        {
-            case TEST_ANSIEDAD_BECK:
-                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                navController.navigate(R.id.nav_ingresarEncuesta);
-                break;
-            case NO_IMPLEMENTADO:
-                Toast.makeText(getContext(), "¡Proximamente!", Toast.LENGTH_SHORT).show();
-                break;
+        try {
+            int idEncuesta = encuestas.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdEncuesta();
+
+            if (!puedeContestar(idEncuesta)) {
+                Toast.makeText(getContext(), "Se puede responder luego de 7 dias", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            switch (EncuestaEnum.getEncuestaEnum(idEncuesta))
+            {
+                case TEST_ANSIEDAD_BECK:
+                    NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                    navController.navigate(R.id.nav_ingresarEncuesta);
+                    break;
+                case NO_IMPLEMENTADO:
+                    Toast.makeText(getContext(), "¡Proximamente!", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "¡Ha ocurrido un error inesperado!", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void resultadosAnteriores(View view) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
         navController.navigate(R.id.nav_resultadosEncuestas);
+    }
+
+    public Boolean puedeContestar(Integer idEncuesta) throws Exception {
+
+        List<EncuestaUsuario> listEncuestaUsuario = encuestaUsuService.getEncuestaUsuarioById(idEncuesta, 3);
+
+        if (listEncuestaUsuario == null) {
+            return true;
+        }
+
+        EncuestaUsuario encuestaUsu = listEncuestaUsuario.get(listEncuestaUsuario.size() -1);
+
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date ultimaEncuestaFormat = formatter.parse(formatter.format(encuestaUsu.getFecha()));
+        Date fechaActualFormat = formatter.parse(formatter.format(new Date()));
+
+        long diff = fechaActualFormat.getTime() - ultimaEncuestaFormat.getTime();
+        long dias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+
+        return dias >= 7;
     }
 }

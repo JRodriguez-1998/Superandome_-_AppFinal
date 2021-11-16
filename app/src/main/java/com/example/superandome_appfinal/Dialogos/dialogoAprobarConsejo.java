@@ -24,6 +24,7 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 public class dialogoAprobarConsejo extends DialogFragment {
     Activity actividad;
@@ -47,6 +48,7 @@ public class dialogoAprobarConsejo extends DialogFragment {
             return crearDialogo();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear dialogo",Toast.LENGTH_SHORT).show();
         }
         return null;
     }
@@ -77,7 +79,9 @@ public class dialogoAprobarConsejo extends DialogFragment {
                 Consejo consejo = consejoService.getConsejoById(idConsejo);
                 Estado estado = new Estado(EstadoEnum.APROBADO_DIRECTOR.getId());
                 consejo.setEstado(estado);
+                consejo.setFechaAlta(new Date());
                 if(consejoService.actualizar(consejo)){
+                    Toast.makeText(getActivity(), "Consejo Aprobado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarConsejo_director);
                     dismiss();
@@ -92,6 +96,7 @@ public class dialogoAprobarConsejo extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_DIRECTOR.getId());
                 consejo.setEstado(estado);
                 if(consejoService.actualizar(consejo)){
+                    Toast.makeText(getActivity(), "Consejo Rechazado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_aprobarConsejo_director);
                     dismiss();
@@ -115,6 +120,7 @@ public class dialogoAprobarConsejo extends DialogFragment {
             consejoService = new ConsejoServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear servicios",Toast.LENGTH_SHORT).show();
         }
     }
 }

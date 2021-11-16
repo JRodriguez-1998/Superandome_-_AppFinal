@@ -51,6 +51,7 @@ public class derivarRechazarConsejo extends DialogFragment {
             return crearDialogo();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al crear dialogo",Toast.LENGTH_SHORT).show();
         }
         return null;
     }
@@ -82,6 +83,7 @@ public class derivarRechazarConsejo extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
                 consejo.setEstado(estado);
                 if(consejoService.actualizar(consejo)){
+                    Toast.makeText(getActivity(), "Consejo Derivado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_derivarConsejo_profesional);
                     dismiss();
@@ -96,6 +98,7 @@ public class derivarRechazarConsejo extends DialogFragment {
                 Estado estado = new Estado(EstadoEnum.RECHAZADO_PROFESIONAL.getId());
                 consejo.setEstado(estado);
                 if(consejoService.actualizar(consejo)){
+                    Toast.makeText(getActivity(), "Consejo Rechazado", Toast.LENGTH_SHORT).show();
                     NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
                     navController.navigate(R.id.nav_derivarConsejo_profesional);
                     dismiss();
@@ -119,6 +122,7 @@ public class derivarRechazarConsejo extends DialogFragment {
             consejoService = new ConsejoServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            Toast.makeText(getContext(),"Error al iniciar servicios",Toast.LENGTH_SHORT).show();
         }
     }
 }
