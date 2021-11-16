@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface EncuestaUsuarioDao extends Dao<EncuestaUsuario, Integer> {
+    List<EncuestaUsuario> getEncuestaUsuarioByUsuario(int idUsuario) throws SQLException;
     List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) throws SQLException;
 
 }

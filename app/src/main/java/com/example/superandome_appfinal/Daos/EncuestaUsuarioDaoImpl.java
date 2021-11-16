@@ -5,6 +5,7 @@ import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.DataDB;
 import com.example.superandome_appfinal.IDaos.EncuestaUsuarioDao;
 import com.j256.ormlite.dao.BaseDaoImpl;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -17,6 +18,13 @@ public class EncuestaUsuarioDaoImpl extends BaseDaoImpl<EncuestaUsuario, Integer
         super(DataDB.getConnectionSource(), EncuestaUsuario.class);
     }
 
+    @Override
+    public List<EncuestaUsuario> getEncuestaUsuarioByUsuario(int idUsuario) throws SQLException {
+        QueryBuilder<EncuestaUsuario, Integer> qb = this.queryBuilder();
+        qb = qb.where().eq("idUsuario", idUsuario).queryBuilder();
+        return qb.orderBy("fecha", false).query();
+    }
+    
     @Override
     public List<EncuestaUsuario> getEncuestaUsuarioById(Integer idEncuesta, Integer idUsuario) throws SQLException {
 

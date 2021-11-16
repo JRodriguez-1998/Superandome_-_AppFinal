@@ -31,6 +31,8 @@ import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ingresarEncuesta extends Fragment {
 
@@ -50,22 +52,17 @@ public class ingresarEncuesta extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         try {
+            iniciarRadio(view);
+            encuestaService = new EncuestaServiceImpl();
+            encuestaUsuarioService = new EncuestaUsuarioServiceImpl();
+            usuarioService = new UsuarioServiceImpl();
 
+            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            idUsuario = preferences.getInt("idUser", 0);
 
-        iniciarRadio(view);
-        iniciarServicios();
+            btnAceptar = (Button) view.findViewById(R.id.btnAceptarEncuesta);
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        idUsuario = preferences.getInt("idUser", 0);
-
-        preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
-        idEncuesta = preferences.getInt("idEncuesta", 0);
-
-        btnAceptar = (Button) view.findViewById(R.id.btnAceptarEncuesta);
-
-        btnAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            btnAceptar.setOnClickListener(view1 -> {
                 int total = analizarRadio();
 
                 if (total == -1){
@@ -73,18 +70,18 @@ public class ingresarEncuesta extends Fragment {
                     return;
                 }
 
-                Encuesta encuesta = encuestaService.getEncuestaById(idEncuesta);
+                Encuesta encuesta = encuestaService.getEncuestaById(EncuestaEnum.TEST_ANSIEDAD_BECK.getId());
                 Usuario usuario = usuarioService.getUsuarioById(idUsuario);
                 EncuestaUsuario encuestaUsuario = new EncuestaUsuario(total, encuesta, usuario);
 
-                if(encuestaUsuarioService.guardar(encuestaUsuario)){
+                if (encuestaUsuarioService.guardar(encuestaUsuario)) {
                     dialogoEncuesta d = new dialogoEncuesta(total);
-                    d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_encuesta");
-                }else{
-                    Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_LONG).show();
+                    d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_encuesta");
+                } else {
+                    Toast.makeText(getActivity(), "Ha ocurrido un error al generar el resultado", Toast.LENGTH_LONG).show();
                 }
-            }
-        });}catch (Exception e) {
+            });
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
@@ -115,95 +112,36 @@ public class ingresarEncuesta extends Fragment {
         rgroup21 = (RadioGroup) view.findViewById(R.id.rgroup21);
     }
 
-    public int analizarRadio(){
+    public int analizarRadio() {
+        List<Integer> rgroupList = new ArrayList<>();
+        rgroupList.add(obtenerSeleccion(rgroup1));
+        rgroupList.add(obtenerSeleccion(rgroup2));
+        rgroupList.add(obtenerSeleccion(rgroup3));
+        rgroupList.add(obtenerSeleccion(rgroup4));
+        rgroupList.add(obtenerSeleccion(rgroup5));
+        rgroupList.add(obtenerSeleccion(rgroup6));
+        rgroupList.add(obtenerSeleccion(rgroup7));
+        rgroupList.add(obtenerSeleccion(rgroup8));
+        rgroupList.add(obtenerSeleccion(rgroup9));
+        rgroupList.add(obtenerSeleccion(rgroup10));
+        rgroupList.add(obtenerSeleccion(rgroup11));
+        rgroupList.add(obtenerSeleccion(rgroup12));
+        rgroupList.add(obtenerSeleccion(rgroup13));
+        rgroupList.add(obtenerSeleccion(rgroup14));
+        rgroupList.add(obtenerSeleccion(rgroup15));
+        rgroupList.add(obtenerSeleccion(rgroup16));
+        rgroupList.add(obtenerSeleccion(rgroup17));
+        rgroupList.add(obtenerSeleccion(rgroup18));
+        rgroupList.add(obtenerSeleccion(rgroup19));
+        rgroupList.add(obtenerSeleccion(rgroup20));
+        rgroupList.add(obtenerSeleccion(rgroup21));
 
-        int rgroup1Idx = obtenerSeleccion(rgroup1);
-        if (rgroup1Idx == -1)
+        if (rgroupList.contains(-1))
             return -1;
 
-        int rgroup2Idx = obtenerSeleccion(rgroup2);
-        if (rgroup2Idx == -1)
-            return -1;
-
-        int rgroup3Idx = obtenerSeleccion(rgroup3);
-        if (rgroup3Idx == -1)
-            return -1;
-
-        int rgroup4Idx = obtenerSeleccion(rgroup4);
-        if (rgroup4Idx == -1)
-            return -1;
-
-        int rgroup5Idx = obtenerSeleccion(rgroup5);
-        if (rgroup5Idx == -1)
-            return -1;
-
-        int rgroup6Idx = obtenerSeleccion(rgroup6);
-        if (rgroup6Idx == -1)
-            return -1;
-
-        int rgroup7Idx = obtenerSeleccion(rgroup7);
-        if (rgroup7Idx == -1)
-            return -1;
-
-        int rgroup8Idx = obtenerSeleccion(rgroup8);
-        if (rgroup8Idx == -1)
-            return -1;
-
-        int rgroup9Idx = obtenerSeleccion(rgroup9);
-        if (rgroup9Idx == -1)
-            return -1;
-
-        int rgroup10Idx = obtenerSeleccion(rgroup10);
-        if (rgroup10Idx == -1)
-            return -1;
-
-        int rgroup11Idx = obtenerSeleccion(rgroup11);
-        if (rgroup11Idx == -1)
-            return -1;
-
-        int rgroup12Idx = obtenerSeleccion(rgroup12);
-        if (rgroup12Idx == -1)
-            return -1;
-
-        int rgroup13Idx = obtenerSeleccion(rgroup13);
-        if (rgroup13Idx == -1)
-            return -1;
-
-        int rgroup14Idx = obtenerSeleccion(rgroup14);
-        if (rgroup14Idx == -1)
-            return -1;
-
-        int rgroup15Idx = obtenerSeleccion(rgroup15);
-        if (rgroup15Idx == -1)
-            return -1;
-
-        int rgroup16Idx = obtenerSeleccion(rgroup16);
-        if (rgroup16Idx == -1)
-            return -1;
-
-        int rgroup17Idx = obtenerSeleccion(rgroup17);
-        if (rgroup17Idx == -1)
-            return -1;
-
-        int rgroup18Idx = obtenerSeleccion(rgroup18);
-        if (rgroup18Idx == -1)
-            return -1;
-
-        int rgroup19Idx = obtenerSeleccion(rgroup19);
-        if (rgroup19Idx == -1)
-            return -1;
-
-        int rgroup20Idx = obtenerSeleccion(rgroup20);
-        if (rgroup20Idx == -1)
-            return -1;
-
-        int rgroup21Idx = obtenerSeleccion(rgroup21);
-        if (rgroup21Idx == -1)
-            return -1;
-
-        int result = rgroup1Idx + rgroup2Idx + rgroup3Idx + rgroup4Idx + rgroup5Idx + rgroup6Idx + rgroup7Idx +
-                rgroup8Idx + rgroup9Idx + rgroup10Idx + rgroup11Idx + rgroup12Idx + rgroup13Idx + rgroup14Idx +
-                rgroup15Idx + rgroup16Idx + rgroup17Idx + rgroup18Idx + rgroup19Idx + rgroup20Idx + rgroup21Idx;
+        int result = 0;
+        for (int rgroupIdx : rgroupList)
+            result += rgroupIdx;
 
         return result;
     }
@@ -219,16 +157,5 @@ public class ingresarEncuesta extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_ingresar_encuesta, container, false);
-    }
-
-    public void iniciarServicios(){
-        try {
-            encuestaService = new EncuestaServiceImpl();
-            encuestaUsuarioService = new EncuestaUsuarioServiceImpl();
-            usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
-        }
     }
 }
