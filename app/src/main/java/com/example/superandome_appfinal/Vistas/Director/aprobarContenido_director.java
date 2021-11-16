@@ -54,7 +54,7 @@ public class aprobarContenido_director extends Fragment {
             @Override
             public void onClick(View view){
                 int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
-                Toast.makeText(getActivity(), "IdContenido: " + idContenido, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "IdContenido: " + idContenido, Toast.LENGTH_SHORT).show();
                 dialogoAprobarContenido d = new dialogoAprobarContenido(idContenido);
                 d.show(getActivity().getSupportFragmentManager(),"dialogo_aprobar_contenido");
             }

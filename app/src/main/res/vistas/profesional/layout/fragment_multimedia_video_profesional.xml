@@ -43,11 +43,15 @@
                         android:textColor="@color/white"
                         android:textSize="24sp" />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                     <VideoView
                         android:id="@+id/videoView2"
                         android:layout_width="match_parent"
                         android:layout_height="277dp"
                         android:layout_marginTop="15dp" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
