@@ -53,7 +53,7 @@ public class derivarContenido_profesional extends Fragment {
             @Override
             public void onClick(View view){
                 int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
-                Toast.makeText(getActivity(), "IdContenido: " + idContenido, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "IdContenido: " + idContenido, Toast.LENGTH_SHORT).show();
                 dialogoDerivarContenido d = new dialogoDerivarContenido(idContenido);
                 d.show(getActivity().getSupportFragmentManager(),"dialogo_derivar_contenido");
             }

@@ -58,6 +58,7 @@ public class multimedia_video extends Fragment {
             mediaController = new MediaController(getContext());
 
             mediaController.setMediaPlayer(videoView);
+            mediaController.setAnchorView(videoView);
             videoView.setMediaController(mediaController);
             videoView.requestFocus();
 
