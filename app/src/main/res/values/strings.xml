@@ -107,6 +107,9 @@
 
     <string name="olvidoContraseña">Olvidé mi Contraseña</string>
 
+    <string name="ver_resultados_anteriores">Ver resultados anteriores</string>
+    <string name="resultados_anteriores">Resultados anteriores</string>
+
     <!-- Rutinas -->
     <string name="rutinaDieta">Dieta equilibrada</string>
     <string name="rutinaConsumo">Consumo de tóxicos moderado</string>

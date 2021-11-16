@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
@@ -21,14 +22,18 @@ import com.example.superandome_appfinal.IServices.EncuestaService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EncuestaServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class indexEncuestas extends Fragment {
-    RecyclerView recyclerViewContenido;
+    RecyclerView recyclerViewEncuestas;
+    Button btnVerResultados;
+
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
     EncuestaService encuestaService;
+    List<Encuesta> encuestas;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,32 +49,22 @@ public class indexEncuestas extends Fragment {
         try {
             encuestaService = new EncuestaServiceImpl();
 
-            List<Encuesta> encuestas = encuestaService.getEncuestas();
+            encuestas = encuestaService.getEncuestas();
 
             preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
             editor = preferences.edit();
 
-            recyclerViewContenido = v.findViewById(R.id.rvEncuestas);
-            recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerViewContenido.setHasFixedSize(true);
+            recyclerViewEncuestas = v.findViewById(R.id.rvEncuestas);
+            recyclerViewEncuestas.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerViewEncuestas.setHasFixedSize(true);
+
+            btnVerResultados = v.findViewById(R.id.btnVerResultadosAnt);
+            btnVerResultados.setOnClickListener(this::resultadosAnteriores);
 
             AdapterEncuesta adapter = new AdapterEncuesta(encuestas);
-            adapter.setOnClickListener(view -> {
-                int idEncuesta = encuestas.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdEncuesta();
+            adapter.setOnClickListener(this::encuestaClick);
 
-                switch(EncuestaEnum.getEncuestaEnum(idEncuesta))
-                {
-                    case TEST_ANSIEDAD_BECK:
-                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                        navController.navigate(R.id.nav_ingresarEncuesta);
-                        break;
-                    case NO_IMPLEMENTADO:
-                        Toast.makeText(getContext(), "¡Proximamente!", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            });
-
-            recyclerViewContenido.setAdapter(adapter);
+            recyclerViewEncuestas.setAdapter(adapter);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,5 +72,25 @@ public class indexEncuestas extends Fragment {
         }
 
         return v;
+    }
+
+    public void encuestaClick(View view) {
+        int idEncuesta = encuestas.get(recyclerViewEncuestas.getChildAdapterPosition(view)).getIdEncuesta();
+
+        switch(EncuestaEnum.getEncuestaEnum(idEncuesta))
+        {
+            case TEST_ANSIEDAD_BECK:
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+                navController.navigate(R.id.nav_ingresarEncuesta);
+                break;
+            case NO_IMPLEMENTADO:
+                Toast.makeText(getContext(), "¡Proximamente!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    public void resultadosAnteriores(View view) {
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
+        navController.navigate(R.id.nav_resultadosEncuestas);
     }
 }
