@@ -94,7 +94,7 @@ public class indexEncuestas extends Fragment {
     public void encuestaClick(View view) {
 
         try {
-            int idEncuesta = encuestas.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdEncuesta();
+            int idEncuesta = encuestas.get(recyclerViewEncuestas.getChildAdapterPosition(view)).getIdEncuesta();
 
             if (!puedeContestar(idEncuesta)) {
                 Toast.makeText(getContext(), "Se puede responder luego de 7 dias", Toast.LENGTH_SHORT).show();
@@ -125,7 +125,7 @@ public class indexEncuestas extends Fragment {
 
     public Boolean puedeContestar(Integer idEncuesta) throws Exception {
 
-        List<EncuestaUsuario> listEncuestaUsuario = encuestaUsuService.getEncuestaUsuarioById(idEncuesta, 3);
+        List<EncuestaUsuario> listEncuestaUsuario = encuestaUsuService.getEncuestaUsuarioById(idEncuesta, idUsuario);
 
         if (listEncuestaUsuario == null) {
             return true;

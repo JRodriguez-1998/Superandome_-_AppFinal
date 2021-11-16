@@ -58,8 +58,8 @@ public class resultadosEncuestas extends Fragment {
             recyclerViewResultados.setAdapter(adapter);
 
             adapter.setOnClickListener(view -> {
-                int idEncuesta = resultados.get(recyclerViewResultados.getChildAdapterPosition(view)).getIdEncuestaUsuario();
-                Toast.makeText(getContext(), "Hola " + idEncuesta, Toast.LENGTH_SHORT).show();
+//                int idEncuesta = resultados.get(recyclerViewResultados.getChildAdapterPosition(view)).getIdEncuestaUsuario();
+//                Toast.makeText(getContext(), "Hola " + idEncuesta, Toast.LENGTH_SHORT).show();
             });
 
         } catch (Exception e) {
