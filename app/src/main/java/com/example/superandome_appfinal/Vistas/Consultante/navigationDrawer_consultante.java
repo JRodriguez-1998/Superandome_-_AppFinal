@@ -281,27 +281,4 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         tipoUser = preferences.getInt("tipoUser",0);
         nameUsuario = preferences.getString("nickname",null);
     }
-
-    private String geneteKey(){
-        return UUID.randomUUID().toString();
-    }
-
-    private Data GuardarData(String titulo, String detalle, int idNoti){
-        return new Data.Builder()
-                .putString("titulo", titulo)
-                .putString("detalle", detalle)
-                .putInt("idNoti", idNoti).build();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        String tag = geneteKey();
-        int random = (int) (Math.random() * 50 + 1);
-
-        Data data = GuardarData("¡Nueva notificación superandome!", "Ingresar diariamente para una mejor seguimiento", random);
-        Workmanagernoti.GuardarNoti(10 * 1000,  data, tag);
-    }
-
 }

@@ -327,5 +327,13 @@ public class activity_login extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        String tag = geneteKey();
+//        int random = (int) (Math.random() * 50 + 1);
+//
+//        Data data = GuardarData("¡Nueva notificación superandome!", "Ingresar diariamente para una mejor seguimiento", random);
+//        Workmanagernoti.GuardarNoti(10 * 1000,  data, tag);
+//    }
 }
