@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,6 @@ import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Base64;
 
 public class sugerirContenido_profesional extends Fragment {
 
@@ -123,7 +123,7 @@ public class sugerirContenido_profesional extends Fragment {
                     int x = 1;
 
 
-                    String resultado = Base64.getEncoder().encodeToString(bytesDato);
+                    String resultado = Base64.encodeToString(bytesDato, Base64.DEFAULT);
 
                     InicializarServicio();
 

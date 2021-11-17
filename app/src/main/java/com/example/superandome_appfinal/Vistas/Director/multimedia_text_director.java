@@ -2,8 +2,8 @@ package com.example.superandome_appfinal.Vistas.Director;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
@@ -21,8 +20,6 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 import com.github.barteksc.pdfviewer.PDFView;
 
-import java.util.Base64;
-
 public class multimedia_text_director extends Fragment {
     PDFView pdf;
     TextView txt;
@@ -30,14 +27,12 @@ public class multimedia_text_director extends Fragment {
 
     public multimedia_text_director(){};
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         try {
             SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
             idContenido = preferences.getInt("idContenido", 0);
-
 
 //        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
 //        // String filename = "HOLA.pdf";
@@ -71,14 +66,12 @@ public class multimedia_text_director extends Fragment {
 
             Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
-            byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
+            byte[] decoder = Base64.decode(contenido.getArchivo(), Base64.DEFAULT);
             //byte[] decodedString
-
-
 
             pdf = (PDFView) view.findViewById(R.id.pdfView);
             pdf.fromBytes(decoder).load();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }

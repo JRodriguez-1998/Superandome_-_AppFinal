@@ -2,26 +2,13 @@ package com.example.superandome_appfinal.Vistas.Consultante;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.SQLException;
-import java.util.Base64;
-import java.util.Base64.*;
-
-
-import android.os.Environment;
-import android.os.FileUtils;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +29,13 @@ public class multimedia_text extends Fragment {
 
     public multimedia_text(){};
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-try {
-
-
-        SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-        idContenido = preferences.getInt("idContenido", 0);
-
+        try {
+            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+            idContenido = preferences.getInt("idContenido", 0);
 
 //        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
 //        // String filename = "HOLA.pdf";
@@ -83,21 +67,20 @@ try {
 
             contenidoService = new ContenidoServiceImpl();
 
-        Contenido contenido = contenidoService.getContenidoByID(idContenido);
+            Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
-        byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
-        //byte[] decodedString
+            byte[] decoder = Base64.decode(contenido.getArchivo(), Base64.DEFAULT);
+            //byte[] decodedString
 
-
-
-        pdf = (PDFView) view.findViewById(R.id.pdfView);
-        pdf.fromBytes(decoder).load();
-}catch (Exception e) {
-        e.printStackTrace();
-        Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-    }
+            pdf = (PDFView) view.findViewById(R.id.pdfView);
+            pdf.fromBytes(decoder).load();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

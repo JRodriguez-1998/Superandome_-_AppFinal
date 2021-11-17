@@ -4,15 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +19,13 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Constantes.TipoConsejoEnum;
-import com.example.superandome_appfinal.Daos.EstadoDaoImpl;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
-import com.example.superandome_appfinal.Services.EmocionServiceImpl;
-import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +44,6 @@ public class homeConsultante extends Fragment {
 
     public homeConsultante() {}
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
