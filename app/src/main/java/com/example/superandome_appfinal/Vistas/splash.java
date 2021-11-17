@@ -1,6 +1,7 @@
 package com.example.superandome_appfinal.Vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.superandome_appfinal.R;
 
@@ -15,6 +16,8 @@ public class splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         new Handler().postDelayed(new Runnable() {
             @Override
