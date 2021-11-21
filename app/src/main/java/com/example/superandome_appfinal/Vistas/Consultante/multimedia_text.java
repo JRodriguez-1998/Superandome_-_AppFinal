@@ -46,11 +46,12 @@ public class multimedia_text extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-try {
+
+        try {
 
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-        idContenido = preferences.getInt("idContenido", 0);
+            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
+            idContenido = preferences.getInt("idContenido", 0);
 
 
 //        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
@@ -84,18 +85,19 @@ try {
             contenidoService = new ContenidoServiceImpl();
 
         Contenido contenido = contenidoService.getContenidoByID(idContenido);
+        String base64 = contenido.getArchivo().replaceAll("\\s+","");
 
-        byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
+        byte[] decoder = Base64.getDecoder().decode(base64);
         //byte[] decodedString
 
 
 
-        pdf = (PDFView) view.findViewById(R.id.pdfView);
-        pdf.fromBytes(decoder).load();
-}catch (Exception e) {
-        e.printStackTrace();
-        Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-    }
+            pdf = (PDFView) view.findViewById(R.id.pdfView);
+            pdf.fromBytes(decoder).load();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+        }
 
     }
     @Override
