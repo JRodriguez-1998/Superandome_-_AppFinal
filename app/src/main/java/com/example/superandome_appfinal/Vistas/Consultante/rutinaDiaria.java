@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.superandome_appfinal.Dialogos.dialogoRutinaConfigurada;
-import com.example.superandome_appfinal.Dialogos.dialogoSugerirConsejo;
 import com.example.superandome_appfinal.Entidades.Item;
 import com.example.superandome_appfinal.Entidades.ItemUsuario;
-import com.example.superandome_appfinal.Entidades.ItemUsuarioDiario;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioService;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
@@ -100,8 +97,7 @@ public class rutinaDiaria extends Fragment {
             Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
         }
         
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        int idUsuario = preferences.getInt("idUser", 0);
+        int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
         usuario = ususerv.getUsuarioById(idUsuario);
 

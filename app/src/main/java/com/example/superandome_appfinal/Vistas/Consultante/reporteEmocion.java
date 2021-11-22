@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.EmocionUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -60,27 +61,26 @@ public class reporteEmocion extends Fragment {
         chart = v.findViewById(R.id.chart);
         spMeses = v.findViewById(R.id.spMeses);
         try {
-        spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                LoadPieChart();
-            }
+            spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    LoadPieChart();
+                }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                LoadPieChart();
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    LoadPieChart();
+                }
+            });
 
 
             service = new EmocionUsuarioServiceImpl();
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            idUsuario = preferences.getInt("idUser", 0);
+            idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
 
-        LoadSpinner();
-} catch (Exception e) {
+            LoadSpinner();
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }

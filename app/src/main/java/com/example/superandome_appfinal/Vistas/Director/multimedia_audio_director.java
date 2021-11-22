@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Director;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -21,6 +19,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
@@ -51,9 +50,7 @@ public class multimedia_audio_director extends Fragment {
             btnPause.setImageResource(R.drawable.btnpause);
             btnStop.setImageResource(R.drawable.btnstop);
 
-
-            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-            idContenido = preferences.getInt("idContenido", 0);
+            idContenido = SessionManager.getIdContenido(requireActivity());
 
             ContenidoService contenidoService = new ContenidoServiceImpl();
             Contenido contenido = contenidoService.getContenidoByID(idContenido);

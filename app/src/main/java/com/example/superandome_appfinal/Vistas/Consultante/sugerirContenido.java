@@ -1,14 +1,11 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,15 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
-import com.example.superandome_appfinal.Dialogos.dialogoSugerirConsejo;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoArchivo;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.IServices.EstadoService;
-import com.example.superandome_appfinal.IServices.TipoArchivoService;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
@@ -38,7 +34,6 @@ import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.MessageFormat;
 import java.util.Base64;
 
 public class sugerirContenido extends Fragment {
@@ -210,8 +205,7 @@ public class sugerirContenido extends Fragment {
         try {
             usuarioService = new UsuarioServiceImpl();
             contenidoService = new ContenidoServiceImpl();
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            int idUsuario = preferences.getInt("idUser", 0);
+            int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
             usuario = usuarioService.getUsuarioById(idUsuario);
 

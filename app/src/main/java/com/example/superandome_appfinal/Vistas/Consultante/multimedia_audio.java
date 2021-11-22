@@ -1,12 +1,6 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.media.AudioAttributes;
-import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioTrack;
-import android.media.AudioTrack.Builder;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,19 +15,16 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -61,9 +52,7 @@ public class multimedia_audio extends Fragment {
         btnPause.setImageResource(R.drawable.btnpause);
         btnStop.setImageResource(R.drawable.btnstop);
 
-
-        SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-        idContenido = preferences.getInt("idContenido", 0);
+        idContenido = SessionManager.getIdContenido(requireActivity());
 
         ContenidoService contenidoService = new ContenidoServiceImpl();
         Contenido contenido = contenidoService.getContenidoByID(idContenido);

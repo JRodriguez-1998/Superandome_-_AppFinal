@@ -3,8 +3,6 @@ package com.example.superandome_appfinal.Dialogos;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +21,6 @@ import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.IServices.ConsejoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
-import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
-import com.example.superandome_appfinal.Vistas.activity_login;
 
 import java.sql.SQLException;
 
@@ -35,10 +31,6 @@ public class derivarRechazarConsejo extends DialogFragment {
     int idConsejo;
 
     ConsejoService consejoService;
-
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     public derivarRechazarConsejo(int idConsejo) {
         this.idConsejo = idConsejo;
@@ -61,9 +53,6 @@ public class derivarRechazarConsejo extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.dialogo_derivar_rechazar,null);
         builder.setView(v);
-
-        preferences = actividad.getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        editor = preferences.edit();
 
         btnDerivar = (TextView) v.findViewById(R.id.btnDerivar);
         btnRechazar = (TextView) v.findViewById(R.id.btnRechazar);

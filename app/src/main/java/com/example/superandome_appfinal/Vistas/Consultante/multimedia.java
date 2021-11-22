@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -16,26 +14,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
-import com.example.superandome_appfinal.Dialogos.dialogoAprobarConsejo;
-import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Contenido;
-import com.example.superandome_appfinal.Entidades.TipoArchivo;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
-import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
-import com.example.superandome_appfinal.Vistas.Director.adapterDirector;
-import com.github.barteksc.pdfviewer.PDFView;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class multimedia extends Fragment {
 
     RecyclerView recyclerViewContenido;
-    ArrayList<Contenido> contenidos;
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
+    List<Contenido> contenidos;
 
     ContenidoService contenidoService;
 
@@ -47,62 +36,39 @@ public class multimedia extends Fragment {
         try {
             contenidoService = new ContenidoServiceImpl();
 
-        preferences = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-        editor = preferences.edit();
+            contenidos = contenidoService.getContenidosAprobados();
+            recyclerViewContenido = view.findViewById(R.id.rvContenido);
+            recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerViewContenido.setHasFixedSize(true);
 
-        contenidos = new ArrayList<Contenido>();
-        recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
-        recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewContenido.setHasFixedSize(true);
+            adapterMultimedia adapterContenido = new adapterMultimedia(contenidos);
 
-        obtenerContenido();
+            adapterContenido.setOnClickListener(view1 -> {
 
-        adapterMultimedia adapterContenido = new adapterMultimedia(contenidos);
+                int idContenido = contenidos.get(recyclerViewContenido.getChildAdapterPosition(view1)).getIdContenido();
 
-        adapterContenido.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
+                SessionManager.setIdContenido(requireActivity(), idContenido);
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
 
-                int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
-                //Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
-
-                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
-                    guardarSesionContenido(true, idContenido);
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    navController.navigate(R.id.nav_multimedia_text);
+                int idTipoArchivo = contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo();
+                switch (TipoArchivoEnum.getTipoArchivo(idTipoArchivo)) {
+                    case PDF:
+                        navController.navigate(R.id.nav_multimedia_text);
+                        break;
+                    case VIDEO:
+                        navController.navigate(R.id.nav_multimedia_video);
+                        break;
+                    case AUDIO:
+                        navController.navigate(R.id.nav_multimedia_audio);
+                        break;
                 }
+            });
 
-                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
-                    guardarSesionContenido(true, idContenido);
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    navController.navigate(R.id.nav_multimedia_video);
-                }
-
-                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
-                    guardarSesionContenido(true, idContenido);
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    navController.navigate(R.id.nav_multimedia_audio);
-                }
-            }
-        });
-
-        recyclerViewContenido.setAdapter(adapterContenido);
-        } catch (SQLException throwables) {
+            recyclerViewContenido.setAdapter(adapterContenido);
+        } catch (Exception throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error añ inicializar pantalla", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
         return view;
-    }
-
-    public void guardarSesionContenido(boolean iniciar, int idContenido){
-        editor.putBoolean("contenido",iniciar);
-        editor.putInt("idContenido", idContenido);
-        editor.apply();
-    }
-
-    public void obtenerContenido(){
-        for(int i = 0; i< contenidoService.getContenidosAprobados().size(); i ++){
-            contenidos.add(contenidoService.getContenidosAprobados().get(i));
-        }
     }
 }

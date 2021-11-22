@@ -1,8 +1,6 @@
 package com.example.superandome_appfinal.Vistas.Profesional;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,18 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 import java.security.MessageDigest;
-import java.sql.SQLException;
 
 public class cambiar_password_profesional extends Fragment {
 
@@ -35,12 +32,6 @@ public class cambiar_password_profesional extends Fragment {
 
     String nameUsuario;
 
-    FrameLayout frameLayout;
-
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
-
     UsuarioService usuarioService;
 
     Usuario user;
@@ -49,36 +40,36 @@ public class cambiar_password_profesional extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        txtNickname = (TextView) view.findViewById(R.id.tvNicknameUsuario);
-        txtPass = (EditText) view.findViewById(R.id.editTextPassActual);
-        txtPassNueva = (EditText) view.findViewById(R.id.editTextPassNueva);
-        txtConfirPassNueva = (EditText) view.findViewById(R.id.editTextConfPassNueva);
-        btnConfirmar = (Button) view.findViewById(R.id.btnConfirmar);
+        try {
 
-        obtenerPreferences();
+            txtNickname = (TextView) view.findViewById(R.id.tvNicknameUsuario);
+            txtPass = (EditText) view.findViewById(R.id.editTextPassActual);
+            txtPassNueva = (EditText) view.findViewById(R.id.editTextPassNueva);
+            txtConfirPassNueva = (EditText) view.findViewById(R.id.editTextConfPassNueva);
+            btnConfirmar = (Button) view.findViewById(R.id.btnConfirmar);
 
-        //Instancio el Servicio del Usuario
-        try
-        {
+
+            //Instancio el Servicio del Usuario
             usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables)
-        {
-            throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicio", Toast.LENGTH_SHORT).show();
+            nameUsuario = SessionManager.obtenerUsuario(requireActivity()).getNickname();
+
+            user = usuarioService.getUsuario(nameUsuario);
+
+            txtNickname.setText(user.getNickname());
+
+
+
+            btnConfirmar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cambiarContraseña();
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
-
-        user = usuarioService.getUsuario(nameUsuario);
-
-        txtNickname.setText(user.getNickname());
-
-
-
-        btnConfirmar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cambiarContraseña();
-            }
-        });
 
     }
 
@@ -86,13 +77,6 @@ public class cambiar_password_profesional extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cambiar_password_profesional, container, false);
-    }
-
-    public void obtenerPreferences(){
-        preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-
-        nameUsuario = preferences.getString("nickname",null);
     }
 
     public void cambiarContraseña(){

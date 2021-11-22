@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.ItemRutinaEnum;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioDiarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ItemUsuarioDiarioServiceImpl;
@@ -59,37 +60,29 @@ public class reporteRutina extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_reporte_rutina, container, false);
 
         try {
+            FindViews(v);
 
+            spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    LoadProgressBars();
+                }
 
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    LoadProgressBars();
+                }
+            });
 
-        FindViews(v);
-
-        spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                LoadProgressBars();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                LoadProgressBars();
-            }
-        });
-
-        try {
             service = new ItemUsuarioDiarioServiceImpl();
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            idUsuario = preferences.getInt("idUser", 0);
+            idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
+
+            LoadSpinner();
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
-
-        LoadSpinner();
-        }catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-            }
         return v;
     }
 

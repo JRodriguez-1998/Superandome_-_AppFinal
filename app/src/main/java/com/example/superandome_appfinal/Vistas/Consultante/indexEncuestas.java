@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,9 +23,7 @@ import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EncuestaServiceImpl;
 import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 
-import java.util.ArrayList;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,11 +32,6 @@ import java.util.concurrent.TimeUnit;
 public class indexEncuestas extends Fragment {
     RecyclerView recyclerViewEncuestas;
     Button btnVerResultados;
-
-    SharedPreferences preferences;
-    SharedPreferences preferences2;
-
-    SharedPreferences.Editor editor;
 
     EncuestaService encuestaService;
     List<Encuesta> encuestas;
@@ -64,12 +55,6 @@ public class indexEncuestas extends Fragment {
             encuestaUsuService = new EncuestaUsuarioServiceImpl();
 
             encuestas = encuestaService.getEncuestas();
-
-            preferences2 = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            idUsuario = preferences2.getInt("idUser", 0);
-
-            preferences = requireActivity().getSharedPreferences("encuesta", Context.MODE_PRIVATE);
-            editor = preferences.edit();
 
             recyclerViewEncuestas = v.findViewById(R.id.rvEncuestas);
             recyclerViewEncuestas.setLayoutManager(new LinearLayoutManager(getContext()));

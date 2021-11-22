@@ -1,8 +1,6 @@
 package com.example.superandome_appfinal.Vistas.Director;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,18 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 import java.security.MessageDigest;
-import java.sql.SQLException;
 
 
 public class cambiar_password extends Fragment {
@@ -35,12 +32,6 @@ public class cambiar_password extends Fragment {
     Button btnConfirmar;
 
     String nameUsuario;
-
-    FrameLayout frameLayout;
-
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     UsuarioService usuarioService;
 
@@ -55,43 +46,34 @@ public class cambiar_password extends Fragment {
         txtPassNueva = (EditText) view.findViewById(R.id.editTextPassNueva);
         txtConfirPassNueva = (EditText) view.findViewById(R.id.editTextConfPassNueva);
         btnConfirmar = (Button) view.findViewById(R.id.btnConfirmar);
-        try{
-        obtenerPreferences();
 
-        //Instancio el Servicio del Usuario
+        try {
+            nameUsuario = SessionManager.obtenerUsuario(requireActivity()).getNickname();
 
+            // Instancio el Servicio del Usuario
             usuarioService = new UsuarioServiceImpl();
 
+            user = usuarioService.getUsuario(nameUsuario);
 
-        user = usuarioService.getUsuario(nameUsuario);
+            txtNickname.setText(user.getNickname());
 
-        txtNickname.setText(user.getNickname());
-
-
-        
-        btnConfirmar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cambiarContraseña();
-            }
-        });
+            btnConfirmar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cambiarContraseña();
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_cambiar_password, container, false);
-    }
-
-    public void obtenerPreferences(){
-        preferences = this.getActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-
-        nameUsuario = preferences.getString("nickname",null);
     }
     
     public void cambiarContraseña(){

@@ -3,7 +3,6 @@ package com.example.superandome_appfinal.Dialogos;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +17,11 @@ import androidx.navigation.Navigation;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
-import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
-import com.example.superandome_appfinal.IServices.ConsejoService;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
-import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 
 import java.sql.SQLException;
@@ -35,12 +32,6 @@ public class dialogoDerivarContenido extends DialogFragment {
     int idContenido;
 
     ContenidoService contenidoService;
-
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
-    SharedPreferences preferences2;
-    SharedPreferences.Editor editor2;
 
     public dialogoDerivarContenido(int idContenido) {
         this.idContenido = idContenido;
@@ -63,17 +54,11 @@ public class dialogoDerivarContenido extends DialogFragment {
         View v = inflater.inflate(R.layout.dialogo_derivar_contenido,null);
         builder.setView(v);
 
-        preferences = actividad.getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-
-        preferences2 = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-        editor2 = preferences2.edit();
-
         btnVer = (TextView) v.findViewById(R.id.btnVer);
         btnDerivar = (TextView) v.findViewById(R.id.btnDerivar);
         btnRechazar = (TextView) v.findViewById(R.id.btnRechazar);
 
-        iniciarServicios();
+        contenidoService = new ContenidoServiceImpl();
         eventoBotones();
 
         return builder.create();
@@ -84,28 +69,22 @@ public class dialogoDerivarContenido extends DialogFragment {
         btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SessionManager.setIdContenido(requireActivity(), idContenido);
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
 
-                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
-                    guardarSesionContenido(true, idContenido);
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    navController.navigate(R.id.nav_multimedia_text_profesional);
-                    dismiss();
+                int idTipoArchivo = contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo();
+                switch (TipoArchivoEnum.getTipoArchivo(idTipoArchivo)) {
+                    case PDF:
+                        navController.navigate(R.id.nav_multimedia_text_profesional);
+                        break;
+                    case VIDEO:
+                        navController.navigate(R.id.nav_multimedia_video_profesional);
+                        break;
+                    case AUDIO:
+                        navController.navigate(R.id.nav_multimedia_audio_profesional);
+                        break;
                 }
-
-                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
-                    guardarSesionContenido(true, idContenido);
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    navController.navigate(R.id.nav_multimedia_video_profesional);
-                    dismiss();
-                }
-
-                if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
-                    guardarSesionContenido(true, idContenido);
-                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                    navController.navigate(R.id.nav_multimedia_audio_profesional);
-                    dismiss();
-
-                }
+                dismiss();
             }
         });
         btnDerivar.setOnClickListener(new View.OnClickListener() {
@@ -146,19 +125,5 @@ public class dialogoDerivarContenido extends DialogFragment {
         }else{
             throw new RuntimeException(context.toString());
         }
-    }
-
-    public void iniciarServicios(){
-        try {
-            contenidoService = new ContenidoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void guardarSesionContenido(boolean iniciar, int idContenido){
-        editor2.putBoolean("contenido",iniciar);
-        editor2.putInt("idContenido", idContenido);
-        editor2.apply();
     }
 }

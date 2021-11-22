@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Director;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
@@ -28,8 +27,6 @@ public class multimedia_director extends Fragment {
 
     RecyclerView recyclerViewContenido;
     ArrayList<Contenido> contenidos;
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     ContenidoService contenidoService;
 
@@ -40,9 +37,6 @@ public class multimedia_director extends Fragment {
 
         try {
             contenidoService = new ContenidoServiceImpl();
-
-            preferences = getActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-            editor = preferences.edit();
 
             contenidos = new ArrayList<Contenido>();
             recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
@@ -57,25 +51,22 @@ public class multimedia_director extends Fragment {
                 @Override
                 public void onClick(View view){
 
-                    int idContenido = (int) contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
-                    //Toast.makeText(getActivity(),"idContenido: " + idContenido, Toast.LENGTH_SHORT).show();
+                    int idContenido = contenidos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdContenido();
 
-                    if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.PDF.getTipo()){
-                        guardarSesionContenido(true, idContenido);
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                        navController.navigate(R.id.nav_multimedia_text_director);
-                    }
+                    SessionManager.setIdContenido(requireActivity(), idContenido);
+                    NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
 
-                    if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.VIDEO.getTipo()){
-                        guardarSesionContenido(true, idContenido);
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                        navController.navigate(R.id.nav_multimedia_video_director);
-                    }
-
-                    if(contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo() == TipoArchivoEnum.AUDIO.getTipo()){
-                        guardarSesionContenido(true, idContenido);
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_navigation_drawer_consultante);
-                        navController.navigate(R.id.nav_multimedia_audio_director);
+                    int idTipoArchivo = contenidoService.getContenidoByID(idContenido).getTipoArchivo().getIdTipoArchivo();
+                    switch (TipoArchivoEnum.getTipoArchivo(idTipoArchivo)) {
+                        case PDF:
+                            navController.navigate(R.id.nav_multimedia_text_director);
+                            break;
+                        case VIDEO:
+                            navController.navigate(R.id.nav_multimedia_video_director);
+                            break;
+                        case AUDIO:
+                            navController.navigate(R.id.nav_multimedia_audio_director);
+                            break;
                     }
                 }
             });
@@ -86,12 +77,6 @@ public class multimedia_director extends Fragment {
             Toast.makeText(getContext(), "Error añ inicializar pantalla", Toast.LENGTH_SHORT).show();
         }
         return view;
-    }
-
-    public void guardarSesionContenido(boolean iniciar, int idContenido){
-        editor.putBoolean("contenido",iniciar);
-        editor.putInt("idContenido", idContenido);
-        editor.apply();
     }
 
     public void obtenerContenido(){

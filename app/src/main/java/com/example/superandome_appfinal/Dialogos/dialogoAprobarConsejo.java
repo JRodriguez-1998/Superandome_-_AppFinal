@@ -3,7 +3,6 @@ package com.example.superandome_appfinal.Dialogos;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +32,6 @@ public class dialogoAprobarConsejo extends DialogFragment {
 
     ConsejoService consejoService;
 
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
-
     public dialogoAprobarConsejo(int idConsejo) {
         this.idConsejo = idConsejo;
     }
@@ -58,9 +53,6 @@ public class dialogoAprobarConsejo extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.dialogo_aprobar_consejo,null);
         builder.setView(v);
-
-        preferences = actividad.getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        editor = preferences.edit();
 
         btnAprobar = (TextView) v.findViewById(R.id.btnAprobar);
         btnRechazar = (TextView) v.findViewById(R.id.btnRechazar);
