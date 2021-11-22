@@ -6,6 +6,7 @@ import com.example.superandome_appfinal.IDaos.ItemUsuarioDao;
 import com.example.superandome_appfinal.IServices.ItemUsuarioService;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -110,5 +111,23 @@ public class ItemUsuarioServiceImpl implements ItemUsuarioService {
         }
     }
 
+    @Override
+    public List<ItemUsuario> getItemUsuariosByIdUsuario(int idUsuario) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<List<ItemUsuario>> f = executor.submit(() ->{
+            try {
+                return dao.getItemUsuariosByIdUsuario(idUsuario);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
 
+        try {
+            return f.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
