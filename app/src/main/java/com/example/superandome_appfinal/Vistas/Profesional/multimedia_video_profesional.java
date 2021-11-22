@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Profesional;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -16,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
@@ -42,8 +41,7 @@ public class multimedia_video_profesional extends Fragment {
         try {
             videoView = view.findViewById(R.id.videoView2);
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-            idContenido = preferences.getInt("idContenido", 0);
+            idContenido = SessionManager.getIdContenido(requireActivity());
 
             ContenidoService contenidoService = new ContenidoServiceImpl();
             Contenido contenido = contenidoService.getContenidoByID(idContenido);

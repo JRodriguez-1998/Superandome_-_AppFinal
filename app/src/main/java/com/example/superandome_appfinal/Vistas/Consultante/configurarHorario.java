@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,25 +14,18 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.superandome_appfinal.Dialogos.dialogoSugerirConsejo;
 import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 
-import com.example.superandome_appfinal.Entidades.Estado;
-import com.example.superandome_appfinal.Entidades.Genero;
-import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class configurarHorario extends Fragment {
 
@@ -55,8 +46,7 @@ public class configurarHorario extends Fragment {
         try {
 
 
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        idUsuario = preferences.getInt("idUser", 0);
+        idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
         iniciarServicios();
 

@@ -1,13 +1,10 @@
 package com.example.superandome_appfinal.Vistas.Director;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
@@ -25,7 +23,6 @@ import java.util.Base64;
 
 public class multimedia_text_director extends Fragment {
     PDFView pdf;
-    TextView txt;
     Integer idContenido;
 
     public multimedia_text_director(){};
@@ -35,55 +32,25 @@ public class multimedia_text_director extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         try {
-            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-            idContenido = preferences.getInt("idContenido", 0);
+            idContenido = SessionManager.getIdContenido(requireActivity());
 
-
-//        String path = Environment.getExternalStorageDirectory()+"/Download/HOLA.pdf";
-//        // String filename = "HOLA.pdf";
-//
-//        File file = new File(path);
-//
-////        Path ruta = file.toPath();
-//
-//
-//        //FUNCA
-////        File file = new File(requireContext().getExternalFilesDir(null),"HOLA.pdf");
-//        byte[] bytesDato= new byte[0];
-//        try {
-//
-//
-//            bytesDato = Files.readAllBytes(file.toPath());
-//
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        String resultado = Base64.getEncoder().encodeToString(bytesDato);
-//
-//
-//        txt = (TextView) view.findViewById(R.id.txtPrueba);
-//        txt.setText(resultado);
-            ContenidoService contenidoService = null;
-
-            contenidoService = new ContenidoServiceImpl();
+            ContenidoService contenidoService = new ContenidoServiceImpl();
 
             Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
-            byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
-            //byte[] decodedString
+            // Borra todos los espacios del base64.
+            String base64 = contenido.getArchivo().replaceAll("\\s+","");
 
+            byte[] decoder = Base64.getDecoder().decode(base64);
 
-
-            pdf = (PDFView) view.findViewById(R.id.pdfView);
+            pdf = view.findViewById(R.id.pdfView);
             pdf.fromBytes(decoder).load();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

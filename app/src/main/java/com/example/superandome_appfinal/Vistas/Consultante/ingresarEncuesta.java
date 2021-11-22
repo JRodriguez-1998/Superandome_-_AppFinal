@@ -1,14 +1,11 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +14,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
-import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoEncuesta;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.EncuestaService;
 import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 import com.example.superandome_appfinal.IServices.UsuarioService;
@@ -30,7 +27,6 @@ import com.example.superandome_appfinal.Services.EncuestaServiceImpl;
 import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +40,6 @@ public class ingresarEncuesta extends Fragment {
     EncuestaUsuarioService encuestaUsuarioService;
     UsuarioService usuarioService;
     Integer idUsuario;
-    Integer idEncuesta;
 
     public ingresarEncuesta() {}
 
@@ -57,8 +52,7 @@ public class ingresarEncuesta extends Fragment {
             encuestaUsuarioService = new EncuestaUsuarioServiceImpl();
             usuarioService = new UsuarioServiceImpl();
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            idUsuario = preferences.getInt("idUser", 0);
+            idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
             btnAceptar = (Button) view.findViewById(R.id.btnAceptarEncuesta);
 

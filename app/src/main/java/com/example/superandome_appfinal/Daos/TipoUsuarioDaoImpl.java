@@ -11,4 +11,9 @@ public class TipoUsuarioDaoImpl extends BaseDaoImpl<TipoUsuario, Integer> implem
     public TipoUsuarioDaoImpl() throws SQLException {
         super(DataDB.getConnectionSource(), TipoUsuario.class);
     }
+
+    @Override
+    public TipoUsuario getTipoUsuarioById(int id) throws SQLException {
+        return this.queryForId(id);
+    }
 }

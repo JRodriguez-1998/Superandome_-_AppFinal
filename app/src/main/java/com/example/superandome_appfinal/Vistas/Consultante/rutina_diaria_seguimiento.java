@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +20,7 @@ import com.example.superandome_appfinal.Entidades.Item;
 import com.example.superandome_appfinal.Entidades.ItemUsuario;
 import com.example.superandome_appfinal.Entidades.ItemUsuarioDiario;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioDiarioService;
 import com.example.superandome_appfinal.IServices.ItemUsuarioService;
 import com.example.superandome_appfinal.IServices.UsuarioService;
@@ -31,7 +30,6 @@ import com.example.superandome_appfinal.Services.ItemUsuarioDiarioServiceImpl;
 import com.example.superandome_appfinal.Services.ItemUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -103,8 +101,7 @@ public class rutina_diaria_seguimiento extends Fragment {
             itemUsuarioDiarioService= new ItemUsuarioDiarioServiceImpl();
             ususerv = new UsuarioServiceImpl();
         
-        SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        int idUsuario = preferences.getInt("idUser", 0);
+        int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
         usuario = ususerv.getUsuarioById(idUsuario);
 

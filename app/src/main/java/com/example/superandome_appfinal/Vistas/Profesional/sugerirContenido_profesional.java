@@ -1,9 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Profesional;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +23,7 @@ import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoArchivo;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.IServices.EstadoService;
 import com.example.superandome_appfinal.IServices.UsuarioService;
@@ -63,14 +62,14 @@ public class sugerirContenido_profesional extends Fragment {
         txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenidoProf);
 
         try {
+            InicializarServicio();
 
 
+            btnGuardar.setEnabled(false);
 
-        btnGuardar.setEnabled(false);
+            txtTipoContenido.setText("");
 
-        txtTipoContenido.setText("");
-
-        btnElegirArchivo.setOnClickListener(view1 -> showFileChooser());
+            btnElegirArchivo.setOnClickListener(view1 -> showFileChooser());
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "Error al inicializar pantalla", Toast.LENGTH_SHORT).show();
@@ -179,23 +178,16 @@ public class sugerirContenido_profesional extends Fragment {
         }
     }
 
-    public void InicializarServicio(){
-        try {
-            usuarioService = new UsuarioServiceImpl();
-            contenidoService = new ContenidoServiceImpl();
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            int idUsuario = preferences.getInt("idUser", 0);
+    public void InicializarServicio() throws Exception {
+        usuarioService = new UsuarioServiceImpl();
+        contenidoService = new ContenidoServiceImpl();
 
-            usuario = usuarioService.getUsuarioById(idUsuario);
+        int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
-            estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
+        usuario = usuarioService.getUsuarioById(idUsuario);
 
-            tipoArchivo = new TipoArchivo();
+        estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
-
-        }
+        tipoArchivo = new TipoArchivo();
     }
 }

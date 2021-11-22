@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,16 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Toast;
 
-import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class resultadosEncuestas extends Fragment {
@@ -45,8 +41,7 @@ public class resultadosEncuestas extends Fragment {
         try {
             encuestaUsuarioService = new EncuestaUsuarioServiceImpl();
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            idUsuario = preferences.getInt("idUser", 0);
+            idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
             resultados = encuestaUsuarioService.getEncuestaUsuarioByUsuario(idUsuario);
 

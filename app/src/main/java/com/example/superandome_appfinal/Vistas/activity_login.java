@@ -8,13 +8,9 @@ import androidx.work.Data;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -39,21 +35,18 @@ import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.DataDB;
-import com.example.superandome_appfinal.Helpers.Workmanagernoti;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.Consultante.activity_altaConsultante;
 import com.example.superandome_appfinal.Vistas.Consultante.navigationDrawer_consultante;
-//import com.example.superandome_appfinal.Vistas.Consultante.pregunta_seguridad;
 import com.example.superandome_appfinal.Vistas.Consultante.recuperarPassword;
 import com.j256.ormlite.table.TableUtils;
 
 
 import java.security.MessageDigest;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -67,42 +60,37 @@ public class activity_login extends AppCompatActivity {
     UsuarioService userService;
     int REQUEST_CODE=200;
 
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-//        creacionTablas();
-
-        getSupportActionBar().hide();
         try {
+            setContentView(R.layout.activity_login);
 
+//            creacionTablas();
 
-        preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
-        editor = preferences.edit();
+            getSupportActionBar().hide();
 
-        txtnick = findViewById(R.id.etNickname);
-        txtpass = findViewById(R.id.etPassword);
-        btnEntrar = findViewById(R.id.btnIngresar);
-        btnface = findViewById(R.id.btnFacebook);
-        btninsta = findViewById(R.id.btnInstagram);
-        btnwpp = findViewById(R.id.btnWhatsapp);
+            txtnick = findViewById(R.id.etNickname);
+            txtpass = findViewById(R.id.etPassword);
+            btnEntrar = findViewById(R.id.btnIngresar);
+            btnface = findViewById(R.id.btnFacebook);
+            btninsta = findViewById(R.id.btnInstagram);
+            btnwpp = findViewById(R.id.btnWhatsapp);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            verificarPermisos();
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                verificarPermisos();
+            }
 
-        //Verifico si hay una Sesion iniciada
-        if(revisarSesion())
-            startActivity(new Intent(this, navigationDrawer_consultante.class));
+            //Verifico si hay una Sesion iniciada
+            if (SessionManager.tieneSesion(this))
+                startActivity(new Intent(this, navigationDrawer_consultante.class));
+
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
     private void creacionTablas() {
         try {
@@ -215,22 +203,11 @@ public class activity_login extends AppCompatActivity {
                 return;
             }
 
-            guardarSesion(true, user.getNickname(), user.getIdUsuario(), user.getTipoUsuario().getIdTipoUsuario());
+            SessionManager.guardarUsuario(this, user);
+
             Intent intent =  new Intent(this, navigationDrawer_consultante.class);
             startActivity(intent);
         }
-    }
-
-    public boolean revisarSesion(){
-        return this.preferences.getBoolean("sesion",false);
-    }
-
-    public void guardarSesion(boolean iniciar, String nick, int idUsuario, int idTipoUsuario){
-        editor.putBoolean("sesion",iniciar);
-        editor.putString("nickname", nick);
-        editor.putInt("idUser", idUsuario);
-        editor.putInt("tipoUser", idTipoUsuario);
-        editor.apply();
     }
 
     public void irFacebook(View view){

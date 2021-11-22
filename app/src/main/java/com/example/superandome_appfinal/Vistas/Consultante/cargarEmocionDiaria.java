@@ -1,35 +1,27 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoConsejoEnum;
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
-import com.example.superandome_appfinal.Dialogos.dialogo;
-import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoCargarEmocion;
 
 import com.example.superandome_appfinal.Entidades.Emocion;
 import com.example.superandome_appfinal.Entidades.EmocionUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -38,10 +30,6 @@ import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -74,8 +62,7 @@ public class cargarEmocionDiaria extends Fragment {
             estadoInicial();
             iniciarServicios();
 
-            SharedPreferences preferences = requireActivity().getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            idUsuario = preferences.getInt("idUser", 0);
+            idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
             Usuario usuario = usuarioService.getUsuarioById(idUsuario);
 

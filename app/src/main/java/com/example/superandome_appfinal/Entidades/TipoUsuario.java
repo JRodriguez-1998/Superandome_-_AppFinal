@@ -15,15 +15,11 @@ public class TipoUsuario {
     @Column(nullable = false)
     private String descripcion;
 
-    public TipoUsuario() { }
-
-    public TipoUsuario(String descripcion) {
-        this.descripcion = descripcion;
+    public TipoUsuario() {
     }
 
-    public TipoUsuario(int idTipoUsuario, String descripcion) {
+    public TipoUsuario(int idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
-        this.descripcion = descripcion;
     }
 
     public int getIdTipoUsuario() {

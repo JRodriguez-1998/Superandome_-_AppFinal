@@ -48,24 +48,10 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nickname, String password, Boolean habilitado, Date fechaNac, TipoUsuario tipoUsuario, Genero genero) {
+    public Usuario(Integer idUsuario, String nickname, TipoUsuario tipoUsuario) {
+        this.idUsuario = idUsuario;
         this.nickname = nickname;
-        this.password = password;
-        this.habilitado = habilitado;
-        this.fechaNac = fechaNac;
         this.tipoUsuario = tipoUsuario;
-        this.genero = genero;
-    }
-
-    public Usuario(String nickname, String password, Boolean habilitado, Date fechaNac, String respuesta, TipoUsuario tipoUsuario, Genero genero, PreguntaSeguridad preguntaSeguridad) {
-        this.nickname = nickname;
-        this.password = password;
-        this.habilitado = habilitado;
-        this.fechaNac = fechaNac;
-        this.respuesta = respuesta;
-        this.tipoUsuario = tipoUsuario;
-        this.genero = genero;
-        this.preguntaSeguridad = preguntaSeguridad;
     }
 
     public Integer getIdUsuario() {

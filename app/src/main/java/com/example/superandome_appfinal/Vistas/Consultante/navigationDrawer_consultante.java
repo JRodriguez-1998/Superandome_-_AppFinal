@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.Toast;
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
 import com.example.superandome_appfinal.Entidades.ItemUsuario;
+import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
@@ -28,7 +28,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.superandome_appfinal.databinding.ActivityNavigationDrawerConsultanteBinding;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -38,22 +37,20 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     NavigationView navigationView;
 
     TextView txtNombreUser;
-    int idUser;
-    int tipoUser;
-    String nameUsuario;
+    Usuario usuario;
 
     EmocionUsuarioServiceImpl emocionUserService;
     ItemUsuarioService itemUsuarioService;
-
-    //Creo Objeto SharedPreferences para utilizar para las Sesiones
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         try {
+            emocionUserService = new EmocionUsuarioServiceImpl();
+            itemUsuarioService = new ItemUsuarioServiceImpl();
+
+            usuario = SessionManager.obtenerUsuario(this);
 
             ActivityNavigationDrawerConsultanteBinding binding = ActivityNavigationDrawerConsultanteBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
@@ -74,25 +71,13 @@ public class navigationDrawer_consultante extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
 
-            iniciarServicios();
-
-            preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-            editor = preferences.edit();
-
-            //Recibo los 3 datos enviados desde Login
-            //tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
-            //nameUsuario = (String) getIntent().getSerializableExtra("nickname");
-            //idUser = (int) getIntent().getSerializableExtra("idUser");
-
-            obtenerPreferences();
-
             //Creo una variable View para obtener del navigationView el header, y asi setear el TextView del nombre
             View navHeader = navigationView.getHeaderView(0);
             txtNombreUser = (TextView) navHeader.findViewById(R.id.tvNombreUserLogin);
-            txtNombreUser.setText(nameUsuario);
+            txtNombreUser.setText(usuario.getNickname());
 
             binding.appBarNavigationDrawerConsultante.fab.setOnClickListener(view -> {
-                switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
+                switch (TipoUsuarioEnum.getTipoUsuario(usuario.getTipoUsuario().getIdTipoUsuario())) {
                     case CONSULTANTE:
                         navController.navigate(R.id.nav_homeConsultante);
                         break;
@@ -108,7 +93,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
             setClickListeners();
             hideAllItems();
 
-            switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
+            switch (TipoUsuarioEnum.getTipoUsuario(usuario.getTipoUsuario().getIdTipoUsuario())) {
                 case CONSULTANTE:
                     showItemsConsultante();
                     navController.navigate(R.id.nav_homeConsultante);
@@ -157,7 +142,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         Menu navMenu = navigationView.getMenu();
 
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setOnMenuItemClickListener(menuItem -> {
-            List<ItemUsuario> itemList = itemUsuarioService.getItemUsuariosByIdUsuario(idUser);
+            List<ItemUsuario> itemList = itemUsuarioService.getItemUsuariosByIdUsuario(usuario.getIdUsuario());
             if (itemList == null) {
                 Toast.makeText(this, "Ha ocurrido un error al buscar su rutina", Toast.LENGTH_SHORT).show();
                 return true;
@@ -211,7 +196,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
         navMenu.findItem(R.id.nav_homeConsultante).setVisible(true);
 
-        if (emocionUserService.getEmocionByFechaAndId(idUser, new Date()) != null) {
+        if (emocionUserService.getEmocionByFechaAndId(usuario.getIdUsuario(), new Date()) != null) {
             navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
         }
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setChecked(false);
@@ -249,21 +234,5 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_multimedia_director).setVisible(true);
         navMenu.findItem(R.id.nav_cambiar_password).setVisible(true);
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
-    }
-
-    public void iniciarServicios(){
-        try {
-            emocionUserService = new EmocionUsuarioServiceImpl();
-            itemUsuarioService = new ItemUsuarioServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Toast.makeText(this, "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void obtenerPreferences(){
-        idUser = preferences.getInt("idUser",0);
-        tipoUser = preferences.getInt("tipoUser",0);
-        nameUsuario = preferences.getString("nickname",null);
     }
 }

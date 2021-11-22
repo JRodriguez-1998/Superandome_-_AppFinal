@@ -1,7 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +15,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.superandome_appfinal.Entidades.Contenido;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
@@ -43,9 +42,7 @@ public class multimedia_video extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         try {
-
-            SharedPreferences preferences = requireActivity().getSharedPreferences("contenido", Context.MODE_PRIVATE);
-            idContenido = preferences.getInt("idContenido", 0);
+            idContenido = SessionManager.getIdContenido(requireActivity());
 
             videoView = view.findViewById(R.id.videoView2);
 
