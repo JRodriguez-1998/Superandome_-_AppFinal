@@ -304,12 +304,12 @@ public class rutinaDiaria extends Fragment {
                 int cuenta=0;
 
 
-
-                if(!chk1.isChecked() && !chk2.isChecked() && !chk3.isChecked() && !chk4.isChecked() && !chk5.isChecked() && !chk6.isChecked() && !chk7.isChecked() && !chk8.isChecked() && !chk9.isChecked() && !chk10.isChecked()){
-
-                    Toast.makeText(getActivity(),"Completar",Toast.LENGTH_SHORT).show();
-
-                }
+                // Por ahora, permitir que no tenga items configurados.
+//                if(!chk1.isChecked() && !chk2.isChecked() && !chk3.isChecked() && !chk4.isChecked() && !chk5.isChecked() && !chk6.isChecked() && !chk7.isChecked() && !chk8.isChecked() && !chk9.isChecked() && !chk10.isChecked()){
+//
+//                    Toast.makeText(getActivity(),"Completar",Toast.LENGTH_SHORT).show();
+//
+//                }
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if(chk1.isChecked()){
                     int itemsCant = 100;

@@ -11,37 +11,30 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
-import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
-import com.example.superandome_appfinal.Dialogos.dialogoUserConsultanteRegistrado;
-import com.example.superandome_appfinal.Helpers.Workmanagernoti;
+import com.example.superandome_appfinal.Entidades.ItemUsuario;
+import com.example.superandome_appfinal.IServices.ItemUsuarioService;
 import com.example.superandome_appfinal.R;
-import com.example.superandome_appfinal.Services.EmocionServiceImpl;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
-import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
+import com.example.superandome_appfinal.Services.ItemUsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.about;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.work.Data;
 
 import com.example.superandome_appfinal.databinding.ActivityNavigationDrawerConsultanteBinding;
 
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 public class navigationDrawer_consultante extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityNavigationDrawerConsultanteBinding binding;
     NavigationView navigationView;
 
     TextView txtNombreUser;
@@ -49,12 +42,8 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     int tipoUser;
     String nameUsuario;
 
-    Calendar actual = Calendar.getInstance();
-    Calendar calendar = Calendar.getInstance();
-
-    private int minutos, hora, dia, mes, anio;
-
     EmocionUsuarioServiceImpl emocionUserService;
+    ItemUsuarioService itemUsuarioService;
 
     //Creo Objeto SharedPreferences para utilizar para las Sesiones
     SharedPreferences preferences;
@@ -63,48 +52,46 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         try {
 
+            ActivityNavigationDrawerConsultanteBinding binding = ActivityNavigationDrawerConsultanteBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
 
-        binding = ActivityNavigationDrawerConsultanteBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+            setSupportActionBar(binding.appBarNavigationDrawerConsultante.toolbar);
 
-        setSupportActionBar(binding.appBarNavigationDrawerConsultante.toolbar);
+            DrawerLayout drawer = binding.drawerLayout;
+            navigationView = binding.navView;
+            mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
+                    R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
+                    R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,
+                    R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento,
+                    R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director, R.id.nav_homeProfesional, R.id.nav_homeDirector, R.id.nav_indexEncuestas, R.id.nav_derivarContenido_profesional,
+                    R.id.nav_multimedia_director, R.id.nav_multimedia_profesional)
+                    .setOpenableLayout(drawer)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
+            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+            NavigationUI.setupWithNavController(navigationView, navController);
 
-        DrawerLayout drawer = binding.drawerLayout;
-        navigationView = binding.navView;
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_cargarEmocionDiaria, R.id.nav_configurarHorario, R.id.nav_sugerirContenido, R.id.nav_sugerirConsejo,
-                R.id.nav_rutinaDiaria, R.id.nav_sugerirContenido_profesional, R.id.nav_sugerirConsejo_profesional, R.id.nav_reporteEmocion,
-                R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,
-                R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento,
-                R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director, R.id.nav_homeProfesional, R.id.nav_homeDirector, R.id.nav_indexEncuestas, R.id.nav_derivarContenido_profesional,
-                R.id.nav_multimedia_director, R.id.nav_multimedia_profesional)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+            iniciarServicios();
 
-        iniciarServicios();
+            preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
+            editor = preferences.edit();
 
-        preferences = getSharedPreferences("sesiones", Context.MODE_PRIVATE);
-        editor = preferences.edit();
+            //Recibo los 3 datos enviados desde Login
+            //tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
+            //nameUsuario = (String) getIntent().getSerializableExtra("nickname");
+            //idUser = (int) getIntent().getSerializableExtra("idUser");
 
-        //Recibo los 3 datos enviados desde Login
-        //tipoUser = (int) getIntent().getSerializableExtra("tipoUser");
-        //nameUsuario = (String) getIntent().getSerializableExtra("nickname");
-        //idUser = (int) getIntent().getSerializableExtra("idUser");
+            obtenerPreferences();
 
-        obtenerPreferences();
+            //Creo una variable View para obtener del navigationView el header, y asi setear el TextView del nombre
+            View navHeader = navigationView.getHeaderView(0);
+            txtNombreUser = (TextView) navHeader.findViewById(R.id.tvNombreUserLogin);
+            txtNombreUser.setText(nameUsuario);
 
-        //Creo una variable View para obtener del navigationView el header, y asi setear el TextView del nombre
-        View navHeader = navigationView.getHeaderView(0);
-        txtNombreUser = (TextView) navHeader.findViewById(R.id.tvNombreUserLogin);
-        txtNombreUser.setText(nameUsuario);
-
-        binding.appBarNavigationDrawerConsultante.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            binding.appBarNavigationDrawerConsultante.fab.setOnClickListener(view -> {
                 switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
                     case CONSULTANTE:
                         navController.navigate(R.id.nav_homeConsultante);
@@ -116,29 +103,30 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                         navController.navigate(R.id.nav_homeDirector);
                         break;
                 }
-            }
-        });
+            });
 
-        hideAllItems();
-        //Reemplazar parametro con tipoUser que viene del Login
-        switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
-            case CONSULTANTE:
-                showItemsConsultante();
-                navController.navigate(R.id.nav_homeConsultante);
-                break;
-            case PROFESIONAL:
-                showItemsProfesional();
-                navController.navigate(R.id.nav_homeProfesional);
-                break;
-            case DIRECTOR:
-                showItemsDirector();
-                navController.navigate(R.id.nav_homeDirector);
-                break;
-        }
-    }catch (Exception e) {
+            setClickListeners();
+            hideAllItems();
+
+            switch (TipoUsuarioEnum.getTipoUsuario(tipoUser)) {
+                case CONSULTANTE:
+                    showItemsConsultante();
+                    navController.navigate(R.id.nav_homeConsultante);
+                    break;
+                case PROFESIONAL:
+                    showItemsProfesional();
+                    navController.navigate(R.id.nav_homeProfesional);
+                    break;
+                case DIRECTOR:
+                    showItemsDirector();
+                    navController.navigate(R.id.nav_homeDirector);
+                    break;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -163,6 +151,30 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void setClickListeners() {
+        Menu navMenu = navigationView.getMenu();
+
+        navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setOnMenuItemClickListener(menuItem -> {
+            List<ItemUsuario> itemList = itemUsuarioService.getItemUsuariosByIdUsuario(idUser);
+            if (itemList == null) {
+                Toast.makeText(this, "Ha ocurrido un error al buscar su rutina", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            if (itemList.size() == 0) {
+                Toast.makeText(this, "Primero debe configurar su rutina en 'Configurar Rutina'", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            return false;
+        });
+
+        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(item -> {
+            cerrarSesion cerrar = new cerrarSesion();
+            cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
+            return true;
+        });
     }
 
     private void hideAllItems() {
@@ -213,17 +225,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(true);
-
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
-
-        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                cerrarSesion cerrar = new cerrarSesion();
-                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
-                return true;
-            }
-        });
     }
 
     private void showItemsProfesional() {
@@ -236,15 +238,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_multimedia_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_cambiar_password_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
-
-        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                cerrarSesion cerrar = new cerrarSesion();
-                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
-                return true;
-            }
-        });
     }
 
     private void showItemsDirector() {
@@ -256,20 +249,12 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_multimedia_director).setVisible(true);
         navMenu.findItem(R.id.nav_cambiar_password).setVisible(true);
         navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
-
-        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                cerrarSesion cerrar = new cerrarSesion();
-                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
-                return true;
-            }
-        });
     }
 
     public void iniciarServicios(){
         try {
-            emocionUserService= new EmocionUsuarioServiceImpl();
+            emocionUserService = new EmocionUsuarioServiceImpl();
+            itemUsuarioService = new ItemUsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             Toast.makeText(this, "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
