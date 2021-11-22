@@ -22,18 +22,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Entidades.Genero;
 import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.IServices.GeneroService;
+import com.example.superandome_appfinal.IServices.TipoUsuarioService;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.GeneroServiceImpl;
+import com.example.superandome_appfinal.Services.TipoUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
 
 import java.security.MessageDigest;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,6 +52,7 @@ public class altaProfesional extends Fragment {
     Spinner spinnerGenero;
 
     UsuarioService usuarioService;
+    TipoUsuarioService tipoUsuarioService;
     GeneroService generoService;
 
     DatePickerDialog.OnDateSetListener setListener;
@@ -58,38 +61,42 @@ public class altaProfesional extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        spinnerGenero = (Spinner) view.findViewById(R.id.spinnerGeneroProfe);
-        //idAlta = (TextView) view.findViewById(R.id.tvIdUsuario);
-        fechaHoy = (TextView) view.findViewById(R.id.tvFechaHOY);
-
-        nickname = (EditText) view.findViewById(R.id.editTextNicknameProf);
-        fechaNac = (EditText) view.findViewById(R.id.editTextNaciProf);
-        pass = (EditText) view.findViewById(R.id.editTextPassProf);
-        confirPass = (EditText) view.findViewById(R.id.editTextConfPassProf);
-
-        btnRegistrar = (Button) view.findViewById(R.id.btnAceptarAlta);
         try {
+            spinnerGenero = (Spinner) view.findViewById(R.id.spinnerGeneroProfe);
+            //idAlta = (TextView) view.findViewById(R.id.tvIdUsuario);
+            fechaHoy = (TextView) view.findViewById(R.id.tvFechaHOY);
 
+            nickname = (EditText) view.findViewById(R.id.editTextNicknameProf);
+            fechaNac = (EditText) view.findViewById(R.id.editTextNaciProf);
+            pass = (EditText) view.findViewById(R.id.editTextPassProf);
+            confirPass = (EditText) view.findViewById(R.id.editTextConfPassProf);
 
-        mostrarFechaHoy();
-        cargarCalendario();
-        cargarSpinner();
+            btnRegistrar = (Button) view.findViewById(R.id.btnAceptarAlta);
 
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    RegistrarProfesional();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Error al registrar profesional", Toast.LENGTH_SHORT).show();
+            usuarioService = new UsuarioServiceImpl();
+            tipoUsuarioService = new TipoUsuarioServiceImpl();
+            generoService = new GeneroServiceImpl();
+
+            mostrarFechaHoy();
+            cargarCalendario();
+            cargarSpinner();
+
+            btnRegistrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        RegistrarProfesional();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getContext(), "Error al registrar profesional", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
     public void mostrarFechaHoy(){
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -129,14 +136,6 @@ public class altaProfesional extends Fragment {
     }
 
     public void cargarSpinner(){
-        try{
-            generoService = new GeneroServiceImpl();
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios genero", Toast.LENGTH_SHORT).show();
-        }
-
         //CARGA DE SPINNER DE GENEROS
         Genero gen = new Genero(0,"Seleccione Género");
         List<Genero> listGeneros = new ArrayList<Genero>();
@@ -155,16 +154,6 @@ public class altaProfesional extends Fragment {
         if(nickname.getText().toString().equals("") || fechaNac.getText().toString().equals("") || pass.getText().toString().equals("") || confirPass.getText().toString().equals("")){
             Toast.makeText(getActivity(),"Campos incompletos, por favor ingrese todos los campos.", Toast.LENGTH_SHORT).show();
             return;
-        }
-
-        //Instancio el Servicio del Usuario
-        try
-        {
-            usuarioService = new UsuarioServiceImpl();
-        } catch (SQLException throwables)
-        {
-            throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicio", Toast.LENGTH_SHORT).show();
         }
 
         //Consulto si el Usuario ya existe
@@ -191,7 +180,7 @@ public class altaProfesional extends Fragment {
 
         Usuario usuarioNuevo = new Usuario();
 
-        TipoUsuario tUser = new TipoUsuario(2, "Profesional");
+        TipoUsuario tUser = tipoUsuarioService.getTipoUsuarioById(TipoUsuarioEnum.PROFESIONAL.getTipo());
         Genero genero = (Genero) spinnerGenero.getSelectedItem();
 
         usuarioNuevo.setNickname(nickname.getText().toString());

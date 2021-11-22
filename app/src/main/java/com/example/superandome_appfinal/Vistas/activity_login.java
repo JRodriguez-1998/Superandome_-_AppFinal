@@ -39,6 +39,7 @@ import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.TipoUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.DataDB;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.Helpers.Workmanagernoti;
 import com.example.superandome_appfinal.IServices.UsuarioService;
 import com.example.superandome_appfinal.R;
@@ -74,35 +75,38 @@ public class activity_login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-//        creacionTablas();
-
-        getSupportActionBar().hide();
         try {
+            setContentView(R.layout.activity_login);
+
+    //        creacionTablas();
+
+            getSupportActionBar().hide();
 
 
-        preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
-        editor = preferences.edit();
+            preferences = this.getSharedPreferences("sesiones",Context.MODE_PRIVATE);
+            editor = preferences.edit();
 
-        txtnick = findViewById(R.id.etNickname);
-        txtpass = findViewById(R.id.etPassword);
-        btnEntrar = findViewById(R.id.btnIngresar);
-        btnface = findViewById(R.id.btnFacebook);
-        btninsta = findViewById(R.id.btnInstagram);
-        btnwpp = findViewById(R.id.btnWhatsapp);
+            txtnick = findViewById(R.id.etNickname);
+            txtpass = findViewById(R.id.etPassword);
+            btnEntrar = findViewById(R.id.btnIngresar);
+            btnface = findViewById(R.id.btnFacebook);
+            btninsta = findViewById(R.id.btnInstagram);
+            btnwpp = findViewById(R.id.btnWhatsapp);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            verificarPermisos();
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                verificarPermisos();
+            }
 
-        //Verifico si hay una Sesion iniciada
-        if(revisarSesion())
-            startActivity(new Intent(this, navigationDrawer_consultante.class));
+            //Verifico si hay una Sesion iniciada
+            if (revisarSesion())
+                startActivity(new Intent(this, navigationDrawer_consultante.class));
+
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
-        }}
+        }
+    }
 
     private void creacionTablas() {
         try {
@@ -215,7 +219,8 @@ public class activity_login extends AppCompatActivity {
                 return;
             }
 
-            guardarSesion(true, user.getNickname(), user.getIdUsuario(), user.getTipoUsuario().getIdTipoUsuario());
+            SessionManager.guardarUsuario(this, user);
+//            guardarSesion(true, user.getNickname(), user.getIdUsuario(), user.getTipoUsuario().getIdTipoUsuario());
             Intent intent =  new Intent(this, navigationDrawer_consultante.class);
             startActivity(intent);
         }
