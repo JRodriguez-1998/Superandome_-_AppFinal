@@ -10,22 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.superandome_appfinal.Dialogos.dialogoAprobarContenido;
-import com.example.superandome_appfinal.Dialogos.dialogoDerivarContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.IServices.ContenidoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ContenidoServiceImpl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class aprobarContenido_director extends Fragment {
 
     RecyclerView recyclerViewContenido;
-    ArrayList<Contenido> contenidos;
+    List<Contenido> contenidos;
     TextView txtAviso;
 
     ContenidoService contenidoService;
@@ -36,15 +34,14 @@ public class aprobarContenido_director extends Fragment {
         View view = inflater.inflate(R.layout.fragment_aprobar_contenido_director, container, false);
 
         txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazar);
-        contenidos = new ArrayList<Contenido>();
         recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
         recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewContenido.setHasFixedSize(true);
 
         iniciarServicios();
-        obtenerContenido();
+        contenidos = contenidoService.getContenidosDerivados();
 
-        if(contenidoService.getContenidosDerivados().size() == 0){
+        if (contenidos.size() == 0){
             txtAviso.setText("Actualmente no hay Contenido Multimedia por aprobar");
         }
 
@@ -63,12 +60,6 @@ public class aprobarContenido_director extends Fragment {
         recyclerViewContenido.setAdapter(adapterContenido);
 
         return view;
-    }
-
-    public void obtenerContenido(){
-        for(int i = 0; i< contenidoService.getContenidosDerivados().size(); i ++){
-            contenidos.add(contenidoService.getContenidosDerivados().get(i));
-        }
     }
 
     public void iniciarServicios(){
