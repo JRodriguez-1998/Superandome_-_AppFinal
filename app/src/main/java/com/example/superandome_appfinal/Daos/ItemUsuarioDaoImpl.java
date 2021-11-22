@@ -55,5 +55,8 @@ public class ItemUsuarioDaoImpl extends BaseDaoImpl<ItemUsuario, Integer> implem
         return null;
     }
 
-
+    @Override
+    public List<ItemUsuario> getItemUsuariosByIdUsuario(int idUsuario) throws SQLException {
+        return this.queryForEq("idUsuario", idUsuario);
+    }
 }
