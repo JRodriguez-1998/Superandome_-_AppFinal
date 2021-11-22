@@ -38,7 +38,10 @@ public class multimedia_text_director extends Fragment {
 
             Contenido contenido = contenidoService.getContenidoByID(idContenido);
 
-            byte[] decoder = Base64.getDecoder().decode(contenido.getArchivo());
+            // Borra todos los espacios del base64.
+            String base64 = contenido.getArchivo().replaceAll("\\s+","");
+
+            byte[] decoder = Base64.getDecoder().decode(base64);
 
             pdf = view.findViewById(R.id.pdfView);
             pdf.fromBytes(decoder).load();
