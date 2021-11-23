@@ -133,7 +133,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/ruborFacial"
+                                    android:text="@string/torpeEntumecido"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -175,7 +175,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/torpeEntumecido"
+                                    android:text="@string/acalorado"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -217,7 +217,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/acalorado"
+                                    android:text="@string/temblor"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -259,7 +259,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/temblor"
+                                    android:text="@string/incapaz"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -301,7 +301,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/incapaz"
+                                    android:text="@string/temor"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -344,7 +344,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/temor"
+                                    android:text="@string/mareado"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -387,7 +387,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/mareado"
+                                    android:text="@string/latidosCora"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -429,7 +429,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/latidosCora"
+                                    android:text="@string/inestable"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -472,7 +472,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/inestable"
+                                    android:text="@string/atemorizado"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -515,7 +515,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/atemorizado"
+                                    android:text="@string/nervioso"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -557,7 +557,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/nervioso"
+                                    android:text="@string/bloqueo"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -600,7 +600,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/bloqueo"
+                                    android:text="@string/temblores"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -642,7 +642,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/temblores"
+                                    android:text="@string/inquieroInseguro"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -685,7 +685,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/inquieroInseguro"
+                                    android:text="@string/miedoPerder."
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -728,7 +728,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/conMiedo"
+                                    android:text="@string/sensacion"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -770,7 +770,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/sensacion"
+                                    android:text="@string/temorMorir"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -812,7 +812,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/temorMorir"
+                                    android:text="@string/conMiedo"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -854,7 +854,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/conMiedo"
+                                    android:text="@string/digestivos"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -896,7 +896,8 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/digestivos"
+                                    android:text="@string/desvanecimiento"
+                                    android:textAllCaps="false"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
@@ -938,7 +939,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/questrial_regular"
-                                    android:text="@string/desvanecimiento"
+                                    android:text="@string/ruborFacial"
                                     android:textColor="@color/black"
                                     android:textSize="16sp" />
 
