@@ -62,13 +62,13 @@
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
-                android:id="@+id/tvOlvideContraseña"
+                android:id="@+id/tvOlvideContrasenia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="ir_RestablecerContrasenia"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="25dp"
-                android:text="@string/olvidoContraseña"
+                android:text="@string/olvidoContrasenia"
                 android:textAlignment="textEnd"
                 android:textColor="#4167B2"
                 android:textSize="16sp" />

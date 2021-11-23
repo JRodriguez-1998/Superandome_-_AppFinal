@@ -60,7 +60,7 @@ public class cambiar_password extends Fragment {
             btnConfirmar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cambiarContraseña();
+                    cambiarContrasenia();
                 }
             });
 
@@ -76,7 +76,7 @@ public class cambiar_password extends Fragment {
         return inflater.inflate(R.layout.fragment_cambiar_password, container, false);
     }
     
-    public void cambiarContraseña(){
+    public void cambiarContrasenia(){
         if(txtPass.getText().toString().equals("") || txtPassNueva.getText().toString().equals("") || txtConfirPassNueva.getText().toString().equals("")){
             Toast.makeText(getActivity(),"Campos incompletos, por favor ingrese todos los campos.", Toast.LENGTH_SHORT).show();
             return;
