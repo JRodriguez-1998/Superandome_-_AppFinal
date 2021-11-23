@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
@@ -111,62 +112,52 @@ public class sugerirContenido_profesional extends Fragment {
                     Path path = Paths.get(pathStr);
                     Boolean exists = Files.exists(path);
 
-                    String cadenaPath = new String();
-                    cadenaPath = path.toString();
+                    String cadenaPath = path.toString();
 
                     btnGuardar.setEnabled(true);
 
                     bytesDato = new byte[0];
-
                     bytesDato = Files.readAllBytes(path);
-                    int x = 1;
-
 
                     String resultado = Base64.getEncoder().encodeToString(bytesDato);
+
+                    // Borra todos los espacios del base64.
+                    String base64 = resultado.replaceAll("\\s+","");
 
                     InicializarServicio();
 
                     String[] partesName = cadenaPath.split("/");
+                    String nombreArchivo = partesName[partesName.length-1];
 
-                    int nombrePost = partesName.length;
+                    content = new Contenido(nombreArchivo, base64, estado, usuario);
 
-                    content = new Contenido();
-                    content.setUsuario(usuario);
-                    content.setArchivo(resultado);
-                    content.setEstado(estado);
-                    content.setNombreArchivo(partesName[nombrePost-1]);
-
-                    for(int i = 0; i<5;i++){
-
-                        tipo += resultado.charAt(i);
-
-                    }
-                    if(tipo.equals("JVBER")){
-                        tipoArchivo.setIdTipoArchivo(1);
-                        content.setTipoArchivo(tipoArchivo);
-                        txtTipoContenido.setText("PDF");
-                    }
-                    if (tipo.equals("/+MYx")) {
-                        tipoArchivo.setIdTipoArchivo(3);
-                        content.setTipoArchivo(tipoArchivo);
-                        txtTipoContenido.setText("Audio");
-                    }
-                    if (tipo.equals("AAAAI")) {
-                        tipoArchivo.setIdTipoArchivo(2);
-                        content.setTipoArchivo(tipoArchivo);
-                        txtTipoContenido.setText("Video");
+                    tipo = base64.substring(0, 4);
+                    switch (tipo) {
+                        case "JVBE":
+                            tipoArchivo.setIdTipoArchivo(TipoArchivoEnum.PDF.getTipo());
+                            txtTipoContenido.setText("PDF");
+                            break;
+                        case "SUQz":
+                            tipoArchivo.setIdTipoArchivo(TipoArchivoEnum.AUDIO.getTipo());
+                            txtTipoContenido.setText("Audio");
+                            break;
+                        case "AAAA":
+                            tipoArchivo.setIdTipoArchivo(TipoArchivoEnum.VIDEO.getTipo());
+                            txtTipoContenido.setText("Video");
+                            break;
+                        default:
+                            throw new Exception("No se encontró el tipo de archivo");
                     }
 
-                    btnGuardar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if(contenidoService.guardar(content)){
-                                dialogoSugerirContenido d = new dialogoSugerirContenido();
-                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
-                            }
-                            else{
-                                Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
-                            }
+                    content.setTipoArchivo(tipoArchivo);
+
+                    btnGuardar.setOnClickListener(view -> {
+                        if (contenidoService.guardar(content)) {
+                            dialogoSugerirContenido d = new dialogoSugerirContenido();
+                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                        }
+                        else {
+                            Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

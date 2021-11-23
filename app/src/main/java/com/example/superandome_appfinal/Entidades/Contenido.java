@@ -29,18 +29,25 @@ public class Contenido {
     private String archivo;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoArchivo")
+    @JoinColumn(name = "idTipoArchivo", nullable = false)
     private TipoArchivo tipoArchivo;
 
     @ManyToOne
-    @JoinColumn(name = "idEstado")
+    @JoinColumn(name = "idEstado", nullable = false)
     private Estado estado;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
 
     public Contenido(){}
+
+    public Contenido(String nombreArchivo, String archivo, Estado estado, Usuario usuario) {
+        this.nombreArchivo = nombreArchivo;
+        this.archivo = archivo;
+        this.estado = estado;
+        this.usuario = usuario;
+    }
 
     public Contenido(Integer idContenido, String nombreArchivo, TipoArchivo tipoArchivo, Date fechaAprobacion, Date fechaCarga, Estado estado, Usuario usuario, String archivo) {
         this.idContenido = idContenido;

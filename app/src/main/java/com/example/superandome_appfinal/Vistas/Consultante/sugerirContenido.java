@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
@@ -58,16 +59,17 @@ public class sugerirContenido extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
 
-        btnElegirArchivo = (Button) view.findViewById(R.id.btnElegirArchivo);
-        btnGuardar = (Button) view.findViewById(R.id.button);
-        txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenido);
         try {
 
-        btnGuardar.setEnabled(false);
+            btnElegirArchivo = (Button) view.findViewById(R.id.btnElegirArchivo);
+            btnGuardar = (Button) view.findViewById(R.id.button);
+            txtTipoContenido = (TextView) view.findViewById(R.id.tvTipoContenido);
 
-        txtTipoContenido.setText("");
+            btnGuardar.setEnabled(false);
 
-        btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
+            txtTipoContenido.setText("");
+
+            btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
@@ -93,8 +95,6 @@ public class sugerirContenido extends Fragment {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 if (requestCode == FILE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-                    //            String path = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-                    //            if (path != null) {
                     Uri uri = data.getData();
                     String pathStr = uri.getPath();
 //                File file = new File(path);
@@ -105,87 +105,54 @@ public class sugerirContenido extends Fragment {
                     Path path = Paths.get(pathStr);
                     Boolean exists = Files.exists(path);
 
-                    String cadenaPath = new String();
-                    cadenaPath = path.toString();
+                    String cadenaPath = path.toString();
 
-//                    txtAutor.setText(MessageFormat.format("" +
-//                                    "Path: {0}\n\n",
-//                            path
-//                    ));
-
-//                    txtTipoContenido.setText(cadenaPath);
                     btnGuardar.setEnabled(true);
 
                     bytesDato = new byte[0];
-
                     bytesDato = Files.readAllBytes(path);
-                    int x = 1;
-
 
                     String resultado = Base64.getEncoder().encodeToString(bytesDato);
+
+                    // Borra todos los espacios del base64.
+                    String base64 = resultado.replaceAll("\\s+","");
 
                     InicializarServicio();
 
                     String[] partesName = cadenaPath.split("/");
+                    String nombreArchivo = partesName[partesName.length-1];
 
-                    int nombrePost = partesName.length;
-                   // partesName[0].get;
+                    content = new Contenido(nombreArchivo, base64, estado, usuario);
 
-                    content = new Contenido();
-                    content.setUsuario(usuario);
-                    content.setArchivo(resultado);
-                    content.setEstado(estado);
-                    content.setNombreArchivo(partesName[nombrePost-1]);
-
-
-                    //txtAutor.setText(partesName[nombrePost-1]);
-
-                    for(int i = 0; i<4;i++){
-
-                        tipo += resultado.charAt(i);
-
-                    }
-                    if(tipo.equals("JVBE")){
-                        tipoArchivo.setIdTipoArchivo(1);
-                        content.setTipoArchivo(tipoArchivo);
-                        txtTipoContenido.setText("PDF");
-                    }
-                    if (tipo.equals("SUQz")) {
-                        tipoArchivo.setIdTipoArchivo(3);
-                        content.setTipoArchivo(tipoArchivo);
-                        txtTipoContenido.setText("Audio");
-                    }
-                    if (tipo.equals("AAAA")) {
-                        tipoArchivo.setIdTipoArchivo(2);
-                        content.setTipoArchivo(tipoArchivo);
-                        txtTipoContenido.setText("Video");
+                    tipo = base64.substring(0, 4);
+                    switch (tipo) {
+                        case "JVBE":
+                            tipoArchivo.setIdTipoArchivo(TipoArchivoEnum.PDF.getTipo());
+                            txtTipoContenido.setText("PDF");
+                            break;
+                        case "SUQz":
+                            tipoArchivo.setIdTipoArchivo(TipoArchivoEnum.AUDIO.getTipo());
+                            txtTipoContenido.setText("Audio");
+                            break;
+                        case "AAAA":
+                            tipoArchivo.setIdTipoArchivo(TipoArchivoEnum.VIDEO.getTipo());
+                            txtTipoContenido.setText("Video");
+                            break;
+                        default:
+                            throw new Exception("No se encontró el tipo de archivo");
                     }
 
-                    btnGuardar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if(contenidoService.guardar(content)){
-                                dialogoSugerirContenido d = new dialogoSugerirContenido();
-                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
-                            }
-                            else{
-                                Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
-                            }
+                    content.setTipoArchivo(tipoArchivo);
+
+                    btnGuardar.setOnClickListener(view -> {
+                        if (contenidoService.guardar(content)) {
+                            dialogoSugerirContenido d = new dialogoSugerirContenido();
+                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                        }
+                        else {
+                            Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
                         }
                     });
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//                    txt = (TextView) view.findViewById(R.id.txtPrueba);
-//                    txt.setText(resultado);
-
-
-  //                  byte[] decoder = Base64.getDecoder().decode(resultado);
-                    //byte[] decodedString
-
-
-//                    pdf = (PDFView) view.findViewById(R.id.pdfView);
-//                    pdf.fromBytes(decoder).load();
                 }
             }
             super.onActivityResult(requestCode, resultCode, data);
@@ -201,21 +168,15 @@ public class sugerirContenido extends Fragment {
         return inflater.inflate(R.layout.fragment_sugerir_contenido,container,false);
     }
 
-    public void InicializarServicio(){
-        try {
-            usuarioService = new UsuarioServiceImpl();
-            contenidoService = new ContenidoServiceImpl();
-            int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
+    public void InicializarServicio() throws Exception {
+        usuarioService = new UsuarioServiceImpl();
+        contenidoService = new ContenidoServiceImpl();
+        int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
-            usuario = usuarioService.getUsuarioById(idUsuario);
+        usuario = usuarioService.getUsuarioById(idUsuario);
 
-            estado = new Estado(EstadoEnum.PENDIENTE.getId());
+        estado = new Estado(EstadoEnum.PENDIENTE.getId());
 
-            tipoArchivo = new TipoArchivo();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
-        }
+        tipoArchivo = new TipoArchivo();
     }
 }
