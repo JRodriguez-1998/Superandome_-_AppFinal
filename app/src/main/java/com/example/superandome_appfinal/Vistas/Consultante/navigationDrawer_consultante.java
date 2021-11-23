@@ -9,12 +9,14 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
+import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.ItemUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
+import com.example.superandome_appfinal.Services.EncuestaUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.ItemUsuarioServiceImpl;
 import com.example.superandome_appfinal.Vistas.about;
 import com.google.android.material.navigation.NavigationView;
@@ -41,6 +43,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
     EmocionUsuarioServiceImpl emocionUserService;
     ItemUsuarioService itemUsuarioService;
+    EncuestaUsuarioServiceImpl encuestaUsuarioService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         try {
             emocionUserService = new EmocionUsuarioServiceImpl();
             itemUsuarioService = new ItemUsuarioServiceImpl();
+            encuestaUsuarioService = new EncuestaUsuarioServiceImpl();
 
             usuario = SessionManager.obtenerUsuario(this);
 
@@ -194,11 +198,15 @@ public class navigationDrawer_consultante extends AppCompatActivity {
     private void showItemsConsultante() {
         Menu navMenu = navigationView.getMenu();
 
-        navMenu.findItem(R.id.nav_homeConsultante).setVisible(true);
-
         if (emocionUserService.getEmocionByFechaAndId(usuario.getIdUsuario(), new Date()) != null) {
             navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
         }
+
+        if(encuestaUsuarioService.getEncuestaUsuarioByUsuario(usuario.getIdUsuario()).size() == 0){
+            navMenu.findItem(R.id.nav_multimedia).setEnabled(false);
+        }
+
+        navMenu.findItem(R.id.nav_homeConsultante).setVisible(true);
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setChecked(false);
         navMenu.findItem(R.id.nav_cargarEmocionDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_configurarHorario).setVisible(true);
