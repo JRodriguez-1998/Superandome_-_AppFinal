@@ -225,7 +225,7 @@ public class activity_login extends AppCompatActivity {
     }
 
     public void irInstagram(View view){
-        String url = "https://www.instagram.com/soyuzsaludmental/";
+        String url = "https://instagram.com/psicologajulietvelez";
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
         startActivity(intent);

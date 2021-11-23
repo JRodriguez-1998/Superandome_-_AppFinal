@@ -49,7 +49,7 @@ public class homeDirector extends Fragment {
         btninsta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://www.instagram.com/soyuzsaludmental/";
+                String url = "https://instagram.com/psicologajulietvelez";
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(intent);
