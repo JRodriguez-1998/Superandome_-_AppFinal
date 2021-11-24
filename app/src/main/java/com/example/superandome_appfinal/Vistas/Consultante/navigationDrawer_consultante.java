@@ -164,6 +164,20 @@ public class navigationDrawer_consultante extends AppCompatActivity {
             cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
             return true;
         });
+
+
+        navMenu.findItem(R.id.nav_multimedia).setOnMenuItemClickListener(item -> {
+
+            if(usuario.getTipoUsuario().getIdTipoUsuario() != TipoUsuarioEnum.CONSULTANTE.getTipo()){
+                return false;
+            }
+
+            if(encuestaUsuarioService.getEncuestaUsuarioByUsuario(usuario.getIdUsuario()).size() == 0){
+                Toast.makeText(this, "Debe completar previamente la encuesta", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+                return false;
+        });
     }
 
     private void hideAllItems() {
@@ -200,10 +214,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
         if (emocionUserService.getEmocionByFechaAndId(usuario.getIdUsuario(), new Date()) != null) {
             navMenu.findItem(R.id.nav_cargarEmocionDiaria).setEnabled(false);
-        }
-
-        if(encuestaUsuarioService.getEncuestaUsuarioByUsuario(usuario.getIdUsuario()).size() == 0){
-            navMenu.findItem(R.id.nav_multimedia).setEnabled(false);
         }
 
         navMenu.findItem(R.id.nav_homeConsultante).setVisible(true);
