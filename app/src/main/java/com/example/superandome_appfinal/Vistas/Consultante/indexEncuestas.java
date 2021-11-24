@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
+import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.EncuestaService;
 import com.example.superandome_appfinal.IServices.EncuestaUsuarioService;
 import com.example.superandome_appfinal.R;
@@ -55,6 +56,7 @@ public class indexEncuestas extends Fragment {
             encuestaUsuService = new EncuestaUsuarioServiceImpl();
 
             encuestas = encuestaService.getEncuestas();
+            idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
             recyclerViewEncuestas = v.findViewById(R.id.rvEncuestas);
             recyclerViewEncuestas.setLayoutManager(new LinearLayoutManager(getContext()));
