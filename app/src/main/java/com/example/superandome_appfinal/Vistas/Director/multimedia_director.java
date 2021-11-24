@@ -74,7 +74,7 @@ public class multimedia_director extends Fragment {
             recyclerViewContenido.setAdapter(adapterContenido);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error añ inicializar pantalla", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error al inicializar pantalla", Toast.LENGTH_SHORT).show();
         }
         return view;
     }
