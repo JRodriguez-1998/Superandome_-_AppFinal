@@ -268,7 +268,7 @@
                         android:id="@+id/btnSaveRutinaSeguimiento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="95dp"
+                        android:layout_gravity="center"
                         android:layout_marginTop="14dp"
                         android:backgroundTint="@color/teal_700"
                         android:text="@string/btnRutina" />
