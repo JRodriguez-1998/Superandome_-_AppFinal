@@ -18,6 +18,7 @@ import com.example.superandome_appfinal.Constantes.TipoConsejoEnum;
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoCargarEmocion;
 
+import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
 import com.example.superandome_appfinal.Entidades.Emocion;
 import com.example.superandome_appfinal.Entidades.EmocionUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
@@ -211,7 +212,8 @@ public class cargarEmocionDiaria extends Fragment {
                                     if (emocionUserService.guardar(emocionUsuario)) {
                                         mostrarDialogo(TipoConsejoEnum.ASCO.getTipo());
                                     } else {
-                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                        dialogoEmocionxdia d = new dialogoEmocionxdia();
+                                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionxdia");
                                     }
                                 }
                             } else {
@@ -221,7 +223,8 @@ public class cargarEmocionDiaria extends Fragment {
                             Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia!!", Toast.LENGTH_SHORT).show();
+                        dialogoEmocionxdia d = new dialogoEmocionxdia();
+                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionxdia");
                     }
                 }
             });
