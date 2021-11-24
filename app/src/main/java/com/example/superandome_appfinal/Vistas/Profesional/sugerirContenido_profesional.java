@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
+import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenidoProf;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoArchivo;
@@ -161,8 +162,8 @@ public class sugerirContenido_profesional extends Fragment {
                         @Override
                         public void onClick(View view) {
                             if(contenidoService.guardar(content)){
-                                dialogoSugerirContenido d = new dialogoSugerirContenido();
-                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                                dialogoSugerirContenidoProf d = new dialogoSugerirContenidoProf();
+                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_contenido_profesional");
                             }
                             else{
                                 Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
