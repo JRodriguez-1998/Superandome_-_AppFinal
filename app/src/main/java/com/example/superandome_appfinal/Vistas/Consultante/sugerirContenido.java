@@ -147,7 +147,7 @@ public class sugerirContenido extends Fragment {
                     btnGuardar.setOnClickListener(view -> {
                         if (contenidoService.guardar(content)) {
                             dialogoSugerirContenido d = new dialogoSugerirContenido();
-                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_contenido");
                         }
                         else {
                             Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();

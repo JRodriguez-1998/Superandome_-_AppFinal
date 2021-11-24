@@ -37,7 +37,7 @@ public class dialogoSugerirContenido extends DialogFragment {
     private AlertDialog crearDialogo(){
         AlertDialog.Builder builder  = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_dialogo_sugerir_consejo,null);
+        View v = inflater.inflate(R.layout.fragment_dialogo_sugerir_contenido,null);
         builder.setView(v);
 
         txtEstatus = (TextView) v.findViewById(R.id.txtEstatus);
