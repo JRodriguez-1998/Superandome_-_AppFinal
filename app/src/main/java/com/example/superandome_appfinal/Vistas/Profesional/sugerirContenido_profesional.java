@@ -147,31 +147,18 @@ public class sugerirContenido_profesional extends Fragment {
                             txtTipoContenido.setText("Video");
                             break;
                         default:
-                            throw new Exception("No se encontró el tipo de archivo");
+                            throw new Exception("No se encontrÃ³ el tipo de archivo");
                     }
 
-<<<<<<< HEAD
-                    btnGuardar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if(contenidoService.guardar(content)){
-                                dialogoSugerirContenidoProf d = new dialogoSugerirContenidoProf();
-                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_contenido_profesional");
-                            }
-                            else{
-                                Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
-                            }
-=======
                     content.setTipoArchivo(tipoArchivo);
 
                     btnGuardar.setOnClickListener(view -> {
                         if (contenidoService.guardar(content)) {
-                            dialogoSugerirContenido d = new dialogoSugerirContenido();
-                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                            dialogoSugerirContenidoProf d = new dialogoSugerirContenidoProf();
+                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_contenido_prof");
                         }
                         else {
                             Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
->>>>>>> master
                         }
                     });
                 }
