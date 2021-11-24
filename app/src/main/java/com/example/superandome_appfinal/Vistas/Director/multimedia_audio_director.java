@@ -1,6 +1,5 @@
 package com.example.superandome_appfinal.Vistas.Director;
 
-import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +28,6 @@ import java.nio.file.Path;
 
 public class multimedia_audio_director extends Fragment {
     MediaPlayer mp = null;
-    AudioTrack audioTrack;
     ImageButton btnPause,btnStop;
     SeekBar seekBar;
     Runnable runnable;
@@ -79,48 +77,17 @@ public class multimedia_audio_director extends Fragment {
                 }
             });
 
-            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    seekBar.setMax(mp.getDuration());
-                    mediaPlayer.start();
-                    updateSeekbar();
-                }
+            mp.setOnPreparedListener(mediaPlayer -> {
+                seekBar.setMax(mp.getDuration());
+                mediaPlayer.start();
+                updateSeekbar();
             });
 
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer player) {
-                    mp.seekTo(0);
-                    mp.pause();
-                    btnPause.setImageResource(R.drawable.btnplay);
-                }
-            });
+            mp.setOnCompletionListener(player -> parar());
 
-            btnPause.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(mp.isPlaying()){
-                        mp.pause();
-                        btnPause.setImageResource(R.drawable.btnplay);
-                        Toast.makeText(getContext(),"Audio pausado",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        mp.start();
-                        btnPause.setImageResource(R.drawable.btnpause);
-                        Toast.makeText(getContext(),"Audio reanudado",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            btnPause.setOnClickListener(view1 -> pausar());
 
-            btnStop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mp.seekTo(0);
-                    mp.pause();
-                    Toast.makeText(getContext(),"Audio detenido",Toast.LENGTH_SHORT).show();
-                }
-            });
+            btnStop.setOnClickListener(view2 -> parar());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,10 +95,17 @@ public class multimedia_audio_director extends Fragment {
         }
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_multimedia_audio_director, container, false);
+    }
+
     private void updateSeekbar() {
         int currpos = mp.getCurrentPosition();
         seekBar.setProgress(currpos);
-        runnable= new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
                 updateSeekbar();
@@ -140,10 +114,26 @@ public class multimedia_audio_director extends Fragment {
         handler.postDelayed(runnable,1000);
     }
 
+    private void pausar() {
+        if (mp.isPlaying()) {
+            mp.pause();
+            btnPause.setImageResource(R.drawable.btnplay);
+        }
+        else {
+            mp.start();
+            btnPause.setImageResource(R.drawable.btnpause);
+        }
+    }
+
+    private void parar() {
+        mp.seekTo(0);
+        mp.pause();
+        btnPause.setImageResource(R.drawable.btnplay);
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multimedia_audio_director, container, false);
+    public void onPause() {
+        super.onPause();
+        parar();
     }
 }
