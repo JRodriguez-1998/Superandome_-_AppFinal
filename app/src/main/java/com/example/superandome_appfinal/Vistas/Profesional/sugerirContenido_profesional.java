@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
+import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenidoProf;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoArchivo;
@@ -149,6 +150,18 @@ public class sugerirContenido_profesional extends Fragment {
                             throw new Exception("No se encontró el tipo de archivo");
                     }
 
+<<<<<<< HEAD
+                    btnGuardar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(contenidoService.guardar(content)){
+                                dialogoSugerirContenidoProf d = new dialogoSugerirContenidoProf();
+                                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_contenido_profesional");
+                            }
+                            else{
+                                Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
+                            }
+=======
                     content.setTipoArchivo(tipoArchivo);
 
                     btnGuardar.setOnClickListener(view -> {
@@ -158,6 +171,7 @@ public class sugerirContenido_profesional extends Fragment {
                         }
                         else {
                             Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
+>>>>>>> master
                         }
                     });
                 }
