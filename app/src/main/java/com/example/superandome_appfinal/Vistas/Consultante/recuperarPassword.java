@@ -1,10 +1,7 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,16 +10,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.superandome_appfinal.Dialogos.dialogo;
 import com.example.superandome_appfinal.Dialogos.dialogoCambiarPass;
-import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Entidades.PreguntaSeguridad;
-import com.example.superandome_appfinal.Entidades.TipoConsejo;
 import com.example.superandome_appfinal.Entidades.Usuario;
-import com.example.superandome_appfinal.IServices.PreguntaSeguridadService;
 import com.example.superandome_appfinal.R;
-import com.example.superandome_appfinal.Services.EmocionServiceImpl;
-import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
 import com.example.superandome_appfinal.Services.PreguntaSeguridadServiceImpl;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
 
@@ -30,7 +22,6 @@ import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class recuperarPassword extends AppCompatActivity {
 
@@ -102,7 +93,8 @@ public class recuperarPassword extends AppCompatActivity {
         });
     }catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(this.getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }}
 
     public void iniciarServicios(){
@@ -111,7 +103,8 @@ public class recuperarPassword extends AppCompatActivity {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(this, "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(this.getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 

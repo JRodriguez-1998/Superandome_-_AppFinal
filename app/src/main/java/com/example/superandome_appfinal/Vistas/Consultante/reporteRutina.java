@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.ItemRutinaEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoNoHayDatos;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioDiarioService;
@@ -82,7 +84,8 @@ public class reporteRutina extends Fragment {
             LoadSpinner();
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
         return v;
     }
@@ -136,7 +139,8 @@ public class reporteRutina extends Fragment {
 
             Map<Integer, Float> map = service.getReporteMensualRutina(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
             if (map == null) {
-                Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+                dialogoErrorInesperado d = new dialogoErrorInesperado();
+                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 return;
             }
             if (map.size() == 0) {
@@ -159,7 +163,8 @@ public class reporteRutina extends Fragment {
             LoadResultado(map);
 
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+            dialogoErrorInesperado d = new dialogoErrorInesperado();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
             e.printStackTrace();
         }
     }

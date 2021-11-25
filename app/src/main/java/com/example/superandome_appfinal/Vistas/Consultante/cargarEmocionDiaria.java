@@ -20,6 +20,7 @@ import com.example.superandome_appfinal.Dialogos.dialogoCargarEmocion;
 
 import com.example.superandome_appfinal.Dialogos.dialogoEmocionhorario;
 import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Entidades.Emocion;
 import com.example.superandome_appfinal.Entidades.EmocionUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
@@ -174,7 +175,8 @@ public class cargarEmocionDiaria extends Fragment {
                                     if (emocionUserService.guardar(emocionUsuario)) {
                                         mostrarDialogo(TipoConsejoEnum.FELICIDAD.getTipo());
                                     } else {
-                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                        dialogoEmocionxdia d = new dialogoEmocionxdia();
+                                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionxdia");
                                     }
 
                                 } else if (estadoTristeza) {
@@ -184,7 +186,8 @@ public class cargarEmocionDiaria extends Fragment {
                                     if (emocionUserService.guardar(emocionUsuario)) {
                                         mostrarDialogo(TipoConsejoEnum.TRISTEZA.getTipo());
                                     } else {
-                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                        dialogoEmocionxdia d = new dialogoEmocionxdia();
+                                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionxdia");
                                     }
 
                                 } else if (estadoIra) {
@@ -205,7 +208,8 @@ public class cargarEmocionDiaria extends Fragment {
                                     if (emocionUserService.guardar(emocionUsuario)) {
                                         mostrarDialogo(TipoConsejoEnum.MIEDO.getTipo());
                                     } else {
-                                        Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
+                                        dialogoEmocionxdia d = new dialogoEmocionxdia();
+                                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionxdia");
                                     }
                                 } else if (estadoAsco) {
                                     Emocion emocion = emocionService.getEmocionById(TipoEmocionEnum.ASCO.getTipo());
@@ -234,7 +238,8 @@ public class cargarEmocionDiaria extends Fragment {
         } catch (Exception e){
 
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 
@@ -335,7 +340,8 @@ public class cargarEmocionDiaria extends Fragment {
             emocionService = new EmocionServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al iniciar servicios", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 

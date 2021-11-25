@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoRutinaConfigurada;
 import com.example.superandome_appfinal.Entidades.Item;
 import com.example.superandome_appfinal.Entidades.ItemUsuario;
@@ -94,7 +96,8 @@ public class rutinaDiaria extends Fragment {
             ususerv = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
         
         int idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
@@ -774,7 +777,8 @@ public class rutinaDiaria extends Fragment {
                     d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_rutina");
                 }
                 else{
-                    Toast.makeText(getActivity(),"Error al actualizar",Toast.LENGTH_LONG).show();
+                    dialogoErrorInesperado d = new dialogoErrorInesperado();
+                    d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 }
             }
         });

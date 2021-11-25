@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoCompletarSugerir;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Dialogos.dialogoUserConsultanteRegistrado;
 import com.example.superandome_appfinal.Entidades.Genero;
 import com.example.superandome_appfinal.Entidades.PreguntaSeguridad;
@@ -129,7 +131,8 @@ public class activity_altaConsultante extends AppCompatActivity {
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(this, "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(this.getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 
@@ -138,7 +141,8 @@ public class activity_altaConsultante extends AppCompatActivity {
 
         //Verifico que los campos no esten vacios
         if(txtNickname.getText().toString().equals("") || txtFechaNac.getText().toString().equals("") || txtRespuesta.getText().toString().equals("") || txtPass.getText().toString().equals("") || txtConfirmPass.getText().toString().equals("")){
-            Toast.makeText(this,"Campos incompletos, por favor ingrese todos los campos.", Toast.LENGTH_SHORT).show();
+            dialogoCompletarSugerir d = new dialogoCompletarSugerir();
+            d.show(this.getSupportFragmentManager(), "fragment_dialogo_completarsugerir");
             return;
         }
 

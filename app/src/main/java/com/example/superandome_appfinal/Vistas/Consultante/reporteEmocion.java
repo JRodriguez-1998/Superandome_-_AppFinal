@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoNoHayDatos;
 import com.example.superandome_appfinal.Dialogos.dialogoProximamente;
 import com.example.superandome_appfinal.Helpers.SessionManager;
@@ -84,7 +86,8 @@ public class reporteEmocion extends Fragment {
             LoadSpinner();
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
         return v;
     }
@@ -121,7 +124,8 @@ public class reporteEmocion extends Fragment {
 
             Map<Integer, Float> map = service.getReporteMensualEmocion(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
             if (map == null) {
-                Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+                dialogoErrorInesperado d = new dialogoErrorInesperado();
+                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 return;
             }
             if (map.size() == 0) {
@@ -156,7 +160,8 @@ public class reporteEmocion extends Fragment {
             chart.setData(data);
             chart.invalidate();
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "Ha ocurrido un error al obtener el reporte", Toast.LENGTH_SHORT).show();
+            dialogoErrorInesperado d = new dialogoErrorInesperado();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
             e.printStackTrace();
         }
     }
