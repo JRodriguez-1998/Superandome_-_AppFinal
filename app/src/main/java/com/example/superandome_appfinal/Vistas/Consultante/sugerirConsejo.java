@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoCompletarSugerir;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.Entidades.Estado;
 import com.example.superandome_appfinal.Entidades.TipoConsejo;
@@ -78,11 +81,13 @@ public class sugerirConsejo extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if(txtConsejo.getText().toString().isEmpty()){
-                        Toast.makeText(getActivity(),"Completar campos para continuar", Toast.LENGTH_LONG).show();
+                        dialogoCompletarSugerir d = new dialogoCompletarSugerir();
+                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_completarsugerir");
                         return;
                     }
                     if(spinnerTipoConsejo.getSelectedItemPosition() == 0){
-                        Toast.makeText(getActivity(),"Seleccionar tipo de consejo", Toast.LENGTH_LONG).show();
+                        dialogoCompletarSugerir d = new dialogoCompletarSugerir();
+                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_completarsugerir");
                         return;
                     }
                      //OBTENER USUARIO
@@ -98,13 +103,16 @@ public class sugerirConsejo extends Fragment {
                         d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
                         txtConsejo.setText("");
                     }else{
-                        Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_LONG).show();
+                        dialogoErrorInesperado d = new dialogoErrorInesperado();
+                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                     }
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 
@@ -115,7 +123,8 @@ public class sugerirConsejo extends Fragment {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 

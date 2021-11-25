@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
@@ -67,7 +68,8 @@ public class multimedia extends Fragment {
             recyclerViewContenido.setAdapter(adapterContenido);
         } catch (Exception throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
         return view;
     }

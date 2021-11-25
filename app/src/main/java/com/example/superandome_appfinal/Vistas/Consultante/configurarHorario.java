@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Entidades.Usuario;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.R;
@@ -77,7 +79,8 @@ public class configurarHorario extends Fragment {
                     dialogoConfHorario d = new dialogoConfHorario();
                     d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_conf_horario");
                 }else{
-                    Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_SHORT).show();
+                    dialogoErrorInesperado d = new dialogoErrorInesperado();
+                    d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 }
             }else{
                 Toast.makeText(getActivity(), "Debe elegir un horario", Toast.LENGTH_LONG).show();
@@ -85,7 +88,8 @@ public class configurarHorario extends Fragment {
         });
     } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
     public void iniciarServicios(){
@@ -93,7 +97,8 @@ public class configurarHorario extends Fragment {
             usuarioService = new UsuarioServiceImpl();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 

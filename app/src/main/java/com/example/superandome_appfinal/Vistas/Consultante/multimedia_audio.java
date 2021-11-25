@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ContenidoService;
@@ -93,7 +94,8 @@ public class multimedia_audio extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 

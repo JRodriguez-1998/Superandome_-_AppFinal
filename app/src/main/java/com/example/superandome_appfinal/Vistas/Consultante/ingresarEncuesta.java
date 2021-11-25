@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoEncuesta;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
@@ -72,12 +74,14 @@ public class ingresarEncuesta extends Fragment {
                     dialogoEncuesta d = new dialogoEncuesta(total);
                     d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_encuesta");
                 } else {
-                    Toast.makeText(getActivity(), "Ha ocurrido un error al generar el resultado", Toast.LENGTH_LONG).show();
+                    dialogoErrorInesperado d = new dialogoErrorInesperado();
+                    d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
 
     }

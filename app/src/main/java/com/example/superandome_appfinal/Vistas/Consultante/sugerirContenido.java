@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EstadoEnum;
 import com.example.superandome_appfinal.Constantes.TipoArchivoEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoSugerirContenido;
 import com.example.superandome_appfinal.Entidades.Contenido;
 import com.example.superandome_appfinal.Entidades.Estado;
@@ -72,7 +74,8 @@ public class sugerirContenido extends Fragment {
             btnElegirArchivo.setOnClickListener(view1 -> showFileChooser() );
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
     }
 
@@ -86,7 +89,9 @@ public class sugerirContenido extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "Error al seleccionar", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Error al seleccionar", Toast.LENGTH_SHORT).show();
+            dialogoErrorInesperado d = new dialogoErrorInesperado();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
         }
     }
 
@@ -150,7 +155,9 @@ public class sugerirContenido extends Fragment {
                             d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_contenido");
                         }
                         else {
-                            Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),"Error al cargar",Toast.LENGTH_SHORT).show();
+                            dialogoErrorInesperado d = new dialogoErrorInesperado();
+                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                         }
                     });
                 }
@@ -158,7 +165,9 @@ public class sugerirContenido extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Error al cargar", Toast.LENGTH_SHORT).show();
+            dialogoErrorInesperado d = new dialogoErrorInesperado();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
         }
     }
 

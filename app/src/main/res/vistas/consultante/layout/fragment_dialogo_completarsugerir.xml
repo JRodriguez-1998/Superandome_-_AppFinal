@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dialogos.dialogoEmocionhorario">
+    tools:context=".Dialogos.dialogoCompletarSugerir">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cambay"
-            android:text="Recuerda que debes ingresar la emoción en el horario configurado."
+            android:text="Parece que faltan completar campos."
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="22sp"
@@ -29,7 +29,7 @@
             android:id="@+id/txtEstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¡Falta aún!"
+            android:text="Mmm..."
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -58,6 +58,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/horarioemocion" />
+            app:srcCompat="@drawable/pensar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

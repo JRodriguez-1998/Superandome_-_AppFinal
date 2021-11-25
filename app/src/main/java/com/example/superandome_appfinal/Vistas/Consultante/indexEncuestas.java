@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
+import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoProximamente;
 import com.example.superandome_appfinal.Dialogos.dialogoesperar7dias;
 import com.example.superandome_appfinal.Entidades.Encuesta;
@@ -75,7 +77,8 @@ public class indexEncuestas extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
+            dialogoErrorFragment d = new dialogoErrorFragment();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
 
         return v;
@@ -106,7 +109,8 @@ public class indexEncuestas extends Fragment {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "¡Ha ocurrido un error inesperado!", Toast.LENGTH_SHORT).show();
+            dialogoErrorInesperado d = new dialogoErrorInesperado();
+            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
         }
     }
 
