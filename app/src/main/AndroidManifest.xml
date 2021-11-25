@@ -19,6 +19,7 @@
 
         <activity
             android:name=".Vistas.splash"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,20 +29,25 @@
 
         <activity
             android:name=".Vistas.Consultante.recuperarPassword"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Vistas.Consultante.activity_altaConsultante"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Vistas.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".Vistas.Consultante.navigationDrawer_consultante"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/title_activity_navigation_drawer_consultante"
             android:theme="@style/Theme.SuperandomeAppFinal.NoActionBar" />
         <activity
             android:name=".Vistas.activity_login"
+            android:screenOrientation="portrait"
             android:exported="true">
         </activity>
 
