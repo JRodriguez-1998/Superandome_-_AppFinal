@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoUsuarioEnum;
 import com.example.superandome_appfinal.Dialogos.cerrarSesion;
+import com.example.superandome_appfinal.Dialogos.dialogoCargarRutinas;
+import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Entidades.ItemUsuario;
 import com.example.superandome_appfinal.Entidades.Usuario;
@@ -152,7 +154,8 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 return true;
             }
             if (itemList.size() == 0) {
-                Toast.makeText(this, "Primero debe configurar su rutina en 'Configurar Rutina'", Toast.LENGTH_SHORT).show();
+                dialogoCargarRutinas d = new dialogoCargarRutinas();
+                d.show(this.getSupportFragmentManager(), "fragment_dialogo_cargar_rutinas");
                 return true;
             }
 

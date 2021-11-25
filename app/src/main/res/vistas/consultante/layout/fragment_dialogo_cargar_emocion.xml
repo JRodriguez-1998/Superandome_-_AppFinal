@@ -15,14 +15,15 @@
             android:id="@+id/txtMensajeDialogo"
             android:layout_width="301dp"
             android:layout_height="87dp"
+            android:fontFamily="@font/cambay"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.347"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEstatus"
-            app:layout_constraintVertical_bias="0.13" />
+            app:layout_constraintVertical_bias="0.122" />
 
         <TextView
             android:id="@+id/txtEstatus"
