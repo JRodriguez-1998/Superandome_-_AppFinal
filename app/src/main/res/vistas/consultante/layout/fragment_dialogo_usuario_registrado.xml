@@ -12,8 +12,9 @@
 
         <TextView
             android:id="@+id/txtMensajeDialogo"
-            android:layout_width="294dp"
-            android:layout_height="38dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cambay"
             android:text="Usuario registrado con éxito"
             android:textAlignment="center"
             android:textColor="@color/black"

@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoNoHayDatos;
+import com.example.superandome_appfinal.Dialogos.dialogoProximamente;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.EmocionUsuarioService;
 import com.example.superandome_appfinal.R;
@@ -123,7 +125,8 @@ public class reporteEmocion extends Fragment {
                 return;
             }
             if (map.size() == 0) {
-                Toast.makeText(getActivity(), "No hay datos registrados para el período seleccionado", Toast.LENGTH_SHORT).show();
+                dialogoNoHayDatos d = new dialogoNoHayDatos();
+                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_nohaydatos");
                 return;
             }
 

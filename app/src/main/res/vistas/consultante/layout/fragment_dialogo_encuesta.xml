@@ -8,12 +8,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/txtMensajeDialogo"
-            android:layout_width="294dp"
-            android:layout_height="38dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cambay"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="22sp"
@@ -27,21 +28,23 @@
             android:id="@+id/txtEstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:text="¡Encuesta Completada!"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/btnAceptarDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="78dp"
+            android:layout_height="38dp"
             android:layout_marginTop="20dp"
             android:text="Aceptar"
+            android:textAlignment="center"
             android:textColor="#F83778"
             android:textSize="20sp"
             android:textStyle="bold"

@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
+import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
+import com.example.superandome_appfinal.Dialogos.dialogoProximamente;
+import com.example.superandome_appfinal.Dialogos.dialogoesperar7dias;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Helpers.SessionManager;
@@ -84,7 +87,8 @@ public class indexEncuestas extends Fragment {
             int idEncuesta = encuestas.get(recyclerViewEncuestas.getChildAdapterPosition(view)).getIdEncuesta();
 
             if (!puedeContestar(idEncuesta)) {
-                Toast.makeText(getContext(), "Se puede responder luego de 7 dias", Toast.LENGTH_SHORT).show();
+                dialogoesperar7dias d = new dialogoesperar7dias();
+                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_esperar7dias");
                 return;
             }
 
@@ -95,7 +99,8 @@ public class indexEncuestas extends Fragment {
                     navController.navigate(R.id.nav_ingresarEncuesta);
                     break;
                 case NO_IMPLEMENTADO:
-                    Toast.makeText(getContext(), "¡Proximamente!", Toast.LENGTH_SHORT).show();
+                    dialogoProximamente d = new dialogoProximamente();
+                    d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_proximamente");
                     break;
             }
 
