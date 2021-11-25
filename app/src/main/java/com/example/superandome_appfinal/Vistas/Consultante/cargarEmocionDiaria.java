@@ -18,6 +18,7 @@ import com.example.superandome_appfinal.Constantes.TipoConsejoEnum;
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoCargarEmocion;
 
+import com.example.superandome_appfinal.Dialogos.dialogoEmocionhorario;
 import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
 import com.example.superandome_appfinal.Entidades.Emocion;
 import com.example.superandome_appfinal.Entidades.EmocionUsuario;
@@ -193,7 +194,8 @@ public class cargarEmocionDiaria extends Fragment {
                                     if (emocionUserService.guardar(emocionUsuario)) {
                                         mostrarDialogo(TipoConsejoEnum.IRA.getTipo());
                                     } else {
-                                        Toast.makeText(getActivity(), "Solo se permite un ingreso por dia", Toast.LENGTH_SHORT).show();
+                                        dialogoEmocionxdia d = new dialogoEmocionxdia();
+                                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionxdia");
                                     }
 
                                 } else if (estadoMiedo) {
@@ -217,10 +219,11 @@ public class cargarEmocionDiaria extends Fragment {
                                     }
                                 }
                             } else {
-                                Toast.makeText(getActivity(), "Debe seleccionar al menos una emoción", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Recuerda seleccionar la Emoción de hoy", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Debe ingresar la emoción en el horario configurado", Toast.LENGTH_SHORT).show();
+                            dialogoEmocionhorario d = new dialogoEmocionhorario();
+                            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_emocionhorario");
                         }
                     } else {
                         dialogoEmocionxdia d = new dialogoEmocionxdia();
