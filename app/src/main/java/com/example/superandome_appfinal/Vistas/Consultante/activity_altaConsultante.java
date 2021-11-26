@@ -162,13 +162,15 @@ public class activity_altaConsultante extends AppCompatActivity {
 
         //Verifico que haya seleccionado el Genero
         if(spinnerGenero.getSelectedItemPosition() == 0){
-            Toast.makeText(this,"Seleccione el Genero", Toast.LENGTH_LONG).show();
+            dialogoCompletarSugerir d = new dialogoCompletarSugerir();
+            d.show(this.getSupportFragmentManager(), "fragment_dialogo_completarsugerir");
             return;
         }
 
         //Verifico que haya elegido la pregunta
         if(spinnerPreguntas.getSelectedItemPosition() == 0){
-            Toast.makeText(this,"Elija una pregunta de Seguridad", Toast.LENGTH_LONG).show();
+            dialogoCompletarSugerir d = new dialogoCompletarSugerir();
+            d.show(this.getSupportFragmentManager(), "fragment_dialogo_completarsugerir");
             return;
         }
 
