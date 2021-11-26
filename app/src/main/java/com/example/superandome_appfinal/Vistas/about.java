@@ -16,7 +16,7 @@ import com.example.superandome_appfinal.R;
 
 public class about extends DialogFragment {
     Activity actividad;
-    TextView txtEstatus, txtMensaje, btnAceptar;
+    TextView btnAceptar;
 
     public about() {
     }
