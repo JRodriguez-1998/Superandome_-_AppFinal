@@ -132,6 +132,10 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                 about d = new about();
                 d.show(this.getSupportFragmentManager(), "fragment_about");
                 return true;
+            case R.id.cerrarSesion:
+                cerrarSesion cerrar = new cerrarSesion();
+                cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -162,11 +166,11 @@ public class navigationDrawer_consultante extends AppCompatActivity {
             return false;
         });
 
-        navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(item -> {
+        /*navMenu.findItem(R.id.nav_cerrarSesion).setOnMenuItemClickListener(item -> {
             cerrarSesion cerrar = new cerrarSesion();
             cerrar.show(getSupportFragmentManager(), "fragment_dialogo_cerrar_sesion");
             return true;
-        });
+        });*/
 
 
         navMenu.findItem(R.id.nav_multimedia).setOnMenuItemClickListener(item -> {
@@ -231,7 +235,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(true);
-        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
+        //navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
     }
 
     private void showItemsProfesional() {
@@ -243,7 +247,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_derivarContenido_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_profesional).setVisible(true);
         navMenu.findItem(R.id.nav_cambiar_password_profesional).setVisible(true);
-        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
+        //navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
     }
 
     private void showItemsDirector() {
@@ -254,6 +258,6 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_aprobarConsejo_director).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia_director).setVisible(true);
         navMenu.findItem(R.id.nav_cambiar_password).setVisible(true);
-        navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
+        //navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
     }
 }
