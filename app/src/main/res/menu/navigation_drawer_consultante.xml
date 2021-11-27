@@ -4,7 +4,7 @@
     <item
         android:id="@+id/about"
         android:orderInCategory="100"
-        android:title="About"
+        android:title="Info. de la Aplicación"
         app:showAsAction="never" />
     <item
         android:id="@+id/cerrarSesion"

@@ -1,9 +1,12 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +85,8 @@ public class navigationDrawer_consultante extends AppCompatActivity {
             txtNombreUser = (TextView) navHeader.findViewById(R.id.tvNombreUserLogin);
             txtNombreUser.setText(usuario.getNickname());
 
+            LinearLayout sideNavLayout = (LinearLayout) navHeader.findViewById(R.id.linearLayoutHeader);
+
             binding.appBarNavigationDrawerConsultante.fab.setOnClickListener(view -> {
                 switch (TipoUsuarioEnum.getTipoUsuario(usuario.getTipoUsuario().getIdTipoUsuario())) {
                     case CONSULTANTE:
@@ -101,14 +106,37 @@ public class navigationDrawer_consultante extends AppCompatActivity {
 
             switch (TipoUsuarioEnum.getTipoUsuario(usuario.getTipoUsuario().getIdTipoUsuario())) {
                 case CONSULTANTE:
+                    binding.appBarNavigationDrawerConsultante.toolbar.setBackgroundColor(Color.rgb(65,103,178));
+
+                    //COLOR FAB (ICONO CASITA)
+                    ColorStateList csl_cons = new ColorStateList(new int[][]{new int[0]}, new int[]{0xFF4167B2});
+                    binding.appBarNavigationDrawerConsultante.fab.setBackgroundTintList(csl_cons);
+
+                    sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_consultante);
                     showItemsConsultante();
                     navController.navigate(R.id.nav_homeConsultante);
                     break;
                 case PROFESIONAL:
+                    binding.appBarNavigationDrawerConsultante.toolbar.setBackgroundColor(Color.rgb(111,194,180));
+
+                    //COLOR FAB (ICONO CASITA)
+                    ColorStateList csl_prof = new ColorStateList(new int[][]{new int[0]}, new int[]{0xFF6FC2B4});
+                    binding.appBarNavigationDrawerConsultante.fab.setBackgroundTintList(csl_prof);
+
+                    sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar);
                     showItemsProfesional();
                     navController.navigate(R.id.nav_homeProfesional);
                     break;
                 case DIRECTOR:
+                    binding.appBarNavigationDrawerConsultante.toolbar.setBackgroundColor(Color.rgb(214,20,73));
+
+                    //COLOR FAB (ICONO CASITA)
+                    ColorStateList csl_dir = new ColorStateList(new int[][]{new int[0]}, new int[]{0xFFD61449});
+                    binding.appBarNavigationDrawerConsultante.fab.setBackgroundTintList(csl_dir);
+
+
+
+                    sideNavLayout.setBackgroundResource(R.drawable.side_nav_bar_director);
                     showItemsDirector();
                     navController.navigate(R.id.nav_homeDirector);
                     break;
