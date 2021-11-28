@@ -8,128 +8,182 @@
         <item
             android:id="@+id/nav_homeConsultante"
             android:icon="@drawable/homenavi"
-            android:title="Pantalla principal" />
+            android:title="Inicio" />
 
         <item
             android:id="@+id/nav_homeProfesional"
             android:icon="@drawable/homenavi"
-            android:title="Pantalla principal" />
+            android:title="Inicio" />
 
         <item
             android:id="@+id/nav_homeDirector"
             android:icon="@drawable/homenavi"
-            android:title="Pantalla principal" />
+            android:title="Inicio" />
+    </group>
 
-        <item
-            android:id="@+id/nav_cargarEmocionDiaria"
-            android:icon="@drawable/emotion"
-            android:title="Cargar emoción diaria" />
+                                                    <!-- MENU DEL CONSULTANTE -->
+    <item android:title="Emoción Diaria">
+        <menu>
+            <item
+                android:id="@+id/nav_cargarEmocionDiaria"
+                android:icon="@drawable/emotion"
+                android:title="Cargar Emoción" />
 
-        <item
-            android:id="@+id/nav_configurarHorario"
-            android:icon="@drawable/clock"
-            android:title="Configurar horario" />
+            <item
+                android:id="@+id/nav_configurarHorario"
+                android:icon="@drawable/clock"
+                android:title="Configurar Horario" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_rutinaDiariaSeguimiento"
-            android:icon="@drawable/rutinaseguimiento"
-            android:title="Rutina seguimiento" />
+    <item android:title="Rutinas">
+        <menu>
+            <item
+                android:id="@+id/nav_rutinaDiaria"
+                android:icon="@drawable/rutinaconf"
+                android:title="Configurar Rutinas" />
+            <item
+                android:id="@+id/nav_rutinaDiariaSeguimiento"
+                android:icon="@drawable/rutinaseguimiento"
+                android:title="Seguimiento" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_rutinaDiaria"
-            android:icon="@drawable/rutinaconf"
-            android:title="Configurar Rutina" />
+    <item android:title="Encuestas">
+        <menu>
+            <item
+                android:id="@+id/nav_indexEncuestas"
+                android:icon="@drawable/encuesta"
+                android:title="Encuestas" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_indexEncuestas"
-            android:icon="@drawable/encuesta"
-            android:title="Encuestas" />
+    <item android:title="Multimedia">
+        <menu>
+            <item
+                android:id="@+id/nav_multimedia"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Ver Contenidos" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_multimedia"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Contenido multimedia" />
+    <item android:title="Reportes">
+        <menu>
+            <item
+                android:id="@+id/nav_reporteEmocion"
+                android:icon="@drawable/report"
+                android:title="Reporte Mensual Emoción" />
 
-        <item
-            android:id="@+id/nav_reporteEmocion"
-            android:icon="@drawable/report"
-            android:title="Reporte mensual emoción" />
+            <item
+                android:id="@+id/nav_reporteRutina"
+                android:icon="@drawable/report2"
+                android:title="Reporte Mensual Rutina" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_reporteRutina"
-            android:icon="@drawable/report2"
-            android:title="Reporte mensual rutina" />
+    <item android:title="Sugerencias">
+        <menu>
+            <item
+                android:id="@+id/nav_sugerirConsejo"
+                android:icon="@drawable/sugerirconsejo"
+                android:title="Sugerir Consejo Diario" />
 
+            <item
+                android:id="@+id/nav_sugerirContenido"
+                android:icon="@drawable/multimedia"
+                android:title="Sugerir Contenido Multimedia" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_sugerirConsejo"
-            android:icon="@drawable/sugerirconsejo"
-            android:title="Sugerir consejo diario" />
+                                                    <!-- MENU DEL PROFESIONAL -->
+    <item android:title="Derivaciones">
+        <menu>
+            <item
+                android:id="@+id/nav_derivarConsejo_profesional"
+                android:icon="@drawable/transfer"
+                android:title="Derivar Consejos" />
 
-        <item
-            android:id="@+id/nav_sugerirContenido"
-            android:icon="@drawable/multimedia"
-            android:title="Sugerir contenido multimedia" />
+            <item
+                android:id="@+id/nav_derivarContenido_profesional"
+                android:icon="@drawable/transfer"
+                android:title="Derivar Contenido Multimedia" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_sugerirContenido_profesional"
-            android:icon="@drawable/idea"
-            android:title="Sugerir contenido" />
+    <item android:title="Sugerencias">
+        <menu>
+            <item
+                android:id="@+id/nav_sugerirContenido_profesional"
+                android:icon="@drawable/idea"
+                android:title="Sugerir Contenido" />
 
-        <item
-            android:id="@+id/nav_sugerirConsejo_profesional"
-            android:icon="@drawable/idea"
-            android:title="Sugerir consejo" />
+            <item
+                android:id="@+id/nav_sugerirConsejo_profesional"
+                android:icon="@drawable/idea"
+                android:title="Sugerir Consejo" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_derivarConsejo_profesional"
-            android:icon="@drawable/transfer"
-            android:title="Derivar Consejos" />
+    <item android:title="Multimedia">
+        <menu>
+            <item
+                android:id="@+id/nav_multimedia_profesional"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Ver Contenidos" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_derivarContenido_profesional"
-            android:icon="@drawable/transfer"
-            android:title="Derivar Contenido Multimedia" />
+    <item android:title="Configuraciones">
+        <menu>
+            <item
+                android:id="@+id/nav_cambiar_password_profesional"
+                android:icon="@drawable/password"
+                android:title="Cambiar Contraseña" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_multimedia_profesional"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Contenido Multimedia" />
-        
+                                                    <!-- MENU DEL DIRECTOR -->
         <item
             android:id="@+id/nav_altaProfesional"
             android:icon="@drawable/user"
             android:title="Alta Profesional" />
 
-        <item
-            android:id="@+id/nav_aprobarContenido_director"
-            android:icon="@drawable/check"
-            android:title="Aprobar Contenido Multimedia" />
+    <item android:title="Aprobaciones">
+        <menu>
+            <item
+                android:id="@+id/nav_aprobarContenido_director"
+                android:icon="@drawable/check"
+                android:title="Aprobar Contenido Multimedia" />
 
-        <item
-            android:id="@+id/nav_aprobarConsejo_director"
-            android:icon="@android:drawable/btn_star_big_on"
-            android:title="Aprobar Consejos" />
+            <item
+                android:id="@+id/nav_aprobarConsejo_director"
+                android:icon="@android:drawable/btn_star_big_on"
+                android:title="Aprobar Consejos" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_multimedia_director"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Contenido Multimedia" />
+    <item android:title="Multimedia">
+        <menu>
+            <item
+                android:id="@+id/nav_multimedia_director"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Ver Contenidos" />
+        </menu>
+    </item>
 
-        <item
-            android:id="@+id/nav_cambiar_password"
-            android:icon="@drawable/password"
-            android:title="Cambiar Contraseña" />
-
-        <item
-            android:id="@+id/nav_cambiar_password_profesional"
-            android:icon="@drawable/question"
-            android:title="Cambiar Contraseña" />
+    <item android:title="Configuraciones">
+        <menu>
+            <item
+                android:id="@+id/nav_cambiar_password"
+                android:icon="@drawable/password"
+                android:title="Cambiar Contraseña" />
+        </menu>
+    </item>
 
         <item
             android:id="@+id/nav_cerrarSesion"
             android:icon="@drawable/logout"
             android:title="Cerrar Sesion" />
 
-    </group>
+
 </menu>

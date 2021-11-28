@@ -15,10 +15,10 @@
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="329dp"
-            android:layout_height="155dp"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/logo_blanco"
+            android:src="@drawable/logo_letrablanca"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
