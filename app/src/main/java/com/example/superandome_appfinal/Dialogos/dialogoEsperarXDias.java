@@ -14,11 +14,15 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.superandome_appfinal.R;
 
-public class dialogoesperar7dias extends DialogFragment {
+import java.text.MessageFormat;
+
+public class dialogoEsperarXDias extends DialogFragment {
     Activity actividad;
     TextView txtEstatus, txtMensaje, btnAceptar;
+    Long dias;
 
-    public dialogoesperar7dias() {
+    public dialogoEsperarXDias(long dias) {
+        this.dias = dias;
     }
 
     @NonNull
@@ -30,19 +34,21 @@ public class dialogoesperar7dias extends DialogFragment {
     private AlertDialog crearDialogo(){
         AlertDialog.Builder builder  = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_dialogo_esperar7dias,null);
+        View v = inflater.inflate(R.layout.fragment_dialogo_esperarxdias,null);
         builder.setView(v);
 
         txtEstatus = (TextView) v.findViewById(R.id.txtEstatus);
         txtMensaje = (TextView) v.findViewById(R.id.txtMensajeDialogo);
         btnAceptar = (TextView) v.findViewById(R.id.btnAceptarDialogCambioPass);
 
-        btnAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        String textoDias = MessageFormat.format("" +
+                        "{0} {1}",
+                        dias.toString(),
+                        dias == 1 ? "día" : "días");
+        String mensajeDias = txtMensaje.getText().toString().replace("#DIAS#", textoDias);
+        txtMensaje.setText(mensajeDias);
+
+        btnAceptar.setOnClickListener(v1 -> dismiss());
 
         return builder.create();
     }
@@ -50,9 +56,9 @@ public class dialogoesperar7dias extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if(context instanceof Activity){
-            this.actividad  = (Activity) context;
-        }else{
+        if (context instanceof Activity) {
+            this.actividad = (Activity) context;
+        } else {
             throw new RuntimeException(context.toString());
         }
     }
