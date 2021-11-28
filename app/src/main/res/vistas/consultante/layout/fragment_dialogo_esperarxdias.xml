@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dialogos.dialogoesperar7dias">
+    tools:context=".Dialogos.dialogoEsperarXDias">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cambay"
-            android:text="Para volver a realizar esta encuesta, debes esperar 7 días."
+            android:text="Para volver a realizar esta encuesta, debes esperar #DIAS#."
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="22sp"

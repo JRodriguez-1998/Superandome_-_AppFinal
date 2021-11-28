@@ -12,14 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.EncuestaEnum;
-import com.example.superandome_appfinal.Dialogos.dialogoEmocionxdia;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoProximamente;
-import com.example.superandome_appfinal.Dialogos.dialogoesperar7dias;
+import com.example.superandome_appfinal.Dialogos.dialogoEsperarXDias;
 import com.example.superandome_appfinal.Entidades.Encuesta;
 import com.example.superandome_appfinal.Entidades.EncuestaUsuario;
 import com.example.superandome_appfinal.Helpers.SessionManager;
@@ -44,6 +42,7 @@ public class indexEncuestas extends Fragment {
     EncuestaUsuarioService encuestaUsuService;
 
     Integer idUsuario;
+    long dias;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,7 +89,7 @@ public class indexEncuestas extends Fragment {
             int idEncuesta = encuestas.get(recyclerViewEncuestas.getChildAdapterPosition(view)).getIdEncuesta();
 
             if (!puedeContestar(idEncuesta)) {
-                dialogoesperar7dias d = new dialogoesperar7dias();
+                dialogoEsperarXDias d = new dialogoEsperarXDias(dias);
                 d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_esperar7dias");
                 return;
             }
@@ -123,9 +122,10 @@ public class indexEncuestas extends Fragment {
 
         List<EncuestaUsuario> listEncuestaUsuario = encuestaUsuService.getEncuestaUsuarioById(idEncuesta, idUsuario);
 
-        if (listEncuestaUsuario == null) {
+        if (listEncuestaUsuario == null)
+            throw new Exception("Ha ocurrido un error al buscar las encuestas del usuario");
+        if (listEncuestaUsuario.size() == 0)
             return true;
-        }
 
         EncuestaUsuario encuestaUsu = listEncuestaUsuario.get(listEncuestaUsuario.size() -1);
 
@@ -134,8 +134,10 @@ public class indexEncuestas extends Fragment {
         Date fechaActualFormat = formatter.parse(formatter.format(new Date()));
 
         long diff = fechaActualFormat.getTime() - ultimaEncuestaFormat.getTime();
-        long dias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        long diferenciaDias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
-        return dias >= 7;
+        dias = 7 - diferenciaDias;
+
+        return diferenciaDias >= 7;
     }
 }
