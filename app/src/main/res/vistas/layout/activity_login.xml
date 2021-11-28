@@ -28,8 +28,8 @@
             <ImageView
                 android:id="@+id/ivLogoApp"
                 android:layout_width="match_parent"
-                android:layout_height="186dp"
-                app:srcCompat="@drawable/logo_app" />
+                android:layout_height="190dp"
+                app:srcCompat="@drawable/logo_letrablanca" />
 
             <EditText
                 android:id="@+id/etNickname"
