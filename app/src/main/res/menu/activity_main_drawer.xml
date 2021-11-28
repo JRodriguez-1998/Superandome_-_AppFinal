@@ -63,7 +63,7 @@
             <item
                 android:id="@+id/nav_multimedia"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="Ver Contenidos" />
+                android:title="Ver Guías" />
         </menu>
     </item>
 
@@ -86,7 +86,7 @@
             <item
                 android:id="@+id/nav_sugerirConsejo"
                 android:icon="@drawable/sugerirconsejo"
-                android:title="Sugerir Consejo Diario" />
+                android:title="Sugerir Consejo" />
 
             <item
                 android:id="@+id/nav_sugerirContenido"
@@ -129,7 +129,7 @@
             <item
                 android:id="@+id/nav_multimedia_profesional"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="Ver Contenidos" />
+                android:title="Ver Guías" />
         </menu>
     </item>
 
@@ -167,7 +167,7 @@
             <item
                 android:id="@+id/nav_multimedia_director"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="Ver Contenidos" />
+                android:title="Ver Guías" />
         </menu>
     </item>
 
