@@ -95,6 +95,15 @@
         </menu>
     </item>
 
+    <item android:title="Configuraciones">
+        <menu>
+            <item
+                android:id="@+id/nav_cambiar_password_consultante"
+                android:icon="@drawable/password"
+                android:title="Cambiar Contraseña" />
+        </menu>
+    </item>
+
                                                     <!-- MENU DEL PROFESIONAL -->
     <item android:title="Derivaciones">
         <menu>

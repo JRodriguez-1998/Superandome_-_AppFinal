@@ -73,7 +73,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
                     R.id.nav_reporteRutina,R.id.nav_multimedia,R.id.nav_altaProfesional, R.id.nav_aprobarContenido_director,
                     R.id.nav_homeConsultante, R.id.nav_cerrarSesion, R.id.nav_cambiar_password, R.id.nav_cambiar_password_profesional,R.id.nav_rutinaDiariaSeguimiento,
                     R.id.nav_derivarConsejo_profesional, R.id.nav_aprobarConsejo_director, R.id.nav_homeProfesional, R.id.nav_homeDirector, R.id.nav_indexEncuestas, R.id.nav_derivarContenido_profesional,
-                    R.id.nav_multimedia_director, R.id.nav_multimedia_profesional)
+                    R.id.nav_multimedia_director, R.id.nav_multimedia_profesional, R.id.nav_cambiar_password_consultante)
                     .setOpenableLayout(drawer)
                     .build();
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navigation_drawer_consultante);
@@ -242,6 +242,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(false);
         navMenu.findItem(R.id.nav_aprobarConsejo_director).setVisible(false);
         navMenu.findItem(R.id.nav_derivarContenido_profesional).setVisible(false);
+        navMenu.findItem(R.id.nav_cambiar_password_consultante).setVisible(false);
     }
 
     private void showItemsConsultante() {
@@ -263,6 +264,7 @@ public class navigationDrawer_consultante extends AppCompatActivity {
         navMenu.findItem(R.id.nav_rutinaDiaria).setVisible(true);
         navMenu.findItem(R.id.nav_multimedia).setVisible(true);
         navMenu.findItem(R.id.nav_rutinaDiariaSeguimiento).setVisible(true);
+        navMenu.findItem(R.id.nav_cambiar_password_consultante).setVisible(true);
         //navMenu.findItem(R.id.nav_cerrarSesion).setVisible(true);
     }
 
