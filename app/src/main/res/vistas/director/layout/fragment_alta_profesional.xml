@@ -21,68 +21,61 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <TableRow
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="114dp"
                         android:layout_height="107dp"
-                        android:src="@drawable/logo_soyuz" />
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/logo_soyuz"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tvAltaProfesional"
+                        android:layout_width="219dp"
+                        android:layout_height="49dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="@string/altaProfesional"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.794"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="20dp">
+                    <TextView
+                        android:id="@+id/tvFecha"
+                        android:layout_width="81dp"
+                        android:layout_height="42dp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="@string/fechahoy"
+                        android:textAlignment="textEnd"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvFechaHOY"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAltaProfesional" />
 
-                            <TextView
-                                android:id="@+id/textView26"
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvFechaHOY"
+                        android:layout_width="200dp"
+                        android:layout_height="42dp"
+                        android:layout_marginEnd="12dp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="@string/FECHA_DE_EJEMPLO"
+                        android:textAlignment="textEnd"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAltaProfesional" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <TextView
-                                android:id="@+id/tvAltaProfesional"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/redhat_medium"
-                                android:text="@string/altaProfesional"
-                                android:textColor="#FFFFFF"
-                                android:textSize="30sp" />
-                        </TableRow>
-
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" >
-
-                            <TextView
-                                android:id="@+id/tvFecha"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/redhat_medium"
-                                android:text="@string/fechahoy"
-                                android:textAlignment="textEnd"
-                                android:textColor="#FFFFFF"
-                                android:textSize="20sp" />
-
-                            <TextView
-                                android:id="@+id/tvFechaHOY"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/redhat_medium"
-                                android:text="@string/FECHA_DE_EJEMPLO"
-                                android:textAlignment="textEnd"
-                                android:textColor="#FFFFFF"
-                                android:textSize="20sp" />
-                        </TableRow>
-
-                    </TableLayout>
-
-                </TableRow>
                 <TextView
                     android:id="@+id/tvNickProfesional"
                     android:layout_width="match_parent"
@@ -101,6 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/border"
                     android:ems="10"
                     android:fontFamily="@font/questrial_regular"
@@ -126,6 +121,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/border"
                     android:ems="10"
                     android:focusable="false"
@@ -151,6 +148,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/border"
                     android:minHeight="48dp" />
 
@@ -171,6 +170,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/border"
                     android:ems="10"
                     android:fontFamily="@font/questrial_regular"
@@ -195,6 +196,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:background="@drawable/border"
                     android:ems="10"
                     android:fontFamily="@font/questrial_regular"

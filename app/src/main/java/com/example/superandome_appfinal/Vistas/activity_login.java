@@ -15,9 +15,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Entidades.Consejo;
@@ -97,6 +99,36 @@ public class activity_login extends AppCompatActivity {
             //Verifico si hay una Sesion iniciada
             if (SessionManager.tieneSesion(this))
                 startActivity(new Intent(this, navigationDrawer_consultante.class));
+
+            //Captura el botón Enter para que active la "función del botón"
+            txtpass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                    if(actionId == EditorInfo.IME_ACTION_DONE
+                            || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                            || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
+
+                        try {
+                            Entrar();
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            btnEntrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Entrar();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -192,7 +224,7 @@ public class activity_login extends AppCompatActivity {
     }
 
     //Clic en Ingresar
-    public void Entrar(View view) throws SQLException {
+    public void Entrar() throws SQLException {
         if (txtnick.getText().toString().equals("") || txtpass.getText().toString().equals("")){
             Toast.makeText(this,"Complete todos los campos.", Toast.LENGTH_SHORT).show();
         }
