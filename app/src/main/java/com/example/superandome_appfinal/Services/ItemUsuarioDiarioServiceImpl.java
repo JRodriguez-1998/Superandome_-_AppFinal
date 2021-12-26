@@ -113,8 +113,8 @@ public class ItemUsuarioDiarioServiceImpl implements ItemUsuarioDiarioService {
         Future<Map<Integer, Float>> f = executor.submit(() -> {
             try {
                 Map<Integer, Float> result = dao.getReporteMensualRutina(idUsuario, anio, mes);
-                if (result.size() == 0)
-                    return result;
+//                if (result.size() == 0)
+//                    return result;
 
                 // Si alguno no viene, le pongo 0.
                 if (result.get(ItemRutinaEnum.DIETA.getId()) == null)

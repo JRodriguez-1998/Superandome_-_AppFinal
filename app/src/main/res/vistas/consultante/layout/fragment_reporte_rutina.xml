@@ -73,7 +73,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut1"
+                    android:id="@+id/barDieta"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -95,7 +95,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut2"
+                    android:id="@+id/barConsumo"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -117,7 +117,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut3"
+                    android:id="@+id/barEjercicio"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -139,7 +139,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut4"
+                    android:id="@+id/barDescanso"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -161,7 +161,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut5"
+                    android:id="@+id/barAmbiente"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -183,7 +183,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut6"
+                    android:id="@+id/barHigiene"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -205,7 +205,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut7"
+                    android:id="@+id/barEquilibrio"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -227,7 +227,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut8"
+                    android:id="@+id/barSocial"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -249,7 +249,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut9"
+                    android:id="@+id/barOcio"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -271,7 +271,7 @@
                     android:layout_marginStart="10sp" />
 
                 <ProgressBar
-                    android:id="@+id/barRut10"
+                    android:id="@+id/barNaturaleza"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

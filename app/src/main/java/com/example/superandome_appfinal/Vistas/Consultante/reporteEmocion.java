@@ -1,7 +1,6 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,39 +11,29 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.TipoEmocionEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Dialogos.dialogoNoHayDatos;
-import com.example.superandome_appfinal.Dialogos.dialogoProximamente;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.EmocionUsuarioService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.EmocionUsuarioServiceImpl;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 public class reporteEmocion extends Fragment {
-
-    private final int COLOR_ASCO = ColorTemplate.rgb("23a44f");
-    private final int COLOR_IRA = ColorTemplate.rgb("dc3221");
-    private final int COLOR_FELICIDAD = ColorTemplate.rgb("ef971b");
-    private final int COLOR_MIEDO = ColorTemplate.rgb("922580");
-    private final int COLOR_TRISTEZA = ColorTemplate.rgb("0477ba");
 
     private PieChart chart;
     private Spinner spMeses;
@@ -62,9 +51,11 @@ public class reporteEmocion extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_reporte_emocion, container, false);
-        chart = v.findViewById(R.id.chart);
-        spMeses = v.findViewById(R.id.spMeses);
         try {
+            chart = v.findViewById(R.id.chart);
+            StylePieChart();
+
+            spMeses = v.findViewById(R.id.spMeses);
             spMeses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,24 +68,39 @@ public class reporteEmocion extends Fragment {
                 }
             });
 
-
             service = new EmocionUsuarioServiceImpl();
 
             idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
-
 
             LoadSpinner();
         } catch (Exception e) {
             e.printStackTrace();
             dialogoErrorFragment d = new dialogoErrorFragment();
-            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
+            d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
+
         return v;
+    }
+
+    private void StylePieChart() {
+        chart.setNoDataText("No hay datos registrados para el período seleccionado");
+        chart.setNoDataTextColor(getResources().getColor(R.color.profesional));
+        chart.setNoDataTextTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+
+        chart.setUsePercentValues(true);
+        chart.setEntryLabelColor(getResources().getColor(R.color.white));
+        chart.setEntryLabelTextSize(18);
+
+        chart.getDescription().setEnabled(false);
+        chart.getLegend().setEnabled(false);
+
+        chart.setHoleColor(getResources().getColor(R.color.consultante));
+        chart.setTransparentCircleAlpha(45);
     }
 
     private void LoadSpinner() {
         List<String> listMeses = new ArrayList<>();
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 0; i < 3; i++) {
             Calendar c = Calendar.getInstance();
             c.add(Calendar.MONTH, -i);
 
@@ -105,7 +111,7 @@ public class reporteEmocion extends Fragment {
             listMeses.add(anio_mes);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item_mes, listMeses);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item_mes, listMeses);
         spMeses.setAdapter(adapter);
     }
 
@@ -113,7 +119,7 @@ public class reporteEmocion extends Fragment {
         int pos = spMeses.getSelectedItemPosition();
 
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MONTH, -(pos + 1));
+        c.add(Calendar.MONTH, -(pos));
 
         return c;
     }
@@ -124,13 +130,18 @@ public class reporteEmocion extends Fragment {
 
             Map<Integer, Float> map = service.getReporteMensualEmocion(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
             if (map == null) {
+                chart.setNoDataText("Ha ocurrido un error inesperado");
+                chart.clear();
                 dialogoErrorInesperado d = new dialogoErrorInesperado();
-                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
+                d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 return;
             }
+            // TODO: Cachear los resultados
             if (map.size() == 0) {
+                chart.setNoDataText("No hay datos registrados para el período seleccionado");
+                chart.clear();
                 dialogoNoHayDatos d = new dialogoNoHayDatos();
-                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_nohaydatos");
+                d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_nohaydatos");
                 return;
             }
 
@@ -140,52 +151,49 @@ public class reporteEmocion extends Fragment {
 
             PieDataSet dataSet = new PieDataSet(entries, "Torta");
             dataSet.setColors(colors);
+            dataSet.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    // Pone el formato "12.25%"
+                    return String.format(Locale.getDefault(), "%.2f%%", value);
+                }
+            });
 
             PieData data = new PieData(dataSet);
-            data.setValueTextColor(R.color.white); // TODO: No funca
+            data.setValueTextColor(getResources().getColor(R.color.white));
             data.setValueTextSize(18);
-
-            chart.setUsePercentValues(true);
-            chart.setEntryLabelColor(R.color.white); // TODO: No funca
-            chart.setEntryLabelTextSize(18);
-
-            chart.getDescription().setEnabled(false);
-            chart.getLegend().setEnabled(false);
-    //        chart.setHoleRadius(5f);
-            chart.setDrawHoleEnabled(false);
-    //        chart.setHoleColor(R.color.consultante);
-    //        chart.setAlpha(0.50f);
-    //        chart.setTransparentCircleAlpha(90);
 
             chart.setData(data);
             chart.invalidate();
+            chart.spin(1000, 0f, 270f, Easing.EaseInOutSine);
         } catch (Exception e) {
             dialogoErrorInesperado d = new dialogoErrorInesperado();
-            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
+            d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
             e.printStackTrace();
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void LoadEntriesColors(Map<Integer, Float> map, List<PieEntry> entries, List<Integer> colors) {
         if (map.get(TipoEmocionEnum.ASCO.getTipo()) != null) {
             entries.add(new PieEntry(map.get(TipoEmocionEnum.ASCO.getTipo()), "Asco"));
-            colors.add(COLOR_ASCO);
+            colors.add(getResources().getColor(R.color.asco));
         }
         if (map.get(TipoEmocionEnum.IRA.getTipo()) != null) {
             entries.add(new PieEntry(map.get(TipoEmocionEnum.IRA.getTipo()), "Ira"));
-            colors.add(COLOR_IRA);
+            colors.add(getResources().getColor(R.color.ira));
         }
         if (map.get(TipoEmocionEnum.FELICIDAD.getTipo()) != null) {
             entries.add(new PieEntry(map.get(TipoEmocionEnum.FELICIDAD.getTipo()), "Felicidad"));
-            colors.add(COLOR_FELICIDAD);
+            colors.add(getResources().getColor(R.color.felicidad));
         }
         if (map.get(TipoEmocionEnum.MIEDO.getTipo()) != null) {
             entries.add(new PieEntry(map.get(TipoEmocionEnum.MIEDO.getTipo()), "Miedo"));
-            colors.add(COLOR_MIEDO);
+            colors.add(getResources().getColor(R.color.miedo));
         }
         if (map.get(TipoEmocionEnum.TRISTERZA.getTipo()) != null) {
             entries.add(new PieEntry(map.get(TipoEmocionEnum.TRISTERZA.getTipo()), "Tristeza"));
-            colors.add(COLOR_TRISTEZA);
+            colors.add(getResources().getColor(R.color.tristeza));
         }
     }
 }
