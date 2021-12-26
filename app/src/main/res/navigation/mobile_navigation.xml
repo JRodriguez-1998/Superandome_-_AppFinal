@@ -195,6 +195,11 @@
         android:name="com.example.superandome_appfinal.Vistas.Profesional.multimedia_profesional"
         android:label="MULTIMEDIA"
         tools:layout="@layout/fragment_multimedia_profesional" />
+    <fragment
+        android:id="@+id/nav_cambiar_password_consultante"
+        android:name="com.example.superandome_appfinal.Vistas.Consultante.cambiar_password_consultante"
+        android:label="CAMBIAR CONTRASEÑA"
+        tools:layout="@layout/fragment_cambiar_password_consultante" />
 
 
 </navigation>
