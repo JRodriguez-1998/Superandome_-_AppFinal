@@ -8,21 +8,6 @@
     android:background="@drawable/consultante"
     tools:context=".Vistas.Consultante.reporteEmocion">
 
-<!--    <RelativeLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <com.github.mikephil.charting.charts.PieChart-->
-<!--            android:id="@+id/chart"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="255dp"/>-->
-<!--        <ImageView-->
-<!--            android:layout_width="35dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:src="@drawable/consultante"-->
-<!--            android:layout_centerInParent="true" />-->
-<!--    </RelativeLayout>-->
-
-
     <LinearLayout
         android:layout_width="363dp"
         android:layout_height="match_parent"
