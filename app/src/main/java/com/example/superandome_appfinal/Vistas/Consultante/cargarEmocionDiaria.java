@@ -68,31 +68,22 @@ public class cargarEmocionDiaria extends Fragment {
             idUsuario = SessionManager.obtenerUsuario(requireActivity()).getIdUsuario();
 
             Usuario usuario = usuarioService.getUsuarioById(idUsuario);
-
-
-
             Date horaUsuario = usuario.getHorarioEmocion();
 
-            Calendar calHoraActual = Calendar.getInstance();
             Calendar calHoraUsuario = Calendar.getInstance();
+            Calendar c1 = Calendar.getInstance();
+
+            int dia = Integer.valueOf(c1.get(Calendar.DAY_OF_MONTH));
+            int mes = Integer.valueOf(c1.get(Calendar.MONTH));
+            int anio = Integer.valueOf(c1.get(Calendar.YEAR));
+
             calHoraUsuario.setTime(horaUsuario);
-            calHoraUsuario.set(Calendar.YEAR, calHoraUsuario.get(Calendar.YEAR));
-            calHoraUsuario.set(Calendar.MONTH, calHoraUsuario.get(Calendar.MONTH));
-            calHoraUsuario.set(Calendar.DAY_OF_MONTH, calHoraUsuario.get(Calendar.DAY_OF_MONTH));
+            calHoraUsuario.set(Calendar.DAY_OF_MONTH, dia);
+            calHoraUsuario.set(Calendar.MONTH, mes);
+            calHoraUsuario.set(Calendar.YEAR, anio);
 
             horaUsuario = calHoraUsuario.getTime();
             Date horaActual = new Date();
-
-            DateFormat formatHora = new SimpleDateFormat("HH");
-            DateFormat formatMinutos = new SimpleDateFormat("mm");
-
-
-
-//            LocalTime horaActualConver = LocalTime.of(Integer.parseInt(formatHora.format(horaActual).toString()),
-//                    Integer.parseInt(formatMinutos.format(horaActual).toString()));
-//
-//            LocalTime horaUserConver = LocalTime.of(Integer.parseInt(formatHora.format(horaUsuario).toString()),
-//                    Integer.parseInt(formatMinutos.format(horaUsuario).toString()));
 
             btnAlegia.setOnClickListener(new View.OnClickListener() {
                 @Override
