@@ -56,7 +56,7 @@ public class recuperarPassword extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.consultante));
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
 
         btnAceptar = (Button) findViewById(R.id.btnAceptarRespuesta);
