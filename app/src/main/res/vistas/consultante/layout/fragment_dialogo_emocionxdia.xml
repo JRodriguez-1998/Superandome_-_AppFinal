@@ -12,8 +12,8 @@
 
         <TextView
             android:id="@+id/txtMensajeDialogo"
-            android:layout_width="322dp"
-            android:layout_height="68dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/cambay"
             android:text="Recuerda que solo puedes seleccionar una Emoción por Día."
             android:textAlignment="center"
