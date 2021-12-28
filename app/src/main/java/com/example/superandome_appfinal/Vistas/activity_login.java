@@ -202,6 +202,7 @@ public class activity_login extends AppCompatActivity {
 //                Toast.makeText(this,"El Usuario no existe", Toast.LENGTH_SHORT).show();
 //                return;
                 Intent intent =  new Intent(this, recuperarPassword.class);
+                intent.putExtra("nickname",txtnick.getText().toString());
                 startActivity(intent);
             }
             else{
