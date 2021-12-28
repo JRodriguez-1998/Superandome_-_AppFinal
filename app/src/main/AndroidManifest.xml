@@ -31,7 +31,9 @@
         <activity
             android:name=".Vistas.Consultante.recuperarPassword"
             android:screenOrientation="portrait"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".Vistas.activity_login"
+            android:label="Recuperar contraseña"/>
         <activity
             android:name=".Vistas.Consultante.activity_altaConsultante"
             android:screenOrientation="portrait"

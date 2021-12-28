@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.superandome_appfinal.Dialogos.dialogoCambiarPass;
@@ -29,8 +30,9 @@ import java.util.List;
 public class recuperarPassword extends AppCompatActivity {
 
     Button btnAceptar;
-    EditText txtRespuesta;
+    EditText txtRespuesta,txtUsuario;
     Spinner spinnerPreguntas;
+    TextView txtTiulo;
     PreguntaSeguridadServiceImpl preguntaService;
     UsuarioServiceImpl usuarioService;
     List<PreguntaSeguridad> listaPreguntas = new ArrayList<PreguntaSeguridad>();
@@ -39,6 +41,10 @@ public class recuperarPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperar_password);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        String nickName = (String) getIntent().getSerializableExtra("nickname");
 
         Window window = this.getWindow();
         // clear FLAG_TRANSLUCENT_STATUS flag:
@@ -52,9 +58,22 @@ public class recuperarPassword extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+
         btnAceptar = (Button) findViewById(R.id.btnAceptarRespuesta);
         txtRespuesta = (EditText) findViewById(R.id.txtRespuesta);
         spinnerPreguntas = (Spinner) findViewById(R.id.spPregunta);
+        txtTiulo = (TextView) findViewById(R.id.tvTituloPreguntaSeguridad);
+        txtUsuario= (EditText) findViewById(R.id.txtUsuario);
+        txtTiulo.setText("Complete con sus datos");
+        if(nickName== null){
+            txtUsuario.setText("");
+        }
+        else{
+            txtUsuario.setText(nickName);
+        }
+
+
+
         try {
 
 
@@ -77,8 +96,13 @@ public class recuperarPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String nickName = (String) getIntent().getSerializableExtra("nickname");
-                Usuario usuario = usuarioService.getUsuario(nickName);
+                Usuario usuario = usuarioService.getUsuario(txtUsuario.getText().toString());
                 PreguntaSeguridad pregunta = (PreguntaSeguridad) spinnerPreguntas.getSelectedItem();
+
+                if(usuario==null){
+                    Toast.makeText(recuperarPassword.this,"El Usuario no existe", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(spinnerPreguntas.getSelectedItemPosition() == 0){
                     Toast.makeText(recuperarPassword.this, "Seleccione una pregunta de seguridad", Toast.LENGTH_LONG).show();
@@ -89,16 +113,12 @@ public class recuperarPassword extends AppCompatActivity {
                     return;
                 }
 
-                if(pregunta.getIdPreguntaSeguridad() == usuario.getPreguntaSeguridad().getIdPreguntaSeguridad()){
-                    if(txtRespuesta.getText().toString().toLowerCase().equals(usuario.getRespuesta().toString().toLowerCase())){
-
+                if(pregunta.getIdPreguntaSeguridad() == usuario.getPreguntaSeguridad().getIdPreguntaSeguridad() && txtUsuario.getText().toString().equals(usuario.getNickname().toString()) && txtRespuesta.getText().toString().toLowerCase().equals(usuario.getRespuesta().toString().toLowerCase())){
                         dialogoCambiarPass d = new dialogoCambiarPass(usuario.getNickname().toString());
                         d.show(recuperarPassword.this.getSupportFragmentManager(), "fragment_dialogo_cambiar_pass");
-                    }else{
-                        Toast.makeText(recuperarPassword.this, "RESPUESTA INCORRECTA", Toast.LENGTH_LONG).show();
-                    }
+
                 }else{
-                    Toast.makeText(recuperarPassword.this, "Revise la pregunta seleccionada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(recuperarPassword.this, "Datos incorrectos.", Toast.LENGTH_LONG).show();
                 }
             }
         });
