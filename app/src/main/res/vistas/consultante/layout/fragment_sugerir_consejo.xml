@@ -43,12 +43,15 @@
                     android:layout_height="315dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
+                    android:padding="10dp"
+                    android:gravity="top"
                     android:background="@drawable/border"
                     android:hint="@string/sugConsejo"
-                    android:inputType="textPersonName"
-                    android:textColor="#C9CACA"
-                    android:textSize="24sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:inputType="textMultiLine"
+                    android:scrollbars="vertical"
+                    android:scrollbarStyle="insideInset"
+                    android:overScrollMode="always"
+                    android:textSize="24sp" />
 
                 <Spinner
                     android:id="@+id/spinnerTipoConsejo"
@@ -64,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="#496BB2"
+                    android:backgroundTint="@color/profesional"
                     android:text="@string/enviarSugerencia" />
 
             </LinearLayout>
