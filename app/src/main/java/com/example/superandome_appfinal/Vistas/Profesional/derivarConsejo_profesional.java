@@ -12,15 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superandome_appfinal.Dialogos.derivarRechazarConsejo;
-import com.example.superandome_appfinal.Dialogos.dialogoCambiarPass;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.IServices.ConsejoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
-import com.example.superandome_appfinal.Vistas.ClasePrueba;
-import com.example.superandome_appfinal.Vistas.Consultante.recuperarPassword;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class derivarConsejo_profesional extends Fragment {
@@ -35,54 +31,36 @@ public class derivarConsejo_profesional extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_derivar_consejo, container, false);
+
         try {
+            consejoService = new ConsejoServiceImpl();
 
+            txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazar);
+            consejos = new ArrayList<>();
+            recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
+            recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerViewContenido.setHasFixedSize(true);
 
-        txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazar);
-        consejos = new ArrayList<Consejo>();
-        recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
-        recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewContenido.setHasFixedSize(true);
+            consejos.addAll(consejoService.getConsejosPendientes());
 
-        iniciarServicios();
-        obtenerContenido();
+            if(consejoService.getConsejosPendientes().size() == 0){
+                txtAviso.setText("Actualmente no hay consejos para derivar");
+            }
 
-        if(consejoService.getConsejosPendientes().size() == 0){
-            txtAviso.setText("Actualmente no hay consejos para derivar");
-        }
+            ReciclerViewAdapter_ConsejoProf adapterContenido = new ReciclerViewAdapter_ConsejoProf(consejos);
 
-        ReciclerViewAdapter_ConsejoProf adapterContenido = new ReciclerViewAdapter_ConsejoProf(consejos);
-
-        adapterContenido.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int idConsejo = (int) consejos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdConsejo();
+            adapterContenido.setOnClickListener(view1 -> {
+                int idConsejo = (int) consejos.get(recyclerViewContenido.getChildAdapterPosition(view1)).getIdConsejo();
 
                 derivarRechazarConsejo d = new derivarRechazarConsejo(idConsejo);
-                d.show(getActivity().getSupportFragmentManager(),"dialogo_derivar_rechazar");
-            }
-        });
+                d.show(requireActivity().getSupportFragmentManager(),"dialogo_derivar_rechazar");
+            });
 
-        recyclerViewContenido.setAdapter(adapterContenido);
+            recyclerViewContenido.setAdapter(adapterContenido);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "Error al inicializar pantalla", Toast.LENGTH_SHORT).show();
         }
         return view;
-    }
-
-    public void obtenerContenido(){
-        for(int i = 0; i< consejoService.getConsejosPendientes().size(); i ++){
-            consejos.add(consejoService.getConsejosPendientes().get(i));
-        }
-    }
-
-    public void iniciarServicios(){
-        try {
-            consejoService = new ConsejoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
-        }
     }
 }

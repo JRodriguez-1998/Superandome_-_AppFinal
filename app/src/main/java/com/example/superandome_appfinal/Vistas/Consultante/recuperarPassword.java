@@ -1,9 +1,12 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +43,21 @@ public class recuperarPassword extends AppCompatActivity {
         setContentView(R.layout.activity_recuperar_password);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         String nickName = (String) getIntent().getSerializableExtra("nickname");
+
+        Window window = this.getWindow();
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.consultante));
+
+        getSupportActionBar().hide();
+
 
         btnAceptar = (Button) findViewById(R.id.btnAceptarRespuesta);
         txtRespuesta = (EditText) findViewById(R.id.txtRespuesta);

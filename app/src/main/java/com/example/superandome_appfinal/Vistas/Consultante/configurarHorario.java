@@ -1,5 +1,8 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +22,7 @@ import com.example.superandome_appfinal.Dialogos.dialogoConfHorario;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
 import com.example.superandome_appfinal.Entidades.Usuario;
+import com.example.superandome_appfinal.Helpers.AlarmReceiver;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.UsuarioServiceImpl;
@@ -36,6 +40,10 @@ public class configurarHorario extends Fragment {
      Button btnConfirmar;
      Integer idUsuario;
      UsuarioServiceImpl usuarioService;
+
+     //Notificación
+     Integer horas, minutos;
+     private int notificationId = 1;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -69,6 +77,29 @@ public class configurarHorario extends Fragment {
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.HOUR_OF_DAY, reloj.getCurrentHour());
             cal.set(Calendar.MINUTE, reloj.getCurrentMinute());
+
+            //ALARMA
+            Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+            intent.putExtra("notificacionId", notificationId);
+            intent.putExtra("todo", "prueba alarma");
+
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(getActivity(), 0,
+                    intent , PendingIntent.FLAG_CANCEL_CURRENT);
+
+            AlarmManager alarm  = (AlarmManager) getActivity().getSystemService(getContext().ALARM_SERVICE);
+
+            horas = reloj.getCurrentHour();
+            minutos = reloj.getCurrentMinute();
+
+            // Create time.
+            Calendar startTime = Calendar.getInstance();
+            startTime.set(Calendar.HOUR_OF_DAY, horas);
+            startTime.set(Calendar.MINUTE, minutos);
+            startTime.set(Calendar.SECOND, 0);
+
+            long alarmStartTime = startTime.getTimeInMillis();
+
+            alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
 
             Date horario = cal.getTime();
 

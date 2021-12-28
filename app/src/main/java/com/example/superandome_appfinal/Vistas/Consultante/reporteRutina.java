@@ -1,7 +1,6 @@
 package com.example.superandome_appfinal.Vistas.Consultante;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,12 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.superandome_appfinal.Constantes.ItemRutinaEnum;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorFragment;
 import com.example.superandome_appfinal.Dialogos.dialogoErrorInesperado;
-import com.example.superandome_appfinal.Dialogos.dialogoNoHayDatos;
 import com.example.superandome_appfinal.Helpers.SessionManager;
 import com.example.superandome_appfinal.IServices.ItemUsuarioDiarioService;
 import com.example.superandome_appfinal.R;
@@ -35,16 +32,16 @@ public class reporteRutina extends Fragment {
 
     private Spinner spMeses;
 
-    private ProgressBar barRut1;
-    private ProgressBar barRut2;
-    private ProgressBar barRut3;
-    private ProgressBar barRut4;
-    private ProgressBar barRut5;
-    private ProgressBar barRut6;
-    private ProgressBar barRut7;
-    private ProgressBar barRut8;
-    private ProgressBar barRut9;
-    private ProgressBar barRut10;
+    private ProgressBar barDieta;
+    private ProgressBar barConsumo;
+    private ProgressBar barEjercicio;
+    private ProgressBar barDescanso;
+    private ProgressBar barAmbiente;
+    private ProgressBar barHigiene;
+    private ProgressBar barEquilibrio;
+    private ProgressBar barSocial;
+    private ProgressBar barOcio;
+    private ProgressBar barNaturaleza;
 
     private TextView txtResultado;
 
@@ -85,7 +82,7 @@ public class reporteRutina extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
             dialogoErrorFragment d = new dialogoErrorFragment();
-            d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
+            d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_errorfragment");
         }
         return v;
     }
@@ -93,23 +90,23 @@ public class reporteRutina extends Fragment {
     private void FindViews(View v) {
         spMeses = v.findViewById(R.id.spMeses);
 
-        barRut1 = v.findViewById(R.id.barRut1);
-        barRut2 = v.findViewById(R.id.barRut2);
-        barRut3 = v.findViewById(R.id.barRut3);
-        barRut4 = v.findViewById(R.id.barRut4);
-        barRut5 = v.findViewById(R.id.barRut5);
-        barRut6 = v.findViewById(R.id.barRut6);
-        barRut7 = v.findViewById(R.id.barRut7);
-        barRut8 = v.findViewById(R.id.barRut8);
-        barRut9 = v.findViewById(R.id.barRut9);
-        barRut10 = v.findViewById(R.id.barRut10);
+        barDieta = v.findViewById(R.id.barDieta);
+        barConsumo = v.findViewById(R.id.barConsumo);
+        barEjercicio = v.findViewById(R.id.barEjercicio);
+        barDescanso = v.findViewById(R.id.barDescanso);
+        barAmbiente = v.findViewById(R.id.barAmbiente);
+        barHigiene = v.findViewById(R.id.barHigiene);
+        barEquilibrio = v.findViewById(R.id.barEquilibrio);
+        barSocial = v.findViewById(R.id.barSocial);
+        barOcio = v.findViewById(R.id.barOcio);
+        barNaturaleza = v.findViewById(R.id.barNaturaleza);
 
         txtResultado = v.findViewById(R.id.txtResultadoRutina);
     }
 
     private void LoadSpinner() {
         List<String> listMeses = new ArrayList<>();
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 0; i < 3; i++) {
             Calendar c = Calendar.getInstance();
             c.add(Calendar.MONTH, -i);
 
@@ -120,7 +117,7 @@ public class reporteRutina extends Fragment {
             listMeses.add(anio_mes);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item_mes, listMeses);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item_mes, listMeses);
         spMeses.setAdapter(adapter);
     }
 
@@ -128,11 +125,12 @@ public class reporteRutina extends Fragment {
         int pos = spMeses.getSelectedItemPosition();
 
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MONTH, -(pos + 1));
+        c.add(Calendar.MONTH, -(pos));
 
         return c;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void LoadProgressBars() {
         try {
             Calendar fecha = GetSelectedDate();
@@ -140,25 +138,60 @@ public class reporteRutina extends Fragment {
             Map<Integer, Float> map = service.getReporteMensualRutina(idUsuario, fecha.get(Calendar.YEAR), fecha.get(Calendar.MONTH) + 1);
             if (map == null) {
                 dialogoErrorInesperado d = new dialogoErrorInesperado();
-                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
+                d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_errorinesperado");
                 return;
             }
-            if (map.size() == 0) {
-                dialogoNoHayDatos d = new dialogoNoHayDatos();
-                d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_nohaydatos");
-                return;
-            }
+            // TODO: Cachear los resultados
+//            if (map.size() == 0) {
+//                dialogoNoHayDatos d = new dialogoNoHayDatos();
+//                d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_nohaydatos");
+//                return;
+//            }
 
-            barRut1.setProgress(Math.round(map.get(ItemRutinaEnum.DIETA.getId())));
-            barRut2.setProgress(Math.round(map.get(ItemRutinaEnum.CONSUMO.getId())));
-            barRut3.setProgress(Math.round(map.get(ItemRutinaEnum.EJERCICIO.getId())));
-            barRut4.setProgress(Math.round(map.get(ItemRutinaEnum.DESCANSO.getId())));
-            barRut5.setProgress(Math.round(map.get(ItemRutinaEnum.AMBIENTE.getId())));
-            barRut6.setProgress(Math.round(map.get(ItemRutinaEnum.HIGIENE.getId())));
-            barRut7.setProgress(Math.round(map.get(ItemRutinaEnum.EQUILIBRIO.getId())));
-            barRut8.setProgress(Math.round(map.get(ItemRutinaEnum.SOCIAL.getId())));
-            barRut9.setProgress(Math.round(map.get(ItemRutinaEnum.OCIO.getId())));
-            barRut10.setProgress(Math.round(map.get(ItemRutinaEnum.NATURALEZA.getId())));
+
+//            barDieta.setProgress(Math.round(map.get(ItemRutinaEnum.DIETA.getId())));
+//            barConsumo.setProgress(Math.round(map.get(ItemRutinaEnum.CONSUMO.getId())));
+//            barEjercicio.setProgress(Math.round(map.get(ItemRutinaEnum.EJERCICIO.getId())));
+//            barDescanso.setProgress(Math.round(map.get(ItemRutinaEnum.DESCANSO.getId())));
+//            barAmbiente.setProgress(Math.round(map.get(ItemRutinaEnum.AMBIENTE.getId())));
+//            barHigiene.setProgress(Math.round(map.get(ItemRutinaEnum.HIGIENE.getId())));
+//            barEquilibrio.setProgress(Math.round(map.get(ItemRutinaEnum.EQUILIBRIO.getId())));
+//            barSocial.setProgress(Math.round(map.get(ItemRutinaEnum.SOCIAL.getId())));
+//            barOcio.setProgress(Math.round(map.get(ItemRutinaEnum.OCIO.getId())));
+//            barNaturaleza.setProgress(Math.round(map.get(ItemRutinaEnum.NATURALEZA.getId())));
+
+            // Seteo todos los progress bar con el porcentaje correspondiente, mediante animaciones
+            final int animationDuration = 500;
+            ObjectAnimator.ofInt(barDieta, "progress", Math.round(map.get(ItemRutinaEnum.DIETA.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barConsumo, "progress", Math.round(map.get(ItemRutinaEnum.CONSUMO.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barEjercicio, "progress", Math.round(map.get(ItemRutinaEnum.EJERCICIO.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barDescanso, "progress", Math.round(map.get(ItemRutinaEnum.DESCANSO.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barAmbiente, "progress", Math.round(map.get(ItemRutinaEnum.AMBIENTE.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barHigiene, "progress", Math.round(map.get(ItemRutinaEnum.HIGIENE.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barEquilibrio, "progress", Math.round(map.get(ItemRutinaEnum.EQUILIBRIO.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barSocial, "progress", Math.round(map.get(ItemRutinaEnum.SOCIAL.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barOcio, "progress", Math.round(map.get(ItemRutinaEnum.OCIO.getId())))
+                    .setDuration(animationDuration)
+                    .start();
+            ObjectAnimator.ofInt(barNaturaleza, "progress", Math.round(map.get(ItemRutinaEnum.NATURALEZA.getId())))
+                    .setDuration(animationDuration)
+                    .start();
 
             LoadResultado(map);
 

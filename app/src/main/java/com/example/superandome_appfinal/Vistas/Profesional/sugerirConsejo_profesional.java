@@ -1,5 +1,6 @@
 package com.example.superandome_appfinal.Vistas.Profesional;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -45,6 +47,7 @@ public class sugerirConsejo_profesional extends Fragment {
 
     Usuario user;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,55 +56,58 @@ public class sugerirConsejo_profesional extends Fragment {
         txtConsejo = (EditText) view.findViewById(R.id.txtConsejoSugeridoProf);
 
         try {
-
-            nameUsuario = SessionManager.obtenerUsuario(requireActivity()).getNickname();
-
-
             tipoConsejoService = new TipoConsejoServiceImpl();
             consejoService = new ConsejoServiceImpl();
             usuarioService = new UsuarioServiceImpl();
 
+            nameUsuario = SessionManager.obtenerUsuario(requireActivity()).getNickname();
 
             TipoConsejo consejo = new TipoConsejo(0, "Seleccionar tipo consejo");
 
-            List<TipoConsejo> listTipoConsejo = new ArrayList<TipoConsejo>();
+            List<TipoConsejo> listTipoConsejo = new ArrayList<>();
             listTipoConsejo.add(consejo);
-
-            for(int i = 0; i< tipoConsejoService.getTipoConsejos().size(); i ++){
-                listTipoConsejo.add(tipoConsejoService.getTipoConsejos().get(i));
-            }
+            listTipoConsejo.addAll(tipoConsejoService.getTipoConsejos());
 
             Spinner spinnerTipoConsejo = (Spinner) view.findViewById(R.id.spinnerTipoConsejoProf);
-            ArrayAdapter<TipoConsejo> adapter = new ArrayAdapter<TipoConsejo>(getContext(), R.layout.spinner_item_tipoconsejo, listTipoConsejo);
+            ArrayAdapter<TipoConsejo> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_tipoconsejo, listTipoConsejo);
             spinnerTipoConsejo.setAdapter(adapter);
 
-            btnEnviar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(txtConsejo.getText().toString().isEmpty()){
-                        Toast.makeText(getActivity(),"Completar campos para continuar", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(spinnerTipoConsejo.getSelectedItemPosition() == 0){
-                        Toast.makeText(getActivity(),"Seleccionar tipo de consejo", Toast.LENGTH_LONG).show();
-                        return;
-                    }
+            // Código para poder scrollear dentro del EditText
+            txtConsejo.setOnTouchListener((v, motionEvent) -> {
+                if (!txtConsejo.hasFocus())
+                    return false;
 
-                    //Usuario usuario = new Usuario();
-                    //usuario.setIdUsuario(99);
-                    user = usuarioService.getUsuario(nameUsuario);
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                if ((motionEvent.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_SCROLL) {
+                    v.getParent().requestDisallowInterceptTouchEvent(false);
+                    return true;
+                }
 
-                    Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
-                    TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
-                    Consejo consejo = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, user);
+                return false;
+            });
 
-                    if(consejoService.guardar(consejo)){
-                        dialogoSugerirConsejo d = new dialogoSugerirConsejo();
-                        d.show(getActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
-                        txtConsejo.setText("");
-                    }else{
-                        Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_LONG).show();
-                    }
+            btnEnviar.setOnClickListener(view1 -> {
+                if (txtConsejo.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(),"Completar campos para continuar", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (spinnerTipoConsejo.getSelectedItemPosition() == 0){
+                    Toast.makeText(getActivity(),"Seleccionar tipo de consejo", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                user = usuarioService.getUsuario(nameUsuario);
+
+                Estado estado = new Estado(EstadoEnum.APROBADO_PROFESIONAL.getId());
+                TipoConsejo tipoConsejo = (TipoConsejo)spinnerTipoConsejo.getSelectedItem();
+                Consejo consejo1 = new Consejo(txtConsejo.getText().toString(), tipoConsejo, estado, user);
+
+                if (consejoService.guardar(consejo1)){
+                    dialogoSugerirConsejo d = new dialogoSugerirConsejo();
+                    d.show(requireActivity().getSupportFragmentManager(), "fragment_dialogo_sugerir_consejo");
+                    txtConsejo.setText("");
+                } else{
+                    Toast.makeText(getActivity(),"ERROR", Toast.LENGTH_LONG).show();
                 }
             });
         } catch (Exception e) {

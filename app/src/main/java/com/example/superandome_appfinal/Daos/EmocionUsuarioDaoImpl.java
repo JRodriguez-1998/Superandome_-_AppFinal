@@ -28,7 +28,7 @@ public class EmocionUsuarioDaoImpl extends BaseDaoImpl<EmocionUsuario, Integer> 
                 "" +
                         " SELECT " +
                         "   idEmocion, " +
-                        "   COUNT(1) / aux.count * 100 'porcentaje' " +
+                        "   COUNT(1) / aux.count 'porcentaje' " +
                         " FROM " +
                         "   sql10450855.emocionusuario " +
                         "   CROSS JOIN ( " +
