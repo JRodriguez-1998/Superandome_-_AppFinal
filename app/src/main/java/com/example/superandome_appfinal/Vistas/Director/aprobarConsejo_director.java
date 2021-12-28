@@ -11,14 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.superandome_appfinal.Dialogos.derivarRechazarConsejo;
 import com.example.superandome_appfinal.Dialogos.dialogoAprobarConsejo;
 import com.example.superandome_appfinal.Entidades.Consejo;
 import com.example.superandome_appfinal.IServices.ConsejoService;
 import com.example.superandome_appfinal.R;
 import com.example.superandome_appfinal.Services.ConsejoServiceImpl;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class aprobarConsejo_director extends Fragment {
@@ -34,52 +32,34 @@ public class aprobarConsejo_director extends Fragment {
         View view = inflater.inflate(R.layout.fragment_aprobar_consejo, container, false);
 
         try {
-        txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazarDir);
-        consejos = new ArrayList<Consejo>();
-        recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
-        recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewContenido.setHasFixedSize(true);
+            consejoService = new ConsejoServiceImpl();
 
-        iniciarServicios();
-        obtenerContenido();
+            txtAviso = (TextView) view.findViewById(R.id.tvAprobarRechazarDir);
+            consejos = new ArrayList<>();
+            recyclerViewContenido=(RecyclerView) view.findViewById(R.id.rvContenido);
+            recyclerViewContenido.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerViewContenido.setHasFixedSize(true);
 
-        if(consejoService.getConsejosPendientesDIRECTOR().size() == 0){
-            txtAviso.setText("Actualmente no hay consejos para aprobar");
-        }
+            consejos.addAll(consejoService.getConsejosPendientesDIRECTOR());
 
-        adapterDirector adapterContenido = new adapterDirector(consejos);
-
-        adapterContenido.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                int idConsejo = (int) consejos.get(recyclerViewContenido.getChildAdapterPosition(view)).getIdConsejo();
-                dialogoAprobarConsejo d = new dialogoAprobarConsejo(idConsejo);
-                d.show(getActivity().getSupportFragmentManager(),"dialogo_aprobar_consejo");
+            if(consejoService.getConsejosPendientesDIRECTOR().size() == 0){
+                txtAviso.setText("Actualmente no hay consejos para aprobar");
             }
-        });
 
-        recyclerViewContenido.setAdapter(adapterContenido);
+            adapterDirector adapterContenido = new adapterDirector(consejos);
+
+            adapterContenido.setOnClickListener(view1 -> {
+                int idConsejo = (int) consejos.get(recyclerViewContenido.getChildAdapterPosition(view1)).getIdConsejo();
+                dialogoAprobarConsejo d = new dialogoAprobarConsejo(idConsejo);
+                d.show(requireActivity().getSupportFragmentManager(),"dialogo_aprobar_consejo");
+            });
+
+            recyclerViewContenido.setAdapter(adapterContenido);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Ha ocurrido un error al inicializar la pantalla", Toast.LENGTH_SHORT).show();
         }
         return view;
-    }
-
-    public void obtenerContenido(){
-
-        for(int i = 0; i< consejoService.getConsejosPendientesDIRECTOR().size(); i ++){
-            consejos.add(consejoService.getConsejosPendientesDIRECTOR().get(i));
-        }
-    }
-
-    public void iniciarServicios(){
-        try {
-            consejoService = new ConsejoServiceImpl();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            Toast.makeText(getContext(), "Error al inicializar servicios", Toast.LENGTH_SHORT).show();
-        }
     }
 
 }
